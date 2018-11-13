@@ -15,5 +15,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="questionViewOne" resultType="com.team.cos.question.vo.QuestionInfo">
 		select * from question where q_no = #{q_no}
 	</select>
+	<!-- 작성자 스코어 값을 변경하기 위한 작성자 번호 출력문 -->
+	<select id="findUserNum" resultType="int">
+		select user_no from question where q_no = #{q_no}
+	</select>
+	<update id="userScoreUdate">
+		update userinfo set user_score= user_score + #{score} where user_no = #{user_no}
+	</update>
 	
 </mapper>

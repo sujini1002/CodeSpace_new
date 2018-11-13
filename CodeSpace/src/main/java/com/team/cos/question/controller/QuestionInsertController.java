@@ -22,7 +22,6 @@ public class QuestionInsertController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	@ResponseBody
 	public String insertQuestion(QuestionInfo questionInfo) {
 		
 		System.out.println(questionInfo);
@@ -33,10 +32,9 @@ public class QuestionInsertController {
 		//질문번호 출력
 		int q_no = service.questionSelectNum();
 		
-		//JSON  형식으로 저장
-		String resultJson = "{\"q_no\": \"" +q_no + "\"}";
+		//작성자 스코어 값 1증가하는 컨트롤러로 들어가기
+		return "redirect:/question/userscore?q_no="+q_no+"&score=1";
 		
 		
-		return resultJson;
 	}
 }

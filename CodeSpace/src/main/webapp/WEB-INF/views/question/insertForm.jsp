@@ -64,11 +64,11 @@
 		var content = JSON.stringify(quill.getContents());
 		var tag = $('#q_tag').val();
 		//테스트
-		console.log(title);
+		/* console.log(title);
 		console.log(user_no);
 		console.log(content);
 		console.log(typeof content);
-		console.log(tag); 
+		console.log(tag);  */
 		$.ajax({
 			url:'${pageContext.request.contextPath}/question/insertQuestion',
 			type:'POST',

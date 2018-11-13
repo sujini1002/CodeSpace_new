@@ -15,6 +15,14 @@
 <link rel="icon" href="../../favicon.ico">
 
 <title>CodeSpace</title>
+<!-- 우리가 적용시킨 css -->
+<link rel="stylesheet"  href="css/custom.css"> 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/kang.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/moon.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/yu.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/lee.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ha.css">
+
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <!-- Bootstrap core JavaScript
@@ -32,13 +40,6 @@
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Myeongjo" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
 	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-<!-- 우리가 적용시킨 css -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/custom.css"> 
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/kang.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/moon.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/yu.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/lee.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ha.css">
 
 
 <!-- Quill 에디터 관련 -->

@@ -8,7 +8,7 @@ public class QuestionInfo {
 	private String q_title;//질문 제목
 	private String q_content;//질문 내용
 	private String q_tag;//질문 태크
-	private Date q_regdate;//질문 작성 날짜
+	private String q_regdate;//질문 작성 날짜
 	private int q_recommand;//질문 추천수
 	private int q_viewCnt;//질문 조회수
 	
@@ -31,10 +31,10 @@ public class QuestionInfo {
 	public void setQ_tag(String q_tag) {
 		this.q_tag = q_tag;
 	}
-	public Date getQ_regdate() {
+	public String getQ_regdate() {
 		return q_regdate;
 	}
-	public void setQ_regdate(Date q_regdate) {
+	public void setQ_regdate(String q_regdate) {
 		this.q_regdate = q_regdate;
 	}
 	public int getQ_recommand() {

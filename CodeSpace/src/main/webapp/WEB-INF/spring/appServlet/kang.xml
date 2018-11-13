@@ -18,5 +18,7 @@
 	<beans:bean id="questionInsertService"
 		class="com.team.cos.question.serivce.QuestionInsertService" />
 	<beans:bean id="questionOneViewService"
-		class="com.team.cos.question.serivce.QuestionOneViewService"/>
+		class="com.team.cos.question.serivce.QuestionOneViewService" />
+	<beans:bean id="questionUserScoreService"
+		class="com.team.cos.question.serivce.QuestionUserScoreService" />
 </beans:beans>
