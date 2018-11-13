@@ -1,0 +1,47 @@
+@charset "UTF-8";
+.jumbotron {
+	background-image:
+		url("${pageContext.request.contextPath}/resources/images/back_3333.jpg");
+	background-size: cover;
+	/* text-shadow: 0.2em 0.2em 0.2em;*/
+	color: white;
+}
+
+#k_hearder {
+	width: 100%;
+	background-color: red;
+}
+
+#k_content {
+	/* background-color: blue; */
+	margin:0px 100px;
+	width: 1400px;
+	float: left;
+	position: relative;
+}
+#k_leftNavBar {
+	/* background-color: lightgray; */
+	width: 20%;
+	position : absolute;
+	padding-left: 40px;
+	padding-top:50px;
+	/* margin-top: 70px; */
+	left:0;
+	top:0;
+}
+
+#k_rightContent {
+	/* background-color:pink;  */
+	width: 80%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin-top: 70px;
+	padding-left:100px;
+}
+
+
+/* .navbar-fixed-top {
+	background-color: rgb(240,240,242);
+	color : black;
+}  */

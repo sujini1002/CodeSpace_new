@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.cos.project.dao.ProjectInfoInterface">
+
+	<!-- project_no에 해당하는 플젝 정보 반환 -->
+	<select id="selectProjectList"
+		resultType="com.team.cos.project.vo.ProjectInfoVO">
+		select * from project where project_no = #{project_no}
+	</select>
+
+	<!-- 플젝 정보 추가 -->
+	<insert id="insertProject">
+		insert into project 
+		(project_title, project_content, project_startdate, project_enddate,
+		pm_no, user_no1, user_no2, user_no3, user_no4)
+		values (#{project_title}, #{project_content}, now(), #{project_enddate},
+		#{pm_no}, #{user_no1}, #{user_no2}, #{user_no3}, #{user_no4} )
+		<!-- 입력한후에 입력된 값의 컬럼값(자동증가값)을 가져오고 싶다면 아래와 같이 진행한다. SELECT LAST_INSERT_ID()은 
+			mysql(mariadb)에서 사용한다. 방금입력한 테이블의 auto_increment로 증가된 컬럼값을 가져오는 쿼리이다. order=AFTER로 
+			설정 -->
+		<selectKey resultType="int" keyProperty="project_no"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<!-- project_no에 해당하는 to do list 반환 -->
+	<select id="selectTodoList" resultType="hashmap">
+		select * from project_todolist 
+		where project_no = #{project_no}
+	</select>
+	
+	<!-- project_no에 해당하는 플젝 정보 업데이트 -->
+	<update id="updateProject" parameterType="com.team.cos.project.vo.ProjectInfoVO">
+		update project 
+		set project_title=#{project_title}, project_content = #{project_content}, project_enddate = #{project_enddate}
+		where project_no = #{project_no}
+	</update>
+
+
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.cos.question.dao.QuestionInterfaceDao">
+	<insert id="insertQuestion" parameterType="com.team.cos.question.vo.QuestionInfo">
+		insert into question(user_no,q_title,q_content,q_tag,q_regdate)
+		values(#{user_no},#{q_title},#{q_content},#{q_tag},now())
+	</insert>
+	<!-- 가장 최근의 질문 번호 출력하는 문 -->
+	<select id="questionSelectNum" resultType="int">
+		select q_no from question order by q_regdate desc limit 1
+	</select>
+	<!-- 질문 한개를 보여주는 출력하는 문 -->
+	<select id="questionViewOne" resultType="com.team.cos.question.vo.QuestionInfo">
+		select * from question where q_no = #{q_no}
+	</select>
+	
+</mapper>
