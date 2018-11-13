@@ -27,6 +27,6 @@
 </div>
 <script>
 function chatwindow(){
-	
+	window.open("/cos/chattingWindow","채팅창","width=400, height=500, toolbar=no, menubar=no");
 }
 </script>
