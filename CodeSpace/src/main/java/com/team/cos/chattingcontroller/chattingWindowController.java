@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class chattingWindowController {
 
-	@RequestMapping("/chattingWindow")
+	@RequestMapping("/chatting/chattingWindow")
 	public String chattingWindow() {
-		return "chattingWindow";
+		return "chatting/chattingWindow";
 	}
 }
