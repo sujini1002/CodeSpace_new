@@ -3,6 +3,6 @@
 <div id="k_content">
 
 	<div id="k_leftNavBar">
-		<jsp:include page="/resources/common/layout_side.jsp" />
+		<jsp:include page="layout_side.jsp" />
 	</div>
 	<div id="k_rightContent">

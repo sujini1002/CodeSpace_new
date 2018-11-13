@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:include page="/resources/common/layout_top.jsp" />
-<jsp:include page="/resources/common/layout_content.jsp" />
+<jsp:include page="../common/layout_top.jsp" />
+<jsp:include page="../common/layout_content.jsp" />
 
 <form action="${pageContext.request.contextPath }/userinfo/userreg" method="post" enctype="multipart/form-data">
 	<table class="table h_table">
@@ -54,4 +54,4 @@
 			</tr>
 	</table>
 </form>
-<jsp:include page="/resources/common/layout_footer.jsp" />
+<jsp:include page="../common/layout_footer.jsp" />

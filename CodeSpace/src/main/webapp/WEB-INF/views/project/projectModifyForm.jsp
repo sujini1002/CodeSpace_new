@@ -4,8 +4,8 @@
 <%@ page session="false"%>
 
 
-<jsp:include page="/resources/common/layout_top.jsp" />
-<jsp:include page="/resources/common/layout_content.jsp" />
+<jsp:include page="../common/layout_top.jsp" />
+<jsp:include page="../common/layout_content.jsp" />
 <!-- 여기부터 화면 코드 작성해주세요 -->
 <div>
 	<h3>프로젝트 정보 수정하기</h3>
@@ -44,4 +44,4 @@
 </div>
 
 
-<jsp:include page="/resources/common/layout_footer.jsp" />
+<jsp:include page="../common/layout_footer.jsp" />

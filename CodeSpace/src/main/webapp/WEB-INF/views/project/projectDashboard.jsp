@@ -4,8 +4,8 @@
 <%@ page session="false"%>
 
 
-<jsp:include page="/resources/common/layout_top.jsp" />
-<jsp:include page="/resources/common/layout_content.jsp"/>
+<jsp:include page="../common/layout_top.jsp" />
+<jsp:include page="../common/layout_content.jsp"/>
 <!-- 여기부터 화면 코드 작성해주세요 -->
 
 <h5>*참고: 로그인 user 정보: ${user_info.user_no} / ${user_info.user_id } / ${user_info.user_name }</h5>
@@ -26,7 +26,7 @@
 		<td>공지사항 <a href="#">더보기</a></td>
 	</tr>
 	<tr>
-		<td><img src="${pageContext.request.contextPath}/resources/images/stop.jpg" width=300px></td>
+		<td><img src="${pageContext.request.contextPath}../images/stop.jpg" width=300px></td>
 		<td>
 			<table class='table'>
 				<tr>
@@ -53,4 +53,4 @@
 
 
 
-<jsp:include page="/resources/common/layout_footer.jsp" />
+<jsp:include page="../common/layout_footer.jsp" />

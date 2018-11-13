@@ -1,7 +1,7 @@
 @charset "UTF-8";
-.jumbotron {
+#k_photo {
 	background-image:
-		url("${pageContext.request.contextPath}/resources/images/back_3333.jpg");
+		url("${pageContext.request.contextPath}/images/back_3333.jpg");
 	background-size: cover;
 	/* text-shadow: 0.2em 0.2em 0.2em;*/
 	color: white;
@@ -13,7 +13,7 @@
 }
 
 #k_content {
-	/* background-color: blue; */
+	background-color: blue; 
 	margin:0px 100px;
 	width: 1400px;
 	float: left;

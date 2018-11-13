@@ -21,25 +21,24 @@
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="${pageContext.request.contextPath}/resources/js/ie10-viewport-bug-workaround.js"></script>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <!-- 구글 로그인 api -->
 
 <!-- Bootstrap core CSS -->
-<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
 <!-- 구글폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Myeongjo" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
 	integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <!-- 우리가 적용시킨 css -->
-<link rel="stylesheet" type="text/css"	href="${pageContext.request.contextPath}/resources/css/custom.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/kang.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/moon.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/yu.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/lee.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/ha.css">
+<link rel="stylesheet" type="text/css" href="/css/custom.css"> 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/kang.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/moon.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/yu.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/lee.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ha.css">
 
 
 <!-- Quill 에디터 관련 -->
@@ -52,55 +51,11 @@
 <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet"> 
 <!-- 끝 -->
 
-
-<style>
-#k_hearder {
-	width: 100%;
-	background-color: red;
-}
-
-#k_photo {
-	background-image:
-		url("${pageContext.request.contextPath}/resources/images/back_3333.jpg");
-	background-size: cover;
-	color: white;
-	width: 100%;
-	margin-top:51px;
-	height:300px;
-}
-
-#k_content {
-	margin:0px 100px;
-	width: 1400px;
-	/* height: 1600px; */
-	float: left;
-	position: relative;
-}
-
-#k_leftNavBar {
-	width: 20%;
-	height: 100%;
-	position: absolute;
-	padding-left: 50px;
-	left: 0;
-	top: 0;
-}
-
-#k_rightContent {
-	width: 80%;
-	height: 1600px;
-	position: absolute;
-	right: 0;
-	top: 0;
-	padding: 50px 50px;
-}
-
-</style>
 <!--  -->
 </head>
 <body>
 
 	<div id="k_hearder">
 		<!-- nav_bar 들어갈곳 -->
-		<jsp:include page="/resources/common/layout_topNav.jsp" />
+		<jsp:include page="layout_topNav.jsp" />
 	</div>

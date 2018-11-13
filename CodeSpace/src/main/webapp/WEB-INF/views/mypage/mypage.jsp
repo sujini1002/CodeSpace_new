@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:include page="/resources/common/layout_top.jsp" />
-<jsp:include page="/resources/common/layout_content.jsp" />
+<jsp:include page="../common/layout_top.jsp" />
+<jsp:include page="../common/layout_content.jsp" />
 <!--  여기다가 작성 해주세요 -->
 
 <ul class="nav nav-tabs">
@@ -95,4 +95,4 @@ function del_mypage(){
 </script>
 
 
-<jsp:include page="/resources/common/layout_footer.jsp" />
+<jsp:include page="../common/layout_footer.jsp" />

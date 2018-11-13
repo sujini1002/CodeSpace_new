@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<jsp:include page="/resources/common/layout_top.jsp" />
-<jsp:include page="/resources/common/layout_content.jsp"/>
+<jsp:include page="../common/layout_top.jsp" />
+<jsp:include page="../common/layout_content.jsp"/>
 
 <!-- 검색 창 입력 시 비동기 처리로 회원 정보 검색 -->
 <div id="container">
@@ -109,4 +109,4 @@
 
 
 	
-<jsp:include page="/resources/common/layout_footer.jsp" />
+<jsp:include page="../common/layout_footer.jsp" />
