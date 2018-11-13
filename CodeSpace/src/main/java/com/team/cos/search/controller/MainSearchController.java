@@ -14,8 +14,8 @@ public class MainSearchController {
 	@Autowired
 	private MainSearchService searchService;
 	
-	@RequestMapping("/search/mainSearchPage")
-	public ModelAndView getMainSearch(@RequestParam("mainSearchValue") String keyword) {
+	@RequestMapping("/search/searchResults")
+	public ModelAndView getMainSearch(@RequestParam("mainSearch") String keyword) {
 		// 검색창으로 테스트 할때는 @RequestParam으로 검색창에 입력된 값을 넘겨 받아야 한다.
 		// 우선은 페이지 이동 테스트부터
 		
@@ -27,7 +27,7 @@ public class MainSearchController {
 		mav.addObject("searchResult", searchService.getSearchList(keyword));
 		mav.addObject("searchCount", searchService.getSearchCnt(keyword));
 		
-		mav.setViewName("search/mainSearchPage");
+		mav.setViewName("search/searchResults");
 		
 		
 		return mav;

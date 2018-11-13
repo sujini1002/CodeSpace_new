@@ -6,8 +6,8 @@
 			<a class="navbar-brand" href="${pageContext.request.contextPath}">코드스페이스</a>
 		</div>
 		<div id="navbar" class="navbar-collapse colla-pse" style="margin-left:180px; float: left;">
-			<form class="navbar-form navbar-right" action="${pageContext.request.contextPath}/search/mainSearchPage">
-				<input type="text" class="form-control" placeholder="Search" name="mainSearchValue">
+			<form class="navbar-form navbar-right" action="${pageContext.request.contextPath}/search/searchResults">
+				<input type="text" class="form-control" placeholder="Search" name="mainSearch">
 				<button type="submit" class="btn btn-success">검색</button>
 			</form>
 		</div>

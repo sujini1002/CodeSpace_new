@@ -14,7 +14,7 @@ import com.team.cos.search.service.UserSearchService;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
 @Controller
-@RequestMapping(value="/search/userSearchPage")
+@RequestMapping(value="/search/userList")
 public class UserSearchController {
 	
 	@Autowired
@@ -26,7 +26,7 @@ public class UserSearchController {
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("userList", searchService.getUserList());
-		mav.setViewName("search/userSearchPage");
+		mav.setViewName("search/userList");
 		
 		return mav;
 		
