@@ -28,7 +28,7 @@ public class UserInfoRegService {
 		String dbImage = "";
 
 		// 물리적 저장경로
-		String uploadUri = "/resources/uploadfile/userphoto";
+		String uploadUri = "/uploadfile/userphoto";
 
 		// uploadUri의 시스템 경로
 		String dir = request.getSession().getServletContext().getRealPath(uploadUri);

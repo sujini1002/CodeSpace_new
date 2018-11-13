@@ -12,7 +12,7 @@
 					<li><a href="${pageContext.request.contextPath}/search/userSearchPage">사용자</a></li>
 					<li><a href="#">태그</a></li>
 					<li><a href="${pageContext.request.contextPath}/project/prjreg?user_no=${loginInfo.user_no}">프로젝트</a></li>
-					<li><a href="#">채팅(미구현)</a></li>
+					<li><a onclick="chatwindow()">채팅(미구현)</a></li>
 					
 					<%-- <c:if test="${!loginInfo.isEmpty() }">
 						<li><a href="#">프로젝트</a></li>
@@ -25,3 +25,8 @@
 		
 	</div>
 </div>
+<script>
+function chatwindow(){
+	
+}
+</script>
