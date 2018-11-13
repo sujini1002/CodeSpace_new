@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!-- Example row of columns -->
+<div class="container" style="margin: 50px 0px 0px 35px;">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<li class="active"><a href="#">코드스페이스 <span class="sr-only">(current)</span></a></li>
+					<li><a href="${pageContext.request.contextPath}/search/userSearchPage">사용자</a></li>
+					<li><a href="#">태그</a></li>
+					<li><a href="${pageContext.request.contextPath}/project/prjreg?user_no=${loginInfo.user_no}">프로젝트</a></li>
+					<li><a href="#">채팅(미구현)</a></li>
+					
+					<%-- <c:if test="${!loginInfo.isEmpty() }">
+						<li><a href="#">프로젝트</a></li>
+					</c:if> --%>
+					
+				</ul>
+			</div>
+
+		</div>
+		
+	</div>
+</div>
