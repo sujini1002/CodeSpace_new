@@ -35,7 +35,7 @@ public class MypageEditService {
 
 		/* 사진처리 - 파일 경로 신경쓰자 */
 		
-		  String uploadUri = "../resources/uploadfile/userphoto"; 
+		  String uploadUri = "/uploadfile/userphoto"; 
 		  String dir1 = request.getSession().getServletContext().getRealPath(uploadUri);
 		  String photoName = "";
 		  

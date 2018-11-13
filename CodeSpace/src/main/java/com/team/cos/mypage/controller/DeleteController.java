@@ -10,19 +10,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cos.mypage.service.DeleteService;
 
-@Controller("/mypage/delete-acconut")
+@Controller
 public class DeleteController {
 
 	@Autowired
 	private DeleteService service;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/mypage/delete-acconut",method = RequestMethod.GET)
 	public String getDeleteForm() {
 		return "mypage/delete-account";
 	}
 
 	// 삭제하기 버튼 눌렀을때 아이디 확인하기
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="/mypage/delete-acconut",method = RequestMethod.POST)
 	public String delete(String user_id, HttpSession session) {
 
 		service.delete(user_id, session);

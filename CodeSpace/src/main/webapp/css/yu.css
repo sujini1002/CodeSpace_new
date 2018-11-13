@@ -1,4 +1,4 @@
-@charset "utf-8";
+@charset "UTF-8";
 .nav-tabs{
 	width: 650px;
 }
@@ -59,7 +59,7 @@ h2, td {
 	padding-top: 70px;
 }
 .yu_btn2{
-	margin: 20px 250px;s /* 상우하좌 */
+	margin: 20px 250px; /* 상우하좌 */
 	background-color: rgb(9,51,132);
 	border: none;
 }

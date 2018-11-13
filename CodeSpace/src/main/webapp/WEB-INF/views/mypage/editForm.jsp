@@ -83,15 +83,15 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-			var result = '<c:out value="${result}"/>';
+		var result = '<c:out value="${result}"/>';
 
-			checkModal(result);
+		checkModal(result);
 
-			function checkModal(result) {
+		function checkModal(result) {
 			if (result == '') {
 				return;
 			}
-					
+
 			if (parseInt(result) > 0) {
 				$(".modal-body").html("프로필 정보가 수정되었습니다.");
 			}

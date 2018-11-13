@@ -1,4 +1,4 @@
-@charset "UTF-8";
+/* @charset "UTF-8";
 #k_hearder {
 	width: 100%;
 	background-color: red;
@@ -6,9 +6,9 @@
 
 #k_photo {
 	background-image:
-		url("${pageContext.request.contextPath}/resources/images/back_3333.jpg");
+		url("../images/back_3333.jpg");
 	background-size: cover;
-	/* text-shadow: 0.2em 0.2em 0.2em;*/
+	text-shadow: 0.2em 0.2em 0.2em;
 	color: white;
 	width: 100%;
 	margin-top:51px;
@@ -16,7 +16,7 @@
 }
 
 #k_content {
-	/* background-color: blue; */
+	background-color: blue;
 	width: 1550px;
 	height: 1600px;
 	float: left;
@@ -24,23 +24,23 @@
 }
 
 #k_leftNavBar {
-	/* background-color: lightgray; */
+	background-color: lightgray;
 	width: 20%;
 	height: 100%;
 	position: absolute;
 	padding-left: 50px;
-	/* padding-top:50px; */
-	/* margin-top: 70px; */
+	padding-top:50px;
+	margin-top: 70px;
 	left: 0;
 	top: 0;
 }
 
 #k_rightContent {
-	/* background-color:pink; */
+	background-color:pink;
 	width: 80%;
 	height: 100%;
 	position: absolute;
 	right: 0;
 	top: 0;
 	padding: 50px 50px;
-}
+} */
