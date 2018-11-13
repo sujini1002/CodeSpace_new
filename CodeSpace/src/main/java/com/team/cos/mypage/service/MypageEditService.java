@@ -1,5 +1,8 @@
 package com.team.cos.mypage.service;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -26,23 +29,25 @@ public class MypageEditService {
 
 	// 수정된 정보 저장하기
 	@Transactional
-	public void getEditForm(UserInfoVo userInfoVo, HttpServletRequest request) {
-
+	public void edit(UserInfoVo userInfoVo, HttpServletRequest request) throws IllegalStateException, IOException {
+		System.out.println("서비스들어옴");
 		mypageInterface = sqlSessionTemplate.getMapper(MypageInterface.class);
 
 		/* 사진처리 - 파일 경로 신경쓰자 */
-		/*
-		 * String uploadUri = "/uploadfile/userphoto"; String dir1 =
-		 * request.getSession().getServletContext().getRealPath(uploadUri); String
-		 * photoName = "";
-		 * 
-		 * if(!userInfoVo.getPhoto().isEmpty()) { photoName = userInfoVo.getUser_id() +
-		 * "_"+ userInfoVo.getPhoto().getOriginalFilename();
-		 * userInfoVo.getPhoto().transferTo(new File(dir1, photoName ));
-		 * 
-		 * userInfoVo.setUser_photo(photoName); }
-		 */
+		
+		  String uploadUri = "../resources/uploadfile/userphoto"; 
+		  String dir1 = request.getSession().getServletContext().getRealPath(uploadUri);
+		  String photoName = "";
+		  
+		 if(!userInfoVo.getPhoto().isEmpty()) { 
+			  photoName = userInfoVo.getUser_no() + "_"+ userInfoVo.getPhoto().getOriginalFilename();
+			  userInfoVo.getPhoto().transferTo(new File(dir1, photoName ));
+		  
+			  userInfoVo.setUser_photo(photoName); 
+		  }
+		 
 		mypageInterface.update(userInfoVo);
+		System.out.println("서비스 끝남");
 	}
 
 }

@@ -1,5 +1,10 @@
 package com.team.cos.mypage.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -18,7 +23,8 @@ public class MypageEditController {
 
 	@Autowired
 	private MypageEditService service;
-	
+
+	// 해당 id로 수정폼 연결하기
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView getEditForm(@RequestParam("user_id") String user_id) {
 
@@ -28,14 +34,22 @@ public class MypageEditController {
 		modelAndView.addObject("userInfoVo", userInfoVo);
 		return modelAndView;
 	}
-	
-	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView editMypage() {
-		
-		ModelAndView modelAndView = new ModelAndView();
-		
 
-		
+	// 수정하고 수정완료 버튼 눌렀을때
+	@RequestMapping(method = RequestMethod.POST)
+	public ModelAndView editMypage(UserInfoVo userInfoVo, HttpServletRequest request, HttpSession session)
+			throws IllegalStateException, IOException {
+
+		System.out.println(userInfoVo);
+		ModelAndView modelAndView = new ModelAndView();
+		// modelAndView.addObject("userInfoVo", userInfoVo);
+
+		service.edit(userInfoVo, request);
+		session.setAttribute("loginInfo", userInfoVo);
+
+		modelAndView.setViewName("redirect:/mypage/mypage");
+
 		return modelAndView;
+
 	}
 }
