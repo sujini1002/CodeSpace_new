@@ -1,4 +1,6 @@
 @charset "UTF-8";
+
+
 #k_photo {
 	background-image:
 		url("${pageContext.request.contextPath}/images/back_3333.jpg");
