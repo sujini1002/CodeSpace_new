@@ -16,7 +16,7 @@
 
 <title>CodeSpace</title>
 <!-- 우리가 적용시킨 css -->
-<link rel="stylesheet"  href="css/custom.css"> 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/custom.css"> 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/kang.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/moon.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/yu.css">
