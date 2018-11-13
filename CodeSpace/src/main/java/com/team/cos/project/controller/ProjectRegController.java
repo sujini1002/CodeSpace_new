@@ -32,21 +32,28 @@ public class ProjectRegController {
 		
 		//user_no가 포함된 userInfoVO 가져옴
 		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
-		System.out.println("project reg controller userInfo = "+user_info.getUser_id());
-
+		System.out.println("PRG userInfo.user_id = "+user_info.getUser_id());
+		
 		// 86번에 해당하는 프로젝트 표출 >> to do list 표출 확인 테스트용
 		ProjectInfoVO pro_info = service.selectProList(86);
 
 		ModelAndView modelAndView = new ModelAndView();
+		
+		// user_score가 31 미만인 사용자는 projectRegFail.jsp로 보냄
+		System.out.println("user score: "+user_info.getUser_score());
+		if(user_info.getUser_score()<31) {
+			modelAndView.setViewName("project/projectRegFail");
+		} else {
+			modelAndView.setViewName("project/projectReg");
+		}
+		
 		//프로젝트 정보 보냄
 		modelAndView.addObject("pro_info", pro_info);
 		//login 사용자 정보 보냄
 		modelAndView.addObject("user_info", user_info);
-		modelAndView.setViewName("project/projectReg");
 
 		return modelAndView;
 	}
-
 	
 	
 	// 프로젝트 생성 폼 입력 후 전달+db 입력하는 것임

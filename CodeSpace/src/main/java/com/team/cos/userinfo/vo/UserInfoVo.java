@@ -10,7 +10,7 @@ public class UserInfoVo {
 	private String user_url;
 	private String user_intro;
 	private String user_tag;
-	private String user_score;
+	private int user_score;
 	private String user_lastlogin;
 	private String user_nickname;
 	private MultipartFile photo;
@@ -71,11 +71,11 @@ public class UserInfoVo {
 		this.user_tag = user_tag;
 	}
 
-	public String getUser_score() {
+	public int getUser_score() {
 		return user_score;
 	}
 
-	public void setUser_score(String user_score) {
+	public void setUser_score(int user_score) {
 		this.user_score = user_score;
 	}
 

@@ -15,6 +15,10 @@ public class TodolistVO {
 	private String todolist_status;
 	private Date todolist_startdate;
 	private Date todolist_enddate;
+	private String tdlstring_startdate; // 프로젝트 시작 날짜
+	private String tdlstring_enddate; // 프로젝트 종료 날짜 
+	
+	
 	public int getTodolist_no() {
 		return todolist_no;
 	}
@@ -68,6 +72,18 @@ public class TodolistVO {
 	}
 	public void setTodolist_enddate(Date todolist_enddate) {
 		this.todolist_enddate = todolist_enddate;
+	}
+	public String getTdlstring_startdate() {
+		return tdlstring_startdate;
+	}
+	public void setTdlstring_startdate(String tdlstring_startdate) {
+		this.tdlstring_startdate = tdlstring_startdate;
+	}
+	public String getTdlstring_enddate() {
+		return tdlstring_enddate;
+	}
+	public void setTdlstring_enddate(String tdlstring_enddate) {
+		this.tdlstring_enddate = tdlstring_enddate;
 	}
 	@Override
 	public String toString() {

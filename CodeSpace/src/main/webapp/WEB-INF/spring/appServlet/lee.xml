@@ -14,8 +14,11 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<!-- service 등록 -->
+	<!-- project 관련 service 등록 -->
 	<beans:bean id="projectService" class="com.team.cos.project.service.ProjectRegService"></beans:bean>
 	<beans:bean id="projectModifyService" class="com.team.cos.project.service.ProjectModifyService"></beans:bean>
+	
+	<!-- to do list service 등록 -->
+	<beans:bean id="tdlViewService" class="com.team.cos.project.service.TDLViewService"></beans:bean>
 
 </beans:beans>
