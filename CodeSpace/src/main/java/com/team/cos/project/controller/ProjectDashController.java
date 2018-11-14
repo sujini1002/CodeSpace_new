@@ -24,8 +24,6 @@ public class ProjectDashController {
 	private ProjectRegService proInfoservice;
 	@Autowired
 	private UserInfoCheckService userInfoService;
-	@Autowired
-	private TDLViewService tdlInfoService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView getProDashboard(
@@ -40,14 +38,14 @@ public class ProjectDashController {
 		//project_no에 해당하는 프로젝트 정보 가져옴
 		ProjectInfoVO pro_info = proInfoservice.selectProList(project_no);
 		// project_no에 해당하는 to do list 가져옴
-		List<TodolistVO> tdl_list = tdlInfoService.getTDL(pro_info.getProject_no());
+		//List<TodolistVO> tdl_list = tdlInfoService.getTDL(pro_info.getProject_no());
 
 		
 		ModelAndView modelAndView = new ModelAndView();
 		//login 사용자 정보 보냄
 		modelAndView.addObject("user_info", user_info);
 		//to do list 보냄
-		modelAndView.addObject("tdl_list", tdl_list);
+		//modelAndView.addObject("tdl_list", tdl_list);
 		//project 정보 보냄
 		modelAndView.addObject("pro_info", pro_info);
 		modelAndView.setViewName("project/projectDashboard");
