@@ -43,3 +43,4 @@ public class QuestionDeleteController {
 		return resultJson;
 	}
 }
+//주석

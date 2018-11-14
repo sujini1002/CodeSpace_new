@@ -37,3 +37,4 @@ public class QuestionDeleteService {
 		return user_no;
 	}
 }
+//주석
