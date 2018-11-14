@@ -216,10 +216,13 @@
 					location.href="${pageContext.request.contextPath}";
 				}else{
 					alert('답변이 존재하므로 삭제할 수 없습니다.');
+					location.href = '${pageContext.request.contextPath}/question/questionView?q_no='
+						+ qno;
 				}
 			},
 			error : function() {
 				alert('불행하게도 에러입니다 ㅠㅠ');
+				
 			}
 		});//end ajax;
 	}//end k_questiondelete()

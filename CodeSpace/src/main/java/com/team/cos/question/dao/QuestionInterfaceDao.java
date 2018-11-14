@@ -16,4 +16,5 @@ public interface QuestionInterfaceDao {
 	public int findAnswer(@Param("q_no")int q_no);
 	public int deleteQuestion(@Param("q_no")int q_no);
 	public int findUserNo(@Param("q_no")int q_no);
+	public int selectUserScore(@Param("user_no")int user_no);
 }
