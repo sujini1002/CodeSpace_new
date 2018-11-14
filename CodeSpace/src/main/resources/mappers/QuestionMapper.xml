@@ -22,5 +22,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="userScoreUdate">
 		update userinfo set user_score= user_score + #{score} where user_no = #{user_no}
 	</update>
-	
+	<select id="questionUser" resultType="com.team.cos.userinfo.vo.UserInfoVo">
+		select q.user_no,u.user_id,u.user_photo,u.user_nickname,u.user_intro
+		from question q inner join userinfo u
+		on q.user_no = u.user_no
+		where q_no = #{q_no}
+	</select>
 </mapper>

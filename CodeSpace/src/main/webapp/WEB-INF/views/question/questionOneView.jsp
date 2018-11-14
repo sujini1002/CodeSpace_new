@@ -3,7 +3,7 @@
 <jsp:include page="../common/layout_top.jsp" />
 <jsp:include page="../common/layout_content.jsp"/>
 
-<table border="1" style="width:100%">
+<table style="width:100%">
 	<!-- 타이틀 -->
 	<tr>
 		<td colspan="2" style="text-align: center">
@@ -19,7 +19,7 @@
 	</tr>
 	<tr>
 		<!-- 추천 & 즐겨 찾기 -->
-		<td rowspan="3" style="width:15%; text-align:center; vertical-align:middle">
+		<td rowspan="3" style="width:15%; text-align:center; vertical-align:middle;line-height:20px">
 			<div id="k_recommand" >
 				<button type="button" class="btn" style="background-color:white">
 					<i class="fa fa-chevron-up fa-2x" style="color: gray;"></i>
@@ -86,7 +86,9 @@
 	<tr>
 		<!-- 작성자 -->
 		<td style="width:85%">
-			<!-- 인클루드 하기 -->
+			<button type="button" class="btn btn-primary k_questionContentBtn">수정</button>
+			<button type="button" class="btn btn-primary k_questionContentBtn">삭제</button>
+			<jsp:include page="questionUser.jsp" />
 		</td>
 	</tr>
 	<tr>

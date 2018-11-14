@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.team.cos.question.dao.QuestionInterfaceDao;
 import com.team.cos.question.vo.QuestionInfo;
+import com.team.cos.userinfo.vo.UserInfoVo;
 
 public class QuestionOneViewService {
 	
@@ -18,5 +19,9 @@ public class QuestionOneViewService {
 		questionDao = sqlSessionTemplate.getMapper(QuestionInterfaceDao.class);
 		
 		return questionDao.questionViewOne(q_no);
+	}
+	
+	public UserInfoVo questionUser(int q_no) {
+		return questionDao.questionUser(q_no);
 	}
 }

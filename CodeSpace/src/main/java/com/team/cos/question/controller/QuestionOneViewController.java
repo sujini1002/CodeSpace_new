@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cos.question.serivce.QuestionOneViewService;
 import com.team.cos.question.vo.QuestionInfo;
+import com.team.cos.userinfo.vo.UserInfoVo;
 
 @Controller
 @RequestMapping("/question/questionView")
@@ -23,8 +24,10 @@ public class QuestionOneViewController {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		QuestionInfo questionInfo = service.questionView(q_no);
+		UserInfoVo userInfoVo = service.questionUser(q_no);
 		
 		modelAndView.addObject("questionInfo", questionInfo);
+		modelAndView.addObject("userInfo", userInfoVo);
 		modelAndView.setViewName("question/questionOneView");
 		
 		return modelAndView;

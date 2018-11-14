@@ -3,6 +3,7 @@ package com.team.cos.question.dao;
 import org.apache.ibatis.annotations.Param;
 
 import com.team.cos.question.vo.QuestionInfo;
+import com.team.cos.userinfo.vo.UserInfoVo;
 
 public interface QuestionInterfaceDao {
 	public void insertQuestion(QuestionInfo questionInfo);
@@ -10,4 +11,5 @@ public interface QuestionInterfaceDao {
 	public QuestionInfo questionViewOne(@Param("q_no")int q_no);
 	public int findUserNum(@Param("q_no")int q_no);
 	public void userScoreUdate(@Param("user_no")int user_no,@Param("score")int score);
+	public UserInfoVo questionUser(@Param("q_no")int q_no);
 }
