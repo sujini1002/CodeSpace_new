@@ -13,7 +13,7 @@
 
 	<!-- 프로젝트 생성하기 post방식으로  -->
 	<!-- 제목 project_title/설명 project_content/참여자 project_member/종료일 project_project_enddate-->
-	<form method="post">
+	<form class="form-horizontal" method="post">
 		<div class="form-group">
 			<label for="project_title">프로젝트 명</label> 
 			<input type="text"

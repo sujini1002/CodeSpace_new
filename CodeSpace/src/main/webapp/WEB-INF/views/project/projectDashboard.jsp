@@ -53,42 +53,28 @@
 <!-- REST 방식의 to do list -->
 <hr>
 <h3>to do list: REST</h3>
-<%-- <a href="${pageContext.request.contextPath }/project/tdl">REST방식의 tdl</a> --%>
-<div>
-	<ul class="tdlboard">
-		<li class="left" data-project_no='86'>
-			<div>
-				<div class="header">
-					<strong>user00</strong>
-					<small class="pull-right text-muted">2018-01-01</small>
-				</div>
-				<p> great ! </p>
-			</div>			
-		</li>
-	</ul>
-</div>
-
-
+	<table class="table" id="tdlboard">	</table>
 
 <jsp:include page="../common/layout_footer.jsp" />
 <!-- todolist 처리를 위한 js -->
 <script type="text/javascript" src="../js/todolist.js" ></script>
 
-<!-- <script type="text/javascript">
-	$(document).ready(function(){
-		console.log(tdlService);
-	})
-</script> -->
-
 <script>
 	console.log("---JS TEST---");
 	
 	var project_noValue = '<c:out value="${pro_info.project_no}" />';
-	var tdlUL = $(".tdlboard");
+	var tdlUL = $("#tdlboard");
 	
 	
 	tdlService.getList({project_no:project_noValue}, function(list) {
-		var str="";
+		var str = "<tr>";
+			str += "<th>todolist_no</th>";
+			str += "<th>todolist_content</th>";
+			str += "<th>tdlmanager_no</th>";
+			str += "<th>todolist_status</th>";
+			str += "<th>todolist_enddate</th>";
+			str += "</tr>";
+		
 		
 		if(list==null || list.length==0){
 			tdlUL.html("");
@@ -98,10 +84,13 @@
 		for(var i=0, len=list.length ||0; i<len; i++){
 			console.log(list[i]);
 			
-			str += "<li class='left' data-project_no='"+list[i].todolist_no+"'>";
-			str += "	<div><div class='header'><strong>"+list[i].tdlmanager_no+"</strong>";
-			str += "		<small class='pull-right text-muted'>"+list[i].todolist_enddate+"</small></div>";
-			str += "		<p>"+list[i].todolist_content+"</p></div></li>";	
+			str += "<tr data-todolist_no="+list[i].todolist_no+">";
+			str += "<td>"+list[i].todolist_no+"</td>";
+			str += "<td>"+list[i].todolist_content+"</td>";
+			str += "<td>"+list[i].tdlmanager_no+"</td>";
+			str += "<td>"+list[i].todolist_status+"</td>";
+			str += "<td>"+list[i].todolist_enddate+"</td>";
+			str += "</tr>";
 		}
 			
 		tdlUL.html(str);

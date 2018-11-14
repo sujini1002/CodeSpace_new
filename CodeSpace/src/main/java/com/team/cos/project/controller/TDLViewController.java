@@ -23,7 +23,9 @@ public class TDLViewController {
 	@RequestMapping("/{project_no}")
 	public ResponseEntity<List<TodolistVO>> getList(
 			@PathVariable("project_no") int project_no){
+
 		List<TodolistVO> tdl = tdlService.getTDL(project_no);
+		
 		return new ResponseEntity<>(tdl, HttpStatus.OK);
 	}
 
