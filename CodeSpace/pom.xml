@@ -16,6 +16,22 @@
 	</properties>
 
 	<dependencies>
+
+		<!-- 메일 설정 시작 -->
+		<!-- ======================================================== -->
+		<!-- javax.mail/mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<!-- ======================================================== -->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<!-- @RequestBody를 사용하기 위한 디펜던시 -->
 		<dependency>
@@ -196,6 +212,7 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

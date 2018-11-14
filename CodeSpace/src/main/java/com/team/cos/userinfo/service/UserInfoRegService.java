@@ -41,7 +41,6 @@ public class UserInfoRegService {
 //			물리적 저장
 			userInfoVo.getPhoto().transferTo(new File(dir, dbImage));
 
-
 //			db에 저장
 			userInfoVo.setUser_photo(dbImage);
 		}
