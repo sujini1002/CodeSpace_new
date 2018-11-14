@@ -3,11 +3,12 @@
 <jsp:include page="../common/layout_top.jsp" />
 <jsp:include page="../common/layout_content.jsp"/>
 <!--  여기다가 작성 해주세요 -->
-<table>
+<table class="k_table">
 	
 	<tr>
 		<td><h2>질문 작성</h2></td>
 	</tr>
+	
 	<tr>
 		<td>
 			<input type="text" name="q_title"  id="q_title" placeholder="제목을 입력해 주세요"  class="form-control" required/>
@@ -16,7 +17,7 @@
 	</tr>
 	<tr>
 		<td>
-			<div id="toolbar"></div>
+			<!-- <div id="toolbar"></div> -->
 			<div id="editor" style="height: 500px"></div>
 		</td>
 	</tr>

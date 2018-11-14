@@ -1,9 +1,24 @@
 @charset "UTF-8";
+
 .k_insertBtn{
 	float:right;
 	margin-right:100px;
 }
+
+.k_userImg{
+	border-radius:30px;
+	width:70px;
+	height:70px;
+}
+
 .k_questionContentBtn{
 	margin:20px 0px 0px 20px;
-	
 }
+.k_table{
+/* 	 border-collapse: separate;
+  	 border-spacing: 0 10px; */
+}
+#k_qtag,#k_qtitleForm{
+	display :none;
+}
+

@@ -19,13 +19,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findUserNum" resultType="int">
 		select user_no from question where q_no = #{q_no}
 	</select>
-	<update id="userScoreUdate">
+	<!-- 사용자의  스코어 값 증가-->
+	<update id="userScoreUpdate">
 		update userinfo set user_score= user_score + #{score} where user_no = #{user_no}
 	</update>
+	<!-- 질문 작성자 정보 가져오기  -->
 	<select id="questionUser" resultType="com.team.cos.userinfo.vo.UserInfoVo">
 		select q.user_no,u.user_id,u.user_photo,u.user_nickname,u.user_intro
 		from question q inner join userinfo u
 		on q.user_no = u.user_no
 		where q_no = #{q_no}
 	</select>
+	<!-- 질문 수정 -->
+	<update id="updateQuestion" parameterType="com.team.cos.question.vo.QuestionInfo">
+		update question set q_title = #{q_title}, q_tag = #{q_tag} , q_content = #{q_content}, q_regdate = now()
+		where q_no = #{q_no}
+	</update>
 </mapper>

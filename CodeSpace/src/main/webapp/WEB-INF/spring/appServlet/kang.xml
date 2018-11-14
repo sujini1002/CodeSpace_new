@@ -21,4 +21,6 @@
 		class="com.team.cos.question.serivce.QuestionOneViewService" />
 	<beans:bean id="questionUserScoreService"
 		class="com.team.cos.question.serivce.QuestionUserScoreService" />
+	<beans:bean id="questionUpdateService"
+		class="com.team.cos.question.serivce.QuestionUpdateService"/>
 </beans:beans>

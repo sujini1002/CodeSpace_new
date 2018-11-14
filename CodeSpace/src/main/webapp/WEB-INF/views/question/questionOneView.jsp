@@ -3,23 +3,30 @@
 <jsp:include page="../common/layout_top.jsp" />
 <jsp:include page="../common/layout_content.jsp"/>
 
-<table style="width:100%">
+<table style="width:100%" class="k_table">
+	
 	<!-- 타이틀 -->
 	<tr>
 		<td colspan="2" style="text-align: center">
-			<h3>${questionInfo.q_title}</h3>
+			<input type="hidden" id="k_qNO" value="${questionInfo.q_no}"/>
+			<h3 id="k_qTitle">${questionInfo.q_title}</h3>
+			<input type="text" class="form-control" id="k_qtitleForm" value="${questionInfo.q_title}"/>
 			<hr>
 		</td>
 	</tr>
 	<!-- 태그 -->
 	<tr>
-		<td colspan="2" style="height:70px">
-			<button type="button" class="btn">${questionInfo.q_tag}</button>
+		<td></td>
+		<td style="height:70px">
+			<button type="button" class="btn k_qtagBtn">${questionInfo.q_tag}</button>
+			<input type="text" class="form-control" id="k_qtag" value="${questionInfo.q_tag}"/>
+			
 		</td>
+		
 	</tr>
 	<tr>
 		<!-- 추천 & 즐겨 찾기 -->
-		<td rowspan="3" style="width:15%; text-align:center; vertical-align:middle;line-height:20px">
+		<td rowspan="3" style="width:15%;text-align:center;margin-top:20px">
 			<div id="k_recommand" >
 				<button type="button" class="btn" style="background-color:white">
 					<i class="fa fa-chevron-up fa-2x" style="color: gray;"></i>
@@ -48,12 +55,7 @@
 			<%-- <div id="k_regdate" style="float:right"><p>${questionInfo.q_regdate}</p></div> --%>
 			
 				<script>
-					console.log($('#k_questionText').val());
 					var delta = JSON.parse($('#k_questionText').val());
-					
-					console.log(delta);
-					//console.log(delta);
-					console.log(typeof delta);
 
 					 var toolbarOptions = [
 						 ['bold','italic','underline','strike'],
@@ -86,8 +88,14 @@
 	<tr>
 		<!-- 작성자 -->
 		<td style="width:85%">
-			<button type="button" class="btn btn-primary k_questionContentBtn">수정</button>
-			<button type="button" class="btn btn-primary k_questionContentBtn">삭제</button>
+		<c:if test="${loginInfo.user_no eq userInfo.user_no}">
+				<button type="button" id="k_questionUpdate"
+					class="btn btn-primary k_questionContentBtn"
+					onclick="k_qeustionupdate()">수정</button>
+				<button type="button" id="k_questionDelete"
+					class="btn btn-primary k_questionContentBtn"
+					onclick="k_questiondelete()">삭제</button>
+			</c:if>
 			<jsp:include page="questionUser.jsp" />
 		</td>
 	</tr>
@@ -99,5 +107,62 @@
 	</tr>
 </table>
 
+<script>
+	function k_qeustionupdate(){
+		
+		//var now = $('#k_questionUpdate').val();
+		if ($('#k_questionUpdate').text() == "수정") {
+			//quill 툴바 보이기
+			$('.ql-toolbar').css('visibility', 'visible');
+			//수정 폼 테두리 설정
+			$('#editor').css('border', '1px solid lightgray');
+			//수정 폼 작성 가능
+			quill.enable(true);
+			//태그 및 제목 수정 가능
+			$('#k_qTitle').css('display','none');
+			$('.k_qtagBtn').css('display','none');
+			$('#k_qtag').css('display','inline-block');
+			$('#k_qtitleForm').css('display','inline-block');
+			//삭제 버튼 숨기기
+			$('#k_questionDelete').css('visibility', 'hidden');
+			//버튼 수정 
+			$('#k_questionUpdate').text('수정완료');
+		}else{
+			
+			var qno = $('#k_qNO').val();
+			qno *= 1;
+			console.log(qno);
+			console.log(typeof qno);
+			var title = $('#k_qtitleForm').val();
+			var content = JSON.stringify(quill.getContents());
+			var tag = $('#k_qtag').val();
+			
+			$.ajax({
+				url:'${pageContext.request.contextPath}/question/updateQuestion',
+				type:'POST',
+				data:{
+					"q_no":qno,
+					"q_title":title,
+					"q_content":content,
+					"q_tag":tag
+				},
+				contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+				dataType : 'json',
+				success:function(data){
+					if(data.result =="1"){
+						location.href='${pageContext.request.contextPath}/question/questionView?q_no='+qno;
+					}else{
+						alert('수정 실패하였습니다 ㅠㅠ');
+					}
+				},
+				error:function(){
+					alert('불행하게도 에러입니다 ㅠㅠ');
+				}
+			});	//end ajax;
+		}//end else
+		
+	}
+</script>
+<!-- 답변 리스트  인클루드 하기 -->
 
 <jsp:include page="../common/layout_footer.jsp" />

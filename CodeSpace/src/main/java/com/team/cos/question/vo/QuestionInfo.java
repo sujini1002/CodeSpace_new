@@ -58,7 +58,9 @@ public class QuestionInfo {
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
 	}
-	
+	public void setQ_no(int q_no) {
+		this.q_no = q_no;
+	}
 	@Override
 	public String toString() {
 		return "Question [q_no=" + q_no + ", user_no=" + user_no + ", q_title=" + q_title + ", q_content=" + q_content

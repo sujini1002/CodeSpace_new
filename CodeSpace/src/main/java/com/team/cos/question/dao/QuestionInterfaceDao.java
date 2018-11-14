@@ -10,6 +10,7 @@ public interface QuestionInterfaceDao {
 	public int questionSelectNum();
 	public QuestionInfo questionViewOne(@Param("q_no")int q_no);
 	public int findUserNum(@Param("q_no")int q_no);
-	public void userScoreUdate(@Param("user_no")int user_no,@Param("score")int score);
+	public void userScoreUpdate(@Param("user_no")int user_no,@Param("score")int score);
 	public UserInfoVo questionUser(@Param("q_no")int q_no);
+	public int updateQuestion(QuestionInfo questionInfo);
 }
