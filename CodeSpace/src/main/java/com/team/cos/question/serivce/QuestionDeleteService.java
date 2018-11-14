@@ -26,6 +26,11 @@ public class QuestionDeleteService {
 	
 	public void userScore(int q_no) {
 		int userNo = questionDao.findUserNo(q_no);
-		questionDao.userScoreUpdate(userNo, -1);
+		int userScore = questionDao.selectUserScore(userNo);
+		
+		//사용자 점수가 0이상일 때만 차감
+		if(userScore >0) {
+			questionDao.userScoreUpdate(userNo, -1);
+		}
 	}
 }
