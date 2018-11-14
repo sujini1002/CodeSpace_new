@@ -13,4 +13,7 @@ public interface QuestionInterfaceDao {
 	public void userScoreUpdate(@Param("user_no")int user_no,@Param("score")int score);
 	public UserInfoVo questionUser(@Param("q_no")int q_no);
 	public int updateQuestion(QuestionInfo questionInfo);
+	public int findAnswer(@Param("q_no")int q_no);
+	public int deleteQuestion(@Param("q_no")int q_no);
+	public int findUserNo(@Param("q_no")int q_no);
 }

@@ -35,4 +35,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update question set q_title = #{q_title}, q_tag = #{q_tag} , q_content = #{q_content}, q_regdate = now()
 		where q_no = #{q_no}
 	</update>
+	<!-- 질문 삭제를 위한 답변 검색 -->
+	<select id="findAnswer" resultType="int">
+		select count(*) from answer where q_no = #{q_no};
+	</select>
+	<!-- 질문 삭제 -->
+	<delete id="deleteQuestion">
+		delete from question where q_no = #{q_no};
+	</delete>
+	<!-- 질문 삭제시 사용자 번호 검색 -->
+	<select id="findUserNo" resultType="int">
+		select user_no from question where q_no = #{q_no};
+	</select>
 </mapper>
