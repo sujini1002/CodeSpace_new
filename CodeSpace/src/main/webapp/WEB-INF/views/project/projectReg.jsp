@@ -9,11 +9,10 @@
 <!-- 여기부터 화면 코드 작성해주세요 -->
 <div>
 	<h3>프로젝트 생성하기</h3>
-<h5>*참고 로그인 user 정보 : ${user_info.user_no} / ${user_info.user_id } / ${user_info.user_name }</h5>
-
+	
 	<!-- 프로젝트 생성하기 post방식으로  -->
 	<!-- 제목 project_title/설명 project_content/참여자 project_member/종료일 project_project_enddate-->
-	<form class="form-horizontal" method="post">
+	<form class="form-horizontal" style="width:70%;" method="post">
 		<div class="form-group">
 			<label for="project_title">프로젝트 명</label> 
 			<input type="text"

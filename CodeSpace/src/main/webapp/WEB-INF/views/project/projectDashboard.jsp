@@ -8,109 +8,78 @@
 <jsp:include page="../common/layout_content.jsp"/>
 <!-- 여기부터 화면 코드 작성해주세요 -->
 
-<h5>*참고: 로그인 user 정보: ${user_info.user_no} / ${user_info.user_id } / ${user_info.user_name }</h5>
-
 
 <!-- 프로젝트 상세정보 표출 영역 -->
 <div>
 	<h3>${pro_info.project_title}  	
-	<a class="btn btn-default" 
-		href="${pageContext.request.contextPath }/project/projectUpdate?project_no=${pro_info.project_no }&user_no=${user_info.user_no}">수정하기</a></h3>
-	<h5>${pro_info.project_content }</h5>
-	<h5>Project Manager No: ${pro_info.pm_no}</h5>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectInfo">
+			수정하기
+		</button>
+	</h3>
+	<h4>${pro_info.project_content }</h4>
 </div>
+
 <!-- 캘린더와 공지사항 표출 영역  -->
-<table class='table' style="width:100%;" >
+<table class='table' style="width:70%;" >
 	<tr>
 		<td>캘린더  <a href="#">더보기</a></td>
 		<td>공지사항 <a href="#">더보기</a></td>
 	</tr>
 	<tr>
 		<td><img src="../images/stop.jpg" width=300px></td>
-		<td>
-			<table class='table'>
-				<tr>
-					<td>no</td>
-					<td>제목</td>
-					<td>작성일</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>하이</td>
-					<td>2018-01-01</td>
-				</tr>
-			</table>
-		</td>
+		<td></td>
 	</tr>
 </table>
 
-
 <!-- REST 방식의 to do list -->
-<h3>to do list: REST
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tdlModal">
-		추가하기
-	</button>
-</h3>
-<table class="table" id="tdlboard">	</table>
+<h3>to do list: REST</h3>
+<a href="${pageContext.request.contextPath}/project/tdlDashboard?project_no=${pro_info.project_no }&user_no=${user_info.user_no}">더보기</a>
+<table class="table" id="tdlboard" style="width:70%;">	</table>
+
+
 
 <jsp:include page="../common/layout_footer.jsp" />
 
 
 <!-- todolist modal -->
 <!-- tdlmanager_no, todolist_content, todolist_status, todolist_enddate -->
-<div class="modal fade" id="tdlModal">
+<div class="modal fade" id="projectInfo">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         	<span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title">To do list 작성하기</h4>
+        <h4 class="modal-title">프로젝트 내용 수정하기</h4>
       </div>
-      <!-- project_todolist 추가 항목 -->
-      <div class="modal-body">
-      	<!-- 담당자 번호 -->
-		<div class="form-group">
-			<label>담당자 번호</label>
-			<input class="form-control" name='tdlmanager_no' >
-		</div>
-      	<!-- 담당 업무 -->
-		<div class="form-group">
-			<label>업무 내용</label>
-			<input class="form-control" name='todolist_content' >
-		</div>
-      	<!-- 업무 진행 상태 -->
-		<div class="form-group">
-			<label>업무 진행 상태</label>
-			<select>
-			  <option value="todo">todo</option>
-			  <option value="doing">doing</option>
-			  <option value="done">done</option>
-			</select>
-		</div>
-<!--       	업무 진행 상태
-		<div class="dropdown">
-		  <button class="btn btn-default dropdown-toggle" type="button" 
-		  		  id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-		    status
-		    <span class="caret"></span>
-		  </button>
-		  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">to do</a></li>
-		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">doing</a></li>
-		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">done</a></li>
-		  </ul>
-		</div> -->
-      	<!-- 종료 일정 -->
-		<div class="form-group">
-			<label>종료 날짜</label>
-			<input type="date" class="form-control" name='todolist_enddate' >
-		</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      <form action="/cos/project/projectUpdate" method="post">
+	      <!-- project Info 수정 -->
+	      <div class="modal-body">
+	      	<!-- 사용자 번호 -->
+	      	<input type="hidden" name="user_no" value="${user_info.user_no }">
+	      	<!-- 프로젝트 번호 -->
+			<input type="hidden" name="project_no" value="${pro_info.project_no }">
+	      	<!-- 프로젝트 제목 -->
+			<div class="form-group">
+				<label>프로젝트 제목</label>
+				<input class="form-control" name="project_title" value="${pro_info.project_title }" >
+			</div>
+	      	<!-- 프로젝트 설명 -->
+			<div class="form-group">
+				<label>프로젝트 설명</label>
+				<input class="form-control" name="project_content" value="${pro_info.project_content }">
+			</div>
+	      	<!-- 종료 일정 -->
+			<div class="form-group">
+				<label>종료 날짜</label>
+				<input type="date" class="form-control" name="prostring_enddate" value="${pro_info.prostring_enddate }">
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-primary">Save changes</button>
+	      </div>
+	     </form>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
