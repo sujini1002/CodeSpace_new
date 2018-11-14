@@ -24,13 +24,16 @@ public class QuestionDeleteService {
 		return questionDao.deleteQuestion(q_no);
 	}
 	
-	public void userScore(int q_no) {
-		int userNo = questionDao.findUserNo(q_no);
+	public void userScore(int userNo) {
 		int userScore = questionDao.selectUserScore(userNo);
 		
 		//사용자 점수가 0이상일 때만 차감
 		if(userScore >0) {
 			questionDao.userScoreUpdate(userNo, -1);
 		}
+	}
+	public int findUserNo(int q_no) {
+		int user_no = questionDao.findUserNo(q_no);
+		return user_no;
 	}
 }

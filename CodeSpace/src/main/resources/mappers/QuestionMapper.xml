@@ -49,6 +49,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 사용자 유저 번호 검색 -->
 	<select id="selectUserScore" resultType="int">
-		select user_score from question where user_no = #{user_no};
+		select user_score from userinfo where user_no = #{user_no};
 	</select>
 </mapper>

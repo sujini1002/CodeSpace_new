@@ -28,10 +28,14 @@ public class QuestionDeleteController {
 			resultJson = "{\"result\": \"" + 0 + "\"}";
 		}else {
 			
-			//사용자 점수 차감
-			service.userScore(q_no);
+			//user번호 구하기
+			int userNo = service.findUserNo(q_no);
 			
+			//질문 삭제
 			int result = service.deleteQuestion(q_no);
+			
+			//사용자 점수 차감
+			service.userScore(userNo);
 			
 			resultJson = "{\"result\": \"" + result + "\"}";
 		}
