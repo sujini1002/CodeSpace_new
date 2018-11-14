@@ -31,13 +31,7 @@ public class ProjectRegService {
 		return list;
 	}
 	
-	//to do list select
-	public List<TodolistVO> selectTDL(int project_no) {
-		dao = sqlSessionTemplate.getMapper(ProjectInfoInterface.class);
-		
-		List<TodolistVO> list = dao.selectTodoList(project_no);
-		return list;
-	}
+
 
 	
 

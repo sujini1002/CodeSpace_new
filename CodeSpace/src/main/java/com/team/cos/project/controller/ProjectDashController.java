@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cos.project.service.ProjectRegService;
+import com.team.cos.project.service.TDLViewService;
 import com.team.cos.project.vo.ProjectInfoVO;
 import com.team.cos.project.vo.TodolistVO;
 import com.team.cos.userinfo.service.UserInfoCheckService;
@@ -23,6 +24,8 @@ public class ProjectDashController {
 	private ProjectRegService proInfoservice;
 	@Autowired
 	private UserInfoCheckService userInfoService;
+	@Autowired
+	private TDLViewService tdlInfoService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView getProDashboard(
@@ -37,7 +40,7 @@ public class ProjectDashController {
 		//project_no에 해당하는 프로젝트 정보 가져옴
 		ProjectInfoVO pro_info = proInfoservice.selectProList(project_no);
 		// project_no에 해당하는 to do list 가져옴
-		List<TodolistVO> tdl_list = proInfoservice.selectTDL(pro_info.getProject_no());
+		List<TodolistVO> tdl_list = tdlInfoService.selectTDL(pro_info.getProject_no());
 
 		
 		ModelAndView modelAndView = new ModelAndView();

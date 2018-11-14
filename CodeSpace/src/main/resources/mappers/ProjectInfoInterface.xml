@@ -25,12 +25,7 @@
 		</selectKey>
 	</insert>
 	
-	<!-- project_no에 해당하는 to do list 반환 -->
-	<select id="selectTodoList" resultType="hashmap">
-		select * from project_todolist 
-		where project_no = #{project_no}
-	</select>
-	
+
 	<!-- project_no에 해당하는 플젝 정보 업데이트 -->
 	<update id="updateProject" parameterType="com.team.cos.project.vo.ProjectInfoVO">
 		update project 
