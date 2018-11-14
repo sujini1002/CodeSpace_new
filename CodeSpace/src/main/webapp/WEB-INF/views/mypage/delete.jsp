@@ -8,11 +8,12 @@
 	<table class="table">
 		<tr>
 			<td class="item">
+			${user_id }
 				<h3>탈퇴 처리를 위해 아이디를 입력해 주십시오.</h3>
 			</td>
 		</tr>
 		<tr>
-			<td class="contents"><input type="text" name="user_id"></td>
+			<td class="contents"><input type="text" name="inputuser_id"></td>
 		</tr>
 		<tr>
 			<td class="contents"><input type="submit" value="탈퇴하기"></td>

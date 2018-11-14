@@ -54,10 +54,11 @@
 			class="btn btn-success yu_btn1" type="button" value="수정하기"></a>
 	</div>
 
-	<!-- 탈퇴하기 버튼 -->
 	<div>
-		<input type="submit" class="btn btn-default " data-target="#layerpop"
-			data-toggle="modal" value="탈퇴하기"> <br />
+		<!-- 탈퇴하기 버튼 -->
+		<input type="submit" class="btn btn-default yu_btn_del" data-target="#layerpop" data-toggle="modal" value="탈퇴하기"> <br />
+		
+		<!-- 탈퇴하기 버튼누르면 모달창 뜨게 -->
 		<div class="modal fade" id="layerpop">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -71,12 +72,13 @@
 					<!-- body -->
 					<div class="modal-body">
 						탈퇴하시겠습니까?<br> 탈퇴 시 내가 작성한 질문, 답변, 프로젝트는 남아있고 <br> 가입 정보와 포인트만
-						삭제됩니다
+						삭제됩니다.
 					</div>
 					<!-- Footer -->
 					<div class="modal-footer">
 					 	<input type="button" class="btn btn-default" data-dismiss="modal" value="아니요">
-						<input type="button" class="btn btn-default" onclick="del_mypage()" value="탈퇴하기">
+						
+						<input type="button"  class="btn btn-danger" onclick="del_mypage()"value="탈퇴하기">
 					</div>
 				</div>
 			</div>
@@ -84,15 +86,18 @@
 	</div>
 </div>
 <script>
-function del_cancle(){
-	location.href="mypage/mypage"
-}
-function del_mypage(){
-	location.href="mypage/delete"
-}
 
+ function del_mypage(){
+	location.href="${pageContext.request.contextPath}/mypage/delete?user_id=${loginInfo.user_id}";
+};  
 
-</script>
-
+/* $("document").click(function(){
+		
+	$('input[data-oper="delete"]').on("click", function(e){
+		layerpop.attr("action", "/mypage/delete-account");
+		layerpop.submit();
+	});
+}); */
+ </script>
 
 <jsp:include page="../common/layout_footer.jsp" />

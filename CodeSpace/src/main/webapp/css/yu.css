@@ -26,7 +26,8 @@ h2, td {
 	
 }
 .yu_btn1{
-	margin: 170px 0 0 35px ; /* 상우하좌 */
+	margin-top: 50px; 
+	margin-left : 180px;
 	background-color: rgb(9,51,132);
 	border: none;
 }
@@ -37,6 +38,10 @@ h2, td {
 	margin-left: 200px;
 	width: 400px;
 	padding-top: 70px;
+}
+.yu_btn_del{
+
+	margin-right: 50px;
 }
 
 /* 프로필 변경 끝 */

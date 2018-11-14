@@ -30,7 +30,7 @@ public class MypageEditService {
 	// 수정된 정보 저장하기
 	@Transactional
 	public void edit(UserInfoVo userInfoVo, HttpServletRequest request) throws IllegalStateException, IOException {
-		System.out.println("서비스들어옴");
+
 		mypageInterface = sqlSessionTemplate.getMapper(MypageInterface.class);
 
 		/* 사진처리 - 파일 경로 신경쓰자 */
@@ -47,7 +47,6 @@ public class MypageEditService {
 		  }
 		 
 		mypageInterface.update(userInfoVo);
-		System.out.println("서비스 끝남");
 	}
 
 }
