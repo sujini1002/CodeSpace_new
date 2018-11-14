@@ -13,7 +13,7 @@
       
       <div id="navbar" class="userSearch">
          <div class="userSearchBar">
-            <input type="text" class="form-control" placeholder="Filter by user" name="userSearchValue">
+            <input type="text" class="form-control" placeholder="Filter by user" name="userValue">
             <!--  
             <form class="navbar-form" action="${pageContext.request.contextPath}/search/mainSearchPage">
                <input type="text" class="form-control" placeholder="Filter by user" name="userSearchValue">
@@ -42,9 +42,9 @@
          
          function searchUser(){
             
-            $("input:text[name=userSearchValue]").keyup(function(){
+            $("input:text[name=userValue]").keyup(function(){
                
-               var searchWords = $("input:text[name=userSearchValue]").val(); // 검색 창에 입력한 값
+               var searchWords = $("input:text[name=userValue]").val(); // 검색 창에 입력한 값
                
                
                   $.ajax({

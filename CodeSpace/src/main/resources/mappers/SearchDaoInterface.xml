@@ -4,23 +4,37 @@
 
 <mapper namespace="com.team.cos.search.dao.SearchDaoInterface">
 	
-	<!-- 메인 페이지 검색 쿼리 -->
-	<select id="mainSearchList" resultType="com.team.cos.search.vo.searchQuestion">
+	<!-- 메인 검색 창 검색 쿼리 -->
+	<select id="searchResults" resultType="com.team.cos.question.vo.QuestionInfo">
 		select * from question where q_content like CONCAT('%',#{content},'%')
 	</select>
 	
-	<!-- 메인 페이지 검색 결과 Cnt 쿼리 -->
-	<select id="mainSearchCnt" resultType="int">
+	<!-- 메인 검색 창 검색 결과 Cnt 쿼리 -->
+	<select id="searchCnt" resultType="int">
+		select count(*) from question where q_content like CONCAT('%',#{content},'%')
+	</select>
+	
+	<!-- 메인 검색 창 criteria를 적용하여 검색 결과값에 대한 페이징 -->
+	<select id="listCriteria" resultType="com.team.cos.question.vo.QuestionInfo">
+		select * from question 
+		where q_content like CONCAT('%',#{content},'%')
+		and q_no > 0
+		order by q_no desc, q_regdate desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<!-- 검색 결과 페이징 카운트 -->
+	<select id="selectTotalCnt" resultType="int">
 		select count(*) from question where q_content like CONCAT('%',#{content},'%')
 	</select>
 	
 	<!-- 유저 페이지 전체 유저 리스트 쿼리 -->
-	<select id="userSearchList" resultType="com.team.cos.userinfo.vo.UserInfoVo">
+	<select id="userList" resultType="com.team.cos.userinfo.vo.UserInfoVo">
 		select * from userinfo
 	</select>
 	
 	<!-- 유저 페이지 검색 결과  쿼리-->
-	<select id="searchUsers" resultType="com.team.cos.userinfo.vo.UserInfoVo">
+	<select id="searchUser" resultType="com.team.cos.userinfo.vo.UserInfoVo">
 		select * from userinfo where user_nickname like CONCAT('%',#{words},'%')
 	</select>
 

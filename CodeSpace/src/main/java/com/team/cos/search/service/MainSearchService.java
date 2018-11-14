@@ -5,8 +5,8 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.team.cos.question.vo.QuestionInfo;
 import com.team.cos.search.dao.SearchDaoInterface;
-import com.team.cos.search.vo.searchQuestion;
 
 public class MainSearchService {
 
@@ -19,7 +19,7 @@ public class MainSearchService {
 		
 		searchDao = sqlSessionTemplate.getMapper(SearchDaoInterface.class);
 		
-		List<searchQuestion> searchList = searchDao.mainSearchList(keyword);
+		List<QuestionInfo> searchList = searchDao.searchResults(keyword);
 		
 		return searchList;
 	}
@@ -28,7 +28,7 @@ public class MainSearchService {
 		
 		searchDao = sqlSessionTemplate.getMapper(SearchDaoInterface.class);
 		
-		int	resultCnt = searchDao.mainSearchCnt(keyword);
+		int	resultCnt = searchDao.searchCnt(keyword);
 		
 		return resultCnt;
 	}

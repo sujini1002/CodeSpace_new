@@ -19,12 +19,13 @@
       </c:if>
       <c:if test="${!empty searchResult}">
          <div class="result-List">
-            <h4>${searchCount}개의검색 결과</h4>
+         	<h4>검색 키워드 : "${keyword}"</h4><br>
+            <h5>${searchCount}개의 검색 결과</h5>
             <hr>
             <c:forEach var="searchResult" items="${searchResult}">
                <div class="row">
                   <div class="col-lg-1 result-cell">
-                     ${searchResult.q_viewcnt}<br>조회수
+                     ${searchResult.q_viewCnt}<br>조회수
                   </div>
                   <div class="col-lg-1 result-cell">
                      ${searchResult.q_recommand}<br>추천수
@@ -32,24 +33,12 @@
                   <div class="col-lg-7 result-cell">
                      <a href="${pageContext.request.contextPath}/question/questionView?q_no=${searchResult.q_no}">${searchResult.q_title}</a>
                   </div>
-               </div>   
+               </div> <!-- 게시글 row행 끝 -->
             </c:forEach>
-            
-            <!--  
-            <table>
-               <c:forEach var="searchResult" items="${searchResult}">
-                  <tr>
-                     <td>${searchResult.q_viewcnt}<br>조회수</td>
-                     <td>${searchResult.q_recommand}<br>추천수</td>
-                     <td><a href="${pageContext.request.contextPath}/question/questionView?q_no=${searchResult.q_no}">${searchResult.q_title}</a></td>
-                  </tr>
-               </c:forEach>
-            </table>
-            -->
-         </div>
+         </div> <!-- result-List 끝 -->
       </c:if>
-   </div>
-</div>
+   </div> <!-- list-container 끝 -->
+</div> <!-- container 끝  -->
 
 
 <!-- 주석 -->

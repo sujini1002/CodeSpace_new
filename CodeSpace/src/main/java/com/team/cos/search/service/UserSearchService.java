@@ -20,7 +20,7 @@ public class UserSearchService {
 		
 		searchDao = sqlSessionTemplate.getMapper(SearchDaoInterface.class);
 		
-		List<UserInfoVo> userList = searchDao.userSearchList();
+		List<UserInfoVo> userList = searchDao.userList();
 		
 		return userList;
 		
@@ -31,7 +31,7 @@ public class UserSearchService {
 		
 		searchDao = sqlSessionTemplate.getMapper(SearchDaoInterface.class);
 		
-		List<UserInfoVo> searchResult = searchDao.searchUsers(words);
+		List<UserInfoVo> searchResult = searchDao.searchUser(words);
 				
 		return searchResult;
 		
