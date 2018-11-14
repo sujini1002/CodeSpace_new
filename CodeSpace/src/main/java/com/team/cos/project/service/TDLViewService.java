@@ -16,10 +16,10 @@ public class TDLViewService {
 	private TDLInterface dao;
 
 	//to do list select
-	public List<TodolistVO> selectTDL(int project_no) {
+	public List<TodolistVO> getTDL(int project_no) {
 		dao = sqlSessionTemplate.getMapper(TDLInterface.class);
 		
-		List<TodolistVO> list = dao.selectTodoList(project_no);
+		List<TodolistVO> list = dao.selectTDL(project_no);
 		return list;
 	}
 }

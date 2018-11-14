@@ -26,7 +26,7 @@
 		<td>공지사항 <a href="#">더보기</a></td>
 	</tr>
 	<tr>
-		<td><img src="${pageContext.request.contextPath}../images/stop.jpg" width=300px></td>
+		<td><img src="../images/stop.jpg" width=300px></td>
 		<td>
 			<table class='table'>
 				<tr>
@@ -50,7 +50,63 @@
 <c:forEach var="tdl" items="${tdl_list }" varStatus="status">
 	${status.count}. ${tdl.todolist_content} | ${tdl.todolist_status }<br>
 </c:forEach>
+<!-- REST 방식의 to do list -->
+<hr>
+<h3>to do list: REST</h3>
+<%-- <a href="${pageContext.request.contextPath }/project/tdl">REST방식의 tdl</a> --%>
+<div>
+	<ul class="tdlboard">
+		<li class="left" data-project_no='86'>
+			<div>
+				<div class="header">
+					<strong>user00</strong>
+					<small class="pull-right text-muted">2018-01-01</small>
+				</div>
+				<p> great ! </p>
+			</div>			
+		</li>
+	</ul>
+</div>
 
 
 
 <jsp:include page="../common/layout_footer.jsp" />
+<!-- todolist 처리를 위한 js -->
+<script type="text/javascript" src="../js/todolist.js" ></script>
+
+<!-- <script type="text/javascript">
+	$(document).ready(function(){
+		console.log(tdlService);
+	})
+</script> -->
+
+<script>
+	console.log("---JS TEST---");
+	
+	var project_noValue = '<c:out value="${pro_info.project_no}" />';
+	var tdlUL = $(".tdlboard");
+	
+	
+	tdlService.getList({project_no:project_noValue}, function(list) {
+		var str="";
+		
+		if(list==null || list.length==0){
+			tdlUL.html("");
+			return;
+		}
+		
+		for(var i=0, len=list.length ||0; i<len; i++){
+			console.log(list[i]);
+			
+			str += "<li class='left' data-project_no='"+list[i].todolist_no+"'>";
+			str += "	<div><div class='header'><strong>"+list[i].tdlmanager_no+"</strong>";
+			str += "		<small class='pull-right text-muted'>"+list[i].todolist_enddate+"</small></div>";
+			str += "		<p>"+list[i].todolist_content+"</p></div></li>";	
+		}
+			
+		tdlUL.html(str);
+			
+	});
+</script>
+
+

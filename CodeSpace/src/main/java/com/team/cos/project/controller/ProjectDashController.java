@@ -40,7 +40,7 @@ public class ProjectDashController {
 		//project_no에 해당하는 프로젝트 정보 가져옴
 		ProjectInfoVO pro_info = proInfoservice.selectProList(project_no);
 		// project_no에 해당하는 to do list 가져옴
-		List<TodolistVO> tdl_list = tdlInfoService.selectTDL(pro_info.getProject_no());
+		List<TodolistVO> tdl_list = tdlInfoService.getTDL(pro_info.getProject_no());
 
 		
 		ModelAndView modelAndView = new ModelAndView();
