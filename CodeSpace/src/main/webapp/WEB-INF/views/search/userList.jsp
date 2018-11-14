@@ -80,9 +80,19 @@
          }
       </script>
       
-      
-      <div class="userList">
-         <table class="userListTbl" border="1px solid black">
+      <c:if test="${!empty userList}">
+	      <div class="userList">
+	      	  <c:set var="cnt" value="0" /> <!-- 한 row 당 4명씩 짜르기 위해 선언하는 변수 -->
+	      	  <c:forEach var="userInfo" items="${userList}">
+	      	  <c:set var="cnt" value="${cnt+1}" /> <!-- for문을 돌리면서 row 한줄에 채워지는 유저 정보 수를 체크  -->
+		      <div class="col-lg-8">
+		      			<div class="col-lg-1 userPic">pic</div>
+		      			<div class="col-lg-5 user-detail">${userInfo.user_nickname}</div>
+		      </div>
+		      </c:forEach>
+	      </div>
+      </c:if>
+         <%-- <table class="userListTbl" border="1px solid black">
             <tr>
                <c:set var="cnt" value="0" />
                <c:forEach var="userInfo" items="${userList}">
@@ -99,8 +109,7 @@
                </c:if>
                </c:forEach>
             </tr>
-         </table>
-      </div>
+         </table> --%>
    
    </div> <!-- list-container 끝 -->
    

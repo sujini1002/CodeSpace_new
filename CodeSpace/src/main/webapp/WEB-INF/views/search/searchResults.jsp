@@ -15,12 +15,15 @@
    
    <div id="list-container">
       <c:if test="${empty searchResult }">
-         <h1>검색된 결과가 없습니다.</h1>
+      	 <div class="result-noList">
+      	 	<h4>검색 키워드 : "${keyword}"</h4><br>
+         	<h2>"${keyword}"에 대해 검색된 결과가 없습니다.</h2>
+         </div>
       </c:if>
       <c:if test="${!empty searchResult}">
          <div class="result-List">
          	<h4>검색 키워드 : "${keyword}"</h4><br>
-            <h5>${searchCount}개의 검색 결과</h5>
+            <h5>"${keyword}"에 대한 ${searchCount}개의 검색 결과</h5>
             <hr>
             <c:forEach var="searchResult" items="${searchResult}">
                <div class="row">

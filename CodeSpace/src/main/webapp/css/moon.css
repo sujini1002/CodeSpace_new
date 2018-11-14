@@ -23,6 +23,28 @@
 
 .userList {
    border: 1px solid red;
+   display: grid;
+   grid: repeat(4, 300px) / auto-flow 120px;
+}
+
+.userFrame {
+
+	background-color: lightgrey;
+	width: 300px;
+	height: 150xp;
+	border: 1px solid green;
+}
+
+.userPic{
+	
+	background-color: blue;
+	
+}
+
+.user-detail{
+	
+	background-color: yellow;
+	
 }
 
 .userListTbl {
