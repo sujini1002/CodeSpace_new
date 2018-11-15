@@ -9,7 +9,7 @@
 	<li role="presentation" class="active"><a
 		href="${pageContext.request.contextPath}/mypage/mypage">프로필</a></li>
 	<li role="presentation"><a
-		href="${pageContext.request.contextPath}/mypage/activity">내 활동</a></li>
+		href="${pageContext.request.contextPath}/mypage/activity?user_no=${loginInfo.user_no}">내 활동</a></li>
 </ul>
 
 <div class="y_profile_wrapper">

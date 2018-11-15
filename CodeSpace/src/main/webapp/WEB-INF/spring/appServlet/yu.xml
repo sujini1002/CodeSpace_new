@@ -17,6 +17,7 @@
 	<!-- 서비스 등록 -->
 	<beans:bean id="mypageEditService" class="com.team.cos.mypage.service.MypageEditService" />
 	<beans:bean id="deleteService" class="com.team.cos.mypage.service.DeleteService"/>
+	<beans:bean id="activityService" class="com.team.cos.mypage.service.ActivityService"/>
 
 
 
