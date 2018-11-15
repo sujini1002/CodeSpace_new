@@ -1,7 +1,5 @@
 package com.team.cos.project.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,9 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cos.project.service.ProjectRegService;
-import com.team.cos.project.service.TDLViewService;
+import com.team.cos.project.service.UserProjectViewService;
 import com.team.cos.project.vo.ProjectInfoVO;
-import com.team.cos.project.vo.TodolistVO;
 import com.team.cos.userinfo.service.UserInfoCheckService;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
@@ -22,6 +19,7 @@ public class ProjectDashController {
 	
 	@Autowired
 	private ProjectRegService proInfoservice;
+
 	@Autowired
 	private UserInfoCheckService userInfoService;
 	
@@ -37,15 +35,11 @@ public class ProjectDashController {
 		
 		//project_no에 해당하는 프로젝트 정보 가져옴
 		ProjectInfoVO pro_info = proInfoservice.selectProList(project_no);
-		// project_no에 해당하는 to do list 가져옴
-		//List<TodolistVO> tdl_list = tdlInfoService.getTDL(pro_info.getProject_no());
-
+		
 		
 		ModelAndView modelAndView = new ModelAndView();
 		//login 사용자 정보 보냄
 		modelAndView.addObject("user_info", user_info);
-		//to do list 보냄
-		//modelAndView.addObject("tdl_list", tdl_list);
 		//project 정보 보냄
 		modelAndView.addObject("pro_info", pro_info);
 		modelAndView.setViewName("project/projectDashboard");

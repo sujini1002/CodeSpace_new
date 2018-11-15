@@ -15,7 +15,7 @@ import com.team.cos.project.vo.TodolistVO;
 // RestController의 경우 순수 데이터를 전달하는 controller의 역할을 함
 @RestController
 @RequestMapping("project/tdl")
-public class TDLViewController {
+public class TdlViewController {
 	
 	@Autowired
 	private TDLViewService tdlService;

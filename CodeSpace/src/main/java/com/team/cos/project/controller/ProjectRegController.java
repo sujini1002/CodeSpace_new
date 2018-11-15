@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cos.project.service.ProjectRegService;
+import com.team.cos.project.service.UserProjectViewService;
 import com.team.cos.project.vo.ProjectInfoVO;
 import com.team.cos.userinfo.service.UserInfoCheckService;
 import com.team.cos.userinfo.vo.UserInfoVo;
@@ -22,6 +23,8 @@ public class ProjectRegController {
 
 	@Autowired
 	private ProjectRegService service;
+	@Autowired
+	private UserProjectViewService userProInfoservice;
 	@Autowired
 	private UserInfoCheckService userInfoService;
 
@@ -34,6 +37,10 @@ public class ProjectRegController {
 		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
 		System.out.println("PRG userInfo.user_id = "+user_info.getUser_id());
 		
+		//로그인한 사용자가 참여중인 projectInfoVO 가져옴
+		ProjectInfoVO userpro_info = userProInfoservice.getUserPro(user_no);
+		System.out.println("userpro info: "+userpro_info);
+		
 		// 86번에 해당하는 프로젝트 표출 >> to do list 표출 확인 테스트용
 		ProjectInfoVO pro_info = service.selectProList(86);
 
@@ -44,7 +51,12 @@ public class ProjectRegController {
 		if(user_info.getUser_score()<31) {
 			modelAndView.setViewName("project/projectRegFail");
 		} else {
-			modelAndView.setViewName("project/projectReg");
+			if(userpro_info!=null) {
+				modelAndView.addObject("userpro_info", pro_info);
+				modelAndView.setViewName("project/projectDashboard");
+			} else {
+				modelAndView.setViewName("project/projectReg");
+			}
 		}
 		
 		//프로젝트 정보 보냄
