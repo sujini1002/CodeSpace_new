@@ -27,4 +27,8 @@
 		class="com.team.cos.question.serivce.QuestionDeleteService"/>
 	<beans:bean id="answerInsertService"
 		class="com.team.cos.answer.service.AnswerInsertService"/>
+	<beans:bean id="answerUserScoreService"
+		class="com.team.cos.answer.service.AnswerUserScoreService"/>
+	<beans:bean id="checkLevelService"
+		class="com.team.cos.answer.service.CheckLevelService"/>
 </beans:beans>

@@ -9,4 +9,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values
 		(#{q_no},#{user_no},#{a_content},#{a_tag},now())
 	</insert>
+	<!-- 사용자 점수 업데이트 -->
+	<update id="updateUserScore">
+		update userinfo set user_score = user_score + #{score} where user_no = #{user_no}
+	</update>
+	<!-- 사용자 등급확인 -->
+	<select id="checkLevel" resultType="int">
+		select user_score from userinfo where user_no = #{user_no}
+	</select>
 </mapper>

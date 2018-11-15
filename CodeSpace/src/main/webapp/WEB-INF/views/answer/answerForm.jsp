@@ -68,13 +68,39 @@
 <!-- 답변 작성 -->
 <div id="k_insertQuestion">
  <h4>${loginInfo.user_nickname}님의 답변</h4>
- <div id="k_AnswerEditor">
+ <div id="k_AnswerEditor" onclick="checkLevle()">
  	
  </div>
  <input type="text" name="a_tag"  id="a_tag" placeholder="태그를 입력해 주세요"  class="form-control" required/>
  <button type="button" id="k_saveAnswer"
 	class="btn btn-primary">답변 등록</button>
 </div>
+<script>
+	function checkLevle(){
+		var userno = '${loginInfo.user_no}';
+		console.log(userno);
+		 $.ajax({
+			url:'${pageContext.request.contextPath}/answer/checkLevel',
+			type:'GET',
+			data:{
+				"user_no":userno
+			},
+			contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+			dataType : 'json',
+			success:function(data){
+				console.log(data);
+				if(data.result == "false" || userno == ""){
+					Answerquill.enable(false);
+					$('#a_tag').prop("disabled",true);
+					$('#k_saveAnswer').prop("disabled",true);
+				}
+			},
+			error:function(){
+				alert('불행하게도 에러입니다 ㅠㅠ');
+			}
+		}); 
+	}
+</script>
 <script>
 	
 	var toolbarOptions =[
@@ -109,7 +135,7 @@
 		//테스트
 		
 		
-		 /*  $.ajax({
+		  $.ajax({
 			url:'${pageContext.request.contextPath}/answer/insertAnswer',
 			type:'POST',
 			data:{
@@ -121,11 +147,15 @@
 			contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 			dataType : 'json',
 			success:function(data){
-				location.href='${pageContext.request.contextPath}/question/questionView?q_no='+data.q_no;
+				if(data.result=="1"){
+				location.href='${pageContext.request.contextPath}/question/questionView?q_no='+q_no;
+				}else{
+					alert("실패하였습니다ㅠㅠ");
+				}
 			},
 			error:function(){
 				alert('불행하게도 에러입니다 ㅠㅠ');
 			}
-		}); */
+		});
 	});
 </script>
