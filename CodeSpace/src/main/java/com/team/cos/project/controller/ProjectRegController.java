@@ -24,7 +24,7 @@ public class ProjectRegController {
 	@Autowired
 	private ProjectRegService service;
 	@Autowired
-	private UserProjectViewService userProInfoservice;
+	private UserProjectViewService userProInfoService;
 	@Autowired
 	private UserInfoCheckService userInfoService;
 
@@ -38,7 +38,7 @@ public class ProjectRegController {
 		System.out.println("PRG userInfo.user_id = "+user_info.getUser_id());
 		
 		//로그인한 사용자가 참여중인 projectInfoVO 가져옴
-		ProjectInfoVO userpro_info = userProInfoservice.getUserPro(user_no);
+		ProjectInfoVO userpro_info = userProInfoService.getUserPro(user_no);
 		System.out.println("userpro info: "+userpro_info);
 		
 		// 86번에 해당하는 프로젝트 표출 >> to do list 표출 확인 테스트용
@@ -46,21 +46,26 @@ public class ProjectRegController {
 
 		ModelAndView modelAndView = new ModelAndView();
 		
-		// user_score가 31 미만인 사용자는 projectRegFail.jsp로 보냄
 		System.out.println("user score: "+user_info.getUser_score());
 		if(user_info.getUser_score()<31) {
+			// user_score가 31 미만인 사용자는 projectRegFail.jsp로 보냄
 			modelAndView.setViewName("project/projectRegFail");
 		} else {
+			// user_score가 31 이상임
 			if(userpro_info!=null) {
+				// user가 참여중인 project가 있는 경우
+				// prjdash controller를 타게 됨
 				modelAndView.addObject("userpro_info", pro_info);
-				modelAndView.setViewName("project/projectDashboard");
+				modelAndView.addObject("project_no", userpro_info.getProject_no());
+				modelAndView.addObject("user_no", user_no);
+				modelAndView.setViewName("redirect:prjdash");
 			} else {
 				modelAndView.setViewName("project/projectReg");
 			}
 		}
 		
-		//프로젝트 정보 보냄
-		modelAndView.addObject("pro_info", pro_info);
+		/*//프로젝트 정보 보냄
+		modelAndView.addObject("pro_info", pro_info);*/
 		//login 사용자 정보 보냄
 		modelAndView.addObject("user_info", user_info);
 

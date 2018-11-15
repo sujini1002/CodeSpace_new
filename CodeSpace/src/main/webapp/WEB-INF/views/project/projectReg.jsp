@@ -12,12 +12,12 @@
 	
 	<!-- 프로젝트 생성하기 post방식으로  -->
 	<!-- 제목 project_title/설명 project_content/참여자 project_member/종료일 project_project_enddate-->
-	<form class="form-horizontal" style="width:70%;" method="post">
+	<form class="form-horizontal" id="proInfo" style="width:70%;" method="post">
 		<div class="form-group">
 			<label for="project_title">프로젝트 명</label> 
 			<input type="text"
-				class="form-control" name="project_title"
-				placeholder="프로젝트 명을 입력하세요">
+				class="form-control" name="project_title" id="project_title"
+				placeholder="프로젝트 명을 입력하세요" onkeyup="inputForm()">
 		</div>
 		<div class="form-group">
 			<label for="project_content">프로젝트 설명</label> 
@@ -37,20 +37,36 @@
 		<!-- project_member db 저장을 위한 현재 로그인한 사용자 no 가져옴
 		현재 로그인한 사용자가 프로젝트를 생성하므로, pm_no로 지정됨 -->
 		<input type="hidden" name="pm_no" value="${user_info.user_no}">
-		<button type="submit" class="btn btn-default">제출</button>
+		<button type="submit" class="btn btn-default" id="proSubmit">만들기</button>
 	</form>
 
 </div>
 <hr>
 <div>
-	<h3>to do list 테스트를 위한 project_no = 67 게시물</h3>
+	<h3>to do list 테스트를 위한 project_no = 87 게시물
 	<br>
-	<h3>
-		<a href="${pageContext.request.contextPath}/project/prjdash?project_no=${pro_info.project_no}&
+		<a href="${pageContext.request.contextPath}/project/prjdash?project_no=87&
 			user_no=${user_info.user_no}">${pro_info.project_title }</a>
 	</h3>
-
 </div>
 
 
 <jsp:include page="../common/layout_footer.jsp" />
+
+<script>
+	//var proSubmitBt = document.getElementById('proSubmit');
+	//	proSubmitBt.disabled = true;
+	// jquery
+	$('#proSubmit').attr('disabled', true);
+	
+	function inputForm(){
+		
+	 	if($('#project_title').val() != ""){
+			$('#proSubmit').attr('disabled', false);
+			
+		} else {
+		}
+	}
+	 
+
+</script>

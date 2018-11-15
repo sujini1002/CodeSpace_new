@@ -15,6 +15,10 @@
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectInfo">
 			수정하기
 		</button>
+		<!-- 프로젝트는 삭제 x, 프로젝트 끝내기 버튼을 누르면 방향으로 함 -->
+		<button type="button" class="btn btn-primary" onclick="location.href='/project/prodelete'">
+			프로젝트 끝내기
+		</button>
 	</h3>
 	<h4>${pro_info.project_content }</h4>
 </div>
