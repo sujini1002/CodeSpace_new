@@ -21,21 +21,13 @@ import com.team.cos.userinfo.vo.UserInfoVo;
 public class UserInfoRegController {
 	@Autowired
 	private UserInfoRegService service;
-	@Autowired
-	private UserInfoCheckService checkService;
+
 	@Autowired
 	private SimpleRegistrationNotifierService mailService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView insertUserInfoform(UserInfoVo userInfoVo, HttpSession session) {
-		UserInfoVo result = checkService.userInfoCheck(userInfoVo);
-		session.setAttribute("loginInfo", userInfoVo);
-		session.setAttribute("result", result);
-		ModelAndView modelAndView = new ModelAndView();
-
-		modelAndView.addObject("userInfoVo", userInfoVo);
-		modelAndView.setViewName("/userinfo/userreg");
-		return modelAndView;
+	public String insertUserInfoform(UserInfoVo userInfoVo, HttpSession session) {
+		return "userinfo/userreg";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -52,7 +44,6 @@ public class UserInfoRegController {
 			mailService.sendMail(userInfoVo);
 			modelAndView.setViewName("home");
 			session.setAttribute("loginInfo", userInfoVo);
-			session.removeAttribute("result");
 		}
 
 		return modelAndView;

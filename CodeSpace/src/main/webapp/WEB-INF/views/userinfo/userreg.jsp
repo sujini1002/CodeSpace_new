@@ -4,12 +4,12 @@
 <jsp:include page="../common/layout_top.jsp" />
 <jsp:include page="../common/layout_content.jsp" />
 
-<form action="${pageContext.request.contextPath }/userinfo/userreg" method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
 	<table class="table h_table">
 		<thead>
 			<tr>
 				<th>아이디</th>
-				<td><input type="text" name="user_id" value="${userInfoVo.user_id }" readonly="readonly" /></td>
+				<td><input type="text" name="user_id" value="${googlecheck}" readonly="readonly" /></td>
 			</tr>
 		</thead>
 		<thead>

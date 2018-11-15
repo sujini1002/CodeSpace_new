@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.cos.userinfo.service.UserInfoCheckService;
 import com.team.cos.userinfo.service.UserInfoLoginUpdateService;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
@@ -14,10 +15,14 @@ import com.team.cos.userinfo.vo.UserInfoVo;
 public class UserInfoLoginUpdateController {
 	@Autowired
 	private UserInfoLoginUpdateService service;
-	
+	@Autowired
+	private UserInfoCheckService checkService;
+
 	@RequestMapping("/userinfo/userloginupdate")
 	@ResponseBody
-	public void userLoginUpdate(UserInfoVo userInfoVo,HttpSession session) {
-		service.userLoginUpdate(userInfoVo);		
+	public void userLoginUpdate(UserInfoVo userInfoVo, HttpSession session) {
+		UserInfoVo result = checkService.userInfoCheck(userInfoVo);
+		service.userLoginUpdate(userInfoVo);
+		session.setAttribute("loginInfo", result);
 	}
 }

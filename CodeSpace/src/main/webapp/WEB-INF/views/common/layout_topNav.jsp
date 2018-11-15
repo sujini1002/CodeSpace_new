@@ -31,29 +31,39 @@
 			<a href="${pageContext.request.contextPath}/mypage/mypage"> 
 			<i class="fa fa-user-circle fa-lg y_user" style="color: white; margin-top: 18px;"></i>
 			</a>
+			
 			<!-- session에 로그인 사용자 정보 유무 확인 -->
-		<c:choose>		
-			<c:when test="${empty loginInfo }" >
-					<!-- 구글 로그인 버튼 -->
-				<button class="g-signin2 h_login" data-onsuccess="onSignIn"></button>
+			<!-- google너 Empty 하니? 응 = true /// 아니 나 뭐 있어 = false -->
+		<c:choose>
+		
+			<c:when test="${empty googlecheck}" >
+					<button class="g-signin2 h_login" data-onsuccess="onSignIn"></button>		
 			</c:when>
-			<c:when test="${empty result } && ${!empty loginInfo }" >
-					<!-- 구글 로그인 버튼 -->
-				<button onclick="signUp()" class="btn btn-success" style="margin-left: 10px; margin-bottom: 0px; width: 120px;height: 36px;">회원 가입</button>
-				<button hidden="hidden" class="g-signin2" data-onsuccess="onSignIn"></button>
-			</c:when>
-			<c:when test="${!empty loginInfo }">
-					<!-- 구글 로그인 버튼 -->				
-				<button type="button" class="btn btn-success" onclick="signOut()" style="margin-left: 10px; margin-bottom: 0px; width: 120px;height: 36px;">로그아웃</button>
-				<button hidden="hidden" class="g-signin2" data-onsuccess="onSignIn"></button>				
-			</c:when>
-		</c:choose>				
+			
+			<c:otherwise>
+				<c:choose>
+						<c:when test="${empty loginInfo }">
+								<button onclick="signUp()" class="btn btn-success" style="margin-left: 10px; margin-bottom: 0px; width: 120px;height: 36px;">회원 가입</button>
+								<button type="button" class="btn btn-success" onclick="signOut()" style="margin-left: 10px; margin-bottom: 0px; width: 120px;height: 36px;">로그아웃</button>
+								<button hidden="hidden" class="g-signin2" data-onsuccess="onSignIn"></button>
+						</c:when>
+						
+						<c:otherwise>
+							<button type="button" class="btn btn-success" onclick="signOut()" style="margin-left: 10px; margin-bottom: 0px; width: 120px;height: 36px;">로그아웃</button>
+							<button hidden="hidden" class="g-signin2" data-onsuccess="onSignIn"></button>
+						</c:otherwise>
+				</c:choose>								
+			</c:otherwise>
+			
+		</c:choose>
+						
 		</div>
 	</div>
 </nav>
 <script>
 	function signUp(){
-		var userid="${loginInfo.user_id}";
+		
+		var userid="${googlecheck}";
 		location.href="${pageContext.request.contextPath}/userinfo/userreg?user_id="+userid;
 	}
 	/* 로그인 후 사용자의 정보를 받아옴 */
@@ -61,14 +71,15 @@
 		var profile = googleUser.getBasicProfile();
 		var email = profile.getEmail();
 		/* 디비가서 회원이 가입되어있나 아닌가 확인 */
-		if(<c:out value='${empty loginInfo }'/>){
+		if(<c:out value='${empty googlecheck }'/>){
 			$.ajax({
 				url:'${pageContext.request.contextPath}/userinfo/usercheck',
+				dataType:'JSON',
 				data:{
 					"user_id":email
 				},
 				success:function(response){
-					if(response==''){
+					if(response.user_no == 0){
 						/* 회원가입 안된걸로 판단하고 가입페이지로 이동 */
 						 location.href = "${pageContext.request.contextPath}/userinfo/userreg?user_id=" + email;
 					}else{
@@ -79,7 +90,7 @@
 								location.reload();
 							}
 						});
-					}
+					} 
 				}			
 			});
 		}
