@@ -37,20 +37,25 @@
 					<!-- 구글 로그인 버튼 -->
 				<button class="g-signin2 h_login" data-onsuccess="onSignIn"></button>
 			</c:when>
-			<c:when test="${empty result }" >
+			<c:when test="${empty result } && ${!empty loginInfo }" >
 					<!-- 구글 로그인 버튼 -->
-				<button hidden class="g-signin2 h_login" data-onsuccess="onSignIn"></button>
+				<button onclick="signUp()" class="btn btn-success" style="margin-left: 10px; margin-bottom: 0px; width: 120px;height: 36px;">회원 가입</button>
+				<button hidden="hidden" class="g-signin2" data-onsuccess="onSignIn"></button>
 			</c:when>
-			<c:otherwise>
+			<c:when test="${!empty loginInfo }">
 					<!-- 구글 로그인 버튼 -->				
 				<button type="button" class="btn btn-success" onclick="signOut()" style="margin-left: 10px; margin-bottom: 0px; width: 120px;height: 36px;">로그아웃</button>
-				<button hidden class="g-signin2" data-onsuccess="onSignIn"></button>				
-			</c:otherwise>
+				<button hidden="hidden" class="g-signin2" data-onsuccess="onSignIn"></button>				
+			</c:when>
 		</c:choose>				
 		</div>
 	</div>
 </nav>
 <script>
+	function signUp(){
+		var userid="${loginInfo.user_id}";
+		location.href="${pageContext.request.contextPath}/userinfo/userreg?user_id="+userid;
+	}
 	/* 로그인 후 사용자의 정보를 받아옴 */
 	function onSignIn(googleUser) {
 		var profile = googleUser.getBasicProfile();

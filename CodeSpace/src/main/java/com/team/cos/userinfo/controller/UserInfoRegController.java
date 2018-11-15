@@ -52,6 +52,7 @@ public class UserInfoRegController {
 			mailService.sendMail(userInfoVo);
 			modelAndView.setViewName("home");
 			session.setAttribute("loginInfo", userInfoVo);
+			session.removeAttribute("result");
 		}
 
 		return modelAndView;
