@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.cos.answer.dao.AnswerInterfaceDao">
+	<!-- 답변 등록 질문 -->
+	<insert id="insertAnswer" parameterType="com.team.cos.answer.vo.AnswerInfo">
+		insert into answer(q_no,user_no,a_content,a_tag,a_regdate)
+		values
+		(#{q_no},#{user_no},#{a_content},#{a_tag},now())
+	</insert>
+</mapper>

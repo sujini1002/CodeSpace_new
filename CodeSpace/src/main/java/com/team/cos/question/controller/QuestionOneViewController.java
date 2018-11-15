@@ -24,6 +24,7 @@ public class QuestionOneViewController {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		QuestionInfo questionInfo = service.questionView(q_no);
+		System.out.println(questionInfo);
 		UserInfoVo userInfoVo = service.questionUser(q_no);
 		
 		modelAndView.addObject("questionInfo", questionInfo);

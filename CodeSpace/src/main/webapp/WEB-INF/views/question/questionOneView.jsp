@@ -22,14 +22,14 @@
 			<button type="button" class="btn k_qtagBtn">${questionInfo.q_tag}</button>
 			<input type="text" class="form-control" id="k_qtag"
 			value="${questionInfo.q_tag}" />
-
+			<hr>
 		</td>
 
 	</tr>
 	<tr>
 		<!-- 추천 & 즐겨 찾기 -->
 		<td rowspan="3"
-			style="width: 15%; text-align: center; margin-top: 20px">
+			style="width: 15%;text-align:center;">
 			<div id="k_recommand">
 				<button type="button" class="btn" style="background-color: white">
 					<i class="fa fa-chevron-up fa-2x" style="color: gray;"></i>
@@ -55,7 +55,8 @@
 				${questionInfo.q_content}
 				</textarea>
 
-			</div> <%-- <div id="k_regdate" style="float:right"><p>${questionInfo.q_regdate}</p></div> --%>
+			</div> 
+			<div id="k_regdate" style="float:right"><p>${questionInfo.q_regdate}</p></div> 
 
 			<script>
 				var delta = JSON.parse($('#k_questionText').val());
@@ -88,7 +89,7 @@
 							'align' : []
 						} ] ];
 
-				var quill = new Quill('#editor', {
+				var Questionquill = new Quill('#editor', {
 					modules : {
 						toolbar : toolbarOptions
 					},
@@ -97,8 +98,8 @@
 
 				$('.ql-toolbar').css('visibility', 'hidden');
 				$('#editor').css('border', 'none');
-				quill.setContents(delta);
-				quill.enable(false);
+				Questionquill.setContents(delta);
+				Questionquill.enable(false);
 			</script>
 		</td>
 	</tr>
@@ -154,7 +155,7 @@
 			//수정 폼 테두리 설정
 			$('#editor').css('border', '1px solid lightgray');
 			//수정 폼 작성 가능
-			quill.enable(true);
+			Questionquill.enable(true);
 			//태그 및 제목 수정 가능
 			$('#k_qTitle').css('display', 'none');
 			$('.k_qtagBtn').css('display', 'none');
@@ -169,7 +170,7 @@
 			var qno = $('#k_qNO').val();
 			qno *= 1;
 			var title = $('#k_qtitleForm').val();
-			var content = JSON.stringify(quill.getContents());
+			var content = JSON.stringify(Questionquill.getContents());
 			var tag = $('#k_qtag').val();
 
 			$.ajax({
@@ -200,6 +201,7 @@
 	}
 	function k_questiondelete(){
 		
+		//질문 고유 번호
 		var qno = $('#k_qNO').val();
 		
 		$.ajax({
@@ -228,5 +230,6 @@
 	}//end k_questiondelete()
 </script>
 <!-- 답변 리스트  인클루드 하기 -->
+<jsp:include page="../answer/answerForm.jsp"/>
 
 <jsp:include page="../common/layout_footer.jsp" />

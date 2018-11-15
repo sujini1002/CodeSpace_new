@@ -25,4 +25,6 @@
 		class="com.team.cos.question.serivce.QuestionUpdateService"/>
 	<beans:bean id="questionDeleteService"
 		class="com.team.cos.question.serivce.QuestionDeleteService"/>
+	<beans:bean id="answerInsertService"
+		class="com.team.cos.answer.service.AnswerInsertService"/>
 </beans:beans>

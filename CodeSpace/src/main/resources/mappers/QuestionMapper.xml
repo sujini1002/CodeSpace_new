@@ -13,7 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 질문 한개를 보여주는 출력하는 문 -->
 	<select id="questionViewOne" resultType="com.team.cos.question.vo.QuestionInfo">
-		select * from question where q_no = #{q_no}
+		select q_no,user_no,q_title,q_content,q_tag,date_format(q_regdate,'%Y.%m.%d %H:%i'),q_recommand,q_viewcnt
+		from question where q_no = #{q_no}
 	</select>
 	<!-- 작성자 스코어 값을 변경하기 위한 작성자 번호 출력문 -->
 	<select id="findUserNum" resultType="int">

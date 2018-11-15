@@ -21,4 +21,25 @@
 #k_qtag,#k_qtitleForm{
 	display :none;
 }
-
+.k_orderNavBar{
+	float:right;
+}
+.k_AnswerCnt{
+	float:left;
+	margin:8px 15px 0px 50px;
+}
+.k_AnswerCnt>b{
+	font-size : 20px;
+	margin-left : 130px;
+	
+}
+.k_AnswerContentBtn{
+	margin:20px 0px 10px 30px;
+}
+.k_insertQuestion{
+	width:100%;
+	margin-top: 100px;
+}
+#k_AnswerEditor{
+	height:200px
+}
