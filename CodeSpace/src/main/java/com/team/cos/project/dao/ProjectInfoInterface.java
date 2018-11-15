@@ -13,7 +13,12 @@ public interface ProjectInfoInterface {
 	//프로젝트 정보 업데이트
 	public int updateProject(ProjectInfoVO vo);
 	
+	//프로젝트 상태 변경
+	public int updateProStatus(int project_no);
+	
 	//로그인한 사용자가 참여중인 project 정보를 보여주는 메서드
 	public ProjectInfoVO selectUserPro(int user_no);
+	
+	
 
 }

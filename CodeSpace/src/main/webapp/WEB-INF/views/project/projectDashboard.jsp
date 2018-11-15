@@ -16,7 +16,7 @@
 			수정하기
 		</button>
 		<!-- 프로젝트는 삭제 x, 프로젝트 끝내기 버튼을 누르면 방향으로 함 -->
-		<button type="button" class="btn btn-primary" onclick="location.href='/project/prodelete'">
+		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#projectFinish">
 			프로젝트 끝내기
 		</button>
 	</h3>
@@ -45,8 +45,7 @@
 <jsp:include page="../common/layout_footer.jsp" />
 
 
-<!-- todolist modal -->
-<!-- tdlmanager_no, todolist_content, todolist_status, todolist_enddate -->
+<!-- 수정하기 모달 -->
 <div class="modal fade" id="projectInfo">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -82,6 +81,48 @@
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        <button type="submit" class="btn btn-primary">Save changes</button>
+	      </div>
+	     </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- 프로젝트 끝내기 모달 -->
+<div class="modal fade" id="projectFinish">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        	<span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">프로젝트 끝내기</h4>
+      </div>
+      <form action="/cos/project/projectFinish" method="post">
+	      <!-- project Info 수정 -->
+	      <div class="modal-body">
+	      	<!-- 사용자 번호 -->
+	      	<input type="hidden" name="user_no" value="${user_info.user_no }">
+	      	<!-- 프로젝트 번호 -->
+			<input type="hidden" name="project_no" value="${pro_info.project_no }">
+	      	<!-- 프로젝트 제목 -->
+			<div class="form-group">
+				<label>프로젝트 제목</label>
+				<input class="form-control" name="project_title" value="${pro_info.project_title }" readonly >
+			</div>
+	      	<!-- 프로젝트 설명 -->
+			<div class="form-group">
+				<label>프로젝트 설명</label>
+				<input class="form-control" name="project_content" value="${pro_info.project_content }" readonly>
+			</div>
+	      	<!-- 종료 일정 -->
+			<div class="form-group">
+				<label>종료 날짜</label>
+				<input type="date" class="form-control" name="prostring_enddate" value="${pro_info.prostring_enddate }" readonly>
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-danger">Project Done</button>
 	      </div>
 	     </form>
     </div><!-- /.modal-content -->

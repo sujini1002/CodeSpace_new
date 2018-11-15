@@ -25,11 +25,17 @@
 		</selectKey>
 	</insert>
 	
-
-	<!-- project_no에 해당하는 플젝 정보 업데이트 -->
+	<!-- project_no에 해당하는 플젝 정보 수정 -->
 	<update id="updateProject" parameterType="com.team.cos.project.vo.ProjectInfoVO">
 		update project 
 		set project_title=#{project_title}, project_content = #{project_content}, project_enddate = #{project_enddate}
+		where project_no = #{project_no}
+	</update>
+	
+	<!-- project finish 클릭 시 project_status = 0으로 update -->
+	<update id="updateProStatus">
+		update project
+		set project_status=0, project_enddate=now()
 		where project_no = #{project_no}
 	</update>
 

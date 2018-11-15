@@ -63,9 +63,7 @@ public class ProjectRegController {
 				modelAndView.setViewName("project/projectReg");
 			}
 		}
-		
-		/*//프로젝트 정보 보냄
-		modelAndView.addObject("pro_info", pro_info);*/
+
 		//login 사용자 정보 보냄
 		modelAndView.addObject("user_info", user_info);
 
