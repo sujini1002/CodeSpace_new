@@ -14,20 +14,6 @@
 		select count(*) from question where q_content like CONCAT('%',#{content},'%')
 	</select>
 	
-	<!-- 메인 검색 창 criteria를 적용하여 검색 결과값에 대한 페이징 -->
-	<select id="listCriteria" resultType="com.team.cos.question.vo.QuestionInfo">
-		select * from question 
-		where q_content like CONCAT('%',#{content},'%')
-		and q_no > 0
-		order by q_no desc, q_regdate desc
-		limit #{pageStart}, #{perPageNum}
-	</select>
-	
-	<!-- 검색 결과 페이징 카운트 -->
-	<select id="selectTotalCnt" resultType="int">
-		select count(*) from question where q_content like CONCAT('%',#{content},'%')
-	</select>
-	
 	<!-- 유저 페이지 전체 유저 리스트 쿼리 -->
 	<select id="userList" resultType="com.team.cos.userinfo.vo.UserInfoVo">
 		select * from userinfo
@@ -37,5 +23,22 @@
 	<select id="searchUser" resultType="com.team.cos.userinfo.vo.UserInfoVo">
 		select * from userinfo where user_nickname like CONCAT('%',#{words},'%')
 	</select>
+
+	<!-- ///////////////////////// 페이징 ////////////////////////// -->
+	
+		<!-- 메인 검색 창 criteria를 적용하여 검색 결과값에 대한 페이징 -->
+	<select id="listCriteria" resultType="com.team.cos.question.vo.QuestionInfo">
+		select * from question 
+		where q_content like CONCAT('%',#{keyword},'%')
+		and q_no > 0
+		order by q_no desc, q_regdate desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<!-- 검색 결과 페이징 카운트 -->
+	<select id="selectTotalCnt" resultType="int">
+		select count(*) from question where q_content like CONCAT('%',#{keyword},'%')
+	</select>
+
 
 </mapper>

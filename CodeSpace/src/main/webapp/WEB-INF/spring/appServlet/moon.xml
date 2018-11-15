@@ -20,6 +20,9 @@
 	
 	<!-- User Search Service 등록 -->
 	<beans:bean id="UserSearchService" class="com.team.cos.search.service.UserSearchService"/>
+	
+	<!-- Paging Service 등록 -->
+	<beans:bean id="PagingService" class="com.team.cos.search.service.PagingService"/>
 
 
 </beans:beans>
