@@ -1,10 +1,11 @@
 var express = require('express');
+var host = "115.94.144.228"
 var app = express();
-var http = require('http').Server(app);
+var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
 app.get("/",function(req, res){
-  res.sendfile("NewFile.html");
+  res.sendFile(__dirname+"/chatting.html");
 });
 
 var count=1;
@@ -25,5 +26,5 @@ io.on('connection', function(socket){
 });
 
 http.listen('3000', function(){
-  console.log("server on!");
+  console.log("server on!:3000");
 });

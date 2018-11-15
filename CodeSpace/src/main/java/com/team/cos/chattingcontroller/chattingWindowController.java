@@ -1,4 +1,4 @@
-package com.team.cos.chattingcontroller;
+/*package com.team.cos.chattingcontroller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +8,7 @@ public class chattingWindowController {
 
 	@RequestMapping("/chatting/chattingWindow")
 	public String chattingWindow() {
-		return "chatting/chattingWindow";
+		return "chatting/NewFile";
 	}
 }
+*/

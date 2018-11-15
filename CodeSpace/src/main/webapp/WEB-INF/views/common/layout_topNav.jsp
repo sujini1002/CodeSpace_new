@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<sql:setDataSource 
+	url="jdbc:mysql://codespace.cdsolxxcq1w4.ap-northeast-2.rds.amazonaws.com/codespace?characterEncoding=utf8"
+	driver="com.mysql.jdbc.Driver"
+	user="sujini"
+	password="Bitcamp!123456"
+	var="regUser"
+	scope="page"/>
+<sql:query var="rs1" dataSource="${regUser}">
+	select * from userinfo;
+</sql:query>
+
+<c:forEach var="kkk" items="${rs1.user_id}">
+<h1>${kkk}</h1>
+</c:forEach> --%>
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header" style="float: left; margin-left: 180px;">
@@ -18,9 +33,13 @@
 			</a>
 			<!-- session에 로그인 사용자 정보 유무 확인 -->
 		<c:choose>		
-			<c:when test="${empty loginInfo }">
+			<c:when test="${empty loginInfo }" >
 					<!-- 구글 로그인 버튼 -->
 				<button class="g-signin2 h_login" data-onsuccess="onSignIn"></button>
+			</c:when>
+			<c:when test="${empty result }" >
+					<!-- 구글 로그인 버튼 -->
+				<button hidden class="g-signin2 h_login" data-onsuccess="onSignIn"></button>
 			</c:when>
 			<c:otherwise>
 					<!-- 구글 로그인 버튼 -->				
@@ -37,16 +56,16 @@
 		var profile = googleUser.getBasicProfile();
 		var email = profile.getEmail();
 		/* 디비가서 회원이 가입되어있나 아닌가 확인 */
-		if(${empty loginInfo }){
+		if(<c:out value='${empty loginInfo }'/>){
 			$.ajax({
-				url:'/cos/userinfo/usercheck',
+				url:'${pageContext.request.contextPath}/userinfo/usercheck',
 				data:{
 					"user_id":email
 				},
 				success:function(response){
 					if(response==''){
 						/* 회원가입 안된걸로 판단하고 가입페이지로 이동 */
-						location.href = "/cos/userinfo/userreg?user_id=" + email;					
+						 location.href = "${pageContext.request.contextPath}/userinfo/userreg?user_id=" + email;
 					}else{
 						/* 로그인 시간 update */
 						$.ajax({
@@ -68,7 +87,7 @@
 		$.ajax({
 			url:'${pageContext.request.contextPath}/userinfo/userlogout',
 			success:function(data){
-				location.reload();
+				location.href='${pageContext.request.contextPath}/';
 			}
 		});
 	}

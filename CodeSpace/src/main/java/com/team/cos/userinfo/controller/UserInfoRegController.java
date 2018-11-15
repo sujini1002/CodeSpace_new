@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cos.userinfo.service.SimpleRegistrationNotifierService;
+import com.team.cos.userinfo.service.UserInfoCheckService;
 import com.team.cos.userinfo.service.UserInfoRegService;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
@@ -21,11 +22,15 @@ public class UserInfoRegController {
 	@Autowired
 	private UserInfoRegService service;
 	@Autowired
+	private UserInfoCheckService checkService;
+	@Autowired
 	private SimpleRegistrationNotifierService mailService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView insertUserInfoform(UserInfoVo userInfoVo, HttpSession session) {
+		UserInfoVo result = checkService.userInfoCheck(userInfoVo);
 		session.setAttribute("loginInfo", userInfoVo);
+		session.setAttribute("result", result);
 		ModelAndView modelAndView = new ModelAndView();
 
 		modelAndView.addObject("userInfoVo", userInfoVo);
