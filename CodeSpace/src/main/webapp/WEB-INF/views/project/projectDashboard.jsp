@@ -233,16 +233,15 @@
 						});
 						response(
 							$.map(data, function(item){
-								console.log("response map:"+item.user_nickname);
 								return {
-									label: item.user_nickname,
+									label: item.user_nickname+"("+item.user_id+")",
 									value: item.user_nickname
 								}
 							}) 
 						);		
 					},
 					error: function(){
-						alert("json error");
+						console.log("user search json error");
 					}
 				});
  			},
