@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 
 <table style="width: 100%; margin-top: 80px">
 	<!-- 답변시작 -->
+
+
 	<tr>
 		<td colspan="2">
 			<!-- 답변 갯수 -->
 			<div class="k_AnswerCnt">
-				<b> 답변들</b>
+				<b> ${fn:length(answerList)} 답변들</b>
 			</div>
 			<!-- 정렬 순 -->
 			<div class="k_orderNavBar">
@@ -21,6 +24,7 @@
 		
 		</td>
 	</tr>
+	<c:forEach var="item" items="${answerList}" begin="0" end="${fn:length(answerList)}" varStatus="num">
 	<tr>
 		<!-- 답변 추천 -->
 		<td rowspan="3" style="width:15%;text-align:center">
@@ -28,7 +32,7 @@
 				<button type="button" class="btn" style="background-color: white">
 					<i class="fa fa-chevron-up fa-2x" style="color: gray;"></i>
 				</button>
-				<h3>0</h3>
+				<h3>${item.a_recommand}</h3>
 				<button type="button" class="btn" style="background-color: white">
 					<i class="fa fa-chevron-down fa-2x" style="color: gray;"></i>
 				</button>
@@ -41,8 +45,13 @@
 			</div>
 		</td>
 		<!-- 답변 내용 -->
-		<td style="width:85%;">
-			 
+		<td style="width:85%;" id="k_td_<c:out value="${num.index}"/>">
+			<div id="editor_<c:out value="${num.index}"/>">
+			 <textarea rows="50" cols="50" id="k_answerText_<c:out value="${num.index}"/>" class="k_answerTexts"
+					style="display: none">
+				${item.a_content}
+			</textarea>
+			</div>
 		</td>
 	</tr>
 	<tr>
@@ -52,7 +61,7 @@
 					class="btn btn-primary k_AnswerContentBtn"
 					onclick="">수정</button>
 			<!-- 답변 작성자 정보 -->
-			<jsp:include page="../question/questionUser.jsp" />
+			<jsp:include page="answerUser.jsp" />
 		</td>
 		
 	</tr>
@@ -62,6 +71,7 @@
 			<!-- 댓글 인클루드 -->
 		</td>
 	</tr>
+	</c:forEach>
 	<!-- 답변끝 -->
 </table>
 
@@ -96,6 +106,45 @@
 
   </div>
 </div>
+<script>
+	$(window).load(function(){
+		
+		var length = '${fn:length(answerList)}';
+		length *= 1;
+		for(var i=0;i<=length;i++){
+			
+			var delta = JSON.parse($('#k_answerText_'+i).val());
+			
+			var toolbarOptions =[
+				['bold','italic','underline','strike'],
+				['blockquote','code-block'],
+				[{'header':[1,2,3,4,5,6,false]}],
+				[{'list':'ordered'},{'list':'bullet'}],
+				[{'script':'sub'},{'script':'super'}],
+				[{'indent':'-1'},{'indent':'+1'}],
+				[{'direction' :'rtl'}],
+				['link','image','formula'],
+				[{'color':[]},{'background':[]}],
+				[{'font':[]}],
+				[{'align':[]}]
+			];
+
+			var quill = new Quill('#editor_'+i,{
+				modules :{
+					toolbar : toolbarOptions
+				},
+				theme : 'snow'
+			});
+			var children = $('#k_td_'+i).children('.ql-toolbar');
+			console.log(children);
+			$('#k_td_'+i+'> div.ql-toolbar.ql-snow').css('display', 'none');
+			$('#editor_'+i).css('border', 'none');
+			quill.setContents(delta);
+			quill.enable(false);
+		}//end for i
+		
+	});
+</script>
 <script>
 	function checkLevle(){
 		var userno = '${loginInfo.user_no}';

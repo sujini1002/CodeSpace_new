@@ -17,4 +17,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="checkLevel" resultType="int">
 		select user_score from userinfo where user_no = #{user_no}
 	</select>
+	<!-- 답변 리스트 출력 -->
+	<select id="answerList" resultType="com.team.cos.answer.vo.AnswerInfo">
+		select * from answer where q_no = #{q_no}
+	</select>
 </mapper>

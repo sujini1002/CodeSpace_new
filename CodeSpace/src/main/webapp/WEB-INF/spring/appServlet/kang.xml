@@ -31,4 +31,6 @@
 		class="com.team.cos.answer.service.AnswerUserScoreService"/>
 	<beans:bean id="checkLevelService"
 		class="com.team.cos.answer.service.CheckLevelService"/>
+	<beans:bean id="answerListService"
+		class="com.team.cos.answer.service.AnswerListService"/>
 </beans:beans>

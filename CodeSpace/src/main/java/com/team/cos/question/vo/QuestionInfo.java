@@ -11,6 +11,7 @@ public class QuestionInfo {
 	private String q_regdate;//질문 작성 날짜
 	private int q_recommand;//질문 추천수
 	private int q_viewCnt;//질문 조회수
+	private String user_nickname;//사용자 닉네임
 	
 	
 	public String getQ_title() {
@@ -61,11 +62,19 @@ public class QuestionInfo {
 	public void setQ_no(int q_no) {
 		this.q_no = q_no;
 	}
+	
+	public String getUser_nickname() {
+		return user_nickname;
+	}
+	public void setUser_nickname(String user_nickname) {
+		this.user_nickname = user_nickname;
+	}
 	@Override
 	public String toString() {
-		return "Question [q_no=" + q_no + ", user_no=" + user_no + ", q_title=" + q_title + ", q_content=" + q_content
-				+ ", q_tag=" + q_tag + ", q_regdate=" + q_regdate + ", q_recommand=" + q_recommand + ", q_viewCnt="
-				+ q_viewCnt + "]";
+		return "QuestionInfo [q_no=" + q_no + ", user_no=" + user_no + ", q_title=" + q_title + ", q_content="
+				+ q_content + ", q_tag=" + q_tag + ", q_regdate=" + q_regdate + ", q_recommand=" + q_recommand
+				+ ", q_viewCnt=" + q_viewCnt + ", user_nickname=" + user_nickname + "]";
 	}
+	
 
 }

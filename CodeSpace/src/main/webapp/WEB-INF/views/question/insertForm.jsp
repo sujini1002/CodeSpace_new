@@ -13,6 +13,7 @@
 		<td>
 			<input type="text" name="q_title"  id="q_title" placeholder="제목을 입력해 주세요"  class="form-control" required/>
 			<input type="hidden" name="user_no" id="user_no" value="${loginInfo.user_no}">
+			<input type="hidden" name="user_nickname" id="user_nickname" value="${loginInfo.user_nickname}">
 		</td>
 	</tr>
 	<tr>
@@ -64,6 +65,7 @@
 		var user_no = $('#user_no').val();
 		var content = JSON.stringify(quill.getContents());
 		var tag = $('#q_tag').val();
+		var nickname=$('#user_nickname').val();
 		//테스트
 		/* console.log(title);
 		console.log(user_no);
@@ -77,7 +79,8 @@
 				"q_title":title,
 				"user_no":user_no,
 				"q_content":content,
-				"q_tag":tag
+				"q_tag":tag,
+				"user_nickname":nickname
 			},
 			contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 			dataType : 'json',
