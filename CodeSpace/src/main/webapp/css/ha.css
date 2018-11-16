@@ -15,12 +15,17 @@
 	color: #fff;
 }
 
-#k_hearder>div>div:nth-child(3)>button>div{
+#k_hearder>div>div:nth-child(3)>button>div {
 	border-radius: 5px;
 	background-color: #5cb85c;
 	color: #fff;
 }
-.h_check{
+
+.h_check {
 	color: green;
 	opacity: 0.6;
+}
+
+.h_group {
+	width:50%;
 }

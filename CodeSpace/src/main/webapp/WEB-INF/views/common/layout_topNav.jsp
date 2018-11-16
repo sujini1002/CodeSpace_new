@@ -93,7 +93,6 @@
 </div>
 <script>
 	function signUp(){
-		
 		var userid="${googlecheck}";
 		location.href="${pageContext.request.contextPath}/userinfo/userreg?user_id="+userid;
 	}

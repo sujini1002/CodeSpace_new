@@ -5,7 +5,7 @@
 <jsp:include page="../common/layout_content.jsp" />
 
 <form method="post" enctype="multipart/form-data">
-	<table class="table h_table">
+	<%-- <table class="table h_table">
 		<thead>
 			<tr>
 				<th>아이디</th>
@@ -58,7 +58,42 @@
 			<tr>		
 				<td><input type="submit" value="회원가입" /></td>
 			</tr> 
-	</table>
+	</table> --%>
+	 <div class="form-group h_group">
+            <label for="exampleInputEmail1">이메일 주소</label>
+            <c:if test="${empty googlecheck}">
+                <input type="email" class="form-control h_id" id="exampleInputEmail1" placeholder="이메일을 입력하세요" name="user_id" />
+                <div class="h_check"></div>
+            </c:if>
+            <c:if test="${!empty googlecheck}">
+                <input type="text" name="user_id" value="${googlecheck}" readonly="readonly" />
+            </c:if>
+        </div>
+        <div class="form-group h_group">
+            <label for="exampleInputPassword1">이름</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="이름을 입력 하세요">
+        </div>
+        <div class="form-group h_group">
+            <label for="exampleInputPassword1">별명</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="별명을 입력 하세요">
+        </div>
+        <div class="form-group h_group">
+            <label for="exampleInputPassword1">개인 홈페이지</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="URL을 입력 하세요">
+        </div>
+        <div class="form-group h_group">
+            <label for="exampleInputPassword1">Tag</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Tag를 입력하세요">
+        </div>
+        <div class="form-group h_group">
+            <label for="exampleInputPassword1">자기 소개</label>
+            <textarea class="form-control" rows="3"></textarea>
+        </div>
+        <div class="form-group h_group">
+            <label for="exampleInputFile">파일 업로드</label>
+            <input type="file" id="exampleInputFile">
+            <!-- <p class="help-block">여기에 블록레벨 도움말 예제</p> -->
+        </div>
 </form>
 <script>
 /* $(function(){}) 와 같다*/
