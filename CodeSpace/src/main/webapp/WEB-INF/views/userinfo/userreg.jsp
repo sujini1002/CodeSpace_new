@@ -10,7 +10,7 @@
 			<tr>
 				<th>아이디</th>
 				<c:if test="${empty googlecheck}">
-					<td><input class="h_id" type="text" name="user_id"/><div class="h_check" ></div></td>
+					<td><input class="h_id" type="text" name="user_id"/><div class="h_check"></div></td>
 					
 				</c:if>
 				<c:if test="${!empty googlecheck}">

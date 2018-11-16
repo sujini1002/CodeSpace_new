@@ -74,7 +74,9 @@
 			<c:otherwise>
 				<c:choose>
 						<c:when test="${empty loginInfo }">
+						 	<c:if test="${empty googlecheck}">
 							<button onclick="signUp()" class="btn btn-success" style="margin-left: 10px; margin-bottom: 0px; width: 120px;height: 36px;">회원 가입</button>
+							</c:if>
 							<button type="button" class="btn btn-success" onclick="signOut()" style="margin-left: 10px; margin-bottom: 0px; width: 120px;height: 36px;">로그아웃</button>
 							<button hidden="hidden" class="g-signin2" data-onsuccess="onSignIn"></button>
 						</c:when>
