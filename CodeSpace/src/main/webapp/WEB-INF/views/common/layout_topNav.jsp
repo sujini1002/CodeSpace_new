@@ -1,21 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-<sql:setDataSource 
-	url="jdbc:mysql://codespace.cdsolxxcq1w4.ap-northeast-2.rds.amazonaws.com/codespace?characterEncoding=utf8"
-	driver="com.mysql.jdbc.Driver"
-	user="sujini"
-	password="Bitcamp!123456"
-	var="regUser"
-	scope="page"/>
-<sql:query var="rs1" dataSource="${regUser}">
-	select * from userinfo;
-</sql:query>
 
-<c:forEach var="kkk" items="${rs1.user_id}">
-<h1>${kkk}</h1>
-</c:forEach> --%>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<%-- <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header" style="float: left; margin-left: 180px;">
 			<a class="navbar-brand" href="${pageContext.request.contextPath}">코드스페이스</a>
@@ -59,7 +45,50 @@
 						
 		</div>
 	</div>
-</nav>
+</nav> --%>
+<div class="row" style="background-color: black;">
+	<div class="col-md-3">
+		<!-- <div class="navbar-header" style="float: left; margin-left: 180px;"> -->
+			<a class="navbar-brand" style="float: right;" href="${pageContext.request.contextPath}">코드스페이스</a>
+		<!-- </div> -->
+	</div>
+	<div class="col-md-4" style="border: 1px;">
+		<div id="navbar" class="navbar-collapse colla-pse" style="margin-left:180px; float: left;">
+			<form class="navbar-form navbar-right" action="${pageContext.request.contextPath}/search/searchResults">
+				<input type="text" class="form-control" placeholder="Search" name="mainSearch">
+				<button type="submit" class="btn btn-success">검색</button>
+			</form>
+		</div>
+	</div>
+  
+  <div class="col-md-4" style="float: right;">
+	<a href="${pageContext.request.contextPath}/mypage/mypage"> 
+		<i class="fa fa-user-circle fa-lg y_user" style="color: white; margin-top: 18px;"></i>
+	</a>
+	<c:choose>
+			<c:when test="${empty googlecheck}" >
+				<button onclick="signUp()" class="btn btn-success" style="margin-left: 10px; margin-bottom: 0px; width: 120px;height: 36px;">회원 가입</button>
+				<button class="g-signin2 h_login" data-onsuccess="onSignIn"></button>		
+			</c:when>
+
+			<c:otherwise>
+				<c:choose>
+						<c:when test="${empty loginInfo }">
+							<button onclick="signUp()" class="btn btn-success" style="margin-left: 10px; margin-bottom: 0px; width: 120px;height: 36px;">회원 가입</button>
+							<button type="button" class="btn btn-success" onclick="signOut()" style="margin-left: 10px; margin-bottom: 0px; width: 120px;height: 36px;">로그아웃</button>
+							<button hidden="hidden" class="g-signin2" data-onsuccess="onSignIn"></button>
+						</c:when>
+						
+						<c:otherwise>
+							<button type="button" class="btn btn-success" onclick="signOut()" style="margin-left: 10px; margin-bottom: 0px; width: 120px;height: 36px;">로그아웃</button>
+							<button hidden="hidden" class="g-signin2" data-onsuccess="onSignIn"></button>
+						</c:otherwise>
+				</c:choose>								
+			</c:otherwise>
+			
+		</c:choose>
+	</div>
+</div>
 <script>
 	function signUp(){
 		
@@ -74,7 +103,7 @@
 		if(<c:out value='${empty googlecheck }'/>){
 			$.ajax({
 				url:'${pageContext.request.contextPath}/userinfo/usercheck',
-				dataType:'JSON',
+				dataType:'JSON',	/* 결과타입 */
 				data:{
 					"user_id":email
 				},

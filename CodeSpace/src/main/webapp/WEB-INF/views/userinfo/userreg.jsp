@@ -9,7 +9,12 @@
 		<thead>
 			<tr>
 				<th>아이디</th>
-				<td><input type="text" name="user_id" value="${googlecheck}" readonly="readonly" /></td>
+				<c:if test="${empty googlecheck}">
+					<td><input type="text" name="user_id" value="${googlecheck}"/></td>
+				</c:if>
+				<c:if test="${!empty googlecheck}">
+					<td><input type="text" name="user_id" value="${googlecheck}" readonly="readonly" /></td>
+				</c:if>
 			</tr>
 		</thead>
 		<thead>
