@@ -10,7 +10,9 @@
 			<tr>
 				<th>아이디</th>
 				<c:if test="${empty googlecheck}">
-					<td><input type="text" name="user_id" value="${googlecheck}"/></td>
+					<td><input class="h_id" type="text" name="user_id"/></td>
+					<td><span class="h_check"></span></td>
+					
 				</c:if>
 				<c:if test="${!empty googlecheck}">
 					<td><input type="text" name="user_id" value="${googlecheck}" readonly="readonly" /></td>
@@ -59,4 +61,17 @@
 			</tr>
 	</table>
 </form>
+<script>
+/* $(function(){}) 와 같다*/
+$(document).ready(function(){
+	var pattern = '^[a-zA-Z0-9][a-zA-Z0-9\.\_\-]{4,16}@[a-zA-Z0-9]+\.[a-zA-Z]{2,8}$';
+	$('.h_id').focusout(function(){
+		var data = $('.h_id');
+		var matchid = data.val().match(pattern); 
+		if(!matchid){
+			console.log(data.val());
+		}		
+	});
+});
+</script>
 <jsp:include page="../common/layout_footer.jsp" />
