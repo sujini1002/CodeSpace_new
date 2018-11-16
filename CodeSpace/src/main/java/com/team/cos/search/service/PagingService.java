@@ -15,7 +15,7 @@ public class PagingService {
    
    private SearchDaoInterface searchDao;
    
-   public List getPaging(Criteria cri) {
+   public List listCriteria(Criteria cri) {
       
       searchDao = sqlSessionTemplate.getMapper(SearchDaoInterface.class);
       
@@ -23,6 +23,16 @@ public class PagingService {
       
       return paging;
        
+   }
+   
+   public int listCountCriteria(Criteria cri) {
+	   
+	   searchDao = sqlSessionTemplate.getMapper(SearchDaoInterface.class);
+	   
+	   int resultCnt = searchDao.countPaging(cri);
+	   
+	   return resultCnt;
+	   
    }
    
 }

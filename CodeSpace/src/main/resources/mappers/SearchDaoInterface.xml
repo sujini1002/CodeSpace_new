@@ -26,18 +26,17 @@
 
 	<!-- ///////////////////////// 페이징 ////////////////////////// -->
 	
-		<!-- 메인 검색 창 criteria를 적용하여 검색 결과값에 대한 페이징 -->
+	<!-- criteria를 적용하여 퀘스쳔 리스트에 대한 페이징 -->
 	<select id="listCriteria" resultType="com.team.cos.question.vo.QuestionInfo">
 		select * from question 
-		where q_content like CONCAT('%',#{keyword},'%')
-		and q_no > 0
+		where q_no > 0
 		order by q_no desc, q_regdate desc
 		limit #{pageStart}, #{perPageNum}
 	</select>
 	
-	<!-- 검색 결과 페이징 카운트 -->
-	<select id="selectTotalCnt" resultType="int">
-		select count(*) from question where q_content like CONCAT('%',#{keyword},'%')
+	<!-- 페이징 카운트 -->
+	<select id="countPaging" resultType="int">
+		select count(q_no) from question where q_no > 0
 	</select>
 
 

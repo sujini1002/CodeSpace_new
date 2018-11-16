@@ -9,7 +9,7 @@ public class PageMaker {
    private boolean prev;      // 이전 페이지
    private boolean next;      // 다음 페이지
    
-   private int displayPageNum = 10;   // 페이징 바에서 보여지는 페이지 번호의 개수
+   private int displayPageNum = 5;   // 페이징 바에서 보여지는 페이지 번호의 개수
    
    private Criteria cri;
 

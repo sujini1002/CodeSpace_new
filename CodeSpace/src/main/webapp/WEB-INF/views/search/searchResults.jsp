@@ -4,15 +4,15 @@
 <jsp:include page="../common/layout_top.jsp" />
 <jsp:include page="../common/layout_content.jsp" />
 <!--  여기다가 작성 해주세요 -->
-<div id="container">
-   <div id="head-container">
+<div class="container">
+   <div class="head-container">
    
       <h1>Search Results</h1>
    
    </div>
    <br>
    <br>
-   <div id="list-container">
+   <div class="list-container">
       <c:if test="${empty searchResult}">
       	 <div class="result-noList">
       	 	<h4>검색 키워드 : "${keyword}"</h4><br>
@@ -77,18 +77,18 @@
     <div class="text-center">
     	<ul class="pagination">
     		<c:if test="${pageMaker.prev}">
-    			<li><a href="/search/searchResults?page=${pageMaker.startPage - 1}">&laquo;</a></li>
+    			<li><a href="${pageContext.request.contextPath}/search/searchResults?mainSearch=${keyword}&page=${pageMaker.startPage - 1}">&laquo;</a></li>
     		</c:if>
     		
     		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
     			<li
     				<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-    				<a href="/search/searchResults?page=${idx}">${idx}</a>
+    				<a href="${pageContext.request.contextPath}/search/searchResults?mainSearch=${keyword}&page=${idx}">${idx}</a>
     			</li>	
     		</c:forEach>
     		
     		<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-    			<li><a href="/search/searchResults?page=${pageMaker.endPage + 1}">&raquo;</a></li>
+    			<li><a href="${pageContext.request.contextPath}/search/searchResults?mainSearch=${keyword}&page=${pageMaker.endPage + 1}">&raquo;</a></li>
     		</c:if>
     	</ul>
     </div>
