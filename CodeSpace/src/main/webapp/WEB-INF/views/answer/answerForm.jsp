@@ -75,31 +75,65 @@
  <button type="button" id="k_saveAnswer"
 	class="btn btn-primary">답변 등록</button>
 </div>
+<!-- 모달 -->
+<div id="k_checkModal" class="modal fade" role="dialog"> // fade는 투명 효과
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">삭제</h4>
+      </div>
+      <div class="modal-body" id="k_modalBody">
+        <p>${loginInfo.user_nickname}은 입문등급이므로  답변 작성이 불가 합니다.<br>초급 부터 작성 가능 합니다</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary" id="k_modalBtn" onclick="k_goToQuestion()">질문하러가기</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 <script>
 	function checkLevle(){
 		var userno = '${loginInfo.user_no}';
-		console.log(userno);
-		 $.ajax({
-			url:'${pageContext.request.contextPath}/answer/checkLevel',
-			type:'GET',
-			data:{
-				"user_no":userno
-			},
-			contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-			dataType : 'json',
-			success:function(data){
-				console.log(data);
-				if(data.result == "false" || userno == ""){
-					Answerquill.enable(false);
-					$('#a_tag').prop("disabled",true);
-					$('#k_saveAnswer').prop("disabled",true);
+		if(userno==""){
+			$('#k_modalBody').html('<p>로그인이 필요한 기능 입니다</p>');
+			$('#k_modalBtn').css('display','none');
+			$('#k_checkModal').modal();
+			Answerquill.enable(false);
+			$('#a_tag').prop("disabled",true);
+			$('#k_saveAnswer').prop("disabled",true);
+		}else{
+			 $.ajax({
+				url:'${pageContext.request.contextPath}/answer/checkLevel',
+				type:'GET',
+				data:{
+					"user_no":userno
+				},
+				contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+				dataType : 'json',
+				success:function(data){
+					console.log(data);
+					if(data.result == "false"){
+						$('#k_checkModal').modal();
+						Answerquill.enable(false);
+						$('#a_tag').prop("disabled",true);
+						$('#k_saveAnswer').prop("disabled",true);
+					}
+				},
+				error:function(){
+					alert('불행하게도 에러입니다 ㅠㅠ');
 				}
-			},
-			error:function(){
-				alert('불행하게도 에러입니다 ㅠㅠ');
-			}
-		}); 
+			});
+		}
 	}
+	function k_goToQuestion(){
+		location.href='${pageContext.request.contextPath}/question/insertQuestion';
+	}
+
 </script>
 <script>
 	
@@ -126,7 +160,7 @@
 	});
 	
 	
-	$('#k_saveAnswer').click(function(){
+	$('#k_saveAnswer').click(function (){
 		//질문 고유 번호
 		var q_no = $('#k_qNO').val();
 		var userno = '${loginInfo.user_no}';
@@ -134,28 +168,31 @@
 		var tag = $('#a_tag').val();
 		//테스트
 		
-		
+	   if(content != '\{"ops":\[\{"insert":"\\n"\}\]\}'){
 		  $.ajax({
-			url:'${pageContext.request.contextPath}/answer/insertAnswer',
-			type:'POST',
-			data:{
-				"q_no":q_no,
-				"user_no":userno,
-				"a_content":content,
-				"a_tag":tag
-			},
-			contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-			dataType : 'json',
-			success:function(data){
-				if(data.result=="1"){
-				location.href='${pageContext.request.contextPath}/question/questionView?q_no='+q_no;
-				}else{
-					alert("실패하였습니다ㅠㅠ");
+				url:'${pageContext.request.contextPath}/answer/insertAnswer',
+				type:'POST',
+				data:{
+					"q_no":q_no,
+					"user_no":userno,
+					"a_content":content,
+					"a_tag":tag
+				},
+				contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+				dataType : 'json',
+				success:function(data){
+					if(data.result=="1"){
+					location.href='${pageContext.request.contextPath}/question/questionView?q_no='+q_no;
+					}else{
+						alert("실패하였습니다ㅠㅠ");
+					}
+				},
+				error:function(){
+					alert('불행하게도 에러입니다 ㅠㅠ');
 				}
-			},
-			error:function(){
-				alert('불행하게도 에러입니다 ㅠㅠ');
-			}
-		});
+			});
+		}else{
+			alert('작성한 글이 없어 등록할 수 없습니다.');
+		} 
 	});
 </script>

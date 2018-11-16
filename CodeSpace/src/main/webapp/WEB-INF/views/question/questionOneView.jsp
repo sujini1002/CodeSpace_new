@@ -122,7 +122,7 @@
 		</td>
 	</tr>
 </table>
-<!-- Modal -->
+<!-- 모달 -->
 <div id="myModal" class="modal fade" role="dialog"> // fade는 투명 효과
   <div class="modal-dialog">
 
