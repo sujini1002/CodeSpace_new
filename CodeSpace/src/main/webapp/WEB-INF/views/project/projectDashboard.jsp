@@ -6,6 +6,10 @@
 
 <jsp:include page="../common/layout_top.jsp" />
 <jsp:include page="../common/layout_content.jsp"/>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- 여기부터 화면 코드 작성해주세요 -->
 
 
@@ -22,6 +26,11 @@
 	</h3>
 	<h4>${pro_info.project_content }</h4>
 </div>
+
+<!-- 사용자 추가 -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#proMemberInvite">
+	사용자 초대
+</button>
 
 <!-- 캘린더와 공지사항 표출 영역  -->
 <table class='table' style="width:70%;" >
@@ -132,6 +141,41 @@
 
 
 
+<!-- 사용자 초대하기 모달 -->
+<div class="modal fade" id="proMemberInvite">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        	<span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">사용자 초대하기</h4>
+      </div>
+      <form method="post">
+	      <!-- 사용자 초대 -->
+	      <div class="modal-body">
+	      	<!-- 사용자 번호 -->
+	      	<input type="hidden" name="user_no" value="${user_info.user_no }">
+	      	<!-- 프로젝트 번호 -->
+			<input type="hidden" name="project_no" value="${pro_info.project_no }">
+	      	<!-- 사용자 검색하기 (자동완성)-->
+			<div class="form-group">
+				<label>사용자 검색하기</label>
+				<input class="form-control" id="search_user">
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-primary">Invite member</button>
+	      </div>
+	     </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
 
 <!-- todolist 처리를 위한 js -->
 <script type="text/javascript" src="../js/todolist.js" ></script>
@@ -174,7 +218,53 @@
 	// to do list 추가 관련 modal
 	//var modal = $(".modal");
 	
+	//사용자 정보 자동완성 관련
+ 		$("#search_user").autocomplete({
+			minLength: 1,
+			source: function(request, response){ 
+				$.ajax({
+					type: 'post',
+					url: '/cos/project/proUserSearch',
+					data: {user_nickname:$("#search_user").val()},
+					dataType: 'json',
+					success: function(data){
+						$.each(data, function(index, item){
+							console.log(item.user_nickname);
+						});
+						response(
+							$.map(data, function(item){
+								console.log("response map:"+item.user_nickname);
+								return {
+									label: item.user_nickname,
+									value: item.user_nickname
+								}
+							}) 
+						);		
+					},
+					error: function(){
+						alert("json error");
+					}
+				});
+ 			},
+	//modal 이 열릴 때 영역 한정
+/* 	Which element the menu should be appended to. When the value is null, 
+	the parents of the input field will be checked for a class of ui-front. 
+	If an element with the ui-front class is found, the menu will be appended to that element. 
+	Regardless of the value, if no element is found, the menu will be appended to the body. */
+ 			appendTo: '#proMemberInvite'
+ 		}); 
+		
 	
-</script>
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</script>
 

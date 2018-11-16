@@ -27,7 +27,7 @@ public class UserSearchService {
 	}
 	
 	// 검색한 유저 결과를 가져오는 메서드
-	public List getSearchUsers(String words) {
+	public List<UserInfoVo> getSearchUsers(String words) {
 		
 		searchDao = sqlSessionTemplate.getMapper(SearchDaoInterface.class);
 		

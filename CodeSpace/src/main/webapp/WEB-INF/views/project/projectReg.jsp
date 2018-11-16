@@ -8,9 +8,7 @@
 <jsp:include page="../common/layout_top.jsp" />
 <jsp:include page="../common/layout_content.jsp" />
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 <!-- 여기부터 화면 코드 작성해주세요 -->
 <div>
@@ -31,26 +29,6 @@
 			<label for="project_content">프로젝트 설명</label> 
 			<input type="text"
 				class="form-control" name="project_content" placeholder="프로젝트 설명을 입력하세요">
-		</div>
-		<div class="form-group">
-			<label for="project_member">프로젝트 참여자1</label> 
-			<input type="text" class="form-control" id="autocomplete" name="user_nickname1"
-				placeholder="참여자를 추가하세요">
-		</div>
-		<div class="form-group">
-			<label for="project_member">프로젝트 참여자2</label> 
-			<input type="text" class="form-control" name="user_nickname2"
-				placeholder="참여자를 추가하세요">
-		</div>
-		<div class="form-group">
-			<label for="project_member">프로젝트 참여자3</label> 
-			<input type="text" class="form-control" name="user_nickname3"
-				placeholder="참여자를 추가하세요">
-		</div>
-		<div class="form-group">
-			<label for="project_member">프로젝트 참여자4</label> 
-			<input type="text" class="form-control" name="user_nickname4"
-				placeholder="참여자를 추가하세요">
 		</div>
 		<div class="form-group">
 			<label for="prostring_enddate">프로젝트 종료일</label> 
@@ -94,40 +72,6 @@
 		}
 	}
 	
-	//사용자 정보 자동완성 관련
-	$(function(){
-		/* var autocomplete_text = ["하이", "Auto", "Queen"];
-		$("#autocomplete").autocomplete({
-			source: autocomplete_text
-		}); */
-		
-		$("#autocomplete").autocomplete({
-			source: function(request, response){
-				$.ajax({
-					type: 'post',
-					url: '/proUserSearch',
-					dataType: 'json',
-					success: function(data){
-						console.log(data);
-						response(
-							$.map(data, function(item){
-								return {
-									label: item.data,
-									value: item.data
-								}
-							})		
-						);
-					},
-					error: function(){
-						alert("json error");
-					}
-					
-				});
-			},
-			minLength: 2
-		});
-		
-		
-	})
+
 
 </script>
