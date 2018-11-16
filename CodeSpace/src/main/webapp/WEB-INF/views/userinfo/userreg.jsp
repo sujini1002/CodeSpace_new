@@ -10,8 +10,7 @@
 			<tr>
 				<th>아이디</th>
 				<c:if test="${empty googlecheck}">
-					<td><input class="h_id" type="text" name="user_id"/></td>
-					<td><span class="h_check"></span></td>
+					<td><input class="h_id" type="text" name="user_id"/><div class="h_check" ></div></td>
 					
 				</c:if>
 				<c:if test="${!empty googlecheck}">
@@ -58,19 +57,26 @@
 		</thead>
 			<tr>		
 				<td><input type="submit" value="회원가입" /></td>
-			</tr>
+			</tr> 
 	</table>
 </form>
 <script>
 /* $(function(){}) 와 같다*/
+/* 정규식으로 아이디 적합테스트 */
 $(document).ready(function(){
 	var pattern = '^[a-zA-Z0-9][a-zA-Z0-9\.\_\-]{4,16}@[a-zA-Z0-9]+\.[a-zA-Z]{2,8}$';
 	$('.h_id').focusout(function(){
 		var data = $('.h_id');
 		var matchid = data.val().match(pattern); 
 		if(!matchid){
-			console.log(data.val());
-		}		
+			$('.h_check').text('잘못된 이메일 형식입니다');
+				if($('.h_id').text('')){				
+					$('.h_check').text('필수 정보 입니다!!');
+				}
+		}else if(matchid){
+			$('.h_check').text('멋진 Email이네요!');
+		}
+		
 	});
 });
 </script>
