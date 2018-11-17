@@ -5,8 +5,6 @@
 
 <table style="width: 100%; margin-top: 80px">
 	<!-- 답변시작 -->
-
-
 	<tr>
 		<td colspan="2">
 			<!-- 답변 갯수 -->
@@ -56,12 +54,16 @@
 	</tr>
 	<tr>
 		<!-- 답변 수정 / 답변 작성자 -->
-		<td style="width: 85%;height:30px">
-				<button type="button" id="k_AnswerUpdate"
-					class="btn btn-primary k_AnswerContentBtn"
-					onclick="">수정</button>
+		<td style="width: 85%;">
+				<button type="button" id="k_updateBtn_<c:out value="${num.index}"/>"
+					class="btn btn-primary k_AnswerContentBtn k_AnswerUpdate"
+					onclick="answer_update">수정</button>
 			<!-- 답변 작성자 정보 -->
-			<jsp:include page="answerUser.jsp" />
+			<c:forEach var="user" items="${userInfoList}" begin="0" end="${fn:length(userInfoList)}" varStatus="idx">
+				<c:if test="${num.index eq idx.index}"> 
+						<%@include file="answerUser.jsp"%>
+				</c:if>
+			</c:forEach>
 		</td>
 		
 	</tr>
@@ -136,7 +138,6 @@
 				theme : 'snow'
 			});
 			var children = $('#k_td_'+i).children('.ql-toolbar');
-			console.log(children);
 			$('#k_td_'+i+'> div.ql-toolbar.ql-snow').css('display', 'none');
 			$('#editor_'+i).css('border', 'none');
 			quill.setContents(delta);

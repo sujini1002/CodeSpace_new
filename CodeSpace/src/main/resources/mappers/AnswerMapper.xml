@@ -21,4 +21,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="answerList" resultType="com.team.cos.answer.vo.AnswerInfo">
 		select * from answer where q_no = #{q_no}
 	</select>
+	<!-- 사용자 정보 출력 -->
+	<select id="answerUserInfo" resultType="com.team.cos.userinfo.vo.UserInfoVo">
+		select u.user_no , u.user_id ,u.user_nickname,u.user_intro,u.user_photo 
+		from answer a inner join userinfo u
+		on a.user_no = u.user_no
+		where a.q_no = #{q_no};
+	</select>
 </mapper>

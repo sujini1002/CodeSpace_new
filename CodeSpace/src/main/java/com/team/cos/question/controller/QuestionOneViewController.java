@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cos.answer.service.AnswerListService;
+import com.team.cos.answer.service.AnswerUserInfoService;
 import com.team.cos.answer.vo.AnswerInfo;
 import com.team.cos.question.serivce.QuestionOneViewService;
 import com.team.cos.question.vo.QuestionInfo;
@@ -25,6 +26,8 @@ public class QuestionOneViewController {
 	@Autowired
 	private AnswerListService answerService;
 	
+	@Autowired
+	private AnswerUserInfoService answerUserService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView questionView(@RequestParam("q_no")int q_no) {
@@ -37,12 +40,16 @@ public class QuestionOneViewController {
 		//답변
 		List<AnswerInfo> answerList = answerService.listAnswer(q_no);
 		
+		//답변 작성자들 리스트
+		List<UserInfoVo> userInfoList = answerUserService.answerUserList(q_no);
+		
 		modelAndView.addObject("questionInfo", questionInfo);
 		modelAndView.addObject("userInfo", userInfoVo);
 		modelAndView.addObject("answerList", answerList);
+		modelAndView.addObject("userInfoList", userInfoList);
 		modelAndView.setViewName("question/questionOneView");
 		
-		System.out.println("컨트롤러"+answerList);
+		System.out.println("컨트롤러"+userInfoList);
 		
 		return modelAndView;
 	}
