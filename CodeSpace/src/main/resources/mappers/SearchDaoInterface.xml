@@ -6,7 +6,9 @@
 	
 	<!-- 메인 검색 창 검색 쿼리 -->
 	<select id="searchResults" resultType="com.team.cos.question.vo.QuestionInfo">
-		select * from question where q_content like CONCAT('%',#{content},'%')
+		select q_no, user_no, user_nickname, q_title, q_content, q_regdate, q_recommand, q_viewcnt
+		from question 
+		and q_content like CONCAT('%',#{content},'%')
 	</select>
 	
 	<!-- 메인 검색 창 검색 결과 Cnt 쿼리 -->

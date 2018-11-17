@@ -31,6 +31,8 @@ public class MainSearchController {
 
 		// keyword 정보를 view에 넘겨준다.
 		mav.addObject("keyword", keyword);
+		
+		System.out.println(searchService.getSearchList(keyword));
 
 		// keyword로 검색 된 결과를 searchResult로 view에 넘겨준다.
 		mav.addObject("searchResult", searchService.getSearchList(keyword));

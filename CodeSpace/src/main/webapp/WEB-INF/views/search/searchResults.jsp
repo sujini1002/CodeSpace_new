@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- <%@ page session="false"%> --%>
+
 <jsp:include page="../common/layout_top.jsp" />
 <jsp:include page="../common/layout_content.jsp" />
+
+<!-- right Contents 시작 -->
+<div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 50px;">
 <!--  여기다가 작성 해주세요 -->
 <div class="container">
    <div class="head-container">
@@ -37,14 +42,21 @@
             <hr>
             <c:forEach var="searchResult" items="${searchResult}">
                <div class="row">
-                  <div class="col-lg-1 result-cell">
-                     ${searchResult.q_viewCnt}<br>조회수
+                  <div class="col-lg-1 question-viewCnt">
+                     <div class="question-number">${searchResult.q_viewCnt}</div>
+                     <h6>조회수</h6>
                   </div>
-                  <div class="col-lg-1 result-cell">
+                  <div class="col-lg-1 question-recommCnt">
                      ${searchResult.q_recommand}<br>추천수
                   </div>
-                  <div class="col-lg-7 result-cell">
-                     <a href="${pageContext.request.contextPath}/question/questionView?q_no=${searchResult.q_no}">${searchResult.q_title}</a>
+                  <div class="col-lg-7 question-title">
+                     <div class="result-link">
+                     	<h3><a href="${pageContext.request.contextPath}/question/questionView?q_no=${searchResult.q_no}">${searchResult.q_title}</a></h3>
+                     </div>
+                     <span class="result-tag">${searchResult.q_tag}</span>
+                     <div class="question-info">
+                     	${searchResult.user_nickname}
+                     </div>
                   </div>
                </div> <!-- 게시글 row행 끝 -->
             </c:forEach>
@@ -52,7 +64,6 @@
          </c:if> <!-- ne 조건 -->
       </c:if><!-- !empty 조건 -->
    </div> <!-- list-container 끝 -->
-   
    <hr><hr>
 
 <div>

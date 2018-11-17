@@ -76,7 +76,36 @@
 
 .result-cell{
    
+   border: 1px solid black;
+   margin-top: 0px;
    line-height: 3;
    text-align: center;
+   max-height: 100px;
    
+}
+
+.question-viewCnt{
+
+   border: 1px solid black;
+   line-height: 3;
+   text-align: center;
+   max-height: 100px;
+	
+}
+
+
+.result-link .question-recommCnt .question-title{
+	
+	padding: 0px;
+	border: 1px solid red;
+	margin-top: 0px;
+	text-align: left;
+	
+}
+
+.result-tag{
+	
+	text-align: left;
+	border: 1px solid blue;
+	margin-top: 0px;
 }
