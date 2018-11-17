@@ -27,9 +27,9 @@
 					href="${pageContext.request.contextPath}/project/prjreg?user_no=${loginInfo.user_no}">프로젝트</a></li>
 				<li><a class="nav-link" onclick="chatwindow()">채팅(미구현)</a></li>
 
-				<%-- <c:if test="${!loginInfo.isEmpty() }"> --%>
+				 <%-- <c:if test="${!loginInfo.isEmpty() }"> 
 					<li><a class="nav-link" href="#">프로젝트</a></li>
-				<%-- </c:if> --%>
+				</c:if>  --%>
 			</ul>
 		</div>
 	</nav>

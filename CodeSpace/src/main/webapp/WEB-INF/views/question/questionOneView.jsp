@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../common/layout_top.jsp" />
 <jsp:include page="../common/layout_content.jsp" />
-
+<!-- right Contents 시작 -->
+<div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 50px;">
+<!--  여기다가 작성 해주세요 -->
 <table style="width: 100%" class="k_table">
 
 	<!-- 타이틀 -->

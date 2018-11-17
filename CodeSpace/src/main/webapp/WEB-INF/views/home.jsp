@@ -26,10 +26,6 @@
 		console.log(session);
 		console.log(session == "");
 		if (session == "") {
-
-			$(function() {
-				$('button[data-toggle="popover"]').popover()
-			});
 			$('[data-toggle="popover"]').prop("disabled", true);
 		} else {
 			$('[data-toggle="popover"]').prop("disabled", false);
@@ -37,4 +33,5 @@
 
 		}
 	}
-</script> <jsp:include page="common/layout_footer.jsp" />
+</script> 
+<jsp:include page="common/layout_footer.jsp" />
