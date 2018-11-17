@@ -4,13 +4,16 @@
 <%-- <%@ page session="false"%> --%>
 
 <jsp:include page="common/layout_top.jsp" />
-
-<jsp:include page="common/homePhoto.jsp" />
-
 <jsp:include page="common/layout_content.jsp" />
+
+<!-- right Contents 시작 -->
+<div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 70px;">
+
+
 
 <!-- <button type="button" class="btn btn-primary k_insertBtn"
 	onclick="isLogin()">질문 작성</button> -->
+	
 <button type="button"
 	class="btn btn-default btn btn-primary k_insertBtn"
 	data-container="body" data-toggle="popover" data-placement="bottom"
@@ -21,7 +24,7 @@
 
 		var session = '${loginInfo.user_no}';
 		console.log(session);
-		console.log(session=="");
+		console.log(session == "");
 		if (session == "") {
 
 			$(function() {
@@ -34,6 +37,4 @@
 
 		}
 	}
-</script>
-<jsp:include page="common/layout_footer.jsp" />
-
+</script> <jsp:include page="common/layout_footer.jsp" />

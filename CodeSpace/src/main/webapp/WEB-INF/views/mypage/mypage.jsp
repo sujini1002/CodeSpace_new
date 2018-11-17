@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- <%@ page session="false"%> --%>
+
 <jsp:include page="../common/layout_top.jsp" />
 <jsp:include page="../common/layout_content.jsp" />
-<!--  여기다가 작성 해주세요 -->
 
+<!-- right Contents 시작 -->
+<div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 50px;">
 <ul class="nav nav-tabs">
 	<li role="presentation" class="active"><a
 		href="${pageContext.request.contextPath}/mypage/mypage">프로필</a></li>
@@ -13,7 +16,7 @@
 </ul>
 
 <div class="y_profile_wrapper">
-	<div class="y_profile_myPhoto"></div>
+	<div class="y_profile_myPhoto""></div>
 
 	<div class="y_profile_myInfo">
 

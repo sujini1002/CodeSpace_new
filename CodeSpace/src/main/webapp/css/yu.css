@@ -13,9 +13,9 @@ h2, td {
 }
 
 .y_profile_myPhoto {
-	/* background-image:
-		url('<%=request.getContextPath()%>/uploadfile/userphoto/${loginInfo.userPhoto}'); */
-	background-color : yellow;
+	 background-image:
+		url('${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}'); 
+	/* background-color : yellow; */
 	background-size: 100%;
 	width: 150px;
 	height: 150px;
