@@ -15,18 +15,20 @@
 <link rel="icon" href="../../favicon.ico">
 
 <!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
 <title>CodeSpace</title>
 <!-- 우리가 적용시킨 css -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.css"> 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/custom.css"> 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/kang.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/moon.css">
@@ -58,5 +60,5 @@
 
 	<div id="k_hearder">
 		<!-- nav_bar 들어갈곳 -->
-		<jsp:include page="layout_topNav.jsp" />
+		<jsp:include page="layout_topNav_tmp.jsp" />
 	</div>

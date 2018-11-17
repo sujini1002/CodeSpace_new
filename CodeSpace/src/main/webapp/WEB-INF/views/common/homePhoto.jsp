@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:if test="${empty loginInfo}">
+<%-- <c:if test="${empty loginInfo}">
 	<div id="k_photo">
 		<div class="container" style="margin-left: 210px;">
 			<br>
@@ -11,5 +11,5 @@
 			<p>코딩력을 키우는 곳, 코드 스페이스</p>
 		</div>
 	</div>
-</c:if>
+</c:if> --%>
 
