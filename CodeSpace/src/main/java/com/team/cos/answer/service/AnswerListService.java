@@ -18,12 +18,12 @@ public class AnswerListService {
 	
 	private AnswerInterfaceDao answerDao;
 	
-	public List<AnswerInfo> listAnswer(int q_no){
+	public List<AnswerInfo> listAnswer(int q_no,String order){
 		
 		answerDao = sqlSessionTemplate.getMapper(AnswerInterfaceDao.class);
 		
 		List<AnswerInfo> list = new ArrayList<AnswerInfo>();
-		list = answerDao.answerList(q_no);
+		list = answerDao.answerList(q_no,order);
 		
 		System.out.println("서비스"+list);
 		

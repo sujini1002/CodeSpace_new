@@ -33,16 +33,16 @@
 		<td rowspan="3"
 			style="width: 15%;text-align:center;">
 			<div id="k_recommand">
-				<button type="button" class="btn" style="background-color: white">
+				<button type="button" class="btn" style="background-color:#ecf0f5">
 					<i class="fa fa-chevron-up fa-2x" style="color: gray;"></i>
 				</button>
 				<h3>${questionInfo.q_recommand}</h3>
-				<button type="button" class="btn" style="background-color: white">
+				<button type="button" class="btn" style="background-color:#ecf0f5">
 					<i class="fa fa-chevron-down fa-2x" style="color: gray;"></i>
 				</button>
 			</div>
 			<div id="k_bookmark" style="margin-top: 10px">
-				<button type="button" class="btn" style="background-color: white">
+				<button type="button" class="btn" style="background-color:#ecf0f5">
 					<i class="fa fa-star fa-2x" style="color: gray;"></i>
 				</button>
 			</div>
@@ -232,6 +232,6 @@
 	}//end k_questiondelete()
 </script>
 <!-- 답변 리스트  인클루드 하기 -->
-<jsp:include page="../answer/answerForm.jsp"/>
+<%@include file="../answer/answerForm.jsp"%>
 
 <jsp:include page="../common/layout_footer.jsp" />

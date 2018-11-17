@@ -12,14 +12,12 @@
 				<b> ${fn:length(answerList)} 답변들</b>
 			</div>
 			<!-- 정렬 순 -->
-			<div class="k_orderNavBar">
-				<ul class="nav nav-pills">
-					<li role="presentation" class="active"><a href="#">활동순</a></li>
-					<li role="presentation"><a href="#">추천수</a></li>
-					<li role="presentation"><a href="#">조회순</a></li>
+				<ul class="nav justify-content-end">
+					<li class="nav-item"><a class="nav-link active k_color" href="${pageContext.request.contextPath}/question/questionView?q_no=${questionInfo.q_no}&order=score">활동순</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/question/questionView?q_no=${questionInfo.q_no}&order=votes">추천순</a></li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/question/questionView?q_no=${questionInfo.q_no}&order=date">최신순</a></li>
 				</ul>
-			</div>
-		
 		</td>
 	</tr>
 	<c:forEach var="item" items="${answerList}" begin="0" end="${fn:length(answerList)}" varStatus="num">
@@ -27,17 +25,17 @@
 		<!-- 답변 추천 -->
 		<td rowspan="3" style="width:15%;text-align:center">
 			<div id="k_Arecommand">
-				<button type="button" class="btn" style="background-color: white">
+				<button type="button" class="btn" style="background-color: #ecf0f5">
 					<i class="fa fa-chevron-up fa-2x" style="color: gray;"></i>
 				</button>
 				<h3>${item.a_recommand}</h3>
-				<button type="button" class="btn" style="background-color: white">
+				<button type="button" class="btn" style="background-color: #ecf0f5">
 					<i class="fa fa-chevron-down fa-2x" style="color: gray;"></i>
 				</button>
 			</div>
 			<!-- 답변 채택  -->
 			<div id="k_Choose" style="margin-top: 10px">
-				<button type="button" class="btn" style="background-color: white">
+				<button type="button" class="btn" style="background-color:#ecf0f5">
 					<i class="fas fa-check fa-2x" style="color:gray"></i>
 				</button>
 			</div>
@@ -55,15 +53,13 @@
 	<tr>
 		<!-- 답변 수정 / 답변 작성자 -->
 		<td style="width: 85%;">
+			<c:if test="${item.user_no eq loginInfo.user_no}">
 				<button type="button" id="k_updateBtn_<c:out value="${num.index}"/>"
 					class="btn btn-primary k_AnswerContentBtn k_AnswerUpdate"
 					onclick="answer_update">수정</button>
+			</c:if>
 			<!-- 답변 작성자 정보 -->
-			<c:forEach var="user" items="${userInfoList}" begin="0" end="${fn:length(userInfoList)}" varStatus="idx">
-				<c:if test="${num.index eq idx.index}"> 
-						<%@include file="answerUser.jsp"%>
-				</c:if>
-			</c:forEach>
+			<%@include file="answerUser.jsp"%>
 		</td>
 		
 	</tr>

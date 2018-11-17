@@ -16,12 +16,12 @@ public class AnswerUserInfoService {
 	
 	private AnswerInterfaceDao answerDao;
 	
-	public List<UserInfoVo> answerUserList(int q_no){
+	public List<UserInfoVo> answerUserList(int q_no,String order){
 		
 		answerDao = sqlSessionTemplate.getMapper(AnswerInterfaceDao.class);
 		
 		List<UserInfoVo> list = new ArrayList<UserInfoVo>();
-		list = answerDao.answerUserInfo(q_no);
+		list = answerDao.answerUserInfo(q_no,order);
 		
 		System.out.println("서비스"+list);
 		

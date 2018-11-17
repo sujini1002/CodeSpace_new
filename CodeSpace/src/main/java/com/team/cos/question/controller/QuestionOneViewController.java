@@ -30,7 +30,7 @@ public class QuestionOneViewController {
 	private AnswerUserInfoService answerUserService;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView questionView(@RequestParam("q_no")int q_no) {
+	public ModelAndView questionView(@RequestParam("q_no")int q_no,@RequestParam(value="order",defaultValue="score")String order) {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -38,10 +38,10 @@ public class QuestionOneViewController {
 		UserInfoVo userInfoVo = questionService.questionUser(q_no);
 		
 		//답변
-		List<AnswerInfo> answerList = answerService.listAnswer(q_no);
+		List<AnswerInfo> answerList = answerService.listAnswer(q_no,order);
 		
 		//답변 작성자들 리스트
-		List<UserInfoVo> userInfoList = answerUserService.answerUserList(q_no);
+		List<UserInfoVo> userInfoList = answerUserService.answerUserList(q_no,order);
 		
 		modelAndView.addObject("questionInfo", questionInfo);
 		modelAndView.addObject("userInfo", userInfoVo);
