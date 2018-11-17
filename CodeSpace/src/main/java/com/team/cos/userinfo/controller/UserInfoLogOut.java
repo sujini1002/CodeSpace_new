@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserInfoLogOut {
 	@RequestMapping("/userinfo/userlogout")
 	@ResponseBody
-	public int userInfoLogOut(HttpSession session) {
+	public void userInfoLogOut(HttpSession session) {
 		session.invalidate();
-		return 1;
 	}
 }
