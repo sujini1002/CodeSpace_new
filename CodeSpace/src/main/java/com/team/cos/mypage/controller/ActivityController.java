@@ -16,7 +16,6 @@ public class ActivityController {
 
 	@RequestMapping("/mypage/activity")
 	public ModelAndView getActivity(@RequestParam("user_no")int user_no) {
-		System.out.println("질문 컨트롤러 들어옴");
 		ModelAndView modelAndView = new ModelAndView();
 		
 		modelAndView.addObject("myQst", service.getMyQst(user_no));

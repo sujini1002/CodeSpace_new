@@ -1,6 +1,7 @@
 @charset "UTF-8";
-.nav-tabs{
-	width: 650px;
+.nav-pills{
+	width: 900px;
+	margin-left: 50px;
 }
 /* 유저 아이콘 */
 y_user{
@@ -13,21 +14,22 @@ h2, td {
 }
 
 .y_profile_myPhoto {
-	 background-image:
-		url('${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}'); 
+	/* background-image:
+		url('${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}');   */
 	/* background-color : yellow; */
 	background-size: 100%;
 	width: 150px;
 	height: 150px;
-	border: none;
+	border: 1px;
 	border-radius: 75px;
 	margin-top: 70px;
 	float : left;
+	margin-left: 50px;
 	
 }
 .yu_btn1{
 	margin-top: 50px; 
-	margin-left : 180px;
+	margin-left : 300px;
 	background-color: rgb(9,51,132);
 	border: none;
 }
@@ -36,23 +38,25 @@ h2, td {
 }
 .y_profile_myInfo{
 	margin-left: 200px;
-	width: 400px;
+	width: 600px;
 	padding-top: 70px;
 }
 .yu_btn_del{
-
-	margin-right: 50px;
+	float : right;
+	margin-top: 50px;
+	margin-right: 300px;
+	border : none;
 }
 
 /* 프로필 변경 끝 */
 
 /* 프로필 수정 폼 */
 .y_edit_myPhoto {
-	background-color : yellow;
+	/* background-color : yellow; */
 	background-size: 100%;
 	width: 150px;
 	height: 150px;
-	border: none;
+	border: 1px;
 	border-radius: 75px;
 	margin-top: 70px;
 	float : left;

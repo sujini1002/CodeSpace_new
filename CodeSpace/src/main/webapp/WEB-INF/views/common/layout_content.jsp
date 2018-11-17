@@ -17,15 +17,15 @@
 		<div class="sidebar-sticky">
 			<ul class="nav flex-column">
 				<li class="nav-item"><a class="nav-link active"
-					href="${pageContext.request.contextPath}/questions/questions">코드스페이스
+					href="${pageContext.request.contextPath}/questions/questions"><i class="fas fa-home" style="color:white;">&nbsp;&nbsp;코드스페이스</i>
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li><a class="nav-link"
-					href="${pageContext.request.contextPath}/search/userList">사용자</a></li>
-				<li><a class="nav-link" href="#">태그</a></li>
+					href="${pageContext.request.contextPath}/search/userList"><i class="fas fa-user-friends" style="color:white;">&nbsp;&nbsp;사용자</i></a></li>
+				<li><a class="nav-link" href="#"><i class="fas fa-hashtag" style="color:white;">&nbsp;&nbsp;태그</i></a></li>
 				<li><a class="nav-link"
-					href="${pageContext.request.contextPath}/project/prjreg?user_no=${loginInfo.user_no}">프로젝트</a></li>
-				<li><a class="nav-link" onclick="chatwindow()">채팅(미구현)</a></li>
+					href="${pageContext.request.contextPath}/project/prjreg?user_no=${loginInfo.user_no}"><i class="fas fa-project-diagram" style="color:white;">&nbsp;&nbsp;프로젝트</i></a></li>
+				<li><a class="nav-link" onclick="chatwindow()"><i class="fas fa-comment" style="color:white;">&nbsp;&nbsp;채팅(미구현)</i></a></li>
 
 				 <%-- <c:if test="${!loginInfo.isEmpty() }"> 
 					<li><a class="nav-link" href="#">프로젝트</a></li>

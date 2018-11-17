@@ -8,15 +8,15 @@
 
 <!-- right Contents 시작 -->
 <div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 50px;">
-<ul class="nav nav-tabs">
-	<li role="presentation" class="active"><a
-		href="${pageContext.request.contextPath}/mypage/mypage">프로필</a></li>
-	<li role="presentation"><a
-		href="${pageContext.request.contextPath}/mypage/activity?user_no=${loginInfo.user_no}">내 활동</a></li>
+<ul class="nav nav-pills">
+	<li class="nav-item"> <a class="nav-link active" href="${pageContext.request.contextPath}/mypage/mypage">프로필</a></li>
+	<li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/mypage/activity?user_no=${loginInfo.user_no}" style="color:gray;">내 활동</a></li>
 </ul>
 
 <div class="y_profile_wrapper">
-	<div class="y_profile_myPhoto""></div>
+	<div class="y_profile_myPhoto">
+		<img class="y_userphoto" src="${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}">
+	</div>
 
 	<div class="y_profile_myInfo">
 

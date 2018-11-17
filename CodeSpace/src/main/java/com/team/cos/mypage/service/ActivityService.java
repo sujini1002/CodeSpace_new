@@ -16,7 +16,6 @@ public class ActivityService {
 	
 	// 내가 한 질문 얻어오기
 	public List getMyQst(int user_no) {
-		System.out.println("질문 서비스 들어옴");
 		mypageInterface = sqlSessionTemplate.getMapper(MypageInterface.class);
 	
 		// 로그인 한 회원의 유저넘버로 내가 한 질문 찾기

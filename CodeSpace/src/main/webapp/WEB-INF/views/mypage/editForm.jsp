@@ -10,16 +10,14 @@
 <div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 50px;">
 <!--  여기다가 작성 해주세요 -->
 
-<ul class="nav nav-tabs">
-	<li role="presentation" class="active"><a
-		href="${pageContext.request.contextPath}/mypage/mypage">프로필</a></li>
-	<li role="presentation"><a
-		href="${pageContext.request.contextPath}/mypage/activity">내 활동</a></li>
+<ul class="nav nav-pills">
+	<li class="nav-item"> <a class="nav-link active" href="${pageContext.request.contextPath}/mypage/mypage">프로필</a></li>
+	<li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/mypage/activity"  style="color:gray;">내 활동</a></li>
 </ul>
 <div class="y_profile_wrapper">
 	<form method="post" enctype="multipart/form-data">
 		<div class="y_edit_myPhoto">
-			<input type="file" name="photo" class="y_btn_file" />
+			<input type="file" name="photo" class="y_btn_file" src="${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}">
 		</div>
 
 		<div class="y_editForm">
