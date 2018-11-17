@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- <div id="k_content">
 
 	<div id="k_leftNavBar">
@@ -26,9 +27,9 @@
 					href="${pageContext.request.contextPath}/project/prjreg?user_no=${loginInfo.user_no}">프로젝트</a></li>
 				<li><a class="nav-link" onclick="chatwindow()">채팅(미구현)</a></li>
 
-				<c:if test="${!loginInfo.isEmpty() }">
+				<%-- <c:if test="${!loginInfo.isEmpty() }"> --%>
 					<li><a class="nav-link" href="#">프로젝트</a></li>
-				</c:if>
+				<%-- </c:if> --%>
 			</ul>
 		</div>
 	</nav>
