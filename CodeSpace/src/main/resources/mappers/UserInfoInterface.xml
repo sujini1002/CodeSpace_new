@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertUserInfo"
 		parameterType="com.team.cos.userinfo.vo.UserInfoVo">
 		insert into
-		userinfo(user_id,user_name,user_nickname,user_photo,user_url,user_intro,user_tag)
-		values(#{user_id},#{user_name},#{user_nickname},#{user_photo},#{user_url},#{user_intro},#{user_tag});
+		userinfo(user_id,user_pw,user_name,user_nickname,user_photo,user_url,user_intro,user_tag)
+		values(#{user_id},#{user_pw},#{user_name},#{user_nickname},#{user_photo},#{user_url},#{user_intro},#{user_tag});
 	</insert>
 	
 	<!-- 회원가입 유무 확인 -->

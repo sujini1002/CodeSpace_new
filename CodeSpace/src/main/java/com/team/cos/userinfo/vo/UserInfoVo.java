@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UserInfoVo {
 	private int user_no;
 	private String user_id;
+	private String user_pw;
 	private String user_name;
 	private String user_photo;
 	private String user_url;
@@ -29,6 +30,14 @@ public class UserInfoVo {
 
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
+	}
+
+	public String getUser_pw() {
+		return user_pw;
+	}
+
+	public void setUser_pw(String user_pw) {
+		this.user_pw = user_pw;
 	}
 
 	public String getUser_name() {
@@ -105,10 +114,9 @@ public class UserInfoVo {
 
 	@Override
 	public String toString() {
-		return "UserInfoVo [user_no=" + user_no + ", user_id=" + user_id + ", user_name=" + user_name + ", user_photo="
-				+ user_photo + ", user_url=" + user_url + ", user_intro=" + user_intro + ", user_tag=" + user_tag
-				+ ", user_score=" + user_score + ", user_lastlogin=" + user_lastlogin + ", user_nickname="
-				+ user_nickname + ", photo=" + photo + "]";
+		return "UserInfoVo [user_no=" + user_no + ", user_id=" + user_id + ", user_pw=" + user_pw + ", user_name="
+				+ user_name + ", user_photo=" + user_photo + ", user_url=" + user_url + ", user_intro=" + user_intro
+				+ ", user_tag=" + user_tag + ", user_score=" + user_score + ", user_lastlogin=" + user_lastlogin
+				+ ", user_nickname=" + user_nickname + ", photo=" + photo + "]";
 	}
-
 }
