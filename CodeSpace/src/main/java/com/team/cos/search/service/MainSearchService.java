@@ -7,29 +7,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.team.cos.question.vo.QuestionInfo;
 import com.team.cos.search.dao.SearchDaoInterface;
+import com.team.cos.search.vo.SearchCriteria;
 
 public class MainSearchService {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	 
+
 	private SearchDaoInterface searchDao;
-	
-	public List getSearchList(String keyword) {
-		
+
+//////////////////////////Search 페이지 페이징 /////////////////////////////////////
+
+	// Main 페이지 검색 창 검색 시 결과를 가져오는 메서드
+	public List searchResult(SearchCriteria cri) {
+
 		searchDao = sqlSessionTemplate.getMapper(SearchDaoInterface.class);
-		
-		List<QuestionInfo> searchList = searchDao.searchResults(keyword);
-		
-		return searchList;
+
+		List<QuestionInfo> results = searchDao.searchResults(cri);
+
+		return results;
+
 	}
 	
-	public int getSearchCnt(String keyword) {
-		
+	/*
+	public List getSearchList(String keyword) {
+
 		searchDao = sqlSessionTemplate.getMapper(SearchDaoInterface.class);
-		
-		int	resultCnt = searchDao.searchCnt(keyword);
-		
+
+		List<QuestionInfo> searchList = searchDao.searchResults(keyword);
+
+		return searchList;
+	}
+	*/
+
+	// Main 페이지 검색 결과 갯수를 가져오는 메서드
+	public int getSearchCnt(SearchCriteria cri) {
+
+		searchDao = sqlSessionTemplate.getMapper(SearchDaoInterface.class);
+
+		int resultCnt = searchDao.searchCnt(cri);
+
 		return resultCnt;
 	}
 }

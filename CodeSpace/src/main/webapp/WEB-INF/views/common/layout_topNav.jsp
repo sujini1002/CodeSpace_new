@@ -55,7 +55,7 @@
 	<div class="col-md-4" style="border: 1px;">
 		<div id="navbar" class="navbar-collapse colla-pse" style="margin-left:180px; float: left;">
 			<form class="navbar-form navbar-right" action="${pageContext.request.contextPath}/search/searchResults">
-				<input type="text" class="form-control" placeholder="Search" name="mainSearch">
+				<input type="text" class="form-control" placeholder="Search" name="keyword">
 				<button type="submit" class="btn btn-success">검색</button>
 			</form>
 		</div>

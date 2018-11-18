@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.team.cos.search.dao.SearchDaoInterface;
 import com.team.cos.search.vo.Criteria;
+import com.team.cos.search.vo.SearchCriteria;
 
 public class PagingService { 
        
@@ -15,13 +16,15 @@ public class PagingService {
    
    private SearchDaoInterface searchDao;
    
+   ////////////////////////// Quetsions 페이지 페이징 //////////////////////////////////
+   
    public List listCriteria(Criteria cri) {
       
       searchDao = sqlSessionTemplate.getMapper(SearchDaoInterface.class);
       
-      List paging = searchDao.listCriteria(cri);
+      List list = searchDao.listCriteria(cri);
       
-      return paging;
+      return list;
        
    }
    

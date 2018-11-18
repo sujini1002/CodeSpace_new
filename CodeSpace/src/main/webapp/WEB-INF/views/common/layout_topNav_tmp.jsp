@@ -7,9 +7,9 @@
 		style="text-decoration: none; color: white">CODESPACE</a>
 
 	<form class="form-inline col-md-4 my-2 my-lg-0" action="${pageContext.request.contextPath}/search/searchResults">
-			<input class="form-control mr-sm-2" type="search" name="mainSearch"
+			<input class="form-control mr-sm-2" type="search" name="keyword"
 				placeholder="Search" aria-label="Search">
-			<button class="btn btn-outline-info my-2 my-sm-0" type="submit" >Search</button>
+			<button class="btn btn-outline-info my-2 my-sm-0" id="searchBtn" type="submit">Search</button>
 	</form>
 	
 	<div class="col-md-4 row justify-content-end" >
@@ -130,5 +130,18 @@
 	function loginIn(){
 		alert('까꿍');
 	}
+	
+	function search(){
+		
+		$('#searchBtn').on("click", function(event){
+			
+			self.location = "${pageContext.request.contextPath}/search/searchResults"
+							+ '${pageMaker.makeQuery(1)}'
+							+ "&keyword=" + encodeURIComponent($('#keyword').val());
+							
+		});
+	}
+	
+	
 </script>
 
