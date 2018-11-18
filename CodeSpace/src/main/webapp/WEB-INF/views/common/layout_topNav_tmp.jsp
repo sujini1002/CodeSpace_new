@@ -43,8 +43,10 @@
       <div class="modal-footer">
       	<c:choose>
 			<c:when test="${empty googlecheck}" >
-				<button onclick="signUp()" class="btn btn-success" style="margin-left: 10px; margin-bottom: 0px; width: 120px;height: 36px;">회원 가입</button>
-				<button class="g-signin2 h_login" data-onsuccess="onSignIn"></button>		
+				<button onclick="signUp()" class="btn btn-success" style="margin-left: 10px; margin-bottom: 0px; width: 120px; height: 36px;">회원 가입</button>
+				<button class="g-signin2 h_login" data-onsuccess="onSignIn"></button>
+				<!-- 어찌할지 같이 생각좀 해봐야겠다 페이지 넘길지 창으로 할지 -->
+				<button onclick="loginIn()" class="btn btn-success" style="margin-left: 10px; margin-bottom: 0px; width: 120px; height: 36px;">로그인</button>
 			</c:when>
 
 			<c:otherwise>
@@ -123,6 +125,10 @@
 				location.href='${pageContext.request.contextPath}/';
 			}
 		});
+	}
+	
+	function loginIn(){
+		alert('까꿍');
 	}
 </script>
 
