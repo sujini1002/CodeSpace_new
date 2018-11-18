@@ -57,6 +57,7 @@ public class ProjectUpdateController {
 			) throws ParseException {
 		System.out.println("PUC user_no: "+user_no);
 		System.out.println("project info: "+vo);
+		System.out.println("getProstring_enddate"+vo.getProstring_enddate());
 		String enddate = vo.getProstring_enddate();
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date to = transFormat.parse(enddate);

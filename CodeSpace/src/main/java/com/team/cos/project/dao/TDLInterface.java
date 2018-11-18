@@ -13,4 +13,7 @@ public interface TDLInterface {
 	//REST 방식
 	public List<TodolistVO> selectTDL(
 			@Param("project_no") int project_no);
+	
+	public int insertTDL(TodolistVO vo);
+	
 }

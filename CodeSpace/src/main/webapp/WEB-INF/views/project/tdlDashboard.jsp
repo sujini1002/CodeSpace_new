@@ -48,47 +48,36 @@
       </div>
       <!-- project_todolist 추가 항목 -->
       <div class="modal-body">
+      	<!-- project no -->
+		<input type="hidden" id='project_no' value="${project_no }">
       	<!-- 담당자 번호 -->
 		<div class="form-group">
 			<label>담당자 번호</label>
-			<input class="form-control" name='tdlmanager_no' >
+			<input class="form-control" id='tdlmanager_no' >
 		</div>
       	<!-- 담당 업무 -->
 		<div class="form-group">
 			<label>업무 내용</label>
-			<input class="form-control" name='todolist_content' >
+			<input class="form-control" id='todolist_content' >
 		</div>
       	<!-- 업무 진행 상태 -->
 		<div class="form-group">
 			<label>업무 진행 상태</label>
-			<select>
+			<select id='todolist_status'>
 			  <option value="todo">todo</option>
 			  <option value="doing">doing</option>
 			  <option value="done">done</option>
 			</select>
 		</div>
-<!--       	업무 진행 상태
-		<div class="dropdown">
-		  <button class="btn btn-default dropdown-toggle" type="button" 
-		  		  id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-		    status
-		    <span class="caret"></span>
-		  </button>
-		  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">to do</a></li>
-		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">doing</a></li>
-		    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">done</a></li>
-		  </ul>
-		</div> -->
       	<!-- 종료 일정 -->
 		<div class="form-group">
 			<label>종료 날짜</label>
-			<input type="date" class="form-control" name='todolist_enddate' >
+			<input type="date" class="form-control" id='tdlstring_enddate' >
 		</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" id="modalRegisterBtn">Save changes</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -135,6 +124,46 @@
 		tdlUL.html(str);
 	});
 
-	// to do list 추가 관련 modal
-	//var modal = $(".modal");
+	// to do list 추가 관련
+		$("#modalRegisterBtn").on("click", function(e){
+		var todolist = {
+				project_no: $("#project_no").val(),
+				tdlmanager_no: $("#tdlmanager_no").val(),
+				todolist_content: $("#todolist_content").val(),
+				todolist_status: $("#todolist_status").val(),
+				tdlstring_enddate: $("#tdlstring_enddate").val()
+		};
+		
+		todolistService.add(todolist, function(result){
+			alert(result);
+			
+			$(".modal").find("input").val("");
+			$(".modal").modal("hide");
+		})
+	})
+	
+	
+	
+	var todolistService = (function(){
+		function add(todolist, callback, error){
+			$.ajax({
+				type: 'post',
+				url: '/cos/project/todolistReg',
+				data: JSON.stringify(todolist),
+				contentType: "application/json; charset=utf-8",
+				success: function(result, status, xhr){
+					if(callback){callback(result);}
+				},
+				error: function(xhr, status, er){
+					if(error){
+						error(er);
+					}
+				}
+			})
+		}
+		
+		return { add: add};
+	})();
+	
+
 </script>

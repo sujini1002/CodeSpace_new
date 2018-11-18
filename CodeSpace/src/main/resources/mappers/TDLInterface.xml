@@ -8,5 +8,12 @@
 		where project_no = #{project_no}
 	</select>
 	
+	<insert id="insertTDL">
+		insert into project_todolist 
+		(project_no, tdlmanager_no, todolist_content, todolist_file, todolist_status, todolist_startdate, todolist_enddate)
+		values (#{project_no}, #{tdlmanager_no}, #{todolist_content}, #{todolist_file}, #{todolist_status},
+				now(), #{todolist_enddate})
+	</insert>
+	
 	
 </mapper>

@@ -7,11 +7,11 @@
 <jsp:include page="../common/layout_content.jsp" />
 
 <!-- right Contents 시작 -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"/>
 <div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 50px;">
 <!--  여기다가 작성 해주세요 -->
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"/>
 
 
 <!-- 프로젝트 상세정보 표출 영역 -->
@@ -167,7 +167,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="submit" class="btn btn-primary">Invite member</button>
+	        <button type="submit" class="btn btn-primary" id="inviteMember">Invite member</button>
 	      </div>
 	     </form>
     </div><!-- /.modal-content -->

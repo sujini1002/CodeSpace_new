@@ -65,6 +65,7 @@ $.widget("ui.autocomplete", $.ui.autocomplete, {
                     .insertBefore(self.element);
                 
                 self.selectedItems[ui.item.label] = ui.item;
+                
                 self._value("");
                 return false;
             }
@@ -75,7 +76,12 @@ $.widget("ui.autocomplete", $.ui.autocomplete, {
                 self.menu.element.position(pos);
             }*/
         }
-
+        
+        //console.log(self.selectedItems);
+/*        $.(#inviteMember).onclick({
+        	
+        });
+*/
         return this;
     }
 });
