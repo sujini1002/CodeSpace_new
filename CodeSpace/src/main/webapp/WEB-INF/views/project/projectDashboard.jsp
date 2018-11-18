@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page session="false"%>
-
+<%-- <%@ page session="false"%> --%>
 
 <jsp:include page="../common/layout_top.jsp" />
-<jsp:include page="../common/layout_content.jsp"/>
+<jsp:include page="../common/layout_content.jsp" />
+
+<!-- right Contents 시작 -->
+<div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 50px;">
+<!--  여기다가 작성 해주세요 -->
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- 여기부터 화면 코드 작성해주세요 -->
+  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"/>
 
 
 <!-- 프로젝트 상세정보 표출 영역 -->
@@ -179,6 +180,11 @@
 
 <!-- todolist 처리를 위한 js -->
 <script type="text/javascript" src="../js/todolist.js" ></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+  <script src="../js/jquery.autocomplete.multiselect.js"></script>
 
 <script>
 	var project_noValue = '<c:out value="${pro_info.project_no}" />';
@@ -215,8 +221,6 @@
 		tdlUL.html(str);
 	});
 	
-	// to do list 추가 관련 modal
-	//var modal = $(".modal");
 	
 	//사용자 정보 자동완성 관련
  		$("#search_user").autocomplete({
@@ -229,13 +233,13 @@
 					dataType: 'json',
 					success: function(data){
 						$.each(data, function(index, item){
-							console.log(item.user_nickname);
+							console.log(item.user_nickname+"-"+item.user_no);
 						});
 						response(
 							$.map(data, function(item){
 								return {
 									label: item.user_nickname+"("+item.user_id+")",
-									value: item.user_nickname
+									value: item.user_no
 								}
 							}) 
 						);		
@@ -250,9 +254,13 @@
 	the parents of the input field will be checked for a class of ui-front. 
 	If an element with the ui-front class is found, the menu will be appended to that element. 
 	Regardless of the value, if no element is found, the menu will be appended to the body. */
- 			appendTo: '#proMemberInvite'
+ 			appendTo: '#proMemberInvite',
+ 			multiselect: true
  		}); 
-		
+	
+	
+	//선택한 사용자의 user_no를 controller에 전달
+	//console.log(self.selectedItems[ui.item.label]);
 	
 	
 	
