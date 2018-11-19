@@ -37,4 +37,8 @@
 		class="com.team.cos.answer.service.AnswerUserInfoService"/>
 	<beans:bean id="answerUpdateService"
 		class="com.team.cos.answer.service.AnswerUpdateService"/>
+	<beans:bean id="questionCommentInsertService"
+		class="com.team.cos.comment.service.QuestionCommentInsertService"/>
+	<beans:bean id="questionCommentListService"
+		class="com.team.cos.comment.service.QuestionCommentListService"/>
 </beans:beans>

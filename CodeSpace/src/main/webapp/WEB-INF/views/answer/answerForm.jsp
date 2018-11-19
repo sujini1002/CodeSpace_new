@@ -88,12 +88,12 @@
 <!-- 답변 작성 -->
 <div id="k_insertQuestion">
  <h4>${loginInfo.user_nickname}님의 답변</h4>
- <div id="k_AnswerEditor" onclick="checkLevle()">
+ <div id="k_AnswerEditor" onclick="checkLevel()">
  	
  </div>
  <input type="text" name="a_tag"  id="a_tag" placeholder="태그를 입력해 주세요"  class="form-control" required/>
  <button type="button" id="k_saveAnswer"
-	class="btn btn-primary">답변 등록</button>
+	class="btn btn-outline-info">답변 등록</button>
 </div>
 <!-- 모달 -->
 <div id="k_checkModal" class="modal fade" role="dialog">
@@ -212,10 +212,19 @@
 
 
 <script>
-	function checkLevle(){
+	function checkLevel(){
 		var userno = '${loginInfo.user_no}';
+		var q_user = '${questionInfo.user_no}';
+		
 		if(userno==""){
 			$('#k_modalBody').html('<p>로그인이 필요한 기능 입니다</p>');
+			$('#k_modalBtn').css('display','none');
+			$('#k_checkModal').modal();
+			Answerquill.enable(false);
+			$('#a_tag').prop("disabled",true);
+			$('#k_saveAnswer').prop("disabled",true);
+		}else if(userno == q_user){
+			$('#k_modalBody').html('<p>질문작성한 본인은 답변을 다실 수 없습니다.</p>');
 			$('#k_modalBtn').css('display','none');
 			$('#k_checkModal').modal();
 			Answerquill.enable(false);

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.cos.comment.dao.QuestionCommentInterfaceDao">
+	<!-- 댓글 작성 -->
+	<insert id="insertQuesComm" parameterType="com.team.cos.comment.vo.QuestionCommentInfo">
+		insert into question_comm(q_no,user_no,qc_content,qc_regdate)
+		values 
+		(#{q_no},#{user_no},#{qc_content},now())
+	</insert>
+	<!-- 댓글 리스트 모두  출력 -->
+	<select id="QuesCommOneQuestion" parameterType="int" resultType="com.team.cos.comment.vo.QuestionCommentInfo">
+		select qc.q_no,qc.user_no,u.user_name,qc.qc_content,
+			   date_format(qc.qc_regdate,"%Y/%m/%e %l:%i") as qc_regdate
+		from question_comm qc inner join userinfo u
+		on qc.user_no = u.user_no
+		where qc.q_no = #{q_no}
+	</select>	
+</mapper>

@@ -12,6 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.team.cos.answer.service.AnswerListService;
 import com.team.cos.answer.service.AnswerUserInfoService;
 import com.team.cos.answer.vo.AnswerInfo;
+import com.team.cos.comment.service.QuestionCommentInsertService;
+import com.team.cos.comment.service.QuestionCommentListService;
+import com.team.cos.comment.vo.QuestionCommentInfo;
 import com.team.cos.question.serivce.QuestionOneViewService;
 import com.team.cos.question.vo.QuestionInfo;
 import com.team.cos.userinfo.vo.UserInfoVo;
@@ -29,6 +32,9 @@ public class QuestionOneViewController {
 	@Autowired
 	private AnswerUserInfoService answerUserService;
 	
+	@Autowired
+	private QuestionCommentListService qListService;
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView questionView(@RequestParam("q_no")int q_no,@RequestParam(value="order",defaultValue="score")String order) {
 		
@@ -43,10 +49,14 @@ public class QuestionOneViewController {
 		//답변 작성자들 리스트
 		List<UserInfoVo> userInfoList = answerUserService.answerUserList(q_no,order);
 		
+		//질문 댓글
+		List<QuestionCommentInfo> questionCommList = qListService.selectList(q_no);
+		
 		modelAndView.addObject("questionInfo", questionInfo);
 		modelAndView.addObject("userInfo", userInfoVo);
 		modelAndView.addObject("answerList", answerList);
 		modelAndView.addObject("userInfoList", userInfoList);
+		modelAndView.addObject("questionCommList", questionCommList);
 		modelAndView.setViewName("question/questionOneView");
 		
 		System.out.println("컨트롤러"+userInfoList);

@@ -13,7 +13,6 @@ public class CheckLevelService {
 	private AnswerInterfaceDao answerDao;
 	
 	public boolean checkLevel(int user_no) {
-		System.out.println("서비스 드러옴");
 		
 		answerDao = sqlSessionTemplate.getMapper(AnswerInterfaceDao.class);
 		

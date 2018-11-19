@@ -41,6 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="order == 'date'"> a.a_regdate DESC </if>
 		</trim>
 	</select>
+	<!-- 답변 수정 -->
 	<update id="updateAnswer" parameterType="com.team.cos.answer.vo.AnswerInfo">
 		update answer set a_content = #{a_content}, a_tag=#{a_tag} where a_no = #{a_no}
 	</update>

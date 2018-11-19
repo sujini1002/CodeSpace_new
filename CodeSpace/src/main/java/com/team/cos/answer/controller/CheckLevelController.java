@@ -21,7 +21,6 @@ public class CheckLevelController {
 	public String checkLevel(@RequestParam("user_no")int user_no) {
 		
 		
-		System.out.println("컨트롤러 드러옴");
 		
 		boolean result = service.checkLevel(user_no);
 		

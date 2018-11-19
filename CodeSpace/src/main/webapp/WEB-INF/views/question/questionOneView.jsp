@@ -120,19 +120,18 @@
 	<tr>
 		<!-- 댓글 -->
 		<td style="width: 85%">
-			<!-- 인클루드 하기 -->
+			<%@include file="questionComment.jsp" %> 
 		</td>
 	</tr>
 </table>
 <!-- 모달 -->
-<div id="myModal" class="modal fade" role="dialog"> // fade는 투명 효과
+<div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">삭제</h4>
+        <h4 class="modal-title">답변등록불가</h4>
       </div>
       <div class="modal-body">
         <p>정말 삭제 하시겠습니까??<br>삭제 하면 다시 복구 되지 않습니다.</p>

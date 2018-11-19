@@ -14,10 +14,7 @@
 .k_questionContentBtn{
 	margin:20px 0px 0px 20px;
 }
-.k_table{
-/* 	 border-collapse: separate;
-  	 border-spacing: 0 10px; */
-}
+
 #k_qtag,#k_qtitleForm{
 	display :none;
 }
@@ -46,4 +43,12 @@
 #k_atag{
 	display:none;
 }
+#k_inputQuesComm{
+	background-color: #ecf0f5;
+	border :none;
+}
+#a_tag{
+	background-color: #ecf0f5;
+}
+
 
