@@ -17,7 +17,7 @@ public class MyQuestionService {
 	private SqlSessionTemplate sqlSessionTemplate;
 	private MyactivityInterface myActInterface;
 	
-	private static final int BOARD_COUNT_PER_PAGE = 5;
+	private static final int BOARD_COUNT_PER_PAGE = 10;
 	
 	public MyQuestionList getMyQstList(int pageNumber, int user_no) {
 		myActInterface = sqlSessionTemplate.getMapper(MyactivityInterface.class);
@@ -31,7 +31,7 @@ public class MyQuestionService {
 		if (boardTotalCount > 0) {
 			firstRow = (pageNumber - 1) * BOARD_COUNT_PER_PAGE;
 			endRow = BOARD_COUNT_PER_PAGE;
-			myQuestionList = myActInterface.selectMyQst(user_no, firstRow, endRow);
+			myQuestionList = myActInterface.getMyQst(user_no, firstRow, endRow);
 		} else {
 			currentPageNumber = 0;
 			myQuestionList = Collections.emptyList();

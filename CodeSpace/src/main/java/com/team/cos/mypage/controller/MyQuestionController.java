@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.team.cos.mypage.service.MyQuestionService;
 
 @Controller
-@RequestMapping("/mypage/activity")
+@RequestMapping("/mypage/myqst")
 public class MyQuestionController {
 
 	@Autowired
@@ -24,7 +24,7 @@ public class MyQuestionController {
 			HttpServletRequest request) {
 		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("mypage/activity");
+		modelAndView.setViewName("mypage/myqst");
 		modelAndView.addObject("myQst", service.getMyQstList(pageNumber, user_no));
 		
 		// System.out.println("컨트롤러"+service.getMyQstList(pageNumber, user_no));

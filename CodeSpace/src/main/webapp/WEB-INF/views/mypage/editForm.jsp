@@ -11,9 +11,18 @@
 <!--  여기다가 작성 해주세요 -->
 
 <ul class="nav nav-pills">
-	<li class="nav-item"> <a class="nav-link active" href="${pageContext.request.contextPath}/mypage/mypage">프로필</a></li>
-	<li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/mypage/activity"  style="color:gray;">내 활동</a></li>
-</ul>
+		<li class="nav-item">
+			<a class="nav-link active" href="${pageContext.request.contextPath}/mypage/mypage">프로필</a></li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+			aria-expanded="false">내 활동</a>
+			<div class="dropdown-menu">
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/myqst?user_no=${loginInfo.user_no}">내가 한 질문</a> 
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/myans?user_no=${loginInfo.user_no}">내가 한 답변</a> 
+				<a class="dropdown-item" href="#">즐겨찾기</a>
+			</div>
+		</li>
+	</ul>
 <div class="y_profile_wrapper">
 	<form method="post" enctype="multipart/form-data">
 		<div class="y_edit_myPhoto">

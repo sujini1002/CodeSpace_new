@@ -28,8 +28,8 @@
 			<a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#"
 			role="button" aria-haspopup="true" aria-expanded="false">내 활동</a>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/activity?user_no=${loginInfo.user_no}">내가 한 질문</a> 
-				<a class="dropdown-item" href="#">내가 한 답변</a> 
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/myqst?user_no=${loginInfo.user_no}">내가 한 질문</a> 
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/myans?user_no=${loginInfo.user_no}">내가 한 답변</a> 
 				<a class="dropdown-item" href="#">즐겨찾기</a>
 			</div>
 		</li>
@@ -39,7 +39,7 @@
 
 
 	<br>
-	<h4>내가 작성한 질문</h4>
+	<h1>내가 작성한 질문</h1>
 	<table class="table" style="text-align: center;">
 		<thead>
 			<tr>

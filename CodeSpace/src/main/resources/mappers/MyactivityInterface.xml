@@ -30,11 +30,19 @@
 
 
 <!-- 내가 한 답변 얻어오기 -->
-<!-- <select id="getMyAns" resultType="com.team.cos.question.vo.QuestionInfo">
-
+<select id="getMyAns" resultType="com.team.cos.mypage.vo.MyAnsInfo">
+	select q_title,a_content, a_regdate, a_choose
+	from question q inner join answer a
+	on q.q_no = a.q_no 
+	where a.user_no=#{user_no}
+	order by a_regdate desc
 </select>
- -->
- 
+
+<!-- 내가 한 답변 카운트 -->
+<select id="countMyAns" resultType="int">
+	select count(*) from answer
+	where q_no>0 and user_no = #{user_no};
+</select> 
  
  
  
