@@ -14,4 +14,6 @@ public interface AnswerInterfaceDao {
 	public int checkLevel(@Param("user_no")int user_no);
 	public List<AnswerInfo> answerList(@Param("q_no")int q_no,@Param("order")String order);
 	public List<UserInfoVo> answerUserInfo(@Param("q_no")int q_no,@Param("order")String order);
+	public int updateAnswer(AnswerInfo answerInfo);
+	
 }

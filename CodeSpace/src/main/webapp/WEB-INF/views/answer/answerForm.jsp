@@ -22,8 +22,9 @@
 	</tr>
 	<c:forEach var="item" items="${answerList}" begin="0" end="${fn:length(answerList)}" varStatus="num">
 	<tr>
+	
 		<!-- 답변 추천 -->
-		<td rowspan="3" style="width:15%;text-align:center">
+		<td rowspan="4" style="width:15%;text-align:center">
 			<div id="k_Arecommand">
 				<button type="button" class="btn" style="background-color: #ecf0f5">
 					<i class="fa fa-chevron-up fa-2x" style="color: gray;"></i>
@@ -51,12 +52,23 @@
 		</td>
 	</tr>
 	<tr>
+		<td style="height: 70px">
+		<hr>
+		<c:if test="${!item.a_tag.isEmpty()}">
+			<button type="button" class="btn k_qtagBtn btn-sm k_atagBtn_<c:out value="${num.index}"/>">${item.a_tag}</button>
+		</c:if>
+		<input type="text" class="form-control" id="k_atag_<c:out value="${num.index}"/>"  value="${item.a_tag}" placeholder="태그를 입력하세요" style="display:none"  />
+		</td>
+		<input type="hidden" id="k_aNo_<c:out value="${num.index}"/>" value="${item.a_no}"/>
+		<input type="hidden" id="k_qNo_<c:out value="${num.index}"/>" value="${item.q_no}"/>
+	</tr>
+	<tr>
 		<!-- 답변 수정 / 답변 작성자 -->
 		<td style="width: 85%;">
 			<c:if test="${item.user_no eq loginInfo.user_no}">
 				<button type="button" id="k_updateBtn_<c:out value="${num.index}"/>"
-					class="btn btn-primary k_AnswerContentBtn k_AnswerUpdate"
-					onclick="answer_update">수정</button>
+					class="btn btn-outline-info k_AnswerContentBtn k_AnswerUpdate"
+					onclick="answer_update(this)">수정</button>
 			</c:if>
 			<!-- 답변 작성자 정보 -->
 			<%@include file="answerUser.jsp"%>
@@ -84,7 +96,7 @@
 	class="btn btn-primary">답변 등록</button>
 </div>
 <!-- 모달 -->
-<div id="k_checkModal" class="modal fade" role="dialog"> // fade는 투명 효과
+<div id="k_checkModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -104,44 +116,101 @@
 
   </div>
 </div>
+
 <script>
+
+	var length = '${fn:length(answerList)}';
+	length *= 1;
+		var toolbarOptions =[
+			['bold','italic','underline','strike'],
+			['blockquote','code-block'],
+			[{'header':[1,2,3,4,5,6,false]}],
+			[{'list':'ordered'},{'list':'bullet'}],
+			[{'script':'sub'},{'script':'super'}],
+			[{'indent':'-1'},{'indent':'+1'}],
+			[{'direction' :'rtl'}],
+			['link','image','formula'],
+			[{'color':[]},{'background':[]}],
+			[{'font':[]}],
+			[{'align':[]}]
+		];
+		for(var j=0;j<length;j++){
+			eval("var updateQuill"+j+"= ''");
+		}
+		
 	$(window).load(function(){
 		
-		var length = '${fn:length(answerList)}';
-		length *= 1;
+		
 		for(var i=0;i<=length;i++){
 			
 			var delta = JSON.parse($('#k_answerText_'+i).val());
-			
-			var toolbarOptions =[
-				['bold','italic','underline','strike'],
-				['blockquote','code-block'],
-				[{'header':[1,2,3,4,5,6,false]}],
-				[{'list':'ordered'},{'list':'bullet'}],
-				[{'script':'sub'},{'script':'super'}],
-				[{'indent':'-1'},{'indent':'+1'}],
-				[{'direction' :'rtl'}],
-				['link','image','formula'],
-				[{'color':[]},{'background':[]}],
-				[{'font':[]}],
-				[{'align':[]}]
-			];
 
-			var quill = new Quill('#editor_'+i,{
-				modules :{
-					toolbar : toolbarOptions
-				},
-				theme : 'snow'
-			});
-			var children = $('#k_td_'+i).children('.ql-toolbar');
+			eval(
+				"updateQuill"+i+" = new Quill('#editor_'+i,{modules :{toolbar : toolbarOptions},theme : 'snow'});"
+			); 
 			$('#k_td_'+i+'> div.ql-toolbar.ql-snow').css('display', 'none');
 			$('#editor_'+i).css('border', 'none');
-			quill.setContents(delta);
-			quill.enable(false);
+			eval("updateQuill"+i+".setContents(delta);");
+			eval("updateQuill"+i+".enable(false);");
 		}//end for i
 		
 	});
 </script>
+<script>
+	function answer_update(value){
+		 var num = value.id.substring(value.id.length-1);
+		
+			if($('#k_updateBtn_'+num).text() == '수정'){
+				//quill 툴바 보이기
+				$('#k_td_'+num+'> div.ql-toolbar.ql-snow').css('display', 'inline-block');
+				//수정 폼 테두리 설정
+				$('#editor_'+num).css('border', '1px solid lightgray');
+				$('#editor_'+num).css('height', '250px');
+				//수정 폼 작성 가능
+				eval("updateQuill"+num+".enable(true);");
+				//태그 및 제목 수정 가능
+				$('.k_atagBtn_'+num).css('display', 'none');
+				$('#k_atag_'+num).css('display', 'inline-block');
+				$('#k_td_'+num+'> div.ql-toolbar.ql-snow').css('width', '100%');
+				
+				//버튼 수정 
+				$('#k_updateBtn_'+num).text('수정완료');
+			}else{
+				//답변 고유번호,내용,태그 가져오기
+				var a_no = $('#k_aNo_'+num).val();
+				a_no *= 1;
+				var q_no =$('#k_qNo_'+num).val();
+				var content = eval("JSON.stringify(updateQuill"+num+".getContents());");
+				var tag = $('#k_atag_'+num).val();
+				
+				$.ajax({
+					url : '${pageContext.request.contextPath}/answer/updateAnswer',
+					type : 'POST',
+					data : {
+						"a_no" : a_no,
+						"a_content" : content,
+						"a_tag" : tag
+					},
+					contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+					dataType : 'json',
+					success : function(data) {
+						if (data.result == "1") {
+							location.href = '${pageContext.request.contextPath}/question/questionView?q_no='
+									+ q_no;
+						} else {
+							alert('수정 실패하였습니다 ㅠㅠ');
+						}
+					},
+					error : function() {
+						alert('불행하게도 에러입니다 ㅠㅠ');
+					}
+				});
+			}
+			
+	}
+</script>
+
+
 <script>
 	function checkLevle(){
 		var userno = '${loginInfo.user_no}';
@@ -223,6 +292,7 @@
 					"user_no":userno,
 					"a_content":content,
 					"a_tag":tag
+		
 				},
 				contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 				dataType : 'json',
