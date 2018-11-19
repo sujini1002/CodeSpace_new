@@ -52,8 +52,14 @@
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
+
 .h_login>div {
 	border-radius: 5px;
+}
+
+.checkbox>label {
+	margin-left: 28%;
+	font-weight: 400;
 }
 
 #loginModal>div>div>div.modal-footer>button.g-signin2.h_login>div>div {
