@@ -23,8 +23,6 @@
 		</button>
 	</form>
 	</div>
-	
-	
 </nav> 
 
 <!-- Modal -->
@@ -41,7 +39,28 @@
         <p id="k_ptag">코드스페이스에 오신 것을 환영 합니다.<br> 로그인 또는 회원 가입을 해주세요.</p>
       </div>
       <div class="modal-footer">
-      	<c:choose>
+      <c:if test="${empty googlecheck && empty loginInfo}">
+	      <button onclick="signUp()" class="btn btn-success" style="margin-left: 10px; margin-bottom: 0px; width: 120px; height: 36px;">회원 가입</button>
+		  <button class="g-signin2 h_login" data-onsuccess="onSignIn"></button>
+		  <!-- 어찌할지 같이 생각좀 해봐야겠다 페이지 넘길지 창으로 할지 -->
+		  <button onclick="loginIn()" class="btn btn-success" style="margin-left: 10px; margin-bottom: 0px; width: 120px; height: 36px;">로그인</button>
+      </c:if>
+      
+      <c:if test="${!empty googlecheck && empty loginInfo }">
+		  <button onclick="signUp()" class="btn btn-success">회원 가입</button>
+		  <button type="button" class="btn btn-success" onclick="signOut()">로그아웃</button>
+	      <button hidden="hidden" class="g-signin2" data-onsuccess="onSignIn"></button>
+      </c:if>
+      
+      <c:if test="${!empty loginInfo }">
+	      <button type="button" class="btn btn-success" onclick="signOut()">로그아웃</button>
+		  <button hidden="hidden" class="g-signin2" data-onsuccess="onSignIn"></button>
+		  <script>
+			  $('#k_ptag').html('코드스페이스 입니다 <br> 안녕히 가세요.');
+			  $('#k_loginBtn').text('로그아웃');
+		  </script>
+      </c:if>
+      	<%-- <c:choose>
 			<c:when test="${empty googlecheck}" >
 				<button onclick="signUp()" class="btn btn-success" style="margin-left: 10px; margin-bottom: 0px; width: 120px; height: 36px;">회원 가입</button>
 				<button class="g-signin2 h_login" data-onsuccess="onSignIn"></button>
@@ -66,16 +85,13 @@
 								$('#k_ptag').html('코드스페이스 입니다 <br> 안녕히 가세요.');
 								$('#k_loginBtn').text('로그아웃');
 							</script>
-						
 						</c:otherwise>
 				</c:choose>								
 			</c:otherwise>
-			
-		</c:choose>
+		</c:choose> --%>
         <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -92,7 +108,6 @@
 		if(<c:out value='${empty googlecheck }'/>){
 			$.ajax({
 				url:'${pageContext.request.contextPath}/userinfo/usercheck',
-				dataType:'JSON',	/* 결과타입 */
 				data:{
 					"user_id":email
 				},
@@ -128,7 +143,7 @@
 	}
 	
 	function loginIn(){
-		alert('까꿍');
+		location.href = '${pageContext.request.contextPath}/userinfo/userlogin';
 	}
 	
 	function search(){

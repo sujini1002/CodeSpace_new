@@ -9,14 +9,22 @@ import com.team.cos.userinfo.vo.UserInfoVo;
 
 @Service
 public class UserInfoLoginUpdateService {
-	
+
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	
+
 	private UserInfoInterface dao;
 
 	public void userLoginUpdate(UserInfoVo userInfoVo) {
 		dao = sqlSessionTemplate.getMapper(UserInfoInterface.class);
-		dao.userLoginUpdate(userInfoVo);		
-	}	
+		dao.userLoginUpdate(userInfoVo);
+	}
+
+	public UserInfoVo userLoginCheck(UserInfoVo userInfoVo) {
+		UserInfoVo result = new UserInfoVo();
+		dao = sqlSessionTemplate.getMapper(UserInfoInterface.class);
+		result = dao.userInfoCheck(userInfoVo);
+		return result;
+		
+	}
 }

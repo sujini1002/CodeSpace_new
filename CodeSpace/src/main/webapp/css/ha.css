@@ -10,10 +10,48 @@
 	border: 0px;
 	border-radius: 5px;
 	margin-left: 10px;
-	/* margin-bottom: 3px; */
 	background-color: red;
 }
 
+.h_loginForm {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.h_loginForm2 {
+	width: 100%;
+	max-width: 330px;
+	padding: 15px;
+	margin-left: 28%;
+}
+
+.h_loginForm2 .form-control {
+	position: relative;
+	box-sizing: border-box;
+	height: auto;
+	padding: 10px;
+	font-size: 16px;
+}
+
+.h_loginForm2 .form-control:focus {
+	z-index: 2;
+}
+
+.h_loginForm2 input[type="text"] {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.h_loginForm2 input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
 .h_login>div {
 	border-radius: 5px;
 }
