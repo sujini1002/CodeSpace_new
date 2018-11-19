@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.team.cos.question.vo.QuestionInfo;
 import com.team.cos.search.dao.SearchDaoInterface;
-import com.team.cos.search.vo.SearchCriteria;
+import com.team.cos.paging.vo.SearchCriteria;
 
 public class MainSearchService {
 
@@ -28,17 +28,6 @@ public class MainSearchService {
 		return results;
 
 	}
-	
-	/*
-	public List getSearchList(String keyword) {
-
-		searchDao = sqlSessionTemplate.getMapper(SearchDaoInterface.class);
-
-		List<QuestionInfo> searchList = searchDao.searchResults(keyword);
-
-		return searchList;
-	}
-	*/
 
 	// Main 페이지 검색 결과 갯수를 가져오는 메서드
 	public int getSearchCnt(SearchCriteria cri) {

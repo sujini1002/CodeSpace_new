@@ -30,20 +30,4 @@
 		select * from userinfo where user_nickname like CONCAT('%',#{words},'%')
 	</select>
 
-	<!-- ///////////////////////// 페이징 ////////////////////////// -->
-	
-	<!-- criteria를 적용하여 퀘스쳔 리스트에 대한 페이징 -->
-	<select id="listCriteria" resultType="com.team.cos.question.vo.QuestionInfo">
-		select * from question 
-		where q_no > 0
-		order by q_no desc, q_regdate desc
-		limit #{pageStart}, #{perPageNum}
-	</select>
-	
-	<!-- 페이징 카운트 -->
-	<select id="countPaging" resultType="int">
-		select count(q_no) from question where q_no > 0
-	</select>
-
-
 </mapper>

@@ -8,18 +8,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cos.search.service.MainSearchService;
-import com.team.cos.search.service.PagingService;
-import com.team.cos.search.vo.PageMaker;
-import com.team.cos.search.vo.SearchCriteria;
+import com.team.cos.paging.vo.PageMaker;
+import com.team.cos.paging.vo.SearchCriteria;
 
 @Controller
 public class MainSearchController {
 
 	@Autowired
 	private MainSearchService searchService;
-
-	@Autowired
-	private PagingService pagingService;
 
 	/*
 	@RequestMapping("/search/searchResults")
@@ -68,29 +64,6 @@ public class MainSearchController {
 		mav.addObject("pageMaker", pageMaker);
 		
 		mav.setViewName("search/searchResults");
-		
-		return mav;
-
-	}
-
-
-	@RequestMapping(value="/questions/questions")
-	public ModelAndView getQuestions(@ModelAttribute("cri")SearchCriteria cri) {
-
-		ModelAndView mav = new ModelAndView();
-
-		///////////////////// paging //////////////////////
-
-		mav.addObject("list", pagingService.listCriteria(cri));
-
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		
-		pageMaker.setTotalCount(pagingService.listCountCriteria(cri));
-
-		mav.addObject("pageMaker", pageMaker);
-		
-		mav.setViewName("questions/questions");
 		
 		return mav;
 

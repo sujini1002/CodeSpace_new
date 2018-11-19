@@ -55,6 +55,7 @@
             <br>
             <!-- 질문 글이 있을 시 페이징 표시 -->
             <div class="search-paging">
+            	<!-- view 단 페이징 모듈은 여기부터 -->
 			    <div class="text-center">
 			    	<ul class="pagination">
 			    		<c:if test="${pageMaker.prev}">
@@ -73,7 +74,8 @@
 			    		</c:if>
 			    	</ul>
     			</div>
-			</div>
+    			<!-- 여기 까지 -->
+			</div> <!-- search-paging 끝 -->
          </div> <!-- result-List 끝 -->
       </c:if><!-- !empty 조건 -->
    </div> <!-- list-container 끝 -->

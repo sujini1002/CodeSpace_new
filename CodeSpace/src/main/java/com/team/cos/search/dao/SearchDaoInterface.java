@@ -2,8 +2,8 @@ package com.team.cos.search.dao;
 
 import java.util.List;
 
-import com.team.cos.search.vo.Criteria;
-import com.team.cos.search.vo.SearchCriteria;
+import com.team.cos.paging.vo.Criteria;
+import com.team.cos.paging.vo.SearchCriteria;
 
 public interface SearchDaoInterface {
 
@@ -11,10 +11,11 @@ public interface SearchDaoInterface {
 	
 	public int searchCnt(SearchCriteria cri); 		// Main 페이지에서 검색 결과 갯수를 카운트하는 메서드
 	
+	/*
 	public List listCriteria(Criteria cri); 	// 전체 게시물 리스트를 불러오기 위한 메서드
 	
 	public int countPaging(Criteria cri); 		// 전체 게시물을 Count 하기 위한 쿼리
-	
+	*/
 	
 	////////////////////////////////// User 부분 /////////////////////////
 	
