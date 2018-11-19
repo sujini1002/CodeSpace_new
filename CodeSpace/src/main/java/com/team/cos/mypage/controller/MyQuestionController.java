@@ -27,7 +27,7 @@ public class MyQuestionController {
 		modelAndView.setViewName("mypage/activity");
 		modelAndView.addObject("myQst", service.getMyQstList(pageNumber, user_no));
 		
-		System.out.println("컨트롤러"+service.getMyQstList(pageNumber, user_no));
+		// System.out.println("컨트롤러"+service.getMyQstList(pageNumber, user_no));
 		
 		return modelAndView;
 	}
