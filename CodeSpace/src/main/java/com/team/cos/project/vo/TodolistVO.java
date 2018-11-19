@@ -17,8 +17,16 @@ public class TodolistVO {
 	private Date todolist_enddate;
 	private String tdlstring_startdate; // 프로젝트 시작 날짜
 	private String tdlstring_enddate; // 프로젝트 종료 날짜 
+	private String user_name;
+	private String user_id;
 	
 	
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	public int getTodolist_no() {
 		return todolist_no;
 	}

@@ -20,7 +20,6 @@ public class ProjectFinishController {
 	public ModelAndView projectFin(
 			@RequestParam("project_no") int project_no,
 			@RequestParam("user_no") int user_no) {
-		System.out.println("Project Finish Controller: "+project_no);
 		
 		int proFin = proFinService.proStatus(project_no);
 

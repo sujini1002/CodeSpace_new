@@ -27,11 +27,9 @@ public class ProjectDashController {
 	public ModelAndView getProDashboard(
 			@RequestParam("project_no") int project_no,
 			@RequestParam("user_no") int user_no) {
-		System.out.println("project dashboard controller!");
 		
 		//user_no가 포함된 userInfoVO 가져옴
 		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
-		System.out.println("PDC userInfo = "+user_info.getUser_id());
 		
 		//project_no에 해당하는 프로젝트 정보 가져옴
 		ProjectInfoVO pro_info = proInfoservice.selectProList(project_no);

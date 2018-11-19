@@ -16,25 +16,25 @@
 
 <!-- 프로젝트 상세정보 표출 영역 -->
 <div>
-	<h3>${pro_info.project_title}  	
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#projectInfo">
+	<h4>${pro_info.project_title}  	
+		<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#projectInfo">
 			수정하기
 		</button>
 		<!-- 프로젝트는 삭제 x, 프로젝트 끝내기 버튼을 누르면 방향으로 함 -->
-		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#projectFinish">
+		<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#projectFinish">
 			프로젝트 끝내기
 		</button>
-	</h3>
+		<!-- 사용자 추가 -->
+		<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#proMemberInvite">
+			<i class="fas fa-user-plus"></i>		
+		</button>
+	</h4>
 	<h4>${pro_info.project_content }</h4>
 </div>
 
-<!-- 사용자 추가 -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#proMemberInvite">
-	사용자 초대
-</button>
 
 <!-- 캘린더와 공지사항 표출 영역  -->
-<table class='table' style="width:70%;" >
+<table class='table' >
 	<tr>
 		<td>캘린더  <a href="#">더보기</a></td>
 		<td>공지사항 <a href="#">더보기</a></td>
@@ -46,9 +46,9 @@
 </table>
 
 <!-- REST 방식의 to do list -->
-<h3>to do list: REST</h3>
+<span style="font-size: 30px;">to do list</span>
 <a href="${pageContext.request.contextPath}/project/tdlDashboard?project_no=${pro_info.project_no }&user_no=${user_info.user_no}">더보기</a>
-<table class="table" id="tdlboard" style="width:70%;">	</table>
+<table class="table" id="tdlboard" >	</table>
 
 
 
@@ -60,10 +60,10 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
+        <h4 class="modal-title">프로젝트 내용 수정하기</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         	<span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title">프로젝트 내용 수정하기</h4>
       </div>
       <form action="/cos/project/projectUpdate" method="post">
 	      <!-- project Info 수정 -->
@@ -102,10 +102,10 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
+        <h4 class="modal-title">프로젝트 끝내기</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         	<span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title">프로젝트 끝내기</h4>
       </div>
       <form action="/cos/project/projectFinish" method="post">
 	      <!-- project Info 수정 -->
@@ -147,10 +147,10 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
+        <h4 class="modal-title">사용자 초대하기</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         	<span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title">사용자 초대하기</h4>
       </div>
       <form method="post">
 	      <!-- 사용자 초대 -->
@@ -193,11 +193,10 @@
 	// to do list 가져오는 function
 	tdlService.getList({project_no:project_noValue}, function(list) {
 		var str = "<tr>";
-			str += "<th>todolist_no</th>";
-			str += "<th>todolist_content</th>";
-			str += "<th>tdlmanager_no</th>";
-			str += "<th>todolist_status</th>";
-			str += "<th>todolist_enddate</th>";
+			str += "<th>할 일</th>";
+			str += "<th>담당자</th>";
+			str += "<th>진행상태</th>";
+			str += "<th>마감일</th>";
 			str += "</tr>";
 		
 		
@@ -207,12 +206,10 @@
 		}
 		
 		for(var i=0, len=list.length ||0; i<len; i++){
-			console.log(list[i]);
 			
 			str += "<tr data-todolist_no="+list[i].todolist_no+">";
-			str += "<td>"+list[i].todolist_no+"</td>";
-			str += "<td><a href='#'>"+list[i].todolist_content+"</a></td>";
-			str += "<td>"+list[i].tdlmanager_no+"</td>";
+			str += "<td>"+list[i].todolist_content+"</a></td>";
+			str += "<td>"+list[i].user_name+"</td>";
 			str += "<td>"+list[i].todolist_status+"</td>";
 			str += "<td>"+tdlService.displayTime(list[i].todolist_enddate)+"</td>";
 			str += "</tr>";

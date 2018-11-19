@@ -62,7 +62,6 @@
 	function inputForm1(){
 		
 	 	if($('#project_title').val() != ""){
-	 		alert("kkkk");
 			$('#proSubmit').attr('disabled', false);
 			
 		} else {

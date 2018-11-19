@@ -12,9 +12,8 @@
 
 <!-- REST 방식의 to do list -->
 <h3>
-	to do list: REST
-	<button type="button" class="btn btn-primary"
-			data-toggle="modal" data-target="#tdlModal">
+	to do list
+	<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tdlModal">
 		추가하기
 	</button>
 </h3>
@@ -41,10 +40,10 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
+        <h4 class="modal-title">To do list 작성하기</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         	<span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title">To do list 작성하기</h4>
       </div>
       <!-- project_todolist 추가 항목 -->
       <div class="modal-body">
@@ -88,6 +87,12 @@
 <script type="text/javascript" src="../js/todolist.js"></script>
 
 <script>
+	//to do list 페이지 접근 시 자동으로 댓글 목록 가져옴
+
+
+$(document).ready(function(){
+
+
 	var project_noValue = ${project_no};
 	var tdlUL = $("#tdlboard");
 
@@ -96,11 +101,10 @@
 		project_no : project_noValue
 	}, function(list) {
 		var str = "<tr>";
-		str += "<th>todolist_no</th>";
-		str += "<th>todolist_content</th>";
-		str += "<th>tdlmanager_no</th>";
-		str += "<th>todolist_status</th>";
-		str += "<th>todolist_enddate</th>";
+		str += "<th>할 일</th>";
+		str += "<th>담당자</th>";
+		str += "<th>진행상태</th>";
+		str += "<th>마감일</th>";
 		str += "</tr>";
 
 		if (list == null || list.length == 0) {
@@ -109,12 +113,10 @@
 		}
 
 		for (var i = 0, len = list.length || 0; i < len; i++) {
-			console.log(list[i]);
 
 			str += "<tr data-todolist_no="+list[i].todolist_no+">";
-			str += "<td>" + list[i].todolist_no + "</td>";
 			str += "<td><a href='#'>" + list[i].todolist_content + "</a></td>";
-			str += "<td>" + list[i].tdlmanager_no + "</td>";
+			str += "<td>" + list[i].user_name + "</td>";
 			str += "<td>" + list[i].todolist_status + "</td>";
 			str += "<td>" + tdlService.displayTime(list[i].todolist_enddate)
 					+ "</td>";
@@ -123,6 +125,7 @@
 
 		tdlUL.html(str);
 	});
+});
 
 	// to do list 추가 관련
 		$("#modalRegisterBtn").on("click", function(e){
@@ -134,7 +137,7 @@
 				tdlstring_enddate: $("#tdlstring_enddate").val()
 		};
 		
-		todolistService.add(todolist, function(result){
+		todolistInsert.add(todolist, function(result){
 			alert(result);
 			
 			$(".modal").find("input").val("");
@@ -142,9 +145,8 @@
 		})
 	})
 	
-	
-	
-	var todolistService = (function(){
+	//to do list 데이터 ajax 전송 관련
+	var todolistInsert = (function(){
 		function add(todolist, callback, error){
 			$.ajax({
 				type: 'post',
@@ -164,6 +166,8 @@
 		
 		return { add: add};
 	})();
+	
+	
 	
 
 </script>
