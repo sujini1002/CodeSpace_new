@@ -1,116 +1,130 @@
 @charset "UTF-8";
 
 .userSearch {
-   position: relative;
-   padding-right: 15px;
-   overflow-x: visible;
-   -webkit-overflow-scrolling: touch;
-   border-top: 1px solid transparent;
-   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
-   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+	position: relative;
+	padding-right: 15px;
+	overflow-x: visible;
+	-webkit-overflow-scrolling: touch;
+	border-top: 1px solid transparent;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
 }
 
 .userSearchBar {
-   display: inline-block;
-   margin-left: 10px;
+	display: inline-block;
+	margin-left: 10px;
 }
 
 .userListChange {
-   margin-left: 100px;
-   display: inline-block;
-   float: right;
+	margin-left: 100px;
+	display: inline-block;
+	float: right;
 }
 
 .userList {
-   border: 1px solid red;
-   display: grid;
-   grid: repeat(4, 300px) / auto-flow 120px;
+	border: 1px solid red;
+	display: grid;
+	grid: repeat(4, 300px)/auto-flow 120px;
 }
 
 .userFrame {
-
 	background-color: lightgrey;
 	width: 300px;
 	height: 150xp;
 	border: 1px solid green;
 }
 
-.userPic{
-	
+.userPic {
 	background-color: blue;
-	
 }
 
-.user-detail{
-	
+.user-detail {
 	background-color: lightblue;
-	
 }
 
 .userListTbl {
-   margin-left: 19px;
-   padding: 20px;
-   border: 1px solid black;
-   border-spacing: 30px;   
+	margin-left: 19px;
+	padding: 20px;
+	border: 1px solid black;
+	border-spacing: 30px;
 }
 
-.userListTblImg{
-   float: left;
-   display: inline-block;
-   width: 80px;
-   height: 80px;
+.userListTblImg {
+	float: left;
+	display: inline-block;
+	width: 80px;
+	height: 80px;
 }
 
-.userListTblContent{
-   float: left;
-   display: inline-block;
-   width: 250px;
-   height: 60px;
+.userListTblContent {
+	float: left;
+	display: inline-block;
+	width: 250px;
+	height: 60px;
 }
 
-.user-row{
-   
-   border: 1px solid black;
-   
+.user-row {
+	border: 1px solid black;
 }
 
-.result-cell{
-   
-   border: 1px solid black;
-   margin-top: 0px;
-   line-height: 3;
-   text-align: center;
-   max-height: 100px;
-   
+.result-cell {
+	border: 1px solid black;
+	margin-top: 0px;
+	line-height: 3;
+	text-align: center;
+	max-height: 100px;
 }
 
-.question-viewCnt{
-
-   border: 1px solid black;
-   line-height: 3;
-   text-align: center;
-   max-height: 100px;
-	
+.question-viewCnt, .question-recommCnt {
+	line-height: 2;
+	text-align: center;
+	max-height: 100px;
 }
 
+.question-title {
+	line-height: 3;
+	text-align: center;
+	max-height: 100px;
+}
 
-.result-link .question-recommCnt .question-title{
-	
-	padding: 0px;
-	border: 1px solid red;
+.question-number{
+	font-size: 24px;
+}
+
+.question-info{
+	float: right;
+	text-align:right;
+}
+
+.result-row{
+	margin-top: 10px;
+}
+
+.result-link {
+	padding: 4px;
 	margin-top: 0px;
 	text-align: left;
-	
 }
 
-.result-tag{
-	
+.result-tag {
 	text-align: left;
-	border: 1px solid blue;
 	margin-top: 0px;
+	background-color: grey;
+	border-radius: 10px;
 }
 
-.search-paging{
+.search-paging {
 	
-	
+}
+
+.paging-number{
+	padding-left: 1.8em;
+}
+
+.list-container a:link{
+	text-decoration: none;
+}
+
+.list-container a:hover{
+	font-weight: bold;	
 }
