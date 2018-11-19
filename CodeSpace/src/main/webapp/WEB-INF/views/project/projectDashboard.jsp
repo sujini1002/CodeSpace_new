@@ -152,7 +152,7 @@
         	<span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="post">
+     <!--  <form method="post" action="/cos/project/inviteMember">  -->
 	      <!-- 사용자 초대 -->
 	      <div class="modal-body">
 	      	<!-- 사용자 번호 -->
@@ -162,14 +162,15 @@
 	      	<!-- 사용자 검색하기 (자동완성)-->
 			<div class="form-group">
 				<label>사용자 검색하기</label>
-				<input class="form-control" id="search_user">
+				<input class="form-control" id="search_user"><!--   -->
 			</div>
+			<b></b>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="submit" class="btn btn-primary" id="inviteMember">Invite member</button>
+	        <button type="button" class="btn btn-primary" id="inviteMember">Invite member</button>
 	      </div>
-	     </form>
+<!-- 	      </form> -->
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
@@ -179,7 +180,7 @@
 
 
 <!-- todolist 처리를 위한 js -->
-<script type="text/javascript" src="../js/todolist.js" ></script>
+  <script type="text/javascript" src="../js/todolist.js" ></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

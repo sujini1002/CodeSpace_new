@@ -9,7 +9,10 @@ $.widget("ui.autocomplete", $.ui.autocomplete, {
 
         var self = this,
             o = self.options;
+        // 선택된 사용자 정보 저장하는 변수
+        //var selectedMember = [];
 
+        	//this.options.multiselect
         if (o.multiselect) {
             console.log('multiselect true');
 
@@ -49,13 +52,18 @@ $.widget("ui.autocomplete", $.ui.autocomplete, {
 
             // TODO: There's a better way?
             o.select = o.select || function(e, ui) {
-                $("<span></span>")
-                //$("<div></div>")
-                    .addClass("ui-autocomplete-multiselect-item")
+                //$("<span></span>")
+            	
+            	//selectedMember.push(ui);
+            	//console.log(selectedMember);
+            	
+                $("<div data-user_no="+ui.item.value+"></div>")
+                    .addClass("ui-autocomplete-multiselect-item selectedMember")
                     .text(ui.item.label)
                     .append(
-                        $("<span></span>")
+                        $("<div></div>")
                             .addClass("ui-icon ui-icon-close")
+                            //.val(ui.item.value)
                             .click(function(){
                                 var item = $(this).parent();
                                 delete self.selectedItems[item.text()];
@@ -63,25 +71,48 @@ $.widget("ui.autocomplete", $.ui.autocomplete, {
                             })
                     )
                     .insertBefore(self.element);
-                
+
                 self.selectedItems[ui.item.label] = ui.item;
-                
                 self._value("");
+                
                 return false;
             }
-
+            
             /*self.options.open = function(e, ui) {
                 var pos = self.multiselect.position();
                 pos.top += self.multiselect.height();
                 self.menu.element.position(pos);
             }*/
+            
+            //project member 초대하기 버튼 클릭 시 이벤트
+            $("#inviteMember").click(function(){
+            	
+            	
+            	var selectedMember = document.querySelectorAll(".selectedMember");
+            	//selectedMember 클래스의 개수
+            	selectedMember.forEach(function(member){
+            		
+            		console.log(member);
+            	});
+            	//console.log($(".selectedMember").length);
+            	
+            	
+            	
+            	
+            	
+            	
+            	//attr("data-user_no")
+            	/*$.post("/cos/project/inviteMember", function(selectedMember){
+            		alert(selectedMember);
+            	});*/
+            	
+            	
+            });
         }
         
-        //console.log(self.selectedItems);
-/*        $.(#inviteMember).onclick({
-        	
-        });
-*/
+      //  console.log(self.selectedItems);
+        
+
         return this;
     }
 });
