@@ -30,6 +30,7 @@ public class UserInfoRegController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String insertUserInfoform(UserInfoVo userInfoVo, HttpSession session) {
+		System.out.println("들어오냐?");
 		return "userinfo/userreg";
 	}
 
@@ -46,7 +47,7 @@ public class UserInfoRegController {
 			// 등록이 제대로 안됐을 때
 			modelAndView.setViewName("userinfo/reconfirm");
 		} else {
-			mailService.sendMail(userInfoVo);
+			/*mailService.sendMail(userInfoVo);*/
 			modelAndView.setViewName("home");
 			session.setAttribute("loginInfo", userInfoVo);
 		}

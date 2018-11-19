@@ -17,13 +17,13 @@
                 
                 <label for="password">비밀번호</label>
                 <input type="password" class="form-control h_pw" placeholder="비밀번호를 입력하세요" name="user_pw" />
-               
                 <div class="h_checkpw"></div>
             </c:if>
+            
             <c:if test="${!empty googlecheck}">
                 <input type="text" class="form-control h_id" name="user_id" value="${googlecheck}" readonly="readonly" />
                 
-                <!-- <input type="password" class="form-control h_pw" value="null" name="user_pw" hidden="hidden"/> -->
+                <input type="password" class="form-control ha_pw" value="null" name="user_pw" hidden="hidden"/>
             </c:if>
         </div>
         
@@ -73,51 +73,60 @@ $(document).ready(function(){
 	
 	var pattern = '^[a-zA-Z0-9][a-zA-Z0-9\.\_\-]{3,16}@[a-zA-Z0-9]+\.[a-zA-Z]{2,8}$';
 	/* id 적합성 체크 */
-	$('.h_id').focusout(function(){
-		var data = $('.h_id');
-		var matchid = data.val().match(pattern); 
-		if(!matchid){
-			$('.h_check').text('잘못된 이메일 형식입니다. 4~16자 사이의 아이디를 입력해주세요!').css('color','red');
-				if(data.val()==''){				
-					$('.h_check').text('필수 정보 입니다!!').css('color','red');
-				}
-					checkemail = false;
-					buttonstatus();
-		}else if(matchid){
-			$.ajax({
-				url:'${pageContext.request.contextPath}/userinfo/useridcheck',
-				type:'post',
-				data:{
-					'user_id':data.val()
-				},
-				success:function(response){
-					if(response==''){
-						$('.h_check').text('멋진 Email이네요!!').css('color','green');
-						checkemail = true;
-						buttonstatus();
-					}else{
-						$('.h_check').text('이미 사용중인 Email입니다...').css('color','red');
+	if(<c:out value='${empty googlecheck}'/>){
+		$('.h_id').focusout(function(){
+			var data = $('.h_id');
+			var matchid = data.val().match(pattern); 
+			if(!matchid){
+				$('.h_check').text('잘못된 이메일 형식입니다. 4~16자 사이의 아이디를 입력해주세요!').css('color','red');
+					if(data.val()==''){				
+						$('.h_check').text('필수 정보 입니다!!').css('color','red');
+					}
 						checkemail = false;
 						buttonstatus();
+			}else if(matchid){
+				$.ajax({
+					url:'${pageContext.request.contextPath}/userinfo/useridcheck',
+					type:'post',
+					data:{
+						'user_id':data.val()
+					},
+					success:function(response){
+						if(response==''){
+							$('.h_check').text('멋진 Email이네요!!').css('color','green');
+							checkemail = true;
+							buttonstatus();
+						}else{
+							$('.h_check').text('이미 사용중인 Email입니다...').css('color','red');
+							checkemail = false;
+							buttonstatus();
+						}
 					}
-				}
-			});
-		}
-	});
-	
+				});
+			}
+		});
+	}else{
+		checkemail = true;
+		buttonstatus();
+	}
 	/* 비밀번호 공백 체크 */
-	$('.h_pw').focusout(function(){
-		var data = $('.h_pw');
-		if(data.val()==''){
-			$('.h_checkpw').text('필수 정보 입니다!!').css('color','red');
-			checkpw = false;
-			buttonstatus();
-		}else{
-			$('.h_checkpw').text('');
-			checkpw = true;
-			buttonstatus();
-		}
-	});
+	if(<c:out value='${empty googlecheck }'/>){
+		$('.h_pw').focusout(function(){
+			var data = $('.h_pw');
+				if(data.val()==''){
+					$('.h_checkpw').text('필수 정보 입니다!!').css('color','red');
+					checkpw = false;
+					buttonstatus();
+				}else{
+					$('.h_checkpw').text('');
+					checkpw = true;
+					buttonstatus();
+				}
+		});
+	}else{
+		checkpw = true;
+		buttonstatus();
+	}
 	
 	/* 이름 공백 체크 */
 	$('.h_name').focusout(function(){

@@ -108,16 +108,17 @@
 		if(<c:out value='${empty googlecheck }'/>){
 			$.ajax({
 				url:'${pageContext.request.contextPath}/userinfo/usercheck',
+				dataType:'json',
 				data:{
 					"user_id":email
 				},
 				/* 여기서 session값 현재 구글로그인 id 로 되어있음(googlecheck) */
 				success:function(response){
 					if(response.user_no == 0){
-						/* 회원가입 안된걸로 판단하고 가입페이지로 이동 */
-						 location.href = "${pageContext.request.contextPath}/userinfo/userreg?user_id=" + email;
+						 /* 회원가입 안된걸로 판단하고 가입페이지로 이동 */ 
+						location.href = "${pageContext.request.contextPath}/userinfo/userreg?user_id=" + email; 
 					}else{
-						/* 로그인 시간 update */
+						 /* 로그인 시간 update */ 
 						$.ajax({
 							url:'${pageContext.request.contextPath}/userinfo/userloginupdate?user_id='+ email,
 							success:function(){
