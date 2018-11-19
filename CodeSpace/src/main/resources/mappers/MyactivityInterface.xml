@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.cos.mypage.dao.MyactivityInterface">
+
+<!-- 내가 한 질문 얻어오기 -->
+<select id="getMyQst" resultType="com.team.cos.question.vo.QuestionInfo">
+	select * 
+	from question 
+	where user_no = #{user_no} 
+	order by q_regdate desc
+	
+</select>
+
+<!-- 내가 쓴 질문 카운트 -->
+<select id="countMyQst" resultType="int">
+	select count(*)
+	from question
+	where user_no = #{user_no}
+</select>
+
+<!-- 페이징 처리된 질문들 -->
+<select id="selectMyQst" resultType="com.team.cos.question.vo.QuestionInfo">
+	select * 
+	from question 
+	where user_no = #{user_no} 
+	order by q_regdate desc
+	limit #{firstRow}, #{endRow}
+</select>
+
+
+
+<!-- 내가 한 답변 얻어오기 -->
+<!-- <select id="getMyAns" resultType="com.team.cos.question.vo.QuestionInfo">
+
+</select>
+ -->
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ </mapper>

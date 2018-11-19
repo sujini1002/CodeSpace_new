@@ -11,7 +11,7 @@ import com.team.cos.mypage.service.ActivityService;
 @Controller
 public class ActivityController {
 	
-	@Autowired
+/*	@Autowired
 	private ActivityService service;
 
 	@RequestMapping("/mypage/activity")
@@ -22,5 +22,5 @@ public class ActivityController {
 		modelAndView.setViewName("mypage/activity");
 		return modelAndView;
 		
-	}
+	}*/
 }
