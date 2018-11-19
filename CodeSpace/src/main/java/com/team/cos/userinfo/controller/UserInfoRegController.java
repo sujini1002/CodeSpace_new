@@ -39,7 +39,6 @@ public class UserInfoRegController {
 		ModelAndView modelAndView = new ModelAndView();
 
 		userInfoVo.setUser_pw(enService.encrypt(userInfoVo.getUser_pw()));
-		System.out.println("post:" + userInfoVo);
 
 		int result = service.insertUserInfo(userInfoVo, request);
 
@@ -47,7 +46,7 @@ public class UserInfoRegController {
 			// 등록이 제대로 안됐을 때
 			modelAndView.setViewName("userinfo/reconfirm");
 		} else {
-			/* mailService.sendMail(userInfoVo); */
+			mailService.sendMail(userInfoVo);
 			modelAndView.setViewName("home");
 			session.setAttribute("loginInfo", userInfoVo);
 		}

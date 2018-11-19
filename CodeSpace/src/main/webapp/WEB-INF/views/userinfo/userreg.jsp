@@ -17,10 +17,13 @@
                 
                 <label for="password">비밀번호</label>
                 <input type="password" class="form-control h_pw" placeholder="비밀번호를 입력하세요" name="user_pw" />
+               
                 <div class="h_checkpw"></div>
             </c:if>
             <c:if test="${!empty googlecheck}">
                 <input type="text" class="form-control h_id" name="user_id" value="${googlecheck}" readonly="readonly" />
+                
+                <!-- <input type="password" class="form-control h_pw" value="null" name="user_pw" hidden="hidden"/> -->
             </c:if>
         </div>
         
