@@ -1,5 +1,9 @@
 package com.team.cos.userinfo.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.team.cos.userinfo.service.AES256UtilService;
 import com.team.cos.userinfo.service.UserInfoLoginUpdateService;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
@@ -20,6 +25,8 @@ public class UserInfoLoginCheck {
 
 	@Autowired
 	private UserInfoLoginUpdateService updateService;
+	@Autowired
+	private AES256UtilService enService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getUserInfoLogin(HttpServletRequest request, HttpServletResponse response) {
@@ -30,8 +37,11 @@ public class UserInfoLoginCheck {
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
 	public int postUserInfoLogin(UserInfoVo userInfoVo, HttpSession session, boolean user_cookie,
-			HttpServletResponse response) {
+			HttpServletResponse response)
+			throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
 		UserInfoVo result = new UserInfoVo();
+		userInfoVo.setUser_pw(enService.encrypt(userInfoVo.getUser_pw()));
+		
 		result = updateService.userLoginCheck(userInfoVo);
 
 		if (result.getUser_pw() == null) {

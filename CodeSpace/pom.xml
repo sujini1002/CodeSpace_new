@@ -16,6 +16,13 @@
 	</properties>
 
 	<dependencies>
+		<!-- 암호화 처리를 위한 codec -->
+		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.10</version>
+		</dependency>
 
 		<!-- 메일 설정 시작 -->
 		<!-- ======================================================== -->

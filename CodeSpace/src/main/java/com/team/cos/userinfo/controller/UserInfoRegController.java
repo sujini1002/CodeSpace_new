@@ -1,6 +1,8 @@
 package com.team.cos.userinfo.controller;
 
 import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.cos.userinfo.service.AES256UtilService;
 import com.team.cos.userinfo.service.SimpleRegistrationNotifierService;
-import com.team.cos.userinfo.service.UserInfoCheckService;
 import com.team.cos.userinfo.service.UserInfoRegService;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
@@ -21,7 +23,8 @@ import com.team.cos.userinfo.vo.UserInfoVo;
 public class UserInfoRegController {
 	@Autowired
 	private UserInfoRegService service;
-
+	@Autowired
+	private AES256UtilService enService;
 	@Autowired
 	private SimpleRegistrationNotifierService mailService;
 
@@ -32,8 +35,11 @@ public class UserInfoRegController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView insertUserInfo(UserInfoVo userInfoVo, HttpServletRequest request, HttpSession session)
-			throws IllegalStateException, IOException {
+			throws IllegalStateException, IOException, NoSuchAlgorithmException, GeneralSecurityException {
 		ModelAndView modelAndView = new ModelAndView();
+
+		userInfoVo.setUser_pw(enService.encrypt(userInfoVo.getUser_pw()));
+		System.out.println("post:" + userInfoVo);
 
 		int result = service.insertUserInfo(userInfoVo, request);
 
@@ -41,7 +47,7 @@ public class UserInfoRegController {
 			// 등록이 제대로 안됐을 때
 			modelAndView.setViewName("userinfo/reconfirm");
 		} else {
-			/*mailService.sendMail(userInfoVo);*/
+			/* mailService.sendMail(userInfoVo); */
 			modelAndView.setViewName("home");
 			session.setAttribute("loginInfo", userInfoVo);
 		}

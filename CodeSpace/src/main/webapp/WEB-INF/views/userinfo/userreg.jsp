@@ -68,7 +68,7 @@ $(document).ready(function(){
 	var checkname = false;
 	var checkpw = false;
 	
-	var pattern = '^[a-zA-Z0-9][a-zA-Z0-9\.\_\-]{4,16}@[a-zA-Z0-9]+\.[a-zA-Z]{2,8}$';
+	var pattern = '^[a-zA-Z0-9][a-zA-Z0-9\.\_\-]{3,16}@[a-zA-Z0-9]+\.[a-zA-Z]{2,8}$';
 	/* id 적합성 체크 */
 	$('.h_id').focusout(function(){
 		var data = $('.h_id');

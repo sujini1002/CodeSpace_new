@@ -29,7 +29,7 @@ public class UserInfoRegService {
 
 		// 물리적 저장경로
 		String uploadUri = "/uploadfile/userphoto";
-
+		
 		// uploadUri의 시스템 경로
 		String dir = request.getSession().getServletContext().getRealPath(uploadUri);
 		System.out.println("시스템경로:" + dir);
