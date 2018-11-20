@@ -11,11 +11,16 @@
 
 	<!-- 플젝 정보 추가 -->
 	<insert id="insertProject">
-		insert into project 
-		(project_title, project_content, project_startdate, project_enddate,
-		pm_no, user_no1, user_no2, user_no3, user_no4)
-		values (#{project_title}, #{project_content}, now(), #{project_enddate},
-		#{pm_no}, #{user_no1}, #{user_no2}, #{user_no3}, #{user_no4} )
+		insert into project
+		(project_title, project_content, project_startdate,
+		project_enddate,
+		pm_no, user_no1,
+		user_no2, user_no3, user_no4)
+		values
+		(#{project_title},
+		#{project_content}, now(), #{project_enddate},
+		#{pm_no}, #{user_no1},
+		#{user_no2}, #{user_no3}, #{user_no4} )
 		<!-- 입력한후에 입력된 값의 컬럼값(자동증가값)을 가져오고 싶다면 아래와 같이 진행한다. SELECT LAST_INSERT_ID()은 
 			mysql(mariadb)에서 사용한다. 방금입력한 테이블의 auto_increment로 증가된 컬럼값을 가져오는 쿼리이다. order=AFTER로 
 			설정 -->
@@ -24,36 +29,52 @@
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 	</insert>
-	
+
 	<!-- project_no에 해당하는 플젝 정보 수정 -->
-	<update id="updateProject" parameterType="com.team.cos.project.vo.ProjectInfoVO">
-		update project 
-		set project_title=#{project_title}, project_content = #{project_content}, project_enddate = #{project_enddate}
+	<update id="updateProject"
+		parameterType="com.team.cos.project.vo.ProjectInfoVO">
+		update project
+		set project_title=#{project_title},
+		project_content = #{project_content},
+		project_enddate =
+		#{project_enddate}
 		where project_no = #{project_no}
 	</update>
-	
+
 	<!-- project finish 클릭 시 project_status = 0으로 update -->
 	<update id="updateProStatus">
 		update project
-		set project_status=0, project_enddate=now()
+		set project_status=0,
+		project_enddate=now()
 		where project_no = #{project_no}
 	</update>
 
 
 	<!-- 로그인한 사용자가 참여중인 project가 있는지 확인 -->
-	<select id="selectUserPro" 
-		parameterType="int"
+	<select id="selectUserPro" parameterType="int"
 		resultType="com.team.cos.project.vo.ProjectInfoVO">
-		select * from project 
+		select * from project
 		where project_status=1
 		and (
-			pm_no=#{user_no}
-			or user_no1=#{user_no}
-			or user_no2=#{user_no}
-			or user_no3=#{user_no}
-			or user_no4=#{user_no}		
-		)		
+		pm_no=#{user_no}
+		or user_no1=#{user_no}
+		or user_no2=#{user_no}
+		or
+		user_no3=#{user_no}
+		or user_no4=#{user_no}
+		)
 	</select>
 
+	<!-- project 테이블에 member로 추가한 user_no update -->
+	<!-- <update id="memberUpdate" parameterType="java.util.List"> <foreach 
+		collection="list" item="member" index="index" separator=";"> update project 
+		set user_no1 = #{member} where project_no = #{project_no} </foreach> </update> -->
 
+	<!-- 공지사항 받아오기 위함 -->
+	<select id="projectNoticeView"
+		parameterType="com.team.cos.project.vo.ProjectInfoVO"
+		resultType="com.team.cos.project.vo.ProjectNoticeVO">
+		select notice_title, notice_content, notice_regdate from
+		project_notice where project_no=#{project_no}
+	</select>
 </mapper>
