@@ -57,13 +57,13 @@ $.widget("ui.autocomplete", $.ui.autocomplete, {
             	//selectedMember.push(ui);
             	//console.log(selectedMember);
             	
-                $("<div data-user_no="+ui.item.value+"></div>")
+                $("<div></div>")
                     .addClass("ui-autocomplete-multiselect-item selectedMember")
                     .text(ui.item.label)
+                    .val(ui.item.value)
                     .append(
                         $("<div></div>")
                             .addClass("ui-icon ui-icon-close")
-                            //.val(ui.item.value)
                             .click(function(){
                                 var item = $(this).parent();
                                 delete self.selectedItems[item.text()];
@@ -84,24 +84,19 @@ $.widget("ui.autocomplete", $.ui.autocomplete, {
                 self.menu.element.position(pos);
             }*/
             
+            
+            
+            
             //project member 초대하기 버튼 클릭 시 이벤트
             $("#inviteMember").click(function(){
-            	
-            	
+            	var selectedUserNo = [];
             	var selectedMember = document.querySelectorAll(".selectedMember");
-            	//selectedMember 클래스의 개수
-            	selectedMember.forEach(function(member){
-            		
-            		console.log(member);
-            	});
-            	//console.log($(".selectedMember").length);
+
+            	for(var i=0, len=selectedMember.length; i<len; i++){
+            		selectedUserNo[i] = selectedMember[i].value;
+            	}
             	
             	
-            	
-            	
-            	
-            	
-            	//attr("data-user_no")
             	/*$.post("/cos/project/inviteMember", function(selectedMember){
             		alert(selectedMember);
             	});*/
