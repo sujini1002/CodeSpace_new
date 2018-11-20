@@ -9,10 +9,7 @@ $.widget("ui.autocomplete", $.ui.autocomplete, {
 
         var self = this,
             o = self.options;
-        // 선택된 사용자 정보 저장하는 변수
-        //var selectedMember = [];
 
-        	//this.options.multiselect
         if (o.multiselect) {
             console.log('multiselect true');
 
@@ -83,31 +80,8 @@ $.widget("ui.autocomplete", $.ui.autocomplete, {
                 pos.top += self.multiselect.height();
                 self.menu.element.position(pos);
             }*/
-            
-            
-            
-            
-            //project member 초대하기 버튼 클릭 시 이벤트
-            $("#inviteMember").click(function(){
-            	var selectedUserNo = [];
-            	var selectedMember = document.querySelectorAll(".selectedMember");
-
-            	for(var i=0, len=selectedMember.length; i<len; i++){
-            		selectedUserNo[i] = selectedMember[i].value;
-            	}
-            	
-            	
-            	/*$.post("/cos/project/inviteMember", function(selectedMember){
-            		alert(selectedMember);
-            	});*/
-            	
-            	
-            });
         }
         
-      //  console.log(self.selectedItems);
-        
-
         return this;
     }
 });

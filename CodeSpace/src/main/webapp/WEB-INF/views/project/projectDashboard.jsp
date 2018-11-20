@@ -37,7 +37,7 @@
 <table class='table' >
 	<tr>
 		<td>캘린더  <a href="#">더보기</a></td>
-		<td>공지사항 <a href="#">더보기</a></td>
+		<td>공지사항 <a href="${pageContext.request.contextPath }/project/notice/notice">더보기</a></td>
 	</tr>
 	<tr>
 		<td><img src="../images/stop.jpg" width=300px></td>
@@ -152,7 +152,7 @@
         	<span aria-hidden="true">&times;</span>
         </button>
       </div>
-     <!--  <form method="post" action="/cos/project/inviteMember">  -->
+		<form method="post" action="/cos/project/inviteMember">  
 	      <!-- 사용자 초대 -->
 	      <div class="modal-body">
 	      	<!-- 사용자 번호 -->
@@ -162,15 +162,16 @@
 	      	<!-- 사용자 검색하기 (자동완성)-->
 			<div class="form-group">
 				<label>사용자 검색하기</label>
-				<input class="form-control" id="search_user"><!--   -->
+				<input class="form-control" id="search_user">
 			</div>
-			<b></b>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary" id="inviteMember">Invite member</button>
+	        <button type="submit" class="btn btn-primary" id="inviteMember">Invite member</button>
 	      </div>
-<!-- 	      </form> -->
+	      
+	      
+		</form>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
@@ -259,6 +260,24 @@
 	
 	//선택한 사용자의 user_no를 controller에 전달
 	//console.log(self.selectedItems[ui.item.label]);
+    $("#inviteMember").click(function(){
+      	var selectedUserNo = [];
+      	var selectedMember = document.querySelectorAll(".selectedMember");
+
+      	for(var i=0, len=selectedMember.length; i<len; i++){
+        	selectedUserNo[i] = selectedMember[i].value;
+        }
+            	
+            	
+            	$.post("/cos/project/inviteMember", 
+            		selectedUserNo,
+            		function(selectedUserNo, status){
+            			console.log(selectedUserNo);
+            			alert(selectedUserNo);
+            	});
+            	
+            	
+            });
 	
 	
 	
