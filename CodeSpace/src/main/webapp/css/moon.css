@@ -23,8 +23,6 @@
 
 .userList {
 	border: 1px solid red;
-	display: grid;
-	grid: repeat(4, 300px)/auto-flow 120px;
 }
 
 .userFrame {
@@ -36,31 +34,14 @@
 
 .userPic {
 	background-color: blue;
+	min-height: 54;
+	max-height: 54;
+	min-width: 54;
+	max-width: 54;
 }
 
 .user-detail {
 	background-color: lightblue;
-}
-
-.userListTbl {
-	margin-left: 19px;
-	padding: 20px;
-	border: 1px solid black;
-	border-spacing: 30px;
-}
-
-.userListTblImg {
-	float: left;
-	display: inline-block;
-	width: 80px;
-	height: 80px;
-}
-
-.userListTblContent {
-	float: left;
-	display: inline-block;
-	width: 250px;
-	height: 60px;
 }
 
 .user-row {
@@ -127,4 +108,22 @@
 
 .list-container a:hover{
 	font-weight: bold;	
+}
+
+.user-row{
+	
+	margin: 1px;
+	border: 1px solid yellow;
+}
+
+.user-info{
+	
+	margin: 0px;
+	min-height: 80px;
+	max-height: 80px;
+	
+}
+
+.user-tag{
+	background-color: grey;
 }

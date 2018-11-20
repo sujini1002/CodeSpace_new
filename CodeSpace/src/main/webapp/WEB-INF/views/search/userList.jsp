@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%-- <%@ page session="false"%> --%>
 
 <jsp:include page="../common/layout_top.jsp" />
@@ -13,7 +14,7 @@
 <!-- 검색 창 입력 시 비동기 처리로 회원 정보 검색 -->
 <div class="container">
    <div class="head-container">
-      <h2>Stars in Space</h2>
+      <h1>Stars in Space</h1>
       
       <div id="navbar" class="userSearch">
          <div class="userSearchBar">
@@ -27,12 +28,13 @@
          </div>
          
          <div class="userListChange">
-            <a href="#">바둑판식 보기</a> / 
+            <a href="#">바둑판식 보기</a> &nbsp; | &nbsp;
             <a href="#">리스트 보기</a>
          </div>
          
       </div>
    </div>
+   <br>
    <hr>
    <br>
    
@@ -58,6 +60,7 @@
                      dataType: 'json',
                      success: function(result){
                         console.log(result);
+                        /*
                         if(result.length > 0){
                            var str='';
                            str += '<table class="userListTbl" border="1px solid black"><tr>';
@@ -75,6 +78,7 @@
                            str = '검색된 결과가 없습니다.';
                            $("#userList").html(str);
                         }
+                        */
                      },
                      error: function(e){
                         console.log('error : ' + e.status);
@@ -86,14 +90,18 @@
       
       <c:if test="${!empty userList}">
 	      <div class="userList">
-	      	  <c:set var="cnt" value="0" /> <!-- 한 row 당 4명씩 짜르기 위해 선언하는 변수 -->
+		      <div class="row user-row">
 	      	  <c:forEach var="userInfo" items="${userList}">
-	      	  <c:set var="cnt" value="${cnt+1}" /> <!-- for문을 돌리면서 row 한줄에 채워지는 유저 정보 수를 체크  -->
-		      <div class="col-lg-8">
-		      			<div class="col-lg-1 userPic">pic</div>
-		      			<div class="col-lg-5 user-detail">${userInfo.user_nickname}</div>
-		      </div>
+	      	  	<div class="row col-lg-3 user-info">
+		      		<div class="col-lg-4 userPic">
+		      			<a href="#"><img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" alt width="54" height="54"></a></div>
+		      		<div class="col-lg-8 user-detail">${userInfo.user_nickname}</div>
+		      		<div class="col-lg-12 user-tag">
+		      			<span><h6>태그 들어간다</h6></span>
+		      		</div>
+		      	</div>
 		      </c:forEach>
+		      </div>
 	      </div>
       </c:if>
          <%-- <table class="userListTbl" border="1px solid black">
@@ -116,7 +124,6 @@
          </table> --%>
    
    </div> <!-- list-container 끝 -->
-   
 
 <div> <!-- main-container 끝 -->
 

@@ -33,7 +33,7 @@ public class PageMaker {
 	// 데이터 계산을 위한 메서드
 	public void calcData() {
 		// 게시판 페이징의 마지막 페이지 번호 = Math.ceil(현재 페이지 번호 / 보여지는 페이지 번호의 수) * 보여지는 페이지 번호의 수
-		// ex) 현재 페이지 번호가 5라면 Math.ceil(5/10) * 10 => 1(0.2를 올림한 결과) * 10 = 10
+		// ex) 현재 페이지 번호가 5라면 Math.ceil(5/10) * 10 => 1(0.5를 올림한 결과) * 10 = 10
 		// 결국 현재 페이지번호가 5인 페이징 넘버의 마지막 페이지번호는 10이 된다.
 		// 현재 페이지 번호가 12일 경우 Math.ceil(12/10) * 10 => 2 * 10 = 20 페이지가 마지막 페이지 넘버
 		endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum);
