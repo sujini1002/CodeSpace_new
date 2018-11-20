@@ -14,11 +14,13 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<!-- 메일 보내기 위한 bean 등록  -->
-	<beans:bean id="mailSender"	class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<!-- 메일 보내기 위한 bean 등록 -->
+	<beans:bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<beans:property name="host" value="smtp.gmail.com" />
 		<beans:property name="port" value="587" /><!-- 465 or 25 -->
-		<beans:property name="username" value="cos.aufclakstp@gmail.com" />
+		<beans:property name="username"
+			value="cos.aufclakstp@gmail.com" />
 		<beans:property name="password" value="aufclakstp!123" />
 		<beans:property name="defaultEncoding" value="utf-8" />
 		<beans:property name="javaMailProperties">
@@ -30,4 +32,19 @@
 			</beans:props>
 		</beans:property>
 	</beans:bean>
+
+	<!--인터셉처 처리를 위해 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/**" />
+			<exclude-mapping path="/css/**"/>
+			<exclude-mapping path="/images/**"/>
+			<exclude-mapping path="/js/**"/>
+			<exclude-mapping path="/"/>
+			<exclude-mapping path="/userinfo/**"/>
+			<exclude-mapping path="/project/**"/>
+			<exclude-mapping path="/mypage/**"/>
+			<beans:bean class="com.team.cos.interceptor.HandlerInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors>
 </beans:beans>
