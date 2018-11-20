@@ -41,4 +41,8 @@
 		class="com.team.cos.comment.service.QuestionCommentInsertService"/>
 	<beans:bean id="questionCommentListService"
 		class="com.team.cos.comment.service.QuestionCommentListService"/>
+	<beans:bean id="questionCommentUpdateService"
+		class="com.team.cos.comment.service.QuestionCommentUpdateService"/>
+	<beans:bean id="questionCommentDeleteService"
+		class="com.team.cos.comment.service.QuestionCommentDeleteService"/>
 </beans:beans>

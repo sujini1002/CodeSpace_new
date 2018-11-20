@@ -10,11 +10,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(#{q_no},#{user_no},#{qc_content},now())
 	</insert>
 	<!-- 댓글 리스트 모두  출력 -->
-	<select id="QuesCommOneQuestion" parameterType="int" resultType="com.team.cos.comment.vo.QuestionCommentInfo">
-		select qc.q_no,qc.user_no,u.user_name,qc.qc_content,
+	<select id="QuesCommOneQuestion"  resultType="com.team.cos.comment.vo.QuestionCommentInfo">
+		select qc.qc_no,qc.q_no,qc.user_no,u.user_name,qc.qc_content,
 			   date_format(qc.qc_regdate,"%Y/%m/%e %l:%i") as qc_regdate
 		from question_comm qc inner join userinfo u
 		on qc.user_no = u.user_no
 		where qc.q_no = #{q_no}
-	</select>	
+		order by qc.qc_no 
+	</select>
+	<!-- 질문 댓글 수정 -->
+	<update id="quesCommUpdate" parameterType="com.team.cos.comment.vo.QuestionCommentInfo">
+		update question_comm set qc_content= #{qc_content}, qc_regdate = now()
+		where qc_no = #{qc_no}
+	</update>
+	<!-- 댓글의 질문 번호 가져오기 -->	
+	<select id="findQestionNumber" resultType="int">
+		select q_no from question_comm  where qc_no = #{qc_no}
+	</select>
+	<!-- 댓글 삭제 -->
+	<delete id="deletQComment">
+		delete from question_comm where qc_no = #{qc_no}
+	</delete>
 </mapper>

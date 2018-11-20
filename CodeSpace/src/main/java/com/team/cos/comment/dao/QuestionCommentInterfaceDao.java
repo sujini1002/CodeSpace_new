@@ -10,4 +10,7 @@ public interface QuestionCommentInterfaceDao {
 	
 	public int insertQuesComm(QuestionCommentInfo questionCommentInfo);
 	public List<QuestionCommentInfo> QuesCommOneQuestion(@Param("q_no")int q_no);
+	public int quesCommUpdate(QuestionCommentInfo questionCommentInfo);
+	public int findQestionNumber(@Param("qc_no") int qc_no);
+	public int deletQComment(@Param("qc_no") int qc_no);
 }

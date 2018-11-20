@@ -59,7 +59,7 @@ public class QuestionOneViewController {
 		modelAndView.addObject("questionCommList", questionCommList);
 		modelAndView.setViewName("question/questionOneView");
 		
-		System.out.println("컨트롤러"+userInfoList);
+		//System.out.println("컨트롤러"+userInfoList);
 		
 		return modelAndView;
 	}
