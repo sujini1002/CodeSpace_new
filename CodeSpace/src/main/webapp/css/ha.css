@@ -78,7 +78,6 @@
 }
 
 .h_noticeTable {
-	border: 1px solid black;
 	text-align: center;
 	width: 80%;
 	margin-left: -1%;
@@ -87,11 +86,3 @@
 .h_noticeTable thead {
 	background-color: gray;
 }
-
-.h_noticeTable tr :nth-child(even){
-	background-color: red;
-}
-/* 
-.h_noticeTable tr {
-	background-color: red;
-} */

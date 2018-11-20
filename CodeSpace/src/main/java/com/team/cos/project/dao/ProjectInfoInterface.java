@@ -3,6 +3,7 @@ package com.team.cos.project.dao;
 import java.util.List;
 
 import com.team.cos.project.vo.ProjectInfoVO;
+import com.team.cos.project.vo.ProjectNoticeVO;
 
 public interface ProjectInfoInterface {
 	
@@ -24,6 +25,7 @@ public interface ProjectInfoInterface {
 	//사용자 정보 project에 insert
 	public void memberUpdate(List<Integer> member, int project_no);
 	
-	
+	//project notice view
+	public List<ProjectNoticeVO> projectNoticeView(ProjectInfoVO projectInfoVO);
 
 }

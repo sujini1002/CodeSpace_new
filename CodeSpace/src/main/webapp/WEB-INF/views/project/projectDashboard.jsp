@@ -34,14 +34,19 @@
 
 
 <!-- 캘린더와 공지사항 표출 영역  -->
-<table class='table' >
+<table class='table'>
 	<tr>
 		<td>캘린더  <a href="#">더보기</a></td>
 		<td>공지사항 <a href="${pageContext.request.contextPath }/project/notice/notice">더보기</a></td>
 	</tr>
 	<tr>
 		<td><img src="../images/stop.jpg" width=300px></td>
-		<td></td>
+		<c:forEach var="projectNotice" items="${projectNotice }">
+		
+		<td>
+		${projectNotice.notice_title }
+		</td>
+		</c:forEach>
 	</tr>
 </table>
 
@@ -261,20 +266,28 @@
  			appendTo: '#proMemberInvite',
  			multiselect: true
  		}); 
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	</script>
+		
+			/* $.ajax({
+				url:"${pageContext.request.contextPath}/project/notice",
+				data:{
+					"project_no":project_no
+				},
+				success:function(response){
+					alert('악');
+				}
+			});		 */
+		$(document).ready(function(){
+			var url='${pageContext.request.contextPath}/project/notice';
+			$.ajax({
+				url: url,
+				dataType:"json",
+				data:{
+					"project_no":"${pro_info.project_no}"
+				},
+				success:function(response){
+					console.log(response);
+				}
+			});
+		});
+</script>
 
