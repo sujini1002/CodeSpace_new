@@ -28,8 +28,12 @@ public class ProjectNoticeController {
 	}
 
 	@RequestMapping(value = "/project/notice/notice", method = RequestMethod.GET)
-	public String getNotice(ProjectInfoVO projectInfoVo) {
-		return "project/notice/notice";
+	public ModelAndView getNotice(ProjectInfoVO projectInfoVo) {
+		ModelAndView modelAndView = new ModelAndView();
+		List<ProjectNoticeVO> result = service.noticeView(projectInfoVo);
+		modelAndView.setViewName("project/notice/notice");
+		modelAndView.addObject("projectNotice", result);
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/project/notice/notice", method = RequestMethod.POST)

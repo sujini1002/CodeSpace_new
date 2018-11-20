@@ -37,7 +37,7 @@
 <table class='table'>
 	<tr>
 		<td>캘린더  <a href="#">더보기</a></td>
-		<td>공지사항 <a href="${pageContext.request.contextPath }/project/notice/notice">더보기</a></td>
+		<td>공지사항 <a href="${pageContext.request.contextPath }/project/notice/notice?project_no=${pro_info.project_no }">더보기</a></td>
 	</tr>
 	<tr>
 		<td class="h_notice"><img src="../images/stop.jpg" width=300px></td>
@@ -266,16 +266,6 @@
  			appendTo: '#proMemberInvite',
  			multiselect: true
  		}); 
-		
-			/* $.ajax({
-				url:"${pageContext.request.contextPath}/project/notice",
-				data:{
-					"project_no":project_no
-				},
-				success:function(response){
-					alert('악');
-				}
-			});		 */
 		 $(document).ready(function(){
 			var url='${pageContext.request.contextPath}/project/notice';
 			$.ajax({
@@ -285,11 +275,11 @@
 					"project_no":"${pro_info.project_no}"
 				},
 				success:function(response){
-					
 					$.each(response,function(index,item){
-						var data = '<li>'+item.notice_no+":"+item.notice_title+":"+item.notice_content+'</li>';
-						console.log(data);
-						$('.h_ul').append(data);
+						if(index<5){
+							var data = '<li>'+item.notice_no+":"+item.notice_title+":"+item.notice_content+'</li>';
+							$('.h_ul').append(data);
+						}
 					})
 				}
 			});
