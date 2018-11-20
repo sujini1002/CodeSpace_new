@@ -80,11 +80,4 @@
 
 
 
-
-
-
-
-
-
-
 	<jsp:include page="../common/layout_footer.jsp" />
