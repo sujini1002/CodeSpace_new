@@ -82,6 +82,33 @@ $.widget("ui.autocomplete", $.ui.autocomplete, {
             }*/
         }
         
+        
+        
+    	//선택한 사용자의 user_no를 controller에 전달
+        $("#inviteMember").click(function(){
+          	var selectedMember = document.querySelectorAll(".selectedMember");
+    		var len = selectedMember.length;
+    		
+    		var member = document.getElementsByName("member");
+          	for(var i=0; i<len; i++){
+          		//user_no1 = document.getElementById(user_no1);
+          		/*eval("var user_no"+(i+1)+" = document.getElementsByName("+"'user_no"+(i+1)+"');");
+    	      	
+    	      	eval("console.log(user_no"+(i+1)+".value;");*/
+          		member[i].value = selectedMember[i].value;
+          		console.log(member[i]);
+            }
+           
+          	//alert(document.getElementsByName("user_no2").value);
+          	
+          	
+          	
+          	
+          	
+                	
+                	
+        });
+        
         return this;
     }
 });

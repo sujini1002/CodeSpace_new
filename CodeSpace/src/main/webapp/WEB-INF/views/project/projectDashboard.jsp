@@ -152,7 +152,7 @@
         	<span aria-hidden="true">&times;</span>
         </button>
       </div>
-		<form method="post" action="/cos/project/inviteMember">  
+ 		<form method="post" action="/cos/project/inviteMember"> 
 	      <!-- 사용자 초대 -->
 	      <div class="modal-body">
 	      	<!-- 사용자 번호 -->
@@ -164,6 +164,11 @@
 				<label>사용자 검색하기</label>
 				<input class="form-control" id="search_user">
 			</div>
+			<!-- 초대할 user_no 저장하는 곳 -->
+			<input type="hidden" name="member">
+			<input type="hidden" name="member">
+			<input type="hidden" name="member">
+			<input type="hidden" name="member">
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -171,7 +176,7 @@
 	      </div>
 	      
 	      
-		</form>
+		 </form> 
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
@@ -258,26 +263,7 @@
  		}); 
 	
 	
-	//선택한 사용자의 user_no를 controller에 전달
-	//console.log(self.selectedItems[ui.item.label]);
-    $("#inviteMember").click(function(){
-      	var selectedUserNo = [];
-      	var selectedMember = document.querySelectorAll(".selectedMember");
 
-      	for(var i=0, len=selectedMember.length; i<len; i++){
-        	selectedUserNo[i] = selectedMember[i].value;
-        }
-            	
-            	
-            	$.post("/cos/project/inviteMember", 
-            		selectedUserNo,
-            		function(selectedUserNo, status){
-            			console.log(selectedUserNo);
-            			alert(selectedUserNo);
-            	});
-            	
-            	
-            });
 	
 	
 	
