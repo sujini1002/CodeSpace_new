@@ -122,7 +122,7 @@
 						$.ajax({
 							url:'${pageContext.request.contextPath}/userinfo/userloginupdate?user_id='+ email,
 							success:function(){
-								location.reload();
+								location.href="${pageContext.request.contextPath}/";
 							}
 						});
 					} 
