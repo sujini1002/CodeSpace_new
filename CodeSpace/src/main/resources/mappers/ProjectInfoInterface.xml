@@ -74,7 +74,7 @@
 	<select id="projectNoticeView"
 		parameterType="com.team.cos.project.vo.ProjectInfoVO"
 		resultType="com.team.cos.project.vo.ProjectNoticeVO">
-		select notice_title, notice_content, notice_regdate from
+		select notice_no, notice_title, notice_content, notice_regdate from
 		project_notice where project_no=#{project_no}
 	</select>
 </mapper>

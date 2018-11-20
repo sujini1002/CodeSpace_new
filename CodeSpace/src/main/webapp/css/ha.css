@@ -86,3 +86,7 @@
 .h_noticeTable thead {
 	background-color: gray;
 }
+
+.h_ul {
+	list-style: none;
+}

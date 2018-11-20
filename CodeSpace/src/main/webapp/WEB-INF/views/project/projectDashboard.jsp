@@ -40,14 +40,14 @@
 		<td>공지사항 <a href="${pageContext.request.contextPath }/project/notice/notice">더보기</a></td>
 	</tr>
 	<tr>
-		<td><img src="../images/stop.jpg" width=300px></td>
-		<c:forEach var="projectNotice" items="${projectNotice }">
-		
+		<td class="h_notice"><img src="../images/stop.jpg" width=300px></td>
 		<td>
-		${projectNotice.notice_title }
+			<ul class="h_ul">
+				
+			</ul>
 		</td>
-		</c:forEach>
 	</tr>
+	
 </table>
 
 <!-- REST 방식의 to do list -->
@@ -276,7 +276,7 @@
 					alert('악');
 				}
 			});		 */
-		$(document).ready(function(){
+		 $(document).ready(function(){
 			var url='${pageContext.request.contextPath}/project/notice';
 			$.ajax({
 				url: url,
@@ -285,7 +285,12 @@
 					"project_no":"${pro_info.project_no}"
 				},
 				success:function(response){
-					console.log(response);
+					
+					$.each(response,function(index,item){
+						var data = '<li>'+item.notice_no+":"+item.notice_title+":"+item.notice_content+'</li>';
+						console.log(data);
+						$('.h_ul').append(data);
+					})
 				}
 			});
 		});

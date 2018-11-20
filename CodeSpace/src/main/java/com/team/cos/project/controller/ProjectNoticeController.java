@@ -24,8 +24,6 @@ public class ProjectNoticeController {
 	@ResponseBody
 	public List<ProjectNoticeVO> useAjax(ProjectInfoVO projectInfoVo) {
 		List<ProjectNoticeVO> result = service.noticeView(projectInfoVo);
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("projectNotice", result);
 		return result;
 	}
 
