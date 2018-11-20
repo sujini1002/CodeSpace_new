@@ -50,7 +50,7 @@
 	<div class="y_profile_wrapper">
 		<div class="y_profile_myPhoto">
 			<img class="y_userphoto"
-				src="${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}">
+				src="${pageContext.request.contextPath}/uploadfile/userphoto/${loginInfo.user_photo}">
 		</div>
 
 		<div class="y_profile_myInfo">

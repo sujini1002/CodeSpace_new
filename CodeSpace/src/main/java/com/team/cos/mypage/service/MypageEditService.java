@@ -37,6 +37,7 @@ public class MypageEditService {
 		
 		  String uploadUri = "/uploadfile/userphoto"; 
 		  String dir1 = request.getSession().getServletContext().getRealPath(uploadUri);
+		  System.out.println(dir1);
 		  String photoName = "";
 		  
 		 if(!userInfoVo.getPhoto().isEmpty()) { 

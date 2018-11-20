@@ -28,7 +28,7 @@
 					href="${pageContext.request.contextPath}/mypage/myans?user_no=${loginInfo.user_no}">내가
 					한 답변</a> <a class="dropdown-item" href="#">즐겨찾기</a>
 			</div></li>
-		<c:if test="${loginInfo.user_score >= 31}">
+		<c:if test="${loginInfo.user_score} >= 31">
 			<li class="nav-item"><a class="nav-link" 
 			href="${pageContext.request.contextPath}/mypage/myPrj?user_no=${loginInfo.user_no}"
 				style="color: lightgray;">프로젝트</a></li>
@@ -71,7 +71,17 @@
 									href='${pageContext.request.contextPath}/question/questionView?q_no=<c:out value="${qst.q_no}"/>'>
 										${ans.q_title}</a></td>
 								<td>${fn:substring(ans.a_regdate, 0 ,10)}</td>
-								<td>${ans.a_choose}</td>
+								<%-- <td>${ans.a_choose}</td> --%>
+								<td><c:set var="result" value="${ans.a_choose}" />
+								<c:choose>
+									<c:when test="${result == 1 }"> 
+									채택 됨:P
+									</c:when>
+									<c:otherwise>
+									미채택
+									</c:otherwise>
+									</c:choose>
+								</td>
 							</tr>
 						</c:forEach>
 					</table>

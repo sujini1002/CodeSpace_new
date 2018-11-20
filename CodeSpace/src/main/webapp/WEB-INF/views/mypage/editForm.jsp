@@ -32,13 +32,36 @@
 	
 	
 	<div class="y_profile_wrapper">
-		<form method="post" enctype="multipart/form-data">
-			<div class="y_edit_myPhoto">
+		<form class="row" method="post" enctype="multipart/form-data" id="form" runat="server">
+			<%-- <div class="y_edit_myPhoto">
 				<input type="file" name="photo" class="y_btn_file"
 					src="${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}">
+			</div> --%>
+			<div class="y_edit_myPhoto col-md-3">
+				<img id="y_image_profile" src="${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}">
+				<input type="file" name="photo" class="y_btn_file" id="imgInput">
 			</div>
+			
+			<script type="text/javascript">
+			$(function(){
+				$("#imgInput").on('change', function(){
+					readURL(this);
+				});
+			});
+			
+			function readURL(input){
+				if(input.files && input.files[0]){
+					var reader = new FileReader();
+					
+					reader.onload = function(e){
+						$('#y_image_profile').attr('src', e.target.result);
+					}
+					reader.readAsDataURL(input.files[0]);
+				}
+			}
+			</script>
 
-			<div class="y_editForm">
+			<div class="y_editForm col-md-7 row">
 
 				<table class="table">
 					<tr>
