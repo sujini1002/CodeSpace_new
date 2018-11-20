@@ -1,5 +1,7 @@
 package com.team.cos.project.dao;
 
+import java.util.List;
+
 import com.team.cos.project.vo.ProjectInfoVO;
 
 public interface ProjectInfoInterface {
@@ -18,6 +20,9 @@ public interface ProjectInfoInterface {
 	
 	//로그인한 사용자가 참여중인 project 정보를 보여주는 메서드
 	public ProjectInfoVO selectUserPro(int user_no);
+	
+	//사용자 정보 project에 insert
+	public void memberUpdate(List<Integer> member, int project_no);
 	
 	
 

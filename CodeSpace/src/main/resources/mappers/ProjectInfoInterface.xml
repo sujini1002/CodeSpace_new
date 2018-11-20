@@ -54,6 +54,14 @@
 			or user_no4=#{user_no}		
 		)		
 	</select>
+	
+	<!-- project 테이블에 member로 추가한 user_no update -->
+<!-- 	<update id="memberUpdate" parameterType="java.util.List">
+		<foreach collection="list" item="member" index="index" separator=";">
+			update project set user_no1 = #{member} 
+			where project_no = #{project_no}
+		</foreach>
+	</update> -->
 
 
 </mapper>

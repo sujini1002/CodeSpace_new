@@ -19,6 +19,9 @@
 	<beans:bean id="projectModifyService" class="com.team.cos.project.service.ProjectModifyService"></beans:bean>
 	<beans:bean id="projectFinishService" class="com.team.cos.project.service.ProjectFinishService"></beans:bean>
 	<beans:bean id="userProjectViewService" class="com.team.cos.project.service.UserProjectViewService"></beans:bean>
+
+	<!-- project member invitation -->
+	<beans:bean id="memberInvitationService" class="com.team.cos.project.service.MemberInvitationService"></beans:bean>
 	
 	<!-- to do list service 등록 -->
 	<beans:bean id="tdlViewService" class="com.team.cos.project.service.TDLViewService"></beans:bean>
