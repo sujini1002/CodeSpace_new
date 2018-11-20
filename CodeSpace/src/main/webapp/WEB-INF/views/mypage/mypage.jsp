@@ -15,19 +15,37 @@
 			<a class="nav-link active" href="${pageContext.request.contextPath}/mypage/mypage">프로필</a></li>
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-			aria-expanded="false">내 활동</a>
+			aria-expanded="false" style="color:lightgray;">내 활동</a>
 			<div class="dropdown-menu">
 				<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/myqst?user_no=${loginInfo.user_no}">내가 한 질문</a> 
 				<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/myans?user_no=${loginInfo.user_no}">내가 한 답변</a> 
 				<a class="dropdown-item" href="#">즐겨찾기</a>
 			</div>
 		</li>
+		<c:if test="${loginInfo.user_score >= 31}">
+		<li class="nav-item">
+			<a class="nav-link" href="${pageContext.request.contextPath}/mypage/myPrj?user_no=${loginInfo.user_no}" style="color:lightgray;">프로젝트</a></li></c:if>
 	</ul>
 
 
-
-
-
+<%-- 	<ul class="nav nav-tabs">
+		<li class="nav-item"><a class="nav-link active"
+			href="${pageContext.request.contextPath}/mypage/mypage">프로필</a></li>
+		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+			data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+			aria-expanded="false" style="color: lightgray;">내 활동</a>
+			<div class="dropdown-menu">
+				<a class="dropdown-item"
+					href="${pageContext.request.contextPath}/mypage/myqst?user_no=${loginInfo.user_no}">내가
+					한 질문</a> <a class="dropdown-item"
+					href="${pageContext.request.contextPath}/mypage/myans?user_no=${loginInfo.user_no}">내가
+					한 답변</a> <a class="dropdown-item" href="#">즐겨찾기</a>
+			</div></li>
+		<c:if test="${loginInfo.user_score >= 31}">
+			<li class="nav-item"><a class="nav-link"
+				href="#" style="color: lightgray;">프로젝트</a></li>
+		</c:if>
+	</ul> --%>
 
 	<div class="y_profile_wrapper">
 		<div class="y_profile_myPhoto">

@@ -14,23 +14,30 @@
 	<!--  여기다가 작성 해주세요 -->
 
 	<ul class="nav nav-pills">
-		<li class="nav-item">
-			<a class="nav-link" href="${pageContext.request.contextPath}/mypage/mypage" style="color: gray;">프로필</a></li>
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" 
-			role="button" aria-haspopup="true" aria-expanded="false">내 활동</a>
+		<li class="nav-item"><a class="nav-link"
+			href="${pageContext.request.contextPath}/mypage/mypage"
+			style="color: gray;">프로필</a></li>
+		<li class="nav-item dropdown"><a
+			class="nav-link dropdown-toggle active" data-toggle="dropdown"
+			href="#" role="button" aria-haspopup="true" aria-expanded="false">내
+				활동</a>
 			<div class="dropdown-menu">
 				<a class="dropdown-item"
-					href="${pageContext.request.contextPath}/mypage/myqst?user_no=${loginInfo.user_no}">내가 한 질문</a> 
-					<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/myans?user_no=${loginInfo.user_no}">내가 한 답변</a> 
-					<a class="dropdown-item" href="#">즐겨찾기</a>
-			</div>
-		</li>
+					href="${pageContext.request.contextPath}/mypage/myqst?user_no=${loginInfo.user_no}">내가
+					한 질문</a> <a class="dropdown-item"
+					href="${pageContext.request.contextPath}/mypage/myans?user_no=${loginInfo.user_no}">내가
+					한 답변</a> <a class="dropdown-item" href="#">즐겨찾기</a>
+			</div></li>
+		<c:if test="${loginInfo.user_score >= 31}">
+			<li class="nav-item"><a class="nav-link" 
+			href="${pageContext.request.contextPath}/mypage/myPrj?user_no=${loginInfo.user_no}"
+				style="color: lightgray;">프로젝트</a></li>
+		</c:if>
 	</ul>
 
 	<div class="container">
 		<div class="head-container">
-		<br>
+			<br>
 			<h1>내가 작성한 답변</h1>
 		</div>
 
@@ -49,8 +56,10 @@
 						<thead>
 							<tr>
 								<th class="col-md-1" style="width: 30px; text-align: center;">번호</th>
-								<th class="col-md-7" style="width: 100px; text-align: center;">질문 제목</th>
-								<th class="col-md-2" style="width: 30px; text-align: center;">답변 작성일</th>
+								<th class="col-md-7" style="width: 100px; text-align: center;">질문
+									제목</th>
+								<th class="col-md-2" style="width: 30px; text-align: center;">답변
+									작성일</th>
 								<th class="col-md-1" style="width: 30px; text-align: center;">채택여부</th>
 							</tr>
 						</thead>
@@ -58,7 +67,7 @@
 							end="${fn:length(myAnsList) }" varStatus="status">
 							<tr>
 								<td>${status.count}</td>
-								<td><a
+								<td style="text-align: left;"><a
 									href='${pageContext.request.contextPath}/question/questionView?q_no=<c:out value="${qst.q_no}"/>'>
 										${ans.q_title}</a></td>
 								<td>${fn:substring(ans.a_regdate, 0 ,10)}</td>

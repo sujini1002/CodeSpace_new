@@ -1,8 +1,22 @@
 @charset "UTF-8";
-.nav-pills{
-	width: 900px;
-	margin-left: 50px;
-}
+
+/* nav tab 설정 */
+/* .nav-item .nav-link active{
+	background-color: rgb(236, 240, 245);
+	color: rgb(236, 240, 245);
+	
+} */
+
+
+
+
+
+
+
+
+
+/* nav tab 설정 끝 */
+
 /* 유저 아이콘 */
 y_user{
 	margin-right: 20px;

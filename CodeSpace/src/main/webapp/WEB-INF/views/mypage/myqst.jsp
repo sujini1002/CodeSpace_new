@@ -14,20 +14,21 @@
 	<!--  여기다가 작성 해주세요 -->
 
 	<ul class="nav nav-pills">
-		<li class="nav-item"><a class="nav-link"
-			href="${pageContext.request.contextPath}/mypage/mypage"
-			style="color: gray;">프로필</a></li>
-		<li class="nav-item dropdown"><a
-			class="nav-link dropdown-toggle active" data-toggle="dropdown"
-			href="#" role="button" aria-haspopup="true" aria-expanded="false">내
-				활동</a>
+		<li class="nav-item">
+			<a class="nav-link" href="${pageContext.request.contextPath}/mypage/mypage" style="color: gray;">프로필</a>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">내 활동</a>
 			<div class="dropdown-menu">
-				<a class="dropdown-item"
-					href="${pageContext.request.contextPath}/mypage/myqst?user_no=${loginInfo.user_no}">내가
-					한 질문</a> <a class="dropdown-item"
-					href="${pageContext.request.contextPath}/mypage/myans?user_no=${loginInfo.user_no}">내가
-					한 답변</a> <a class="dropdown-item" href="#">즐겨찾기</a>
-			</div></li>
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/myqst?user_no=${loginInfo.user_no}">내가 한 질문</a> 
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/myans?user_no=${loginInfo.user_no}">내가 한 답변</a> 
+				<a class="dropdown-item" href="#">즐겨찾기</a>
+			</div>
+		</li>
+		<c:if test="${loginInfo.user_score >= 31}">
+			<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/mypage/myPrj?user_no=${loginInfo.user_no}"
+				style="color: lightgray;">프로젝트</a></li>
+		</c:if>
 	</ul>
 
 	<div class="container">
@@ -60,7 +61,7 @@
 							end="${fn:length(myQstList) }" varStatus="status">
 							<tr>
 								<td>${status.count}</td>
-								<td><a
+								<td style="text-align: left;"><a
 									href='${pageContext.request.contextPath}/question/questionView?q_no=<c:out value="${qst.q_no}"/>'>
 										${qst.q_title}</a></td>
 								<td>${fn:substring(qst.q_regdate, 0 ,10)}</td>

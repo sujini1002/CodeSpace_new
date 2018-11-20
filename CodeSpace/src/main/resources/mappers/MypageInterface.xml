@@ -19,6 +19,14 @@
 	delete from userinfo where user_id = #{user_id}
 </delete>
 
-
+<!-- 내가 참가한 프로젝트 정보 가져오기 -->
+<select id="getMyprj" resultType="com.team.cos.project.vo.ProjectInfoVO">
+	select * from project 
+	where pm_no = #{user_no}
+		or user_no1 = #{user_no}
+		or user_no2 = #{user_no}
+		or user_no3 = #{user_no}
+		or user_no4 = #{user_no}		
+</select>
 
 </mapper>

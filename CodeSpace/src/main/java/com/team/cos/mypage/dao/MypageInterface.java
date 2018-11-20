@@ -2,6 +2,7 @@ package com.team.cos.mypage.dao;
 
 import java.util.List;
 
+import com.team.cos.project.vo.ProjectInfoVO;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
 public interface MypageInterface {
@@ -12,6 +13,10 @@ public interface MypageInterface {
 	public void update(UserInfoVo userInfoVo);
 	// 탈퇴하기
 	public void memberDelete(String user_id);
+	
+	
+	// 내가 참여한 프로젝트 정보 가져오기
+	public List<ProjectInfoVO> getMyprj(int user_no);
 	
 	
 	
