@@ -42,8 +42,8 @@
 			<exclude-mapping path="/js/**"/>
 			<exclude-mapping path="/"/>
 			<exclude-mapping path="/userinfo/**"/>
-			<exclude-mapping path="/project/**"/>
-			<exclude-mapping path="/mypage/**"/>
+			<exclude-mapping path="/question"/>
+			<exclude-mapping path="/questions"/>
 			<beans:bean class="com.team.cos.interceptor.HandlerInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>
