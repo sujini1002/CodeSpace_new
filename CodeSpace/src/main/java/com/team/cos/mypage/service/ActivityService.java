@@ -10,7 +10,7 @@ import com.team.cos.question.vo.QuestionInfo;
 
 public class ActivityService {
 
-	@Autowired
+/*	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	private MyactivityInterface myActInterface;
 	
@@ -23,7 +23,7 @@ public class ActivityService {
 		
 		return qstInfo;
 	
-	}
+	}*/
 	
 	// 내가 한 답변 얻어오기
 	/*public List getMyAns(int user_no) {

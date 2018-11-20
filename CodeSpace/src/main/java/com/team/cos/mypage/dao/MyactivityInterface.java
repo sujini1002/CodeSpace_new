@@ -11,15 +11,13 @@ import com.team.cos.question.vo.QuestionInfo;
 
 public interface MyactivityInterface {
 
-	// 내가 한 질문 가져오기
-	public List getMyQst(int user_no);
-
-	// 내가 한 질문 개수 카운트
-	public int countMyQst(int user_no);
-	
 	// 내가 한 질문 리스트(페이징 처리)
-	public List<QuestionInfo> getMyQst(@Param("user_no") int user_no, @Param("firstRow") int firstRow,
-			@Param("endRow") int endRow);
+	public List<QuestionInfo> getMyQst(@Param("user_no") int user_no, MyactCriteria cri);
+	
+	// 내가 한 질문 개수 카운트
+	public int countMyQst(@Param("user_no") int user_no, MyactCriteria cri);
+	
+
 
 	
 	

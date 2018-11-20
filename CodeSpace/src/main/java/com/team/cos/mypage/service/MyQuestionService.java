@@ -7,36 +7,33 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.team.cos.mypage.dao.MyactivityInterface;
-import com.team.cos.mypage.vo.MyQuestionList;
+import com.team.cos.mypage.vo.MyactCriteria;
 import com.team.cos.question.vo.QuestionInfo;
-
 
 public class MyQuestionService {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	private MyactivityInterface myActInterface;
-	
-	private static final int BOARD_COUNT_PER_PAGE = 10;
-	
-	public MyQuestionList getMyQstList(int pageNumber, int user_no) {
+
+	// 내가 한 질문 가져오기
+	public List<QuestionInfo> getMyQst(int user_no, MyactCriteria cri) {
+
 		myActInterface = sqlSessionTemplate.getMapper(MyactivityInterface.class);
-		
-		int currentPageNumber = pageNumber;
-		int boardTotalCount = myActInterface.countMyQst(user_no);
-		List<QuestionInfo> myQuestionList = null;
-		int firstRow = 0;
-		int endRow = 0;
 
-		if (boardTotalCount > 0) {
-			firstRow = (pageNumber - 1) * BOARD_COUNT_PER_PAGE;
-			endRow = BOARD_COUNT_PER_PAGE;
-			myQuestionList = myActInterface.getMyQst(user_no, firstRow, endRow);
-		} else {
-			currentPageNumber = 0;
-			myQuestionList = Collections.emptyList();
-		}
+		List<QuestionInfo> myQstList = myActInterface.getMyQst(user_no, cri);
+		// System.out.println(myQstList.size());
+		return myQstList;
 
-		return new MyQuestionList(myQuestionList, boardTotalCount, currentPageNumber, BOARD_COUNT_PER_PAGE, firstRow, endRow);
+	}
+
+	// 내가 한 질문 카운트
+	public int countMyQst(int user_no, MyactCriteria cri) {
+
+		myActInterface = sqlSessionTemplate.getMapper(MyactivityInterface.class);
+
+		int resultCnt = myActInterface.countMyQst(user_no, cri);
+
+		return resultCnt;
 	}
 }

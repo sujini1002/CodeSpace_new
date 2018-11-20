@@ -6,25 +6,17 @@
 <select id="getMyQst" resultType="com.team.cos.question.vo.QuestionInfo">
 	select * 
 	from question 
-	where user_no = #{user_no} 
+	where q_no > 0 and user_no = #{user_no} 
 	order by q_regdate desc
+	<!-- limit #{pageStart}, #{perPageNum} -->
 	
-</select>
+</select> 
 
-<!-- 내가 쓴 질문 카운트 -->
+<!-- 내가 한 질문 개수 카운트 -->
 <select id="countMyQst" resultType="int">
 	select count(*)
 	from question
-	where user_no = #{user_no}
-</select>
-
-<!-- 페이징 처리된 질문들 -->
-<select id="selectMyQst" resultType="com.team.cos.question.vo.QuestionInfo">
-	select * 
-	from question 
-	where user_no = #{user_no} 
-	order by q_regdate desc
-	limit #{firstRow}, #{endRow}
+	where q_no>0 and user_no = #{user_no}
 </select>
 
 
@@ -38,10 +30,10 @@
 	order by a_regdate desc
 </select>
 
-<!-- 내가 한 답변 카운트 -->
+<!-- 내가 한 답변 개수 카운트 -->
 <select id="countMyAns" resultType="int">
 	select count(*) from answer
-	where q_no>0 and user_no = #{user_no};
+	where q_no>0 and user_no = #{user_no}
 </select> 
  
  
