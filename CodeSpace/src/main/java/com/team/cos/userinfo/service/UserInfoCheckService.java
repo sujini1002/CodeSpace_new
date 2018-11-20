@@ -25,6 +25,7 @@ public class UserInfoCheckService {
 	
 	// user_no로 UserInfoVo 저장
 	public UserInfoVo userInfoCheckWithNo(int user_no) {
+		System.out.println("user service :"+user_no);
 		UserInfoVo result = new UserInfoVo();
 		
 		dao = sqlSessionTemplate.getMapper(UserInfoInterface.class);

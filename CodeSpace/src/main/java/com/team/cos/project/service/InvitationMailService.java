@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
 @Service
-public class MemberInvitationService {
+public class InvitationMailService {
 
 	@Autowired
 	private JavaMailSender sender;
