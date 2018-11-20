@@ -21,7 +21,7 @@
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li><a class="nav-link"
-					href="${pageContext.request.contextPath}/search/userList"><i class="fas fa-user-friends" style="color:white;">&nbsp;&nbsp;사용자</i></a></li>
+					href="${pageContext.request.contextPath}/user/userList"><i class="fas fa-user-friends" style="color:white;">&nbsp;&nbsp;사용자</i></a></li>
 				<li><a class="nav-link" href="#"><i class="fas fa-hashtag" style="color:white;">&nbsp;&nbsp;태그</i></a></li>
 				<li><a class="nav-link"
 					href="${pageContext.request.contextPath}/project/prjreg?user_no=${loginInfo.user_no}"><i class="fas fa-project-diagram" style="color:white;">&nbsp;&nbsp;프로젝트</i></a></li>

@@ -21,6 +21,9 @@
 	<!-- User Search Service 등록 -->
 	<beans:bean id="UserSearchService" class="com.team.cos.search.service.UserSearchService"/>
 	
+	<!-- User Service 등록 -->
+	<beans:bean id="UserService" class="com.team.cos.user.service.UserService"/>
+	
 	<!-- Paging Service 등록 -->
 	<beans:bean id="PagingService" class="com.team.cos.paging.service.PagingService"/>
 

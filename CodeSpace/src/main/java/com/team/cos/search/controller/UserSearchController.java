@@ -14,12 +14,12 @@ import com.team.cos.search.service.UserSearchService;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
 @Controller
-@RequestMapping(value="/search/userList")
 public class UserSearchController {
 	
 	@Autowired
 	private UserSearchService searchService;
 	
+	/*
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView getUserList() {
 
@@ -32,7 +32,9 @@ public class UserSearchController {
 		
 	}
 	
-	@RequestMapping(method=RequestMethod.POST)
+	*/
+	/*
+	@RequestMapping(value="/search/userList", method=RequestMethod.POST)
 	@ResponseBody
 	public List getSearchUser(@RequestParam("searchWords") String searchWords) {
 		
@@ -40,5 +42,5 @@ public class UserSearchController {
 		
 		return userInfo;
 	}
-	
+	*/
 }

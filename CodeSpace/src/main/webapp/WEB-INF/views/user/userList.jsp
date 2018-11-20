@@ -42,7 +42,7 @@
       <script>
          $(document).ready(function(){
             
-            //searchUser();
+            searchUser();
             
          });
          
@@ -55,7 +55,7 @@
                
                   $.ajax({
                      type: 'POST',
-                     url: '${pageContext.request.contextPath}/user/userList',
+                     url: '${pageContext.request.contextPath}/search/userList',
                      data: {searchWords : searchWords},
                      dataType: 'json',
                      success: function(result){
