@@ -42,9 +42,10 @@
 			<exclude-mapping path="/js/**"/>
 			<exclude-mapping path="/"/>
 			<exclude-mapping path="/userinfo/**"/>
-			<exclude-mapping path="/question/questionComment"/>
-			<exclude-mapping path="/question/questionOneView"/>
-			<exclude-mapping path="/question/questionUser"/>
+			<exclude-mapping path="/question/**"/>
+			<exclude-mapping path="/question/questionComment/**"/>
+			<exclude-mapping path="/question/questionOneView/**"/>
+			<exclude-mapping path="/question/questionUser/**"/>
 			<exclude-mapping path="/questions/**"/>
 			<exclude-mapping path="/search/**"/>
 			<exclude-mapping path="/user/**"/>
