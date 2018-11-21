@@ -25,7 +25,6 @@ public class AnswerListService {
 		List<AnswerInfo> list = new ArrayList<AnswerInfo>();
 		list = answerDao.answerList(q_no,order);
 		
-		System.out.println("서비스"+list);
 		
 		return list;
 	}

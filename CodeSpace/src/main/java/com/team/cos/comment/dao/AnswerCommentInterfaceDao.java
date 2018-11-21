@@ -14,4 +14,5 @@ public interface AnswerCommentInterfaceDao {
 	public int updateComment(AnswerCommentInfo answerCommentInfo);
 	public int findAnswerNum(@Param("ac_no")int ac_no);
 	public int deleteAc(@Param("ac_no")int ac_no);
+	public int countAnswerComm(@Param("a_no")int a_no);
 }

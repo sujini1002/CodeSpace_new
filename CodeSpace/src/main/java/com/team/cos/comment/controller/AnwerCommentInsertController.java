@@ -22,6 +22,8 @@ public class AnwerCommentInsertController {
 	public List<AnswerCommentInfo> insert(AnswerCommentInfo answerCommentInfo){
 		
 		service.insert(answerCommentInfo);
+		System.out.println("댓글 인서트 컨트롤러 리스트="+service.listAll(answerCommentInfo.getA_no()));
+		
 		
 		return service.listAll(answerCommentInfo.getA_no());
 	}

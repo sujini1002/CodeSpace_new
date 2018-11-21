@@ -35,4 +35,9 @@ public class AnswerCommentDeleteService {
 		
 		return list;
 	}
+	public int count(int a_no) {
+		ansCommDao = sqlSessionTemplate.getMapper(AnswerCommentInterfaceDao.class);
+		
+		return ansCommDao.countAnswerComm(a_no);
+	}
 }

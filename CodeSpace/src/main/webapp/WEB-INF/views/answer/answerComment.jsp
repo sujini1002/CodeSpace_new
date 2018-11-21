@@ -3,12 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <hr>
 <div id="k_answerCommList_<c:out value="${num.index}"/>">
-
-
+	
 	<div id="k_AnswerComm_<c:out value="${item.a_no}"/>"
 		style="padding: 0px">
 		<c:forEach var="list" items="${answerCommentList}" begin="0"
 			end="${fn:length(answerCommentList)}" varStatus="acNum">
+			
 			<c:if test="${list.a_no eq item.a_no }">
 				<input type="hidden"
 					id="k_acNo_<c:out value="${list.a_no}"/><c:out value="${acNum.index}"/>"
@@ -38,7 +38,6 @@
 			</c:if>
 		</c:forEach>
 	</div>
-
 
 
 	<a onclick="AnswercommentForm(this)"
@@ -79,30 +78,36 @@
 					dataType : 'json',
 					async : false,
 					success : function(data) {
+						console.log(data);
 						var quesCommList = '';
-						$.each(data, function(index, item) {
-							quesCommList += '<input type="hidden" id="k_acNo_'+item.a_no+index+'" value="'+item.ac_no+'"/>';
-							quesCommList += '<span id="k_acContent_'+item.a_no+index+'">';
-							quesCommList +=  item.ac_content;
-							quesCommList +=  '</span>';
-							quesCommList +=  '<input type="text" class="form-control" id="k_acContentInput_'+item.a_no+index+'" value="'+item.ac_content+'" style="display:none"/>';
-							quesCommList +=  '<span id="k_acUserName_'+item.a_no+index+'">';
-							quesCommList +=  '<a href="#">'+item.user_name+'</a>';
-							quesCommList +=  '</span>';
-							quesCommList +=  '<span id="k_acRegdate_'+item.a_no+index+'">';
-							quesCommList +=  item.ac_regdate;
-							quesCommList +=  '</span>';
-							if(loginUserNo == item.user_no){
-								quesCommList +=  '<span>';
-								quesCommList += '<a onclick="ac_update(this)"  class="badge badge-primary" id="k_acUpdateBtn_'+item.a_no+index+'">수정</a>';
-								quesCommList += '<a onclick="ac_delete(this)"  class="badge badge-danger"  id="k_acDeleteBtn_'+item.a_no+index+'">삭제</a>';
-								quesCommList +=  '</span>';
-							}
-							quesCommList += '<hr>';
-							ano = item.a_no;
-						});//end each
-						
-						$('#k_AnswerComm_'+ano).html(quesCommList);
+							$.each(data, function(index, item) {
+								if(item.ac_no==0){
+									ano = item.a_no;	
+								}else{
+									quesCommList += '<input type="hidden" id="k_acNo_'+item.a_no+index+'" value="'+item.ac_no+'"/>';
+									quesCommList += '<span id="k_acContent_'+item.a_no+index+'">';
+									quesCommList +=  item.ac_content;
+									quesCommList +=  '</span>';
+									quesCommList +=  '<input type="text" class="form-control" id="k_acContentInput_'+item.a_no+index+'" value="'+item.ac_content+'" style="display:none"/>';
+									quesCommList +=  '<span id="k_acUserName_'+item.a_no+index+'">';
+									quesCommList +=  '<a href="#">'+item.user_name+'</a>';
+									quesCommList +=  '</span>';
+									quesCommList +=  '<span id="k_acRegdate_'+item.a_no+index+'">';
+									quesCommList +=  item.ac_regdate;
+									quesCommList +=  '</span>';
+									if(loginUserNo == item.user_no){
+										quesCommList +=  '<span>';
+										quesCommList += '<a onclick="ac_update(this)"  class="badge badge-primary" id="k_acUpdateBtn_'+item.a_no+index+'">수정</a>';
+										quesCommList += '<a onclick="ac_delete(this)"  class="badge badge-danger"  id="k_acDeleteBtn_'+item.a_no+index+'">삭제</a>';
+										quesCommList +=  '</span>';
+								}
+									quesCommList += '<hr>';
+									ano = item.a_no;	
+								}
+								
+							});//end each
+							
+							$('#k_AnswerComm_'+ano).html(quesCommList);
 					},
 					error : function() {
 						alert('불행하게도 에러입니다 ㅠㅠ');
@@ -189,7 +194,9 @@
 		}
 	}
 	function insertAnswerComm(value){
+		console.log(value);
 		var num = value.id.substring(value.id.lastIndexOf('_')+1);
+		console.log(num)
 		//답변번호,댓글 작성자 번호,질문내용 가져오기
 		var ano = $('#k_aNo_'+num).val() * 1;
 		var userNo = '${loginInfo.user_no}' * 1;
@@ -213,6 +220,7 @@
 						dataType : 'json',
 						async : false,
 						success : function(data) {
+							
 							var quesCommList = '';
 							$.each(data, function(index, item) {
 								quesCommList += '<input type="hidden" id="k_acNo_'+ano+index+'" value="'+item.ac_no+'"/>';

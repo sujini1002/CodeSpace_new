@@ -23,7 +23,6 @@ public class AnswerUserInfoService {
 		List<UserInfoVo> list = new ArrayList<UserInfoVo>();
 		list = answerDao.answerUserInfo(q_no,order);
 		
-		System.out.println("서비스"+list);
 		
 		return list;
 	}
