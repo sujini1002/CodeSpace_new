@@ -15,17 +15,6 @@ public class UserSearchService {
 	
 	private SearchDaoInterface searchDao;
 	
-	// 전체 유저 리스트를 불러오는 메서드
-	public List getUserList() {
-		
-		searchDao = sqlSessionTemplate.getMapper(SearchDaoInterface.class);
-		
-		List<UserInfoVo> userList = searchDao.userList();
-		
-		return userList;
-		
-	}
-	
 	// 검색한 유저 결과를 가져오는 메서드
 	public List<UserInfoVo> getSearchUsers(String words) {
 		

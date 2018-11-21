@@ -1,15 +1,15 @@
 package com.team.cos.paging.vo;
 
-public class SearchCriteria{
+public class UserCriteria {
 	
-	private String searhType;
-	private String keyword;
-	private int page; // 페이지 번호
-	private int perPageNum; // 페이지 당 보여지는 데이터 개수
+	private int page; 			// 페이지 번호
+	private int perPageNum; 	// 페이지 당 보여지는 데이터 개수
+	private String viewType; 	// 유저 리스트 보기 방식
+	private String user_nickname;   // 유저 검색 시 사용되는 키워드
 
-	public SearchCriteria() {
+	public UserCriteria() {
 		this.page = 1; // 페이지 번호는 1
-		this.perPageNum = 10; // 페이지 당 보여지는 데이터 개수는 10으로 초기화
+		this.perPageNum = 24; // 페이지 당 보여지는 데이터 개수는  24로 초기화
 	}
 
 	public void setPage(int page) {
@@ -41,28 +41,32 @@ public class SearchCriteria{
 		}
 		this.perPageNum = perPageNum;
 	}
-	
-	public String getSearhType() {
-		return searhType;
+
+	public String getViewType() {
+		return viewType;
 	}
-	public void setSearhType(String searhType) {
-		this.searhType = searhType;
+
+	public void setViewType(String viewType) {
+		this.viewType = viewType;
 	}
-	public String getKeyword() {
-		return keyword;
+
+	public String getUser_nickname() {
+		return user_nickname;
 	}
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
+
+	public void setUser_nickname(String user_nickname) {
+		this.user_nickname = user_nickname;
 	}
 
 	@Override
 	public String toString() {
-		return "SearchCriteria [searhType=" + searhType + ", keyword=" + keyword + ", page=" + page + ", perPageNum="
-				+ perPageNum + "]";
+		return "UserCriteria [page=" + page + ", perPageNum=" + perPageNum + ", viewType=" + viewType
+				+ ", user_nickname=" + user_nickname + "]";
 	}
 	
 	
-	
+
+
 	
 
 }

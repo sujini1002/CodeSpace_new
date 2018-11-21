@@ -25,7 +25,7 @@ public class PagingController {
 		mav.addObject("list", pagingService.listCriteria(cri));
 
 		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
+		pageMaker.setSearchCri(cri);
 		
 		pageMaker.setTotalCount(pagingService.listCountCriteria(cri));
 

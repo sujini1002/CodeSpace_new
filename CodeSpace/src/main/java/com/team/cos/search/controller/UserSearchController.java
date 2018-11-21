@@ -18,23 +18,8 @@ public class UserSearchController {
 	
 	@Autowired
 	private UserSearchService searchService;
-	
-	/*
-	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView getUserList() {
 
-		ModelAndView mav = new ModelAndView();
-		
-		mav.addObject("userList", searchService.getUserList());
-		mav.setViewName("search/userList");
-		
-		return mav;
-		
-	}
-	
-	*/
-	/*
-	@RequestMapping(value="/search/userList", method=RequestMethod.POST)
+	@RequestMapping(value="/user/userList", method=RequestMethod.POST)
 	@ResponseBody
 	public List getSearchUser(@RequestParam("searchWords") String searchWords) {
 		
@@ -42,5 +27,4 @@ public class UserSearchController {
 		
 		return userInfo;
 	}
-	*/
 }

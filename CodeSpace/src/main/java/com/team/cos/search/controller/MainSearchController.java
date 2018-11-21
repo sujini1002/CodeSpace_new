@@ -55,7 +55,7 @@ public class MainSearchController {
 		
 
 		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
+		pageMaker.setSearchCri(cri);
 		
 		pageMaker.setTotalCount(searchService.getSearchCnt(cri));
 		

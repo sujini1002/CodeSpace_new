@@ -77,7 +77,7 @@
 			    		
 			    		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 			    			<li class="paging-number"
-			    				<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
+			    				<c:out value="${pageMaker.searchCri.page == idx?'class =active':''}"/>>
 			    				<a href="${pageContext.request.contextPath}/search/searchResults${pageMaker.makeSearch(idx)}">${idx}</a>
 			    			</li>	
 			    		</c:forEach>

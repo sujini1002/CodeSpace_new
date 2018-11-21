@@ -55,7 +55,7 @@
                
                   $.ajax({
                      type: 'POST',
-                     url: '${pageContext.request.contextPath}/search/userList',
+                     url: '${pageContext.request.contextPath}/user/userList',
                      data: {searchWords : searchWords},
                      dataType: 'json',
                      success: function(result){
@@ -86,6 +86,10 @@
                   }); // ajax 끝
             }); // keyup function 끝
          }
+         
+         console.log(${pageMaker.userCri.page});
+         
+         
       </script>
       
       <c:if test="${!empty userList}">
@@ -115,18 +119,18 @@
 			    <div class="text-center">
 			    	<ul class="pagination">
 			    		<c:if test="${pageMaker.prev}">
-			    			<li><a href="${pageContext.request.contextPath}/search/searchResults${pageMaker.makeSearch(pageMaker.startPage - 1)}">&laquo;</a></li>
+			    			<li><a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeSearch(pageMaker.startPage - 1)}">&laquo;</a></li>
 			    		</c:if>
 			    		
 			    		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 			    			<li class="paging-number"
-			    				<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-			    				<a href="${pageContext.request.contextPath}/search/searchResults${pageMaker.makeSearch(idx)}">${idx}</a>
+			    				<c:out value="${pageMaker.userCri.page == idx?'class =active':''}"/>>
+			    				<a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeSearch(idx)}">${idx}</a>
 			    			</li>	
 			    		</c:forEach>
 			    		
 			    		<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-			    			<li><a href="${pageContext.request.contextPath}/search/searchResults${pageMaker.makeSearch(pageMaker.endPage + 1)}">&raquo;</a></li>
+			    			<li><a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeSearch(pageMaker.endPage + 1)}">&raquo;</a></li>
 			    		</c:if>
 			    	</ul>
     			</div>

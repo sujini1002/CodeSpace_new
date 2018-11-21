@@ -4,9 +4,20 @@
 
 <mapper namespace="com.team.cos.user.dao.UserDaoInterface">
 
-<!-- 유저 페이지 전체 유저 리스트 쿼리 -->
-	<select id="userList" resultType="com.team.cos.userinfo.vo.UserInfoVo">
+	<!-- 유저 페이지 전체 유저 리스트 쿼리 -->
+	<select id="userList"
+		resultType="com.team.cos.userinfo.vo.UserInfoVo">
 		select * from userinfo
+		where user_no > 0
+		order by user_no
+		desc, user_score desc
+		limit #{pageStart}, #{perPageNum}
 	</select>
-	
+
+	<!-- 유저 리스트 페이징 카운트 -->
+	<select id="countPaging" resultType="int">
+		select count(user_no) from
+		userinfo where user_no > 0
+	</select>
+
 </mapper>

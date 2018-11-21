@@ -152,7 +152,7 @@
 		$('#searchBtn').on("click", function(event){
 			
 			self.location = "${pageContext.request.contextPath}/search/searchResults"
-							+ '${pageMaker.makeQuery(1)}'
+							+ '${pageMaker.makeSearch(1)}'
 							+ "&keyword=" + encodeURIComponent($('#keyword').val());
 							
 		});

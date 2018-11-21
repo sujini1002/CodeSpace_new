@@ -74,14 +74,14 @@ public class PageMaker {
 	}
 
 	// 게시물 검색 시 해당 Parameter 값을 유지하기 위한 메서드
-	/*public String makeSearch(int page) {
+	public String makeSearch(int page) {
 
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
 				.queryParam("perPageNum", cri.getPerPageNum()).build();
 
 		return uriComponents.toUriString();
 	}
-*/
+
 	public int getStartPage() {
 		return startPage;
 	}

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.team.cos.paging.dao.PagingDaoInterface;
 import com.team.cos.paging.vo.Criteria;
-import com.team.cos.search.dao.SearchDaoInterface;
+import com.team.cos.paging.vo.SearchCriteria;
 
 public class PagingService { 
        
@@ -20,7 +20,7 @@ public class PagingService {
    
    
    // 조건 없이 전체 데이터를 가져오는 메서드
-   public List listCriteria(Criteria cri) {
+   public List listCriteria(SearchCriteria cri) {
       
       pagingDao = sqlSessionTemplate.getMapper(PagingDaoInterface.class);
       
@@ -31,7 +31,7 @@ public class PagingService {
    }
    
    // 조건 없이 전체 데이터의 개수를 카운트 하는 메서드
-   public int listCountCriteria(Criteria cri) {
+   public int listCountCriteria(SearchCriteria cri) {
 	   
 	   pagingDao = sqlSessionTemplate.getMapper(PagingDaoInterface.class);
 	   
