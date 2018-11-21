@@ -3,12 +3,12 @@
 <mapper namespace="com.team.cos.mypage.dao.MyactivityInterface">
 
 <!-- 내가 한 질문 얻어오기 -->
-<select id="getMyQst" resultType="com.team.cos.question.vo.QuestionInfo">
+<select id="getMyQst" parameterType="com.team.cos.mypage.vo.MyactCriteria" resultType="com.team.cos.question.vo.QuestionInfo">
 	select * 
 	from question 
 	where q_no > 0 and user_no = #{user_no} 
 	order by q_regdate desc
-	<!-- limit #{pageStart}, #{perPageNum} -->
+	limit #{startNum}, #{perPageNum}
 	
 </select> 
 
@@ -28,6 +28,7 @@
 	on q.q_no = a.q_no 
 	where a.user_no=#{user_no}
 	order by a_regdate desc
+	limit #{startNum}, #{perPageNum}
 </select>
 
 <!-- 내가 한 답변 개수 카운트 -->

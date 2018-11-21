@@ -25,16 +25,12 @@ public class MyAnswerController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
-		modelAndView.addObject("myAnsList", service.getMyAns(cri, user_no));
-		
 		PageMaker pageMaker = new PageMaker();
-		
 		pageMaker.setCri(cri);
-		
 		pageMaker.setTotalCount(service.countMyAns(cri, user_no));
 
+		modelAndView.addObject("myAnsList", service.getMyAns(cri, user_no));
 		modelAndView.addObject("pageMaker", pageMaker);
-		
 		modelAndView.setViewName("mypage/myans");
 		
 		return modelAndView;

@@ -6,7 +6,7 @@ import java.net.URLEncoder;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.team.cos.paging.vo.SearchCriteria;
+import com.team.cos.mypage.vo.MyactCriteria;
 
 public class PageMaker {
 
@@ -67,7 +67,9 @@ public class PageMaker {
 	// 일반 게시글 Parameter 값(page, perPageNum 등)을 유지하기 위한 메서드
 	public String makeQuery(int page) {
 
-		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				/*.queryParam("user_no", user_no)*/
+				.queryParam("page", page)
 				.queryParam("perPageNum", cri.getPerPageNum()).build();
 
 		return uriComponents.toUriString();

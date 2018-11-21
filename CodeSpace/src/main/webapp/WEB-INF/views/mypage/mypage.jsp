@@ -17,8 +17,8 @@
 			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 			aria-expanded="false" style="color:lightgray;">내 활동</a>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/myqst?user_no=${loginInfo.user_no}">내가 한 질문</a> 
-				<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/myans?user_no=${loginInfo.user_no}">내가 한 답변</a> 
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/myqst?page=1&perPageNum=10&user_no=${loginInfo.user_no}">내가 한 질문</a> 
+				<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/myans?page=1&perPageNum=10&user_no=${loginInfo.user_no}">내가 한 답변</a> 
 				<a class="dropdown-item" href="#">즐겨찾기</a>
 			</div>
 		</li>

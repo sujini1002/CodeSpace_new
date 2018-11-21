@@ -23,9 +23,9 @@
 				활동</a>
 			<div class="dropdown-menu">
 				<a class="dropdown-item"
-					href="${pageContext.request.contextPath}/mypage/myqst?user_no=${loginInfo.user_no}">내가
+					href="${pageContext.request.contextPath}/mypage/myqst?page=1&perPageNum=10&user_no=${loginInfo.user_no}">내가
 					한 질문</a> <a class="dropdown-item"
-					href="${pageContext.request.contextPath}/mypage/myans?user_no=${loginInfo.user_no}">내가
+					href="${pageContext.request.contextPath}/mypage/myans?page=1&perPageNum=10&user_no=${loginInfo.user_no}">내가
 					한 답변</a> <a class="dropdown-item" href="#">즐겨찾기</a>
 			</div></li>
 		<c:if test="${loginInfo.user_score} >= 31">
@@ -68,7 +68,7 @@
 							<tr>
 								<td>${status.count}</td>
 								<td style="text-align: left;"><a
-									href='${pageContext.request.contextPath}/question/questionView?q_no=<c:out value="${qst.q_no}"/>'>
+									href='${pageContext.request.contextPath}/question/questionView?q_no=<c:out value="${ans.q_no}"/>'>
 										${ans.q_title}</a></td>
 								<td>${fn:substring(ans.a_regdate, 0 ,10)}</td>
 								<%-- <td>${ans.a_choose}</td> --%>
@@ -92,7 +92,7 @@
 							<ul class="pagination">
 								<c:if test="${pageMaker.prev}">
 									<li><a
-										href="${pageContext.request.contextPath}/questions/questions${pageMaker.makeQuery(pageMaker.startPage - 1)}">&laquo;</a></li>
+										href="${pageContext.request.contextPath}/mypage/myans${pageMaker.makeQuery(pageMaker.startPage - 1)}&user_no=${loginInfo.user_no}">&laquo;</a></li>
 								</c:if>
 
 								<c:forEach begin="${pageMaker.startPage}"
@@ -100,13 +100,13 @@
 									<li class="paging-number"
 										<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
 										<a
-										href="${pageContext.request.contextPath}/questions/questions${pageMaker.makeQuery(idx)}">${idx}</a>
+										href="${pageContext.request.contextPath}/mypage/myans${pageMaker.makeQuery(idx)}&user_no=${loginInfo.user_no}">${idx}</a>
 									</li>
 								</c:forEach>
 
 								<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 									<li class="paging-number"><a
-										href="${pageContext.request.contextPath}/questions/questions${pageMaker.makeQuery(pageMaker.endPage + 1)}">&raquo;</a></li>
+										href="${pageContext.request.contextPath}/mypage/myans${pageMaker.makeQuery(pageMaker.endPage + 1)}&user_no=${loginInfo.user_no}">&raquo;</a></li>
 								</c:if>
 							</ul>
 						</div>

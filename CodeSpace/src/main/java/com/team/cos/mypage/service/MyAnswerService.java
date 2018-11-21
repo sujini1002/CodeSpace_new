@@ -20,8 +20,9 @@ public class MyAnswerService {
 	public List<MyAnsInfo> getMyAns(MyactCriteria cri, int user_no) {
 		
 		myActInterface = sqlSessionTemplate.getMapper(MyactivityInterface.class);
-	
-		List<MyAnsInfo> myAnsList = myActInterface.getMyAns(cri, user_no);
+		cri.setUser_no(user_no);
+	    cri.setStartNum(cri.getPageStart());
+		List<MyAnsInfo> myAnsList = myActInterface.getMyAns(cri);
 		
 		return myAnsList;
 	

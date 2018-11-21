@@ -20,8 +20,9 @@ public class MyQuestionService {
 	public List<QuestionInfo> getMyQst(int user_no, MyactCriteria cri) {
 
 		myActInterface = sqlSessionTemplate.getMapper(MyactivityInterface.class);
-
-		List<QuestionInfo> myQstList = myActInterface.getMyQst(user_no, cri);
+		cri.setUser_no(user_no);
+	    cri.setStartNum(cri.getPageStart());
+		List<QuestionInfo> myQstList = myActInterface.getMyQst(cri);
 		// System.out.println(myQstList.size());
 		return myQstList;
 
