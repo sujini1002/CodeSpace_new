@@ -52,4 +52,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectUserScore" resultType="int">
 		select user_score from userinfo where user_no = #{user_no};
 	</select>
+	<!-- 조회수 증가 -->
+	<update id="viewCnt">
+		update question set q_viewcnt = q_viewcnt + 1 where q_no = #{q_no};
+	</update>
 </mapper>

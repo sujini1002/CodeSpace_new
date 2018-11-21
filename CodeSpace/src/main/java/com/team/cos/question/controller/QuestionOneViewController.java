@@ -17,6 +17,7 @@ import com.team.cos.comment.service.QuestionCommentListService;
 import com.team.cos.comment.vo.AnswerCommentInfo;
 import com.team.cos.comment.vo.QuestionCommentInfo;
 import com.team.cos.question.serivce.QuestionOneViewService;
+import com.team.cos.question.serivce.QuestionViewCntService;
 import com.team.cos.question.vo.QuestionInfo;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
@@ -39,10 +40,20 @@ public class QuestionOneViewController {
 	@Autowired
 	private AnswerCommentListService acListService;
 	
+	@Autowired
+	private QuestionViewCntService viewCntService;
+	
 	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView questionView(@RequestParam("q_no")int q_no,@RequestParam(value="order",defaultValue="score")String order) {
+	public ModelAndView questionView(@RequestParam("q_no")int q_no,
+									@RequestParam(value="order",defaultValue="score")String order,
+									@RequestParam(value="viewCnt",defaultValue="true")boolean viewCnt) {
 		
 		ModelAndView modelAndView = new ModelAndView();
+		
+		//조회수 증가
+		if(viewCnt) {
+			viewCntService.viewCnt(q_no);
+		}
 		
 		QuestionInfo questionInfo = questionService.questionView(q_no);
 		UserInfoVo userInfoVo = questionService.questionUser(q_no);

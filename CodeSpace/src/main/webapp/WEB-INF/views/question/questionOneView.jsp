@@ -188,7 +188,7 @@
 						success : function(data) {
 							if (data.result == "1") {
 								location.href = '${pageContext.request.contextPath}/question/questionView?q_no='
-										+ qno;
+										+ qno+'&viewCnt=false';
 							} else {
 								alert('수정 실패하였습니다 ㅠㅠ');
 							}
@@ -220,7 +220,7 @@
 				}else{
 					alert('답변이 존재하므로 삭제할 수 없습니다.');
 					location.href = '${pageContext.request.contextPath}/question/questionView?q_no='
-						+ qno;
+						+ qno+'&viewCnt=false';
 				}
 			},
 			error : function() {

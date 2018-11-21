@@ -86,7 +86,7 @@
 			contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 			dataType : 'json',
 			success:function(data){
-				location.href='${pageContext.request.contextPath}/question/questionView?q_no='+data.q_no;
+				location.href='${pageContext.request.contextPath}/question/questionView?q_no='+data.q_no+'&viewCnt=false';
 			},
 			error:function(){
 				alert('불행하게도 에러입니다 ㅠㅠ');

@@ -53,4 +53,6 @@
 		class="com.team.cos.comment.service.AnswerCommentUpdateService"/>
 	<beans:bean id="answerCommentDeleteService"
 		class="com.team.cos.comment.service.AnswerCommentDeleteService"/>
+	<beans:bean id="questionViewCntService"
+		class="com.team.cos.question.serivce.QuestionViewCntService"/>
 </beans:beans>
