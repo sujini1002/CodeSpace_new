@@ -24,6 +24,32 @@
   </c:forEach>
   </tbody>
 </table>
+<h1>${loginInfo.user_no }</h1>
+<div class="h_golist"><a href="#" style="color: black;" onclick="noticeWrite()">공지사항 작성</a></div>
 <script>
+
+/* 공지사항 작성 */
+function noticeWrite(){
+	var result = confirm('공지사항을 작성 하시겠습니까?');
+	var user_no = '${loginInfo.user_no}';
+	var pm_no = 0;
+	var user_checkUrl= '${pageContext.request.contextPath}/project/notice/check';
+	/* pm_no 와 user_no를 비교해 봐야 한다. */
+	$.ajax({
+		url:user_checkUrl,
+		dataType:'JSON',
+		data:{
+			"user_no":user_no
+		},
+		success:function(response){
+			console.log(response);
+			if(response.pm_no==user_no && true){
+				location.href='${pageContext.request.contextPath}/project/notice/write';
+			}else if(response.pm_no==user_no){
+				alert('프로젝트 매니저만 작성할 수 있습니다.');
+			}
+		}
+	});
+};
 </script>
 <jsp:include page="../../common/layout_footer.jsp" />

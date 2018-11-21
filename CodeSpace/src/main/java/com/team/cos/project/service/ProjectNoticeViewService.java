@@ -40,4 +40,12 @@ public class ProjectNoticeViewService {
 		return result;
 	}
 
+//	pm인지 확인
+	public ProjectInfoVO checkPm(ProjectInfoVO projectInfoVO) {
+		ProjectInfoVO result = new ProjectInfoVO();
+		dao = template.getMapper(ProjectInfoInterface.class);
+		result = dao.checkPm(projectInfoVO);
+		return result;
+	}
+
 }

@@ -37,7 +37,8 @@
 <table class='table'>
 	<tr>
 		<td>캘린더  <a href="#">더보기</a></td>
-		<td>공지사항 <a href="${pageContext.request.contextPath }/project/notice/notice?project_no=${pro_info.project_no }">더보기</a></td>
+		<td>공지사항 <a href="${pageContext.request.contextPath }/project/notice/notice?project_no=${pro_info.project_no }">더보기</a>
+		</td>
 	</tr>
 	<tr>
 		<td><img src="../images/stop.jpg" width=300px></td>
@@ -279,5 +280,6 @@
 				}
 			});
 		});
+		 
 </script>
 

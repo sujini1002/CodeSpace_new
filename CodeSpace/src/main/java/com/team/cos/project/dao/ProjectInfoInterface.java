@@ -33,4 +33,7 @@ public interface ProjectInfoInterface {
 
 	// 공지사항 글 삭제
 	public int noticeDelete(ProjectNoticeVO projectNoticeVO);
+
+	//PM 체크
+	public ProjectInfoVO checkPm(ProjectInfoVO projectInfoVO);
 }

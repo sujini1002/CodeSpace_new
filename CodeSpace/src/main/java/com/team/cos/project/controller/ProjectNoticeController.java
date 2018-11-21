@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cos.project.service.ProjectNoticeViewService;
+import com.team.cos.project.service.ProjectRegService;
 import com.team.cos.project.vo.ProjectInfoVO;
 import com.team.cos.project.vo.ProjectNoticeVO;
 
@@ -45,6 +46,20 @@ public class ProjectNoticeController {
 		modelAndView.addObject("projectNotice", result);
 		return modelAndView;
 	}
+
+	// 공지사항 작성
+	@RequestMapping(value = "/project/notice/check", method = RequestMethod.GET)
+	@ResponseBody
+	public ProjectInfoVO writeNotice(ProjectInfoVO projectInfoVo) {
+		ProjectInfoVO result = service.checkPm(projectInfoVo);
+		return result;
+	}
+
+	@RequestMapping(value = "/project/notice/write")
+	public String writeNotice() {
+		return "project/notice/write";
+	}
+
 //	공지사항 수정
 	@RequestMapping(value = "/project/notice/modify", method = RequestMethod.GET)
 	public ModelAndView modifyNotice(ProjectNoticeVO projectNoticeVO) {

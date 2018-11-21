@@ -11,10 +11,9 @@
 <div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 50px;">
 <!--  여기다가 작성 해주세요 -->
 
-<div id="h_toolbar">${projectNotice.notice_title }</div>
-<div id="h_editor">${projectNotice.notice_content }</div>
+<div id="h_toolbar">111</div>
+<div id="h_editor">222</div>
 <button id="h_saveDelta">h_saveDelta</button>
-<button>공지사항 수정</button>
 
 
 

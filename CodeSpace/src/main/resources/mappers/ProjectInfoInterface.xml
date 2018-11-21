@@ -87,10 +87,17 @@
 		project_notice
 		where notice_no=#{notice_no}
 	</select>
-	
+
 	<!-- 공지사항 삭제 -->
 	<delete id="noticeDelete"
 		parameterType="com.team.cos.project.vo.ProjectNoticeVO">
-		delete from project_notice where notice_no = #{notice_no};
+		delete from project_notice where notice_no =
+		#{notice_no};
 	</delete>
+	<!-- PM인지 아닌지 확인 -->
+	<select id="checkPm"
+		parameterType="com.team.cos.project.vo.ProjectInfoVO"
+		resultType="com.team.cos.project.vo.ProjectInfoVO">
+		select * from project where pm_no = #{user_no}
+	</select>
 </mapper>
