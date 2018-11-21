@@ -39,7 +39,7 @@ public class ProjectMemberInviteController {
 		for(int i=0; i<member.size(); i++) {
 			projectMemberInfo = userInfoService.userInfoCheckWithNo(member.get(i));
 			System.out.println("memberInfo: "+projectMemberInfo);
-			mailService.sendMail(projectMemberInfo);
+			mailService.sendMail(project_no, projectMemberInfo);
 		}
 		
 		
