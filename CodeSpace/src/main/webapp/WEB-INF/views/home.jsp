@@ -21,7 +21,6 @@
 
 <script>
 	function isLogin(data) {
-
 		var session = '${loginInfo.user_no}';
 		console.log(session);
 		console.log(session == "");
@@ -30,8 +29,7 @@
 		} else {
 			$('[data-toggle="popover"]').prop("disabled", false);
 			location.href = '${pageContext.request.contextPath}/question/insertQuestion';
-
-		}
+		} 
 	}
 </script> 
 <jsp:include page="common/layout_footer.jsp" />

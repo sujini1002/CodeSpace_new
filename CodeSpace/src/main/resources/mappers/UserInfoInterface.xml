@@ -9,23 +9,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into
 		userinfo(user_id,user_pw,user_name,user_nickname,user_photo,user_url,user_intro,user_tag)
 		values(#{user_id},#{user_pw},#{user_name},#{user_nickname},#{user_photo},#{user_url},#{user_intro},#{user_tag});
+		<selectKey resultType="int" keyProperty="user_no"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 	</insert>
-	
+
 	<!-- 회원가입 유무 확인 -->
 	<select id="userInfoCheck"
 		resultType="com.team.cos.userinfo.vo.UserInfoVo">
 		select * from userinfo where user_id = #{user_id}
 	</select>
-	
+
 	<!-- 로그인 한 시간 저장 -->
 	<update id="userLoginUpdate"
 		parameterType="com.team.cos.userinfo.vo.UserInfoVo">
 		update userinfo set user_lastlogin = now() where
 		user_id=#{user_id}
 	</update>
-	
+
 	<!-- user_no로 사용자 정보 확인 -->
-	<select id="userInfoWithNo" resultType="com.team.cos.userinfo.vo.UserInfoVo">
+	<select id="userInfoWithNo"
+		resultType="com.team.cos.userinfo.vo.UserInfoVo">
 		select * from userinfo where user_no=#{user_no}
-	</select>	
+	</select>
 </mapper>

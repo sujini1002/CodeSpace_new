@@ -87,4 +87,10 @@
 		project_notice
 		where notice_no=#{notice_no}
 	</select>
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="noticeDelete"
+		parameterType="com.team.cos.project.vo.ProjectNoticeVO">
+		delete from project_notice where notice_no = #{notice_no};
+	</delete>
 </mapper>

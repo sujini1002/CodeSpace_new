@@ -25,6 +25,7 @@ public class ProjectNoticeController {
 		List<ProjectNoticeVO> result = service.noticeView(projectInfoVo);
 		return result;
 	}
+
 //	공지사항 목록 출력
 	@RequestMapping(value = "/project/notice/notice", method = RequestMethod.GET)
 	public ModelAndView getNotice(ProjectInfoVO projectInfoVo) {
@@ -38,7 +39,6 @@ public class ProjectNoticeController {
 //	공지사항 상세보기
 	@RequestMapping(value = "/project/notice/detailnotice", method = RequestMethod.GET)
 	public ModelAndView getDetailNotice(ProjectNoticeVO projectNoticeVO) {
-		
 		ModelAndView modelAndView = new ModelAndView();
 		ProjectNoticeVO result = service.noticeDetailView(projectNoticeVO);
 		modelAndView.setViewName("project/notice/detailnotice");
@@ -46,18 +46,34 @@ public class ProjectNoticeController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/project/notice/notice", method = RequestMethod.POST)
-	public String postNotice() {
+	/*
+	 * /
+	 * 
+	 * @RequestMapping(value = "/project/notice/notice", method =
+	 * RequestMethod.POST) public String postNotice() { return null; }
+	 */
+
+	@RequestMapping(value = "/project/notice/modify", method = RequestMethod.GET)
+	public String modifyNotice(ProjectNoticeVO projectNoticeVO) {
+		System.out.println("  들어오냐?");
+		System.out.println(projectNoticeVO);
 		return null;
 	}
 
-	@RequestMapping(value = "/project/notice/notice", method = RequestMethod.PUT)
-	public String modifyNotice() {
-		return null;
-	}
+//	공지사항 삭제
+	@RequestMapping(value = "/project/notice/delete", method = RequestMethod.GET)
+	public ModelAndView deleteNotice(ProjectNoticeVO projectNoticeVO) {
+		ProjectInfoVO projectInfoVo = new ProjectInfoVO();
+		ModelAndView modelAndView = new ModelAndView();
+		int result = service.noticeDelete(projectNoticeVO);
 
-	@RequestMapping(value = "/project/notice/notice", method = RequestMethod.DELETE)
-	public String deleteNotice() {
-		return null;
+		projectInfoVo.setProject_no(projectNoticeVO.getProject_no());
+		List<ProjectNoticeVO> resultList = service.noticeView(projectInfoVo);
+
+		if (result > 0) {
+			modelAndView.setViewName("project/notice/notice");
+			modelAndView.addObject("projectNotice", resultList);
+		}
+		return modelAndView;
 	}
 }

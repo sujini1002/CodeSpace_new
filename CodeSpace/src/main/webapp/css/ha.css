@@ -98,9 +98,36 @@
 .h_detailnotice {
 	border: 1px solid grey;
 }
-.h_detailnotice>div{
+
+.h_detailnotice>div {
 	margin: 25px;
 }
-.h_detailnotice h1{
+
+.h_detailnotice h1 {
 	border-bottom: 1px dashed DarkGray;
+}
+
+.h_detailnotice h1>span {
+	margin-top: 1.5%;
+	font-size: 15px;
+	float: right;
+	font-size: 15px;
+}
+
+.h_noticeno {
+	width: 180px;
+	border-right: 1px solid lightGray;
+}
+
+.h_golist {
+	margin-top: 10px;
+	background-color: rgb(236, 240, 245);
+	padding: 9px;
+	border: 1px solid grey;
+	float: right;
+}
+
+.h_golist :hover {
+	text-decoration: none;
+	color: black;
 }
