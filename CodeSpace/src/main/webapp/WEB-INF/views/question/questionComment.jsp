@@ -8,7 +8,7 @@
 		<c:if test="${!empty questionCommList}">
 
 			<div id="k_questionComm" style="padding:0px">
-				<c:forEach var="list" items="${questionCommList}" begin="1" end="${fn:length(questionCommList)}" varStatus="status">
+				<c:forEach var="list" items="${questionCommList}" begin="0" end="${fn:length(questionCommList)}" varStatus="status">
 					<input type="hidden" id="k_qcNo_<c:out value="${status.index}"/>" value="${list.qc_no}"/>
 					<span id="k_qcContent_<c:out value="${status.index}"/>">
 						${list.qc_content}
@@ -100,7 +100,6 @@
 	
 	function qc_update(value){
 		var num = value.id.substring(14);
-		console.log(num);
 		//질문 댓글 고유번호, 댓글내용
 		var qcNo = $('#k_qcNo_'+num).val()*1;
 		var content = $('#k_qcContentInput_'+num).val();

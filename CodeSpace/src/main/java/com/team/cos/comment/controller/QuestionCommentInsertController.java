@@ -22,7 +22,7 @@ public class QuestionCommentInsertController {
 	public List<QuestionCommentInfo> insert(QuestionCommentInfo questionCommentInfo){
 		
 		service.insertComm(questionCommentInfo);
-		
+		System.out.println("컨트롤러 질문 번호 ="+questionCommentInfo.getQ_no());
 		List<QuestionCommentInfo> questCommList = service.selectList(questionCommentInfo.getQ_no());
 		
 		return questCommList;

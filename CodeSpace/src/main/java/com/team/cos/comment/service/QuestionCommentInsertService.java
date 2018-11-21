@@ -19,7 +19,6 @@ public class QuestionCommentInsertService {
 	public int insertComm(QuestionCommentInfo questionCommentInfo) {
 		
 		quesCommDao = sqlSessionTemplate.getMapper(QuestionCommentInterfaceDao.class);
-		
 		return quesCommDao.insertQuesComm(questionCommentInfo);
 	}
 	public List<QuestionCommentInfo> selectList(int q_no){

@@ -79,6 +79,7 @@
 		<!-- 답변 댓글 -->
 		<td>
 			<!-- 댓글 인클루드 -->
+			<%@include file="answerComment.jsp" %>
 		</td>
 	</tr>
 	</c:forEach>

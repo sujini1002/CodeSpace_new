@@ -8,7 +8,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into question_comm(q_no,user_no,qc_content,qc_regdate)
 		values 
 		(#{q_no},#{user_no},#{qc_content},now())
+		<!-- <selectKey resultType="int" keyProperty="qc_no"
+         order="AFTER">
+         SELECT LAST_INSERT_ID()
+      	</selectKey> -->
 	</insert>
+	
 	<!-- 댓글 리스트 모두  출력 -->
 	<select id="QuesCommOneQuestion"  resultType="com.team.cos.comment.vo.QuestionCommentInfo">
 		select qc.qc_no,qc.q_no,qc.user_no,u.user_name,qc.qc_content,
