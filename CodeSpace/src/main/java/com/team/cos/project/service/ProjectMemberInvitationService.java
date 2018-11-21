@@ -1,11 +1,10 @@
 package com.team.cos.project.service;
 
-import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.team.cos.project.dao.ProjectInfoInterface;
+import com.team.cos.project.vo.ProjectMemberVO;
 
 public class ProjectMemberInvitationService {
 	
@@ -14,11 +13,13 @@ public class ProjectMemberInvitationService {
 	
 	private ProjectInfoInterface dao;
 	
-	public int invite(List<Integer> member, int project_no) {
+	public int acceptMember(int project_no, int project_member_no) {
 		dao = sqlSessionTemplate.getMapper(ProjectInfoInterface.class);
-		System.out.println("Project Member Invitation Service: "+ member + "// project_no: "+project_no);
+		ProjectMemberVO vo = new ProjectMemberVO();
+		vo.setProject_no(project_no);
+		vo.setProject_member_no(project_member_no);
 		
-		return dao.memberUpdate(member, project_no);
+		return dao.memberUpdate(vo);
 	}
 
 }

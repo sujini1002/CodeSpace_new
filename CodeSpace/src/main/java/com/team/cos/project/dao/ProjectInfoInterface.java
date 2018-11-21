@@ -3,6 +3,7 @@ package com.team.cos.project.dao;
 import java.util.List;
 
 import com.team.cos.project.vo.ProjectInfoVO;
+import com.team.cos.project.vo.ProjectMemberVO;
 import com.team.cos.project.vo.ProjectNoticeVO;
 
 public interface ProjectInfoInterface {
@@ -23,7 +24,7 @@ public interface ProjectInfoInterface {
 	public ProjectInfoVO selectUserPro(int user_no);
 
 	// 사용자 정보 project에 insert
-	public int memberUpdate(List<Integer> member, int project_no);
+	public int memberUpdate(ProjectMemberVO vo);
 
 	// project notice view
 	public List<ProjectNoticeVO> projectNoticeView(ProjectInfoVO projectInfoVO);

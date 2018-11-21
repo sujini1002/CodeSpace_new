@@ -54,23 +54,36 @@
 	<select id="selectUserPro" parameterType="int"
 		resultType="com.team.cos.project.vo.ProjectInfoVO">
 		select * from project
-		where project_status=1
+		where 
+			project_status=1
 		and (
-		pm_no=#{user_no}
+			pm_no=#{user_no}
 		or user_no1=#{user_no}
 		or user_no2=#{user_no}
-		or
-		user_no3=#{user_no}
+		or user_no3=#{user_no}
 		or user_no4=#{user_no}
 		)
 	</select>
 
 	<!-- project 테이블에 member로 추가한 user_no update -->
-	 <update id="memberUpdate" parameterType="com.team.cos.project.vo.ProjectInfoVO"> 
-		 <foreach collection="list" item="member" index="index" separator=";"> 
-			update project 
-			set user_no1 = #{member} where project_no = #{project_no} 
-		</foreach> 
+	 <update id="memberUpdate" parameterType="com.team.cos.project.vo.ProjectMemberVO"> 
+		 update project
+		 set
+		 <choose>
+		 	<when test="user_no1 == 0">
+			 	user_no1 = #{project_member_no}
+		 	</when>
+		 	<when test="user_no2 == 0">
+			 	user_no2 = #{project_member_no}
+		 	</when>
+		 	<when test="user_no3 == 0">
+			 	user_no3 = #{project_member_no}
+		 	</when>
+		 	<when test="user_no4 == 0">
+			 	user_no4 = #{project_member_no}
+		 	</when>
+		 </choose>
+		 where project_no=#{project_no}
 	</update> 
 
 
