@@ -32,7 +32,7 @@ public class ProjectNoticeViewService {
 		result = dao.noticeDetailView(projectNoticeVO);
 		return result;
 	}
-	
+
 //	공지사항 삭제
 	public int noticeDelete(ProjectNoticeVO projectNoticeVO) {
 		dao = template.getMapper(ProjectInfoInterface.class);

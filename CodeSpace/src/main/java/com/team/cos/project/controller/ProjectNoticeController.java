@@ -45,19 +45,14 @@ public class ProjectNoticeController {
 		modelAndView.addObject("projectNotice", result);
 		return modelAndView;
 	}
-
-	/*
-	 * /
-	 * 
-	 * @RequestMapping(value = "/project/notice/notice", method =
-	 * RequestMethod.POST) public String postNotice() { return null; }
-	 */
-
+//	공지사항 수정
 	@RequestMapping(value = "/project/notice/modify", method = RequestMethod.GET)
-	public String modifyNotice(ProjectNoticeVO projectNoticeVO) {
-		System.out.println("  들어오냐?");
-		System.out.println(projectNoticeVO);
-		return null;
+	public ModelAndView modifyNotice(ProjectNoticeVO projectNoticeVO) {
+		ModelAndView modelAndView = new ModelAndView();
+		ProjectNoticeVO result = service.noticeDetailView(projectNoticeVO);
+		modelAndView.setViewName("project/notice/modify");
+		modelAndView.addObject("projectNotice", result);
+		return modelAndView;
 	}
 
 //	공지사항 삭제
