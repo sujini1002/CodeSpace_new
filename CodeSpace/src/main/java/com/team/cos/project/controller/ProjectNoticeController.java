@@ -18,20 +18,30 @@ import com.team.cos.project.vo.ProjectNoticeVO;
 public class ProjectNoticeController {
 	@Autowired
 	private ProjectNoticeViewService service;
-	
-	
+
 	@RequestMapping(value = "/project/notice")
 	@ResponseBody
 	public List<ProjectNoticeVO> useAjax(ProjectInfoVO projectInfoVo) {
 		List<ProjectNoticeVO> result = service.noticeView(projectInfoVo);
 		return result;
 	}
-
+//	공지사항 목록 출력
 	@RequestMapping(value = "/project/notice/notice", method = RequestMethod.GET)
 	public ModelAndView getNotice(ProjectInfoVO projectInfoVo) {
 		ModelAndView modelAndView = new ModelAndView();
 		List<ProjectNoticeVO> result = service.noticeView(projectInfoVo);
 		modelAndView.setViewName("project/notice/notice");
+		modelAndView.addObject("projectNotice", result);
+		return modelAndView;
+	}
+
+//	공지사항 상세보기
+	@RequestMapping(value = "/project/notice/detailnotice", method = RequestMethod.GET)
+	public ModelAndView getDetailNotice(ProjectNoticeVO projectNoticeVO) {
+		
+		ModelAndView modelAndView = new ModelAndView();
+		ProjectNoticeVO result = service.noticeDetailView(projectNoticeVO);
+		modelAndView.setViewName("project/notice/detailnotice");
 		modelAndView.addObject("projectNotice", result);
 		return modelAndView;
 	}

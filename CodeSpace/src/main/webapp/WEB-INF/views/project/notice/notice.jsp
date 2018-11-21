@@ -14,16 +14,17 @@
       <th>공지사항 번호</th>
       <th>제목</th>
       <th>내용</th>
+      <th colspan="2">수정 및 삭제</th>
     </tr>
   </thead>
   <tbody>
   <c:forEach var="projectNotice" items="${projectNotice }">
-	  <tr>
+	  <tr class="h_noticetr">
 	  	<td>${projectNotice.notice_no }</td>
-	  	<td>${projectNotice.notice_title }</td>
+	  	<td><a class="h_noticetd" href="${pageContext.request.contextPath }/project/notice/detailnotice?notice_no=${projectNotice.notice_no }">${projectNotice.notice_title }</a></td>
 	  	<td>${projectNotice.notice_content }</td>
-	  	<td><button>수정</button></td>
-	  	<td><button>삭제</button></td>
+	  	<td><a href="${pageContext.request.contextPath }/pratice/notice/modifynotice">수정</a></td>
+	  	<td><a href="${pageContext.request.contextPath }/pratice/notice/deleteynotice">삭제</a></td>
 	  </tr>
   </c:forEach>
   </tbody>

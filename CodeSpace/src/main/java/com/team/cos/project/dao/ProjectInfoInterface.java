@@ -27,5 +27,8 @@ public interface ProjectInfoInterface {
 	
 	//project notice view
 	public List<ProjectNoticeVO> projectNoticeView(ProjectInfoVO projectInfoVO);
+	
+	//공지사항 글 클릭했을떄 세부내용
+	public ProjectNoticeVO noticeDetailView(ProjectNoticeVO projectNoticeVO);
 
 }

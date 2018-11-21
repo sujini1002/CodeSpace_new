@@ -18,11 +18,19 @@ public class ProjectNoticeViewService {
 
 	private ProjectInfoInterface dao;
 
+//	공지사항 목록 출력
 	public List<ProjectNoticeVO> noticeView(ProjectInfoVO projectInfoVo) {
 		dao = template.getMapper(ProjectInfoInterface.class);
-
 		List<ProjectNoticeVO> result = dao.projectNoticeView(projectInfoVo);
-		
+		return result;
+	}
+
+//	공지사항 세부 출력
+	public ProjectNoticeVO noticeDetailView(ProjectNoticeVO projectNoticeVO) {
+		ProjectNoticeVO result = new ProjectNoticeVO();
+		dao = template.getMapper(ProjectInfoInterface.class);
+		result = dao.noticeDetailView(projectNoticeVO);
+		System.out.println(result);
 		return result;
 	}
 
