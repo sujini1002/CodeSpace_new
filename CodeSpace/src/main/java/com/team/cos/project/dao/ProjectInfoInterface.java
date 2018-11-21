@@ -23,7 +23,7 @@ public interface ProjectInfoInterface {
 	public ProjectInfoVO selectUserPro(int user_no);
 	
 	//사용자 정보 project에 insert
-	public int memberUpdate(int user_no1, int user_no2, int user_no3, int user_no4, int project_no);
+	public int memberUpdate(List<Integer> member, int project_no);
 	
 	//project notice view
 	public List<ProjectNoticeVO> projectNoticeView(ProjectInfoVO projectInfoVO);

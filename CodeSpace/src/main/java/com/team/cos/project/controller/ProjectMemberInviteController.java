@@ -2,6 +2,7 @@ package com.team.cos.project.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,8 +18,11 @@ import com.team.cos.userinfo.vo.UserInfoVo;
 @RequestMapping("/project/inviteMember")
 public class ProjectMemberInviteController {
 	
+	@Autowired
 	UserInfoCheckService userInfoService;
+	@Autowired
 	InvitationMailService mailService;
+	@Autowired
 	ProjectMemberInvitationService memberInvitationService;
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -28,16 +32,17 @@ public class ProjectMemberInviteController {
 			@RequestParam(value="member") List<Integer> member
 			) {
 		
-		int user_no1 = member.get(0);
+		/*int user_no1 = member.get(0);
 		int user_no2 = member.get(1);
 		int user_no3 = member.get(2);
-		int user_no4 = member.get(3);
+		int user_no4 = member.get(3);*/
 		
-		System.out.println("project_no: "+project_no+"// user_no: "+user_no+"// member: "+user_no2);
+		//System.out.println("project_no: "+project_no+"// user_no: "+user_no+"// member: "+user_no2);
 		
 		//member list를 가지고 사용자 email을 확인하여 메일 전송 > 초대 전송 완료 후 
 		//project_no와 user_no를 가지고 project dashboard로 이동
-		UserInfoVo memberInfo1 = userInfoService.userInfoCheckWithNo(user_no1) ;
+		/*UserInfoVo memberInfo1 = userInfoService.userInfoCheckWithNo(user_no1) ;
+		System.out.println(memberInfo1);
 		UserInfoVo memberInfo2 = userInfoService.userInfoCheckWithNo(user_no2) ;
 		UserInfoVo memberInfo3 = userInfoService.userInfoCheckWithNo(user_no3) ;
 		UserInfoVo memberInfo4 = userInfoService.userInfoCheckWithNo(user_no4) ;
@@ -45,7 +50,14 @@ public class ProjectMemberInviteController {
 		mailService.sendMail(memberInfo1);
 		mailService.sendMail(memberInfo2);
 		mailService.sendMail(memberInfo3);
-		mailService.sendMail(memberInfo4);
+		mailService.sendMail(memberInfo4);*/
+		System.out.println("member size: "+member.size());
+		UserInfoVo memberInfo; 
+		for(int i=0; i<member.size(); i++) {
+			memberInfo = userInfoService.userInfoCheckWithNo(member.get(i));
+			System.out.println("memberInfo: "+memberInfo);
+			mailService.sendMail(memberInfo);
+		}
 		
 
 		//project db에 저장

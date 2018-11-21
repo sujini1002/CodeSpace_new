@@ -18,12 +18,7 @@ public class ProjectMemberInvitationService {
 		dao = sqlSessionTemplate.getMapper(ProjectInfoInterface.class);
 		System.out.println("Project Member Invitation Service: "+ member + "// project_no: "+project_no);
 		
-		int user_no1 = member.get(0);
-		int user_no2 = member.get(1);
-		int user_no3 = member.get(2);
-		int user_no4 = member.get(3);
-		
-		return dao.memberUpdate(user_no1, user_no2, user_no3, user_no4, project_no);
+		return dao.memberUpdate(member, project_no);
 	}
 
 }

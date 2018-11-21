@@ -159,7 +159,7 @@
       </div>
  		<form method="post" action="/cos/project/inviteMember"> 
 	      <!-- 사용자 초대 -->
-	      <div class="modal-body">
+	      <div class="modal-body" id="memberInviteDiv">
 	      	<!-- 사용자 번호 -->
 	      	<input type="hidden" name="user_no" value="${user_info.user_no }">
 	      	<!-- 프로젝트 번호 -->
@@ -169,11 +169,6 @@
 				<label>사용자 검색하기</label>
 				<input class="form-control" id="search_user">
 			</div>
-			<!-- 초대할 user_no 저장하는 곳 -->
-			<input type="hidden" name="member">
-			<input type="hidden" name="member">
-			<input type="hidden" name="member">
-			<input type="hidden" name="member">
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
