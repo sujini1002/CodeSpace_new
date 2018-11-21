@@ -127,7 +127,7 @@ public class PageMaker {
 			uriComponents = UriComponentsBuilder.newInstance()
 					.queryParam("page", page)
 					.queryParam("perPageNum", userCri.getPerPageNum())
-					.queryParam("user_nickname", encoding(((UserCriteria) userCri).getUser_nickname())).build();
+					.build();
 		}
 		
 		return uriComponents.toUriString();
