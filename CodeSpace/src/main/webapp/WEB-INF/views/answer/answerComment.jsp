@@ -5,7 +5,7 @@
 <div id="k_answerCommList_<c:out value="${num.index}"/>">
 
 
-	<div id="k_AnswerComm_<c:out value="${num.index}"/>"
+	<div id="k_AnswerComm_<c:out value="${item.a_no}"/>"
 		style="padding: 0px">
 		<c:forEach var="list" items="${answerCommentList}" begin="0"
 			end="${fn:length(answerCommentList)}" varStatus="acNum">
@@ -60,11 +60,115 @@
 	</div>
 </div>
 <script>
+	function ac_delete(value){
+		var num = value.id.substring(value.id.lastIndexOf('_')+1);
+		//답변 댓글 고유 번호 , 답변 번호 가져오기
+		var acNo = $('#k_acNo_'+num).val()*1;
+		//로그인한 사용자 번호
+		var loginUserNo = '${loginInfo.user_no}'*1;
+		//답변 번호
+		var ano=0;
+		//답변 댓글 삭제
+		$.ajax({
+					url : '${pageContext.request.contextPath}/answerComm/deleteComment',
+					type : 'GET',
+					data : {
+						"ac_no" : acNo
+					},
+					contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+					dataType : 'json',
+					async : false,
+					success : function(data) {
+						var quesCommList = '';
+						$.each(data, function(index, item) {
+							quesCommList += '<input type="hidden" id="k_acNo_'+item.a_no+index+'" value="'+item.ac_no+'"/>';
+							quesCommList += '<span id="k_acContent_'+item.a_no+index+'">';
+							quesCommList +=  item.ac_content;
+							quesCommList +=  '</span>';
+							quesCommList +=  '<input type="text" class="form-control" id="k_acContentInput_'+item.a_no+index+'" value="'+item.ac_content+'" style="display:none"/>';
+							quesCommList +=  '<span id="k_acUserName_'+item.a_no+index+'">';
+							quesCommList +=  '<a href="#">'+item.user_name+'</a>';
+							quesCommList +=  '</span>';
+							quesCommList +=  '<span id="k_acRegdate_'+item.a_no+index+'">';
+							quesCommList +=  item.ac_regdate;
+							quesCommList +=  '</span>';
+							if(loginUserNo == item.user_no){
+								quesCommList +=  '<span>';
+								quesCommList += '<a onclick="ac_update(this)"  class="badge badge-primary" id="k_acUpdateBtn_'+item.a_no+index+'">수정</a>';
+								quesCommList += '<a onclick="ac_delete(this)"  class="badge badge-danger"  id="k_acDeleteBtn_'+item.a_no+index+'">삭제</a>';
+								quesCommList +=  '</span>';
+							}
+							quesCommList += '<hr>';
+							ano = item.a_no;
+						});//end each
+						
+						$('#k_AnswerComm_'+ano).html(quesCommList);
+					},
+					error : function() {
+						alert('불행하게도 에러입니다 ㅠㅠ');
+					}
+				});//end ajax 
+	}
 	function ac_update(value){
 		var num = value.id.substring(value.id.lastIndexOf('_')+1);
 		//답변 댓글 고유 번호 , 답글 내용 가져오기
 		var acNo = $('#k_acNo_'+num).val()*1;
 		var content = $('#k_acContentInput_'+num).val();
+		//로그인한 사용자 번호
+		var loginUserNo = '${loginInfo.user_no}'*1;
+		
+		if(value.text == '수정'){
+			$('#k_acContent_'+num).css('display','none');
+			$('#k_acContentInput_'+num).css('display','inline-block');
+			$('#k_acUpdateBtn_'+num).text('수정완료');
+		}else{
+			if(content == ''){
+				alert('공백으로는 수정 불가능 합니다.');
+			}else{
+				$('#k_AnswerComm_'+num).html('');
+				var ano=0;
+				$.ajax({
+							url : '${pageContext.request.contextPath}/answerComm/updateComment',
+							type : 'POST',
+							data : {
+								"ac_no" : acNo,
+								"ac_content" : content,
+							},
+							contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+							dataType : 'json',
+							async : false,
+							success : function(data) {
+								var quesCommList = '';
+								$.each(data, function(index, item) {
+									quesCommList += '<input type="hidden" id="k_acNo_'+item.a_no+index+'" value="'+item.ac_no+'"/>';
+									quesCommList += '<span id="k_acContent_'+item.a_no+index+'">';
+									quesCommList +=  item.ac_content;
+									quesCommList +=  '</span>';
+									quesCommList +=  '<input type="text" class="form-control" id="k_acContentInput_'+item.a_no+index+'" value="'+item.ac_content+'" style="display:none"/>';
+									quesCommList +=  '<span id="k_acUserName_'+item.a_no+index+'">';
+									quesCommList +=  '<a href="#">'+item.user_name+'</a>';
+									quesCommList +=  '</span>';
+									quesCommList +=  '<span id="k_acRegdate_'+item.a_no+index+'">';
+									quesCommList +=  item.ac_regdate;
+									quesCommList +=  '</span>';
+									if(loginUserNo == item.user_no){
+										quesCommList +=  '<span>';
+										quesCommList += '<a onclick="ac_update(this)"  class="badge badge-primary" id="k_acUpdateBtn_'+item.a_no+index+'">수정</a>';
+										quesCommList += '<a onclick="ac_delete(this)"  class="badge badge-danger"  id="k_acDeleteBtn_'+item.a_no+index+'">삭제</a>';
+										quesCommList +=  '</span>';
+									}
+									quesCommList += '<hr>';
+									ano = item.a_no;
+								});//end each
+								
+								$('#k_AnswerComm_'+ano).html(quesCommList);
+							},
+							error : function() {
+								alert('불행하게도 에러입니다 ㅠㅠ');
+							}
+						});//end ajax 
+			}//end if(content == '')
+		}//end if(value.text == '수정')
 	}
 	function AnswercommentForm(value) {
 		
@@ -96,6 +200,7 @@
 			$('#k_insAnswCommBtn_'+num).prop('disabled', 'fase');
 		} else {
 			$('#k_AnswerComm_'+num).html('');
+			var a_no=0;
 			$.ajax({
 						url : '${pageContext.request.contextPath}/answerComm/insertComment',
 						type : 'POST',
@@ -128,9 +233,10 @@
 									quesCommList +=  '</span>';
 								}
 								quesCommList += '<hr>';
+								a_no = item.a_no;
 							});//end each
 
-							$('#k_AnswerComm_'+num).html(quesCommList);
+							$('#k_AnswerComm_'+a_no).html(quesCommList);
 							$('#k_inputAnswComm_'+num).val('');
 						},
 						error : function() {

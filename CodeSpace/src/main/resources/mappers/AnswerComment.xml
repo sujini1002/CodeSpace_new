@@ -26,4 +26,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and ac.user_no = u.user_no
 		where a.q_no = #{q_no};
 	</select>
+	<!-- 답변 댓글 수정하기  -->
+	<update id="updateComment" parameterType="com.team.cos.comment.vo.AnswerCommentInfo">
+		update answer_comm set ac_content = #{ac_content}, ac_regdate= now() 
+		where ac_no=#{ac_no}
+	</update>
+	<!-- 답변 댓글 번호로 답변 번호 출력 -->
+	<select id="findAnswerNum" resultType="int">
+		select a_no from answer_comm
+		where ac_no = #{ac_no}
+	</select>
+	<!-- 답변 댓글 삭제 -->
+	<delete id="deleteAc">
+		delete from answer_comm where ac_no = #{ac_no}
+	</delete>
 </mapper>

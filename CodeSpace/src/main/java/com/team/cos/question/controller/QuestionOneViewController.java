@@ -58,7 +58,6 @@ public class QuestionOneViewController {
 		
 		//답변 댓글
 		List<AnswerCommentInfo> answerCommList = acListService.answerList(q_no);
-		System.out.println("컨트롤러 답변 댓글 리스트"+answerCommList);
 		
 		modelAndView.addObject("questionInfo", questionInfo);
 		modelAndView.addObject("userInfo", userInfoVo);
