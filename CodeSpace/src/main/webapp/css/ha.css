@@ -94,3 +94,13 @@
 .h_noticetd {
 	color: black;
 }
+
+.h_detailnotice {
+	border: 1px solid grey;
+}
+.h_detailnotice>div{
+	margin: 25px;
+}
+.h_detailnotice h1{
+	border-bottom: 1px dashed DarkGray;
+}

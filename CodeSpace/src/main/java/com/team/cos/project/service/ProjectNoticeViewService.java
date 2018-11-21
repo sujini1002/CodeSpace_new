@@ -30,7 +30,6 @@ public class ProjectNoticeViewService {
 		ProjectNoticeVO result = new ProjectNoticeVO();
 		dao = template.getMapper(ProjectInfoInterface.class);
 		result = dao.noticeDetailView(projectNoticeVO);
-		System.out.println(result);
 		return result;
 	}
 
