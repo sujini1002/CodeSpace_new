@@ -37,8 +37,7 @@
 <table class='table'>
 	<tr>
 		<td>캘린더  <a href="#">더보기</a></td>
-		<td>공지사항 <a href="${pageContext.request.contextPath }/project/notice/notice?project_no=${pro_info.project_no }">더보기</a>
-		</td>
+		<td>공지사항 <a href="${pageContext.request.contextPath }/project/notice/notice?project_no=${pro_info.project_no }">더보기</a></td>
 	</tr>
 	<tr>
 		<td><img src="../images/stop.jpg" width=300px></td>
@@ -227,19 +226,33 @@
 	});
 	
 	
+	
+	
 	//사용자 정보 자동완성 관련
- 		$("#search_user").autocomplete({
-			minLength: 1,
-			source: function(request, response){ 
+		$("#search_user").autocomplete({
+		minLength: 2,
+		source: function(request, response){ 
+			//이미 선택된 사용자 정보가 있으면, 그 사용자의 user_no도 보낸다!!!!!!!!
+			if(document.querySelectorAll(".selectedMember").length > 0){
+				console.log(document.querySelectorAll(".selectedMember"));
+				
+				var selectedMember = document.querySelectorAll(".selectedMember");
+				var member;
+				
+				for(var i=0, len=selectedMember.length; i<len; i++){
+					member = selectedMember[i].value;
+				}
+				
+				
 				$.ajax({
 					type: 'post',
-					url: '/cos/project/proUserSearch',
-					data: {user_nickname:$("#search_user").val()},
+					url: '/cos/project/userSearchExceptSelectedMember',
+					data: {user_nickname:$("#search_user").val(),
+							member:member
+							//request.term : text box에 입력된 값	
+					},
 					dataType: 'json',
 					success: function(data){
-						$.each(data, function(index, item){
-							console.log(item.user_nickname+"-"+item.user_no);
-						});
 						response(
 							$.map(data, function(item){
 								return {
@@ -253,15 +266,86 @@
 						console.log("user search json error");
 					}
 				});
- 			},
-	//modal 이 열릴 때 영역 한정
-/* 	Which element the menu should be appended to. When the value is null, 
-	the parents of the input field will be checked for a class of ui-front. 
-	If an element with the ui-front class is found, the menu will be appended to that element. 
-	Regardless of the value, if no element is found, the menu will be appended to the body. */
- 			appendTo: '#proMemberInvite',
- 			multiselect: true
- 		}); 
+			} else {
+				$.ajax({
+					type: 'post',
+					url: '/cos/project/userSearch',
+					data: {user_nickname:$("#search_user").val()
+							//request.term : text box에 입력된 값	
+					},
+					dataType: 'json',
+					success: function(data){
+						response(
+							$.map(data, function(item){
+								return {
+									label: item.user_nickname+"("+item.user_id+")",
+									value: item.user_no
+								}
+							}) 
+						);		
+					},
+					error: function(){
+						console.log("user search json error");
+					}
+				});
+			}
+			},
+			//자동완성 목록에서 특정 값 선택 시 처리하는 동작 구현
+			/* select: function(event, ui){
+				//var selectedMember = document.querySelectorAll(".selectedMember");
+				var dataItem = this.dataItem(ui.item.value);
+			console.log("선택된 사용자의 값을 출력할 수 있는가?: "+dataItem);
+			}, 
+			 */
+		//modal 이 열릴 때 영역 한정
+		/* 	Which element the menu should be appended to. When the value is null, 
+		the parents of the input field will be checked for a class of ui-front. 
+		If an element with the ui-front class is found, the menu will be appended to that element. 
+		Regardless of the value, if no element is found, the menu will be appended to the body. */
+			appendTo: '#proMemberInvite',
+			multiselect: true
+		}); 
+
+	
+	
+	
+	
+     	//선택한 사용자의 user_no를 memberInviteDiv form에 input type="hidden"으로 만들기
+        $("#inviteMember").click(function(){
+	        var selectedMember = document.querySelectorAll(".selectedMember");
+	    	var memberInviteDiv = document.getElementById("memberInviteDiv");
+    		
+          	for(var i=0, len=selectedMember.length; i<len; i++){
+    	      	var input = document.createElement("input");
+    	      	input.setAttribute('type', 'hidden');
+    	      	input.setAttribute('name', 'member');
+    	      	input.setAttribute('value', selectedMember[i].value);
+    	      	//member[i].value = selectedMember[i].value;
+    	      	
+    	      	memberInviteDiv.appendChild(input);
+            }
+          	
+          	//member에서 동일한 user_no가 있는 경우 alert
+			//member 4명까지 추가 가능하도록.. 
+          	
+        }); 
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		 $(document).ready(function(){
 			var url='${pageContext.request.contextPath}/project/notice';
 			$.ajax({
@@ -280,6 +364,5 @@
 				}
 			});
 		});
-		 
 </script>
 

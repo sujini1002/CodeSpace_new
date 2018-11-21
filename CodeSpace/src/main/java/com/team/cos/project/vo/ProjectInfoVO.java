@@ -1,8 +1,10 @@
 package com.team.cos.project.vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class ProjectInfoVO {
+
 
 	private int project_no; // 프로젝트 고유 번호
 	private String project_title; // 프로젝트 제목
@@ -14,11 +16,20 @@ public class ProjectInfoVO {
 	private String prostring_enddate; // 프로젝트 종료 날짜
 	private int user_no;
 	private int pm_no;
+	private List<Integer> member;
 	private int user_no1;
 	private int user_no2;
 	private int user_no3;
 	private int user_no4;
 
+	public List<Integer> getMember() {
+		return member;
+	}
+	
+	public void setMember(List<Integer> member) {
+		this.member = member;
+	}
+	
 	public int getProject_no() {
 		return project_no;
 	}

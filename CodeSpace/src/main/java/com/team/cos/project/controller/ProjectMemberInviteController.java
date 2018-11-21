@@ -26,42 +26,22 @@ public class ProjectMemberInviteController {
 	ProjectMemberInvitationService memberInvitationService;
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView invite(
+	public ModelAndView projectMemberInvite(
 			@RequestParam("project_no") int project_no,
 			@RequestParam("user_no") int user_no,
 			@RequestParam(value="member") List<Integer> member
 			) {
-		
-		/*int user_no1 = member.get(0);
-		int user_no2 = member.get(1);
-		int user_no3 = member.get(2);
-		int user_no4 = member.get(3);*/
-		
-		//System.out.println("project_no: "+project_no+"// user_no: "+user_no+"// member: "+user_no2);
-		
-		//member list를 가지고 사용자 email을 확인하여 메일 전송 > 초대 전송 완료 후 
-		//project_no와 user_no를 가지고 project dashboard로 이동
-		/*UserInfoVo memberInfo1 = userInfoService.userInfoCheckWithNo(user_no1) ;
-		System.out.println(memberInfo1);
-		UserInfoVo memberInfo2 = userInfoService.userInfoCheckWithNo(user_no2) ;
-		UserInfoVo memberInfo3 = userInfoService.userInfoCheckWithNo(user_no3) ;
-		UserInfoVo memberInfo4 = userInfoService.userInfoCheckWithNo(user_no4) ;
-		
-		mailService.sendMail(memberInfo1);
-		mailService.sendMail(memberInfo2);
-		mailService.sendMail(memberInfo3);
-		mailService.sendMail(memberInfo4);*/
+
 		System.out.println("member size: "+member.size());
-		UserInfoVo memberInfo; 
+		
+		// member에 해당하는 userInto 객체 생성 및 메일 보내기
+		UserInfoVo projectMemberInfo; 
 		for(int i=0; i<member.size(); i++) {
-			memberInfo = userInfoService.userInfoCheckWithNo(member.get(i));
-			System.out.println("memberInfo: "+memberInfo);
-			mailService.sendMail(memberInfo);
+			projectMemberInfo = userInfoService.userInfoCheckWithNo(member.get(i));
+			System.out.println("memberInfo: "+projectMemberInfo);
+			mailService.sendMail(projectMemberInfo);
 		}
 		
-
-		//project db에 저장
-		memberInvitationService.invite(member, project_no);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("project_no", project_no);

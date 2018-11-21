@@ -51,9 +51,6 @@ $.widget("ui.autocomplete", $.ui.autocomplete, {
             o.select = o.select || function(e, ui) {
                 //$("<span></span>")
             	
-            	//selectedMember.push(ui);
-            	//console.log(selectedMember);
-            	
                 $("<div></div>")
                     .addClass("ui-autocomplete-multiselect-item selectedMember")
                     .text(ui.item.label)
@@ -83,38 +80,6 @@ $.widget("ui.autocomplete", $.ui.autocomplete, {
         }
         
         
-        
-    	//선택한 사용자의 user_no를 controller에 전달
-        $("#inviteMember").click(function(){
-          	var selectedMember = document.querySelectorAll(".selectedMember");
-    		var memberInviteDiv = document.getElementById("memberInviteDiv");
-          	
-          	for(var i=0, len=selectedMember.length; i<len; i++){
-    	      	var input = document.createElement("input");
-    	      	/*input.type="hidden";
-    	      	input.className = "member";*/
-    	      	input.setAttribute('type', 'hidden');
-    	      	input.setAttribute('name', 'member');
-    	      	input.setAttribute('value', selectedMember[i].value);
-    	      	//member[i].value = selectedMember[i].value;
-    	      	
-    	      	memberInviteDiv.appendChild(input);
-            }
-          	var member = document.getElementsByName("member");
-          	for(var i=0, len=member.length; i<len; i++){
-          		console.log(member[i]);
-          	}
-          	
-           
-          	//alert(document.getElementsByName("user_no2").value);
-          	
-          	
-          	
-          	
-          	
-                	
-                	
-        });
         
         return this;
     }

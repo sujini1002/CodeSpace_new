@@ -24,5 +24,18 @@
 	<select id="searchUser" resultType="com.team.cos.userinfo.vo.UserInfoVo">
 		select * from userinfo where user_nickname like CONCAT('%',#{words},'%')
 	</select>
+	
+	<!-- 프로젝트 유저 검색 결과 쿼리 -->
+	<select id="searchUserExceptSelectedMember" 
+		parameterType="com.team.cos.project.vo.ProjectMemberVO"
+		resultType="com.team.cos.userinfo.vo.UserInfoVo">
+		select * from userinfo 
+		where 
+			user_nickname like CONCAT('%',#{user_nickname},'%')
+		and
+		<foreach collection="member" index="index" item="item">
+			user_no != #{item}
+		</foreach>
+	</select>
 
 </mapper>

@@ -2,8 +2,8 @@ package com.team.cos.search.dao;
 
 import java.util.List;
 
-import com.team.cos.paging.vo.Criteria;
 import com.team.cos.paging.vo.SearchCriteria;
+import com.team.cos.project.vo.ProjectMemberVO;
 
 public interface SearchDaoInterface {
 
@@ -12,5 +12,7 @@ public interface SearchDaoInterface {
 	public int searchCnt(SearchCriteria cri); 		// Main 페이지에서 검색 결과 갯수를 카운트하는 메서드
 	
 	public List searchUser(String words); // User 페이지에서 검색한 유저 정보를 가져오는 메서드
+	
+	public List searchUserExceptSelectedMember(ProjectMemberVO vo); // 프로젝트 usersearch 페이지에서 검색한 유저 정보를 가져오는 메서드
  
 }

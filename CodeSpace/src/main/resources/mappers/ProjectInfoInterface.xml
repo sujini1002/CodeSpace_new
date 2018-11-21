@@ -66,9 +66,13 @@
 	</select>
 
 	<!-- project 테이블에 member로 추가한 user_no update -->
-	<!-- <update id="memberUpdate" parameterType="java.util.List"> <foreach 
-		collection="list" item="member" index="index" separator=";"> update project 
-		set user_no1 = #{member} where project_no = #{project_no} </foreach> </update> -->
+	 <update id="memberUpdate" parameterType="com.team.cos.project.vo.ProjectInfoVO"> 
+		 <foreach collection="list" item="member" index="index" separator=";"> 
+			update project 
+			set user_no1 = #{member} where project_no = #{project_no} 
+		</foreach> 
+	</update> 
+
 
 	<!-- 공지사항 받아오기 위함 -->
 	<select id="projectNoticeView"
@@ -86,18 +90,5 @@
 		select * from
 		project_notice
 		where notice_no=#{notice_no}
-	</select>
-
-	<!-- 공지사항 삭제 -->
-	<delete id="noticeDelete"
-		parameterType="com.team.cos.project.vo.ProjectNoticeVO">
-		delete from project_notice where notice_no =
-		#{notice_no};
-	</delete>
-	<!-- PM인지 아닌지 확인 -->
-	<select id="checkPm"
-		parameterType="com.team.cos.project.vo.ProjectInfoVO"
-		resultType="com.team.cos.project.vo.ProjectInfoVO">
-		select * from project where pm_no = #{user_no}
 	</select>
 </mapper>
