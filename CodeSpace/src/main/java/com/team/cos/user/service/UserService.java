@@ -28,12 +28,33 @@ public class UserService {
 		return userList;
 	}
 
-	// 유저 페이지 검색 결과 갯수를 가져오는 메서드
+	// 전체 유저 수에 대한 Cnt 메서드
 	public int getUserCnt(UserCriteria cri) {
 
 		userDao = sqlSessionTemplate.getMapper(UserDaoInterface.class);
 
 		int resultCnt = userDao.countPaging(cri);
+
+		return resultCnt;
+	}
+
+	// 검색한 유저 결과를 가져오는 메서드
+	public List<UserInfoVo> getUsers(String nickname) {
+
+		userDao = sqlSessionTemplate.getMapper(UserDaoInterface.class);
+
+		List<UserInfoVo> searchResult = userDao.searchUser(nickname);
+
+		return searchResult;
+
+	}
+
+	// 검색한 유저에 대한 Cnt 메서드
+	public int getSearchCnt(UserCriteria cri) {
+
+		userDao = sqlSessionTemplate.getMapper(UserDaoInterface.class);
+
+		int resultCnt = userDao.searchCnt(cri);
 
 		return resultCnt;
 	}

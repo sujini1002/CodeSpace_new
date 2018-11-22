@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team.cos.main.dao.MainDaoInterface">
+	
+	<!-- Top Questions -->
+	<select id="getTopQuestion" resultType="com.team.cos.question.vo.QuestionInfo">
+		select * from question 
+		where q_no > 0
+		order by q_regdate desc
+		limit 20
+	</select>
+
+</mapper>

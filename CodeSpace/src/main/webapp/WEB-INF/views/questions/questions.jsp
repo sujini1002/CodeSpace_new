@@ -13,7 +13,7 @@
 <!--  여기다가 작성 해주세요 -->
 <div class="container">
    <div class="head-container">
-      <h1>Questions</h1>
+      <h1>All Questions</h1>
    </div>
    
    <br>

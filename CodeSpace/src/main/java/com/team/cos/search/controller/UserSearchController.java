@@ -19,6 +19,7 @@ public class UserSearchController {
 	@Autowired
 	private UserSearchService searchService;
 
+	/*
 	@RequestMapping(value="/user/userList", method=RequestMethod.POST)
 	@ResponseBody
 	public List getSearchUser(@RequestParam("searchWords") String searchWords) {
@@ -27,4 +28,5 @@ public class UserSearchController {
 		
 		return userInfo;
 	}
+	*/
 }

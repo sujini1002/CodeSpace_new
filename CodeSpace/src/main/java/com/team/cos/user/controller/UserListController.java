@@ -1,17 +1,20 @@
 package com.team.cos.user.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cos.paging.service.PagingService;
 import com.team.cos.paging.vo.PageMaker;
-import com.team.cos.paging.vo.SearchCriteria;
 import com.team.cos.paging.vo.UserCriteria;
-import com.team.cos.search.service.MainSearchService;
 import com.team.cos.user.service.UserService;
+import com.team.cos.userinfo.vo.UserInfoVo;
 
 @Controller
 public class UserListController {
@@ -21,8 +24,8 @@ public class UserListController {
 	
 	@Autowired
 	private PagingService pagingService;
-	
-	@RequestMapping(value="/user/userList")
+
+	@RequestMapping(value="/user/userList", method=RequestMethod.GET)
 	public ModelAndView getUserList(@ModelAttribute("cri")UserCriteria cri) {
 
 		ModelAndView mav = new ModelAndView();
@@ -34,6 +37,8 @@ public class UserListController {
 		
 		pageMaker.setUserTotalCount(userService.getUserCnt(cri));
 		
+		
+		/*
 		System.out.println("totalCount : " + pageMaker.getTotalCount());
 		System.out.println("userTotalCount : " + pageMaker.getUserTotalCount());
 		System.out.println("startPage : " + pageMaker.getStartPage());
@@ -42,7 +47,7 @@ public class UserListController {
 		System.out.println("next : " + pageMaker.isNext());
 		System.out.println("searchCri : " + pageMaker.getSearchCri());
 		System.out.println("userCri : " + pageMaker.getUserCri());
-		
+		*/
 		
 		mav.addObject("pageMaker", pageMaker);
 		
@@ -51,4 +56,19 @@ public class UserListController {
 		return mav;
 	
 	}
+	
+	@RequestMapping(value="/user/userList", method=RequestMethod.POST)
+	@ResponseBody
+	public List getUserSearch(@ModelAttribute("cri")UserCriteria cri) {
+		
+		System.out.println(cri);
+		
+		List<UserInfoVo> userInfo = userService.getUsers(cri.getUser_nickname());
+		
+		System.out.println(userInfo);
+		
+		return userInfo;
+		
+	}
+
 }

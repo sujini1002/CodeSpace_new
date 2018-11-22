@@ -26,6 +26,9 @@
 	
 	<!-- Paging Service 등록 -->
 	<beans:bean id="PagingService" class="com.team.cos.paging.service.PagingService"/>
+	
+	<!-- Main Service 등록 -->
+	<beans:bean id="MainPageService" class="com.team.cos.main.service.MainPageService"/>
 
 
 </beans:beans>
