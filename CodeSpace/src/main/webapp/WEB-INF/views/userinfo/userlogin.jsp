@@ -19,6 +19,7 @@
 		        </label>
 	      	</div>
 		    <button class="btn btn-lg btn-primary btn-block" onclick="loginCheck()">로그인</button>
+		    <button class="g-signin2 h_login h_loginpage" data-onsuccess="onSignIn" style="width:300.5px;height: 45px;"></button>
      	</div>
      </div>
 <script>

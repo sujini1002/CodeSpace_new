@@ -10,7 +10,6 @@
 	border: 0px;
 	border-radius: 5px;
 	margin-left: 10px;
-	background-color: red;
 }
 
 .h_loginForm {
@@ -130,4 +129,19 @@
 .h_golist :hover {
 	text-decoration: none;
 	color: black;
+}
+
+.h_loginpage {
+	margin-top: 3px;
+	width: 100%;
+	margin-left: 0px;
+}
+
+.abcRioButtonContentWrapper {
+	background-color: #007bff;
+	color: white;
+}
+.abcRioButtonContentWrapper span{
+	margin-left: -19px;
+	font-size: 20px;
 }
