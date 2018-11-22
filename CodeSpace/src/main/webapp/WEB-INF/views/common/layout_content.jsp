@@ -8,7 +8,7 @@
 	</div>
 	<div id="k_rightContent"> --%>
 
-<div class="container-fluid row">
+<div class="container-fluid row" id="k_content">
 	<!-- nav 밑부분을 다 감싸는 wrapper  -->
 	<!-- <div class="row"> -->
 	<!-- leftSide bar 시작 -->

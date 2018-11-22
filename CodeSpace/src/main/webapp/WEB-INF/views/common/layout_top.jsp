@@ -57,7 +57,7 @@
 
 <!--  -->
 </head>
-<body>
+<body style="overflow-x:hidden; overflow-y:auto;">
 
 	<div id="k_hearder">
 		<!-- nav_bar 들어갈곳 -->

@@ -1,4 +1,8 @@
 @charset "UTF-8";
+#k_content{
+	min-height: 690px;
+	min-width: 1000px;
+}
 
 #k_hearder {
 	width: 100%;
