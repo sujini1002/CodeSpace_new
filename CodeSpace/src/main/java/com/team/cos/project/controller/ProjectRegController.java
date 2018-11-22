@@ -2,6 +2,7 @@ package com.team.cos.project.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,36 +32,31 @@ public class ProjectRegController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView projectRegForm(@RequestParam("user_no") int user_no) {
 		
-		System.out.println("project reg controller!");
-		
 		//user_no가 포함된 userInfoVO 가져옴
 		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
-		System.out.println("PRG userInfo.user_id = "+user_info.getUser_id());
 		
 		//로그인한 사용자가 참여중인 projectInfoVO 가져옴
 		ProjectInfoVO userpro_info = userProInfoService.getUserPro(user_no);
-		System.out.println("userpro info: "+userpro_info);
 		
-		// 86번에 해당하는 프로젝트 표출 >> to do list 표출 확인 테스트용
-		ProjectInfoVO pro_info = service.selectProList(86);
-
+		// 현재 로그인한 사용자가 참여중인 (현재 진행중인)프로젝트의 정보 가져옴
+		ProjectInfoVO pro_info = new ProjectInfoVO();
+		pro_info = service.selectProList(userpro_info.getProject_no());
+		
 		ModelAndView modelAndView = new ModelAndView();
-		
-		System.out.println("user score: "+user_info.getUser_score());
-		if(user_info.getUser_score()<31) {
-			// user_score가 31 미만인 사용자는 projectRegFail.jsp로 보냄
-			modelAndView.setViewName("project/projectRegFail");
+			
+		if(pro_info!=null) {
+			// user가 참여중인 project가 있는 경우
+			// prjdash controller를 타게 됨
+			modelAndView.addObject("userpro_info", pro_info);
+			modelAndView.addObject("project_no", userpro_info.getProject_no());
+			modelAndView.addObject("user_no", user_no);
+			modelAndView.setViewName("redirect:prjdash");
 		} else {
-			// user_score가 31 이상임
-			if(userpro_info!=null) {
-				// user가 참여중인 project가 있는 경우
-				// prjdash controller를 타게 됨
-				modelAndView.addObject("userpro_info", pro_info);
-				modelAndView.addObject("project_no", userpro_info.getProject_no());
-				modelAndView.addObject("user_no", user_no);
-				modelAndView.setViewName("redirect:prjdash");
-			} else {
+			if(user_info.getUser_score()>31) {
+				//project reg dashboard
 				modelAndView.setViewName("project/projectReg");
+			} else {
+				modelAndView.setViewName("project/projectRegFail");
 			}
 		}
 

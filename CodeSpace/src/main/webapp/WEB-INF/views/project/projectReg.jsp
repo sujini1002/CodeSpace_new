@@ -40,14 +40,7 @@
 	</form>
 
 </div>
-<hr>
-<div>
-	<h3>to do list 테스트를 위한 project_no = 87 게시물
-	<br>
-		<a href="${pageContext.request.contextPath}/project/prjdash?project_no=87&
-			user_no=${user_info.user_no}">${pro_info.project_title }</a>
-	</h3>
-</div>
+
 
 
 <jsp:include page="../common/layout_footer.jsp" />
