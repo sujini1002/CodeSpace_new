@@ -3,10 +3,16 @@
 
 <mapper namespace="com.team.cos.project.dao.ProjectInfoInterface">
 
-	<!-- project_no에 해당하는 플젝 정보 반환 -->
+	<!-- project_no에 해당하고, 현재 진행중인 플젝 정보 반환 -->
 	<select id="selectProjectList"
 		resultType="com.team.cos.project.vo.ProjectInfoVO">
 		select * from project where project_no = #{project_no} and project_status=1
+	</select>
+	
+	<!-- project_no에 해당하는 모든 플젝 정보 반환 -->
+	<select id="selectAllProjectList"
+		resultType="com.team.cos.project.vo.ProjectInfoVO">
+		select * from project where project_no = #{project_no}
 	</select>
 
 	<!-- 플젝 정보 추가 -->
@@ -58,8 +64,6 @@
 		on 
 			p.project_no = m.project_no
 		where 
-			p.project_status = 1
-			and 
 			m.member_no=#{user_no}
 	</select>
 	
@@ -67,7 +71,14 @@
 		resultType="com.team.cos.project.vo.ProjectInfoVO">
 		select * from project where pm_no=#{pm_no}
 	</select>
-
+	
+	<select id="selectProjectNo" parameterType="int" resultType="int">
+		select  distinct p.project_no from project p
+		left join project_member m
+		on p.project_no = m.project_no
+		where p.pm_no=#{user_no} or m.member_no=#{user_no};
+	</select>
+	
 	<!-- project 테이블에 member로 추가한 user_no update -->
 	<insert id="memberUpdate" 
 	 	parameterType="com.team.cos.project.vo.ProjectMemberVO"> 

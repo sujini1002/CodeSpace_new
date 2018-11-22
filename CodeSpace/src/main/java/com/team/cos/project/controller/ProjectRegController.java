@@ -2,7 +2,9 @@ package com.team.cos.project.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.team.cos.project.service.ProjectRegService;
 import com.team.cos.project.service.UserProjectViewService;
 import com.team.cos.project.vo.ProjectInfoVO;
-import com.team.cos.project.vo.ProjectMemberVO;
 import com.team.cos.userinfo.service.UserInfoCheckService;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
@@ -34,37 +35,30 @@ public class ProjectRegController {
 		
 		//user_no가 포함된 userInfoVO 가져옴
 		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
-		/*//로그인한 사용자가 참여중인 projectInfoVO 가져옴
-		ProjectInfoVO userpro_info = userProInfoService.getUserPro(user_no);*/
-		// 현재 로그인한 사용자가 참여중인 (현재 진행중인)프로젝트의 정보 가져옴 
-		ProjectInfoVO pro_info = userProInfoService.getPmPro(user_no);
-		if(pro_info==null) {
-			pro_info = userProInfoService.getUserPro(user_no);
-			System.out.println("pm이 아님"+pro_info);
+		// 현재 로그인한 사용자가 pm으로 참여중인 프로젝트의 정보 가져옴 
+		/*List<ProjectInfoVO> userPmJoinProjects = userProInfoService.getPmPro(user_no);
+		System.out.println("pm임"+userPmJoinProjects);
+		List<ProjectInfoVO> userJoinProjects = userProInfoService.getUserPro(user_no);*/
+		
+		List<Integer> user_project_no = userProInfoService.getProject_no(user_no);
+		System.out.println("사용자가 참여중인 project_no: "+user_project_no);
+		
+		List<ProjectInfoVO> userJoinProjects = new ArrayList<ProjectInfoVO>();
+		
+		for(int i=0; i<user_project_no.size(); i++) {
+			int project_no = user_project_no.get(i);
+			ProjectInfoVO vo = userProInfoService.getUserAllProject(project_no);
+			System.out.println(vo);
+			userJoinProjects.add(vo);
 		}
 		
-		//pro_info = service.selectProList(userpro_info.getProject_no());
 		
 		ModelAndView modelAndView = new ModelAndView();
-			
-		if(pro_info!=null) {
-			// user가 참여중인 project가 있는 경우
-			// prjdash controller를 타게 됨
-			modelAndView.addObject("userpro_info", pro_info);
-			modelAndView.addObject("project_no", pro_info.getProject_no());
-			modelAndView.addObject("user_no", user_no);
-			modelAndView.setViewName("redirect:prjdash");
-		} else {
-			if(user_info.getUser_score()>31) {
-				//project reg dashboard
-				modelAndView.setViewName("project/projectReg");
-			} else {
-				modelAndView.setViewName("project/projectRegFail");
-			}
-		}
-
-		//login 사용자 정보 보냄
+		// 로그인한 사용자가 참여중인 프로젝트 리스트 모두 전달
+		modelAndView.addObject("userJoinProjects", userJoinProjects);
 		modelAndView.addObject("user_info", user_info);
+		
+		modelAndView.setViewName("project/projectReg");
 
 		return modelAndView;
 	}
@@ -73,8 +67,7 @@ public class ProjectRegController {
 	// 프로젝트 생성 폼 입력 후 전달+db 입력하는 것임
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView projectReg(ProjectInfoVO vo,
-			@RequestParam("user_no") int user_no
-			) throws ParseException {
+			@RequestParam("user_no") int user_no) throws ParseException {
 
 		// 입력폼으로부터 전달받은 vo 객체 중, 종료일자 포맷 변경을 위한 처리
 		String enddate = vo.getProstring_enddate();

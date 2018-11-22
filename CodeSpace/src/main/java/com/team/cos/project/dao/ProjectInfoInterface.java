@@ -10,6 +10,7 @@ public interface ProjectInfoInterface {
 
 	// project_no와 일치하는 프로젝트 정보를 보여주는 메서드
 	public ProjectInfoVO selectProjectList(int project_no);
+	public ProjectInfoVO selectAllProjectList(int project_no);
 
 	// project insert
 	public int insertProject(ProjectInfoVO vo);
@@ -21,9 +22,12 @@ public interface ProjectInfoInterface {
 	public int updateProStatus(int project_no);
 
 	// 로그인한 사용자가 참여중인 project 정보를 보여주는 메서드
-	public ProjectInfoVO selectUserPro(int user_no);
-	public ProjectInfoVO selectPmProject(int pm_no);
+	public List<ProjectInfoVO> selectUserPro(int user_no);
+	public List<ProjectInfoVO> selectPmProject(int pm_no);
 
+	//로그인한 사용자가 참여중인 project_no를 보여줌 >> project, project_member table left join으로 함
+	public List<Integer> selectProjectNo(int user_no);
+	
 	// 사용자 정보 project에 insert
 	public int memberUpdate(ProjectMemberVO vo);
 
