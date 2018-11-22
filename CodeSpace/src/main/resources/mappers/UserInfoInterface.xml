@@ -33,4 +33,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="com.team.cos.userinfo.vo.UserInfoVo">
 		select * from userinfo where user_no=#{user_no}
 	</select>
+
+	<!-- 비밀번호 잃어버린것 변경시켜주기 위함 -->
+	<update id="userInfoPwChange"
+		parameterType="com.team.cos.userinfo.vo.UserInfoVo">
+		update userinfo set user_pw=#{user_pw} where
+		user_id=#{user_id}
+	</update>
 </mapper>

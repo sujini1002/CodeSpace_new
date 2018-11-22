@@ -15,4 +15,7 @@ public interface UserInfoInterface {
 	
 // 	user_no로 사용자 정보 select
 	public UserInfoVo userInfoWithNo(int user_no);
+
+//	비밀번호 변경
+	public int userInfoPwChange(UserInfoVo userInfoVo);
 }

@@ -17,6 +17,13 @@ public class UserInfoRegCheck {
 	@RequestMapping(value = "/userinfo/useridcheck", method = RequestMethod.POST)
 	@ResponseBody
 	public UserInfoVo userIdCheck(UserInfoVo userInfoVo) {
-		return service.userInfoCheck(userInfoVo);
+		UserInfoVo result = new UserInfoVo();
+		result = service.userInfoCheck(userInfoVo);
+		if (result == null) {
+			UserInfoVo result2 = new UserInfoVo();
+			return result2;
+		}
+		System.out.println(result);
+		return result;
 	}
 }

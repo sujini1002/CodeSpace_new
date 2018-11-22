@@ -33,4 +33,22 @@ public class SimpleRegistrationNotifierService {
 			e1.printStackTrace();
 		}
 	}
+
+	public int sendRecoveryMail(UserInfoVo userInfoVo) {
+		MimeMessage message = sender.createMimeMessage();
+		String recovery = " <div style=\"border: 1px solid black; width: 300px; text-align: center; margin: 200px auto;\">\r\n"
+				+ "        <div>CODESPACE</div>\r\n"
+				+ "        <div><a href=\"http://localhost:8080/cos/userinfo/changepw?user_id="
+				+ userInfoVo.getUser_id() + "\" style=\"text-decoration: none; color: blue;\">비밀번호 변경</a></div>\r\n"
+				+ "    </div>";
+		try {
+			message.setText(recovery, "UTF-8", "html");
+			message.addRecipient(RecipientType.TO, new InternetAddress(userInfoVo.getUser_id()));
+			sender.send(message);
+			return 1;
+		} catch (MessagingException e1) {
+			e1.printStackTrace();
+		}
+		return 0;
+	}
 }

@@ -12,7 +12,7 @@
 		    <input type="text" id="inputEmail" class="form-control user_id" name="user_id" placeholder="E-Mail을 입력하세요" required autofocus>
 		    <label for="inputPassword" class="sr-only">Password</label>
 		    <input type="password" id="inputPassword" class="form-control user_pw" name="user_pw" placeholder="비밀번호를 입력 하세요" required>
-		    <div class="checkPlz"></div>
+		    <div class="checkPlz" style="display: inline;"></div>
 		    <div class="checkbox mb-3">
 		        <label>
 		          <input type="checkbox" value="remember-me" class="remember_id"> E-Mail 저장
@@ -20,6 +20,7 @@
 	      	</div>
 		    <button class="btn btn-lg btn-primary btn-block" onclick="loginCheck()">로그인</button>
 		    <button class="g-signin2 h_login h_loginpage" data-onsuccess="onSignIn" style="width:300.5px;height: 45px;"></button>
+		    <a href="#" onclick="forgotPW()" style="float: right; margin-top: 3px; color: darkgray;">forgot P/W?</a>
      	</div>
      </div>
 <script>
@@ -57,6 +58,8 @@ function loginCheck(){
 		}
 	});
 }
-
+function forgotPW(){
+	location.href='${pageContext.request.contextPath}/userinfo/recovery';
+}
 </script>
 <jsp:include page="../common/layout_footer.jsp" />
