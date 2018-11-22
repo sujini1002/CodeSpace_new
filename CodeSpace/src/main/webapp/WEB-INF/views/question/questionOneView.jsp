@@ -33,15 +33,17 @@
 		<td rowspan="3"
 			style="width: 15%;text-align:center;">
 			<div id="k_recommand">
-				<button type="button" class="btn" style="background-color:#ecf0f5">
-					<i class="fa fa-chevron-up fa-2x" style="color: gray;"></i>
+				<button type="button" id="k_qRecommandUpBtn" class="btn" style="background-color:#ecf0f5" 
+						onclick="k_qRecommand(this)">
+					<i class="fa fa-chevron-up fa-2x" style="color: gray;" id="k_qRecommandUpIcon"></i>
 				</button>
-				<h3>${questionInfo.q_recommand}</h3>
-				<button type="button" class="btn" style="background-color:#ecf0f5">
-					<i class="fa fa-chevron-down fa-2x" style="color: gray;"></i>
+				<h3 id="k_qRecommandCnt">${questionInfo.q_recommand}</h3>
+				<button type="button" class="btn" id="k_qRecommandDownBtn" style="background-color:#ecf0f5"
+						onclick="k_qRecommand(this)">
+					<i class="fa fa-chevron-down fa-2x" style="color: gray;" id="k_qRecommandDownIcon"></i>
 				</button>
 			</div>
-			<div id="k_bookmark" style="margin-top: 10px">
+			<div id="k_bookmark"  style="margin-top: 10px">
 				<button type="button" class="btn" style="background-color:#ecf0f5">
 					<i class="fa fa-star fa-2x" style="color: gray;"></i>
 				</button>
@@ -144,7 +146,70 @@
 
   </div>
 </div>
-
+<!-- 추천 관련 스크립트  -->
+<script>
+	function k_qRecommand(value){
+		
+		var userNo = '${loginInfo.user_no}'*1;
+		if(userNo==0){
+			alert('추천 하려면 로그인 해야 합니다.');
+			return
+		}else{
+			//질문 고유 번호 , 추천 누르는 사용자 번호 , 추천 이므로 +1 보내기
+			var qno = '${questionInfo.q_no}'*1;
+			var score = value.id=='k_qRecommandUpBtn'?1:-1;
+			var status = 0;
+			
+			if(document.querySelectorAll('#k_qRecommandUpIcon')[0].style.color=='rgb(23, 162, 184)'){
+				status = -1;
+			}else if(document.querySelectorAll('#k_qRecommandDownIcon')[0].style.color=='rgb(23, 162, 184)'){
+				status = 1;
+			}
+			
+			
+			 $.ajax({
+				url: '${pageContext.request.contextPath}/question/questionRecommand',
+				type: 'POST',
+				data :{
+					"q_no" : qno,
+					"user_no" : userNo,
+					"score" : score,
+					"status" : status
+				},
+				contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+				dataType : 'json',
+				success : function(data){
+					$('#k_qRecommandCnt').text(data.q_recommand);
+					if(data.q_isrecommand==1){
+						$('#k_qRecommandUpIcon').css('color','gray');
+						$('#k_qRecommandDownIcon').css('color','gray');
+					}else{
+						if(score == 1){
+							$('#k_qRecommandUpIcon').css('color','#17a2b8');
+						}else{
+							$('#k_qRecommandDownIcon').css('color','#17a2b8');
+						}
+					}
+				},
+				error : function(){
+					alert('불하게도 에러네요');
+				}
+			});//end ajax 
+		}
+		
+		
+	}
+	
+	function k_recoLogin(){
+		var userNo = '${loginInfo.user_no}';
+		if(userNo == ''){
+			alert('로그인이 필요한 영역 입니다.');
+			$('#k_qRecommandUpBtn').prop('disabled','true');
+			$('#k_qRecommandDownBtn').prop('disabled','true');
+		}
+	}
+	
+</script>
 
 <script>
 	function k_qeustionupdate() {

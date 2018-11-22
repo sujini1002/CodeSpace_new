@@ -55,4 +55,6 @@
 		class="com.team.cos.comment.service.AnswerCommentDeleteService"/>
 	<beans:bean id="questionViewCntService"
 		class="com.team.cos.question.serivce.QuestionViewCntService"/>
+	<beans:bean id="questionRecommandService"
+		class="com.team.cos.recommand.service.QuestionRecommandService"/>
 </beans:beans>
