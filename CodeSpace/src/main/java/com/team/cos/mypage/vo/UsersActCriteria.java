@@ -1,18 +1,18 @@
-package com.team.cos.paging.vo;
+package com.team.cos.mypage.vo;
 
-public class Criteria {
+public class UsersActCriteria {
 
 	private int page; // 페이지 번호
 	private int perPageNum; // 페이지 당 보여지는 데이터 개수
 	private int user_no;
 	private int startNum;
 
-	public Criteria() {
+	public UsersActCriteria() {
 		this.page = 1; // 페이지 번호는 1
-		this.perPageNum = 5; // 페이지 당 보여지는 데이터 개수는 5으로 초기화
+		this.perPageNum = 5; // 페이지 당 보여지는 데이터 개수는 10으로 초기화
 	}
 	
-	public Criteria(int user_no, int startNum) {
+	public UsersActCriteria(int user_no, int startNum) {
 		this.page = 1; // 
 		this.perPageNum = 5; 
 		this.user_no = user_no;
@@ -48,7 +48,7 @@ public class Criteria {
 		}
 		this.perPageNum = perPageNum;
 	}
-	
+
 	public int getUser_no() {
 		return user_no;
 	}
@@ -71,6 +71,5 @@ public class Criteria {
 				+ startNum + "]";
 	}
 
-	
 
 }

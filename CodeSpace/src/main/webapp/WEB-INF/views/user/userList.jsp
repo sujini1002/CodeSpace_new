@@ -42,49 +42,49 @@
   
       
       <c:if test="${!empty userList}">
-	      <div class="userList">
-		      <div class="row user-row">
-	      	  <c:forEach var="userInfo" items="${userList}">
-	      	  	<div class="row col-lg-3 user-info">
-		      		<div class="col-lg-4 userPic">
-		      			<div class="picInfo"><a href="#"><img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="93" height="90"></a></div>
-		      		</div>
-		      		<div class="col-lg-8 user-detail">
-		      			<div class="col-lg-12 user-detail-attribute user-nickname"><a href="#">${userInfo.user_nickname}</a></div>
-		      			<div class="col-lg-12 user-detail-attribute user-intro">${userInfo.user_intro}</div>
-		      			<div class="col-lg-12 user-detail-attribute user-score">${userInfo.user_score}</div>
-		      		</div>
-		      		<div class="row col-lg-12 user-tag">
-		      			<div class="col-lg-4"></div>
-		      			<div class="col-lg-8">${userInfo.user_tag}</div>
-		      		</div>
-		      	</div>
-		      </c:forEach>
-		      </div>
-	      </div>
-	      
-	      <br>
+         <div class="userList">
+            <div class="row user-row">
+              <c:forEach var="userInfo" items="${userList}">
+                 <div class="row col-lg-3 user-info">
+                  <div class="col-lg-4 userPic">
+                     <div class="picInfo"><a href="#"><img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="93" height="90"></a></div>
+                  </div>
+                  <div class="col-lg-8 user-detail">
+                     <div class="col-lg-12 user-detail-attribute user-nickname"><a href="#">${userInfo.user_nickname}</a></div>
+                     <div class="col-lg-12 user-detail-attribute user-intro">${userInfo.user_intro}</div>
+                     <div class="col-lg-12 user-detail-attribute user-score">${userInfo.user_score}</div>
+                  </div>
+                  <div class="row col-lg-12 user-tag">
+                     <div class="col-lg-4"></div>
+                     <div class="col-lg-8">${userInfo.user_tag}</div>
+                  </div>
+               </div>
+            </c:forEach>
+            </div>
+         </div>
+         
+         <br>
             <div class="search-paging">
-			    <div class="text-center">
-			    	<ul class="pagination">
-			    		<c:if test="${pageMaker.prev}">
-			    			<li><a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeSearch(pageMaker.startPage - 1)}">&laquo;</a></li>
-			    		</c:if>
-			    		
-			    		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-			    			<li class="paging-number"
-			    				<c:out value="${pageMaker.userCri.page == idx?'class =active':''}"/>>
-			    				<a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeSearch(idx)}">${idx}</a>
-			    			</li>	
-			    		</c:forEach>
-			    		
-			    		<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-			    			<li><a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeSearch(pageMaker.endPage + 1)}">&raquo;</a></li>
-			    		</c:if>
-			    	</ul>
-    			</div>
-			</div>
-	          <script>
+             <div class="text-center">
+                <ul class="pagination">
+                   <c:if test="${pageMaker.prev}">
+                      <li><a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeSearch(pageMaker.startPage - 1)}">&laquo;</a></li>
+                   </c:if>
+                   
+                   <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+                      <li class="paging-number"
+                         <c:out value="${pageMaker.userCri.page == idx?'class =active':''}"/>>
+                         <a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeSearch(idx)}">${idx}</a>
+                      </li>   
+                   </c:forEach>
+                   
+                   <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+                      <li><a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeSearch(pageMaker.endPage + 1)}">&raquo;</a></li>
+                   </c:if>
+                </ul>
+             </div>
+         </div>
+             <script>
       //   $(document).ready(function(){
             
     //        searchUser();
@@ -107,35 +107,35 @@
                         $(".userList").html('');
                         if(result.length > 0){
                            var str='';
-                           str +=	'<div class="row user-row">';
-                           				for(var i=0;i<result.length;i++){
-                              				console.log(result[i]);
-                              				str += '<div class="row col-lg-3 user-info">'
-                              					+		'<div class="col-lg-4 userPic">'
-                              					+			'<div class="picInfo">'
-                              					+				'<a href="#">'
-                              					+ 				'<img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="93" height="90">'
-                              					+				'</a>
-                              					+			'</div>'
-                              					+		'</div>'
-                              					+		'<div class="col-lg-8 user-detail">'
-                              					+			'<div class="col-lg-12 user-detail-attribute user-nickname">'
-                              					+				'<a href="#">' + result[i].user_nickname + '</a>'
-                              					+			'</div>'
-                              					+			'<div class="col-lg-12 user-detail-attribute user-intro">'
-                              					+ 				result[i].user_intro 
-                              					+ 			'</div>'
-                              					+			'<div class="col-lg-12 user-detail-attribute user-score">'
-                              					+				result[i].user_score
-                              					+			'</div>'
-                              					+		'</div>'
-                              					+		'<div class="row col-lg-12 user-tag">'
-                              					+			'<div class="col-lg-4"></div>'
-                              					+			'<div class="col-lg-8">'+ result[i].user_tag + '</div>'
-                              					+		'</div>'
-                              					+	'</div>'
+                           str +=   '<div class="row user-row">';
+                                       for(var i=0;i<result.length;i++){
+                                          console.log(result[i]);
+                                          str += '<div class="row col-lg-3 user-info">'
+                                             +      '<div class="col-lg-4 userPic">'
+                                             +         '<div class="picInfo">'
+                                             +            '<a href="#">'
+                                             +             '<img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="93" height="90">'
+                                             +            '</a>
+                                             +         '</div>'
+                                             +      '</div>'
+                                             +      '<div class="col-lg-8 user-detail">'
+                                             +         '<div class="col-lg-12 user-detail-attribute user-nickname">'
+                                             +            '<a href="#">' + result[i].user_nickname + '</a>'
+                                             +         '</div>'
+                                             +         '<div class="col-lg-12 user-detail-attribute user-intro">'
+                                             +             result[i].user_intro 
+                                             +          '</div>'
+                                             +         '<div class="col-lg-12 user-detail-attribute user-score">'
+                                             +            result[i].user_score
+                                             +         '</div>'
+                                             +      '</div>'
+                                             +      '<div class="row col-lg-12 user-tag">'
+                                             +         '<div class="col-lg-4"></div>'
+                                             +         '<div class="col-lg-8">'+ result[i].user_tag + '</div>'
+                                             +      '</div>'
+                                             +   '</div>'
                            
-                           				}
+                                       }
                            str += '</div>'; // div class="row user-row" 끝
                            $(".userList").html(str);
                         }else{
@@ -177,5 +177,5 @@
 
 
 
-	
+   
 <jsp:include page="../common/layout_footer.jsp" />

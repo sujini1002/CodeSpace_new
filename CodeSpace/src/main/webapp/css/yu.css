@@ -1,4 +1,4 @@
-@charset "UTF-8";
+11111@charset "UTF-8";
 
 /* nav tab 설정 */
 
@@ -108,23 +108,52 @@ y_editForm input{
 
 }
 .y_usersP_1{
-	border: 1px solid #333333;
+	/* border: 1px solid #333333; */ 
+	background-size : 100%;
+	border-radius : 10px;
+	width: 150px;
+	height: 160px;
+	margin-left:50px;
 
 }
 .y_usersP_photo{
-	border: 1px solid #333333;
+	/* border: 1px solid #333333; */ 
 
 }
-.usersP_intro{
-	border: 1px solid #333333;
-
+.y_usersP_intro{
+	/* border: 1px solid #333333; */ 
 }
-
-
-
-
- 
-
+.y_usersP_intro h3{
+	margin-top: 15px;
+}
+.y_usersP_intro p{
+	margin-top: 20px;
+	padding-left: 20px;
+}
+.y_userP_info{
+	/* border: 1px solid #333333; */ 
+	
+}
+.y_userP_info>div{
+	/* border: 1px solid black;  */
+}
+.y_userP_info1 {
+	float: left; 	
+	text-align: center;
+	padding-top: 15px;
+	height: 120px;
+}
+.y_userP_info2{
+	float: right; 
+	text-align: center;
+	padding-top: 15px;
+	height: 120px;
+}
+.y_userP_score{
+/* 	text-align: center;  */
+	font-weight: 600;
+	
+}
 
 
 

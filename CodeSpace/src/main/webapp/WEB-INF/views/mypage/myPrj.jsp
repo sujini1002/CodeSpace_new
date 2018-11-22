@@ -17,7 +17,7 @@
 			href="${pageContext.request.contextPath}/mypage/mypage"
 			style="color: gray;">프로필</a></li>
 		<li class="nav-item dropdown"><a
-			class="nav-link dropdown-toggle active" data-toggle="dropdown"
+			class="nav-link dropdown-toggle" data-toggle="dropdown"
 			href="#" role="button" aria-haspopup="true" aria-expanded="false">내 활동</a>
 			<div class="dropdown-menu">
 				<a class="dropdown-item"
@@ -28,7 +28,7 @@
 			</div>
 		</li>
 			<li class="nav-item">
-				<a class="nav-link" href="${pageContext.request.contextPath}/mypage/myPrj?user_no=${loginInfo.user_no}" style="color: lightgray;">프로젝트</a>
+				<a class="nav-link active" href="${pageContext.request.contextPath}/mypage/myPrj?user_no=${loginInfo.user_no}" style="color: lightgray;">프로젝트</a>
 			</li>
 	</ul>
 

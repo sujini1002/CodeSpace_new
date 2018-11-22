@@ -58,7 +58,7 @@
 			<table class="table">
 				<tr>
 					<td>아이디</td>
-					<td>${loginInfo.user_id }/td>
+					<td>${loginInfo.user_id }</td>
 				</tr>
 				<tr>
 					<td>이름</td>
