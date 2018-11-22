@@ -22,6 +22,7 @@ public interface ProjectInfoInterface {
 
 	// 로그인한 사용자가 참여중인 project 정보를 보여주는 메서드
 	public ProjectInfoVO selectUserPro(int user_no);
+	public ProjectInfoVO selectPmProject(int pm_no);
 
 	// 사용자 정보 project에 insert
 	public int memberUpdate(ProjectMemberVO vo);

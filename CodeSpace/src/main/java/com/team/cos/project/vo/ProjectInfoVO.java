@@ -14,13 +14,10 @@ public class ProjectInfoVO {
 	private Date project_enddate; // 프로젝트 종료 날짜
 	private String prostring_startdate; // 프로젝트 시작 날짜
 	private String prostring_enddate; // 프로젝트 종료 날짜
-	private int user_no;
 	private int pm_no;
+	private int user_no;
 	private List<Integer> member;
-	private int user_no1;
-	private int user_no2;
-	private int user_no3;
-	private int user_no4;
+
 
 	public List<Integer> getMember() {
 		return member;
@@ -94,44 +91,13 @@ public class ProjectInfoVO {
 		this.prostring_enddate = prostring_enddate;
 	}
 
+
 	public int getPm_no() {
 		return pm_no;
 	}
 
 	public void setPm_no(int pm_no) {
 		this.pm_no = pm_no;
-	}
-
-	public int getUser_no1() {
-		return user_no1;
-	}
-
-	public void setUser_no1(int user_no1) {
-		this.user_no1 = user_no1;
-	}
-
-	public int getUser_no2() {
-		return user_no2;
-	}
-
-	public void setUser_no2(int user_no2) {
-		this.user_no2 = user_no2;
-	}
-
-	public int getUser_no3() {
-		return user_no3;
-	}
-
-	public void setUser_no3(int user_no3) {
-		this.user_no3 = user_no3;
-	}
-
-	public int getUser_no4() {
-		return user_no4;
-	}
-
-	public void setUser_no4(int user_no4) {
-		this.user_no4 = user_no4;
 	}
 
 	@Override

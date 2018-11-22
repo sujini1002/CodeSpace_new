@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.team.cos.project.dao.ProjectInfoInterface;
 import com.team.cos.project.vo.ProjectInfoVO;
+import com.team.cos.project.vo.ProjectMemberVO;
 import com.team.cos.project.vo.TodolistVO;
 
 public class ProjectRegService {
@@ -16,11 +17,16 @@ public class ProjectRegService {
 	
 	private ProjectInfoInterface dao;
 	
-	//project regster (insert)
+	//project info regster (insert)
 	public int regProject(ProjectInfoVO vo) {
 		dao = sqlSessionTemplate.getMapper(ProjectInfoInterface.class);
 		
 		return dao.insertProject(vo);
+	}
+	
+	public int memberReg(ProjectMemberVO vo) {
+		dao = sqlSessionTemplate.getMapper(ProjectInfoInterface.class);
+		return dao.memberUpdate(vo);
 	}
 	
 	//project select

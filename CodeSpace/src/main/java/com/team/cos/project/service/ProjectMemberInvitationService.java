@@ -15,9 +15,10 @@ public class ProjectMemberInvitationService {
 	
 	public int acceptMember(int project_no, int project_member_no) {
 		dao = sqlSessionTemplate.getMapper(ProjectInfoInterface.class);
+		
 		ProjectMemberVO vo = new ProjectMemberVO();
 		vo.setProject_no(project_no);
-		vo.setProject_member_no(project_member_no);
+		vo.setMember_no(project_member_no);
 		
 		return dao.memberUpdate(vo);
 	}

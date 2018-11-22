@@ -19,5 +19,11 @@ public class UserProjectViewService {
 		
 		return dao.selectUserPro(user_no);
 	}
+	// 로그인한 사용자가 pm인 경우 참여중인 프로젝트의 정보 반환
+	public ProjectInfoVO getPmPro(int pm_no) {
+		dao = sqlSessionTemplate.getMapper(ProjectInfoInterface.class);
+		
+		return dao.selectPmProject(pm_no);
+	}
 
 }
