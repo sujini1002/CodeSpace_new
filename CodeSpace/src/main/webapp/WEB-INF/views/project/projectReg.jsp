@@ -11,13 +11,41 @@
 <!-- 여기부터 화면 코드 작성해주세요 -->
 
 <!-- 로그인한 사용자가 현재 참여중인 프로젝트 목록 보여줌 -->
-<c:forEach var="item" items="${userJoinProjects }" varStatus="status">
-번호: ${status.count }<br>
-제목: ${item.project_title }<br>
-
-
-</c:forEach>
+<c:if test="${userJoinProjects!=null }"> 
+	<table class="table">
+		<thread>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">프로젝트 제목</th>
+				<th scope="col">프로젝트 내용</th>
+				<th scope="col">상태</th>
+				<th scope="col">시작일</th>
+				<th scope="col">종료일</th>
+			</tr>
+		</thread>
+		<tbody>
+			<c:forEach var="item" items="${userJoinProjects }" varStatus="status">
+			<tr>
+				<td scope="row">${status.count }</td>
+				<td><a href="${pageContext.request.contextPath}/project/prjdash?project_no=${item.project_no }
+						&user_no=${loginInfo.user_no}">${item.project_title }</a></td>
+				<td>${item.project_content }</td>
+				<td>
+					<c:if test="${item.project_status ==false}">
+					종료
+					</c:if>
+					<c:if test="${item.project_status ==true}">
+					진행중
+					</c:if>
+				</td>
+				<td>${item.project_startdate }</td>
+				<td>${item.project_enddate }</td>
+			</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 <hr>
+</c:if>
 
 
 
@@ -39,7 +67,6 @@
 
 <div>
 	<h3>프로젝트 생성하기</h3>
-	<h5>프로젝트는 1인 1개에만 참여할 수 있습니다.</h5>
 	
 	<!-- 프로젝트 생성하기 post방식으로  -->
 	<!-- 제목 project_title/설명 project_content/참여자 project_member/종료일 project_project_enddate-->

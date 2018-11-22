@@ -44,13 +44,16 @@ public class ProjectRegController {
 		System.out.println("사용자가 참여중인 project_no: "+user_project_no);
 		
 		List<ProjectInfoVO> userJoinProjects = new ArrayList<ProjectInfoVO>();
+		if(user_project_no!=null) {
+			
+			for(int i=0; i<user_project_no.size(); i++) {
+				int project_no = user_project_no.get(i);
+				ProjectInfoVO vo = userProInfoService.getUserAllProject(project_no);
+				System.out.println(vo);
+				userJoinProjects.add(vo);
+			}
+		} 
 		
-		for(int i=0; i<user_project_no.size(); i++) {
-			int project_no = user_project_no.get(i);
-			ProjectInfoVO vo = userProInfoService.getUserAllProject(project_no);
-			System.out.println(vo);
-			userJoinProjects.add(vo);
-		}
 		
 		
 		ModelAndView modelAndView = new ModelAndView();

@@ -14,7 +14,7 @@
 	<h3>
 		to do list
 		<button type="button" class="btn btn-primary btn-sm"
-			data-toggle="modal" data-target="#tdlModal">추가하기</button>
+			data-toggle="modal" id="todolistInsert" data-target="#tdlModal">추가하기</button>
 	</h3>
 	<table class="table" id="tdlboard"></table>
 	
@@ -53,8 +53,10 @@
 					<input type="hidden" id='project_no' value="${project_no }">
 					<!-- 담당자 번호 -->
 					<div class="form-group">
-						<label>담당자 번호</label> <input class="form-control"
-							id='tdlmanager_no'>
+						<label>담당자 번호</label> 
+						<select class="form-control" id='tdlmanager_no'>
+							<option value=""></option>
+						</select>
 					</div>
 					<!-- 담당 업무 -->
 					<div class="form-group">
@@ -229,7 +231,7 @@
 		};
 	})();
 	
-	
+	//to do list '추가하기' 버튼 클릭 시 project_no에 해당하는 member_no 가져와서 selectbox에 뿌리기
 	
 	
 	
