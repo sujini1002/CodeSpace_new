@@ -28,11 +28,9 @@
 					href="${pageContext.request.contextPath}/mypage/myans?page=1&perPageNum=10&user_no=${loginInfo.user_no}">내가
 					한 답변</a> <a class="dropdown-item" href="#">즐겨찾기</a>
 			</div></li>
-		<c:if test="${loginInfo.user_score} >= 31">
 			<li class="nav-item"><a class="nav-link" 
 			href="${pageContext.request.contextPath}/mypage/myPrj?user_no=${loginInfo.user_no}"
 				style="color: lightgray;">프로젝트</a></li>
-		</c:if>
 	</ul>
 
 	<div class="container">
@@ -68,7 +66,7 @@
 							<tr>
 								<td>${status.count}</td>
 								<td style="text-align: left;"><a
-									href='${pageContext.request.contextPath}/question/questionView?q_no=<c:out value="${ans.q_no}"/>'>
+									href='${pageContext.request.contextPath}/question/questionView?q_no=${ans.q_no}'>
 										${ans.q_title}</a></td>
 								<td>${fn:substring(ans.a_regdate, 0 ,10)}</td>
 								<%-- <td>${ans.a_choose}</td> --%>

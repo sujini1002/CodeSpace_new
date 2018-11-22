@@ -22,9 +22,8 @@
 				<a class="dropdown-item" href="#">즐겨찾기</a>
 			</div>
 		</li>
-		<c:if test="${loginInfo.user_score >= 31}">
 		<li class="nav-item">
-			<a class="nav-link" href="${pageContext.request.contextPath}/mypage/myPrj?user_no=${loginInfo.user_no}" style="color:lightgray;">프로젝트</a></li></c:if>
+			<a class="nav-link" href="${pageContext.request.contextPath}/mypage/myPrj?user_no=${loginInfo.user_no}" style="color:lightgray;">프로젝트</a></li>
 	</ul>
 
 
@@ -51,6 +50,7 @@
 		<div class="y_profile_myPhoto">
 			<img class="y_userphoto"
 				src="${pageContext.request.contextPath}/uploadfile/userphoto/${loginInfo.user_photo}">
+			
 		</div>
 
 		<div class="y_profile_myInfo">
@@ -58,7 +58,7 @@
 			<table class="table">
 				<tr>
 					<td>아이디</td>
-					<td>${loginInfo.user_id }</td>
+					<td>${loginInfo.user_id }/td>
 				</tr>
 				<tr>
 					<td>이름</td>

@@ -27,11 +27,9 @@
 				<a class="dropdown-item" href="#">즐겨찾기</a>
 			</div>
 		</li>
-		<c:if test="${loginInfo.user_score >= 31}">
 			<li class="nav-item">
 				<a class="nav-link" href="${pageContext.request.contextPath}/mypage/myPrj?user_no=${loginInfo.user_no}" style="color: lightgray;">프로젝트</a>
 			</li>
-		</c:if>
 	</ul>
 
 	<div class="container">

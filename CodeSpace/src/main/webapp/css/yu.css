@@ -1,11 +1,6 @@
 @charset "UTF-8";
 
 /* nav tab 설정 */
-/* .nav-item .nav-link active{
-	background-color: rgb(236, 240, 245);
-	color: rgb(236, 240, 245);
-	
-} */
 
 
 
@@ -28,9 +23,6 @@ h2, td {
 }
 
 .y_userphoto {
-	/* background-image:
-		url('${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}');   */
-	/* background-color : yellow; */
 	background-size: 100%;
 	width: 150px;
 	height: 150px;
@@ -56,10 +48,6 @@ h2, td {
 	padding-top: 70px;
 }
 .yu_btn_del{
-	/* float : right;
-	margin-top: 50px; 
-	margin-right: 300px;
-	border : none; */
 	margin-top: 50px; 
 	margin-left : 420px; 
 	border: none;
@@ -114,3 +102,37 @@ y_editForm input{
 }
 
 /* 프로필 수정 끝 */
+
+/* 다른 사용자 페이지 */
+.y_container{
+
+}
+.y_usersP_1{
+	border: 1px solid #333333;
+
+}
+.y_usersP_photo{
+	border: 1px solid #333333;
+
+}
+.usersP_intro{
+	border: 1px solid #333333;
+
+}
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+/* 다른 사용자 페이지 끝 */
