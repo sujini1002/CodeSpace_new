@@ -35,13 +35,31 @@
 			<div id="k_recommand">
 				<button type="button" id="k_qRecommandUpBtn" class="btn" style="background-color:#ecf0f5" 
 						onclick="k_qRecommand(this)">
-					<i class="fa fa-chevron-up fa-2x" style="color: gray;" id="k_qRecommandUpIcon"></i>
-				</button>
+						<c:choose>
+							<c:when test="${qRecommand eq 1 }">
+								<i class="fa fa-chevron-up fa-2x" style="color: #17a2b8;"
+									id="k_qRecommandUpIcon"></i>
+							</c:when>
+							<c:otherwise>
+								<i class="fa fa-chevron-up fa-2x" style="color: gray;"
+									id="k_qRecommandUpIcon"></i>
+							</c:otherwise>
+						</c:choose>
+					</button>
 				<h3 id="k_qRecommandCnt">${questionInfo.q_recommand}</h3>
 				<button type="button" class="btn" id="k_qRecommandDownBtn" style="background-color:#ecf0f5"
 						onclick="k_qRecommand(this)">
-					<i class="fa fa-chevron-down fa-2x" style="color: gray;" id="k_qRecommandDownIcon"></i>
-				</button>
+						<c:choose>
+							<c:when test="${qRecommand eq 0 }">
+								<i class="fa fa-chevron-down fa-2x" style="color: #17a2b8;"
+									id="k_qRecommandDownIcon"></i>
+							</c:when>
+							<c:otherwise>
+								<i class="fa fa-chevron-down fa-2x" style="color: gray;"
+									id="k_qRecommandDownIcon"></i>
+							</c:otherwise>
+						</c:choose>
+					</button>
 			</div>
 			<div id="k_bookmark"  style="margin-top: 10px">
 				<button type="button" class="btn" style="background-color:#ecf0f5">

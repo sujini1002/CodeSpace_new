@@ -62,5 +62,11 @@ public class QuestionRecommandService {
 		
 		return quesRecomDao.changeUserStatus(questionRecommandInfo);
 	}
+	//사용자의 추천/비추천 여부 저장
+	public int UserUpdown(QuestionRecommandInfo questionRecommandInfo) {
+		quesRecomDao = sqlSessionTemplate.getMapper(QuestionRecommandInterfaceDao.class);
+		
+		return quesRecomDao.UserUpdown(questionRecommandInfo);
+	}
 	
 }

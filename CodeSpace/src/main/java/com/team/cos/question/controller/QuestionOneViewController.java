@@ -2,6 +2,8 @@ package com.team.cos.question.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,7 @@ import com.team.cos.comment.vo.QuestionCommentInfo;
 import com.team.cos.question.serivce.QuestionOneViewService;
 import com.team.cos.question.serivce.QuestionViewCntService;
 import com.team.cos.question.vo.QuestionInfo;
+import com.team.cos.recommand.service.QuestionRecommandViewService;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
 @Controller
@@ -43,10 +46,14 @@ public class QuestionOneViewController {
 	@Autowired
 	private QuestionViewCntService viewCntService;
 	
+	@Autowired
+	private QuestionRecommandViewService qRecomService;
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView questionView(@RequestParam("q_no")int q_no,
 									@RequestParam(value="order",defaultValue="score")String order,
-									@RequestParam(value="viewCnt",defaultValue="true")boolean viewCnt) {
+									@RequestParam(value="viewCnt",defaultValue="true")boolean viewCnt,
+									HttpSession session) {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -70,12 +77,24 @@ public class QuestionOneViewController {
 		//답변 댓글
 		List<AnswerCommentInfo> answerCommList = acListService.answerList(q_no);
 		
+		//질문 추천을 위한 로그인 정보 가져오기
+		int user_no = 0;
+		int qRecommand = 3;
+		if(session.getAttribute("loginInfo") != null) {
+			UserInfoVo user = (UserInfoVo) session.getAttribute("loginInfo");
+			user_no = user.getUser_no();
+			//질문 추천 사용자 추천 여부
+			qRecommand = qRecomService.qRecommand(q_no, user_no);
+		}
+		
+		
 		modelAndView.addObject("questionInfo", questionInfo);
 		modelAndView.addObject("userInfo", userInfoVo);
 		modelAndView.addObject("answerList", answerList);
 		modelAndView.addObject("userInfoList", userInfoList);
 		modelAndView.addObject("questionCommList", questionCommList);
 		modelAndView.addObject("answerCommentList", answerCommList);
+		modelAndView.addObject("qRecommand", qRecommand);
 		modelAndView.setViewName("question/questionOneView");
 		
 		//System.out.println("컨트롤러"+userInfoList);

@@ -7,7 +7,9 @@ public class QuestionRecommandInfo {
 	private int q_isrecommand;//사용자가 특정 질문에 대한 추천 여부
 	private int score; //추천 수  +1 인지 -1인지
 	private int q_recommand;//질문의 추천수
+	private int q_updown;//추천/비추천 여부 1:추천 0:비추천
 	private int status;//이미 사용자가 누른 상태의 값 
+	
 	
 	public int getQ_no() {
 		return q_no;
@@ -39,6 +41,12 @@ public class QuestionRecommandInfo {
 	public void setQ_recommand(int q_recommand) {
 		this.q_recommand = q_recommand;
 	}
+	public int getQ_updown() {
+		return q_updown;
+	}
+	public void setQ_updown(int q_updown) {
+		this.q_updown = q_updown;
+	}
 	public int getStatus() {
 		return status;
 	}
@@ -49,7 +57,8 @@ public class QuestionRecommandInfo {
 	@Override
 	public String toString() {
 		return "QuestionRecommandInfo [q_no=" + q_no + ", user_no=" + user_no + ", q_isrecommand=" + q_isrecommand
-				+ ", score=" + score + ", q_recommand=" + q_recommand + ", status=" + status + "]";
+				+ ", score=" + score + ", q_recommand=" + q_recommand + ", q_updown=" + q_updown + ", status=" + status
+				+ "]";
 	}
 	
 }

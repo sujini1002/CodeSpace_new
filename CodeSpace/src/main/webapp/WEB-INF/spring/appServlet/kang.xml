@@ -57,4 +57,6 @@
 		class="com.team.cos.question.serivce.QuestionViewCntService"/>
 	<beans:bean id="questionRecommandService"
 		class="com.team.cos.recommand.service.QuestionRecommandService"/>
+	<beans:bean id="questionRecommandViewService"
+		class="com.team.cos.recommand.service.QuestionRecommandViewService"/>
 </beans:beans>

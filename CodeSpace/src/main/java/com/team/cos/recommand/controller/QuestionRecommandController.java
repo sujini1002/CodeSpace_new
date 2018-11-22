@@ -24,6 +24,8 @@ public class QuestionRecommandController {
 		int score = questionRecommandInfo.getScore();
 		int q_no = questionRecommandInfo.getQ_no();
 		int status = questionRecommandInfo.getStatus();
+		int q_updown = score==1?1:0;
+		
 		
 		//반환할  QuestionRecommandInfo 생성
 		QuestionRecommandInfo result = new QuestionRecommandInfo();
@@ -33,6 +35,8 @@ public class QuestionRecommandController {
 		
 		if(isExist ==0) {
 			//없으면 인서트 하여 추천여부를 0으로 하기
+			//updown을 요청 받은 객체에 저장
+		    questionRecommandInfo.setQ_updown(q_updown);
 			service.insertUserRecom(questionRecommandInfo);
 			//점수 없데이트 하기
 			service.updateQuestionScore(q_no,score);
@@ -46,10 +50,15 @@ public class QuestionRecommandController {
 			if(userStatus == 0) {
 				//추천해제 할 때
 				//q_isrecommand가 0일때(추천한 상태일때) : status값이 1이면 질문 추천수를  -1 하고 -1이면  질문 추천수를 +1한다.
-				//q_isrecommand를 0에서 1로 바꾼다.
 				service.updateQuestionScore(q_no,status);
+				//q_isrecommand를 0에서 1로 바꾼다.
 				questionRecommandInfo.setQ_isrecommand(1);
+				//q_updown을 3으로 변경한다.
+				questionRecommandInfo.setQ_updown(3);
+				//q_isrecommand를 0에서 1로 바꾼다.
 				service.changeUserStatus(questionRecommandInfo);
+				service.UserUpdown(questionRecommandInfo);
+				
 				//최종 결과 값을 저장
 				result.setQ_recommand(service.finalQuesRecomNum(q_no));
 				result.setQ_isrecommand(1);
@@ -58,8 +67,11 @@ public class QuestionRecommandController {
 				//q_isrecommand가 1일때 (추천 안한 상태일때): score을 질문 추천 수에 업데이트 한다.
 				service.updateQuestionScore(q_no, score);
 				//q_isrecommand를 1에서 0으로 바꾼다.
+				//사용자의 추천 /비추천 여부를 저장
 				questionRecommandInfo.setQ_isrecommand(0);
+				questionRecommandInfo.setQ_updown(q_updown);
 				service.changeUserStatus(questionRecommandInfo);
+				service.UserUpdown(questionRecommandInfo);
 				//최종 결과 값을 저장
 				result.setQ_recommand(service.finalQuesRecomNum(q_no));
 				result.setQ_isrecommand(0);

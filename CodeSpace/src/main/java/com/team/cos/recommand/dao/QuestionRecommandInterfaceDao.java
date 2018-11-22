@@ -12,4 +12,6 @@ public interface QuestionRecommandInterfaceDao {
 	public int updateQuestionScore(@Param("q_no")int q_no,@Param("score")int score);
 	public int finalQuesRecomNum(@Param("q_no")int q_no);
 	public int changeUserStatus(QuestionRecommandInfo questionRecommandInfo);
+	public int UserUpdown(QuestionRecommandInfo questionRecommandInfo);
+	public int userRecommand(@Param("q_no")int q_no,@Param("user_no")int user_no);
 }
