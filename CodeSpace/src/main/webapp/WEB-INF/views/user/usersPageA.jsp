@@ -31,8 +31,8 @@
 				</c:forEach>
 			</h3>
 			<p>
-				<i class="fas fa-quote-left"></i>&nbsp;&nbsp;${usersInfo.user_intro }&nbsp;&nbsp;<i
-					class="fas fa-quote-right"></i>
+				<i class="fas fa-quote-left"></i>&nbsp;&nbsp;${usersInfo.user_intro }&nbsp;&nbsp;
+				<i class="fas fa-quote-right"></i>
 			</p>
 			<p>
 				<i class="fas fa-edit"></i>&nbsp;&nbsp;${usersInfo.user_tag }
