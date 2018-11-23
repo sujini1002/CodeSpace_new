@@ -9,20 +9,11 @@
 <!-- right Contents 시작 -->
 <div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 50px;">
 <!--  여기다가 작성 해주세요 -->
-<div style="border: 1px solid black">
-가입시 사용했던 이메일을 입력 해주세요.
+<div style="text-align: center;">
+	가입시 사용했던 이메일을 입력 해주세요.
+	<input type="text" id="h_checkId" style="display: block; margin: auto;"/>
+	<a href="#" onclick="check()">확인 메일 보내기</a>
 </div>
-<input type="text" id="h_checkId"/>
-<a href="#" onclick="check()">확인 메일 보내기</a>
-
-
-
-
-
-
-
-
-
 <script>
 /* 이메일이 우리 DB에 있나 체크 */
 function check(){

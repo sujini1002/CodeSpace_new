@@ -27,7 +27,6 @@ public class UserInfoChangePwService {
 			throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
 		dao = template.getMapper(UserInfoInterface.class);
 
-		System.out.println("changePw 서비스:" + userInfoVo);
 		userInfoVo.setUser_pw(enService.encrypt(userInfoVo.getUser_pw()));
 
 		return dao.userInfoPwChange(userInfoVo);

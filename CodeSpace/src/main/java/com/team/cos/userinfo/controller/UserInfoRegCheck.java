@@ -23,7 +23,6 @@ public class UserInfoRegCheck {
 			UserInfoVo result2 = new UserInfoVo();
 			return result2;
 		}
-		System.out.println(result);
 		return result;
 	}
 }

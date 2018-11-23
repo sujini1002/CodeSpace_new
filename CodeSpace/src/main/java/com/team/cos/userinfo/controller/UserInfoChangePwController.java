@@ -1,7 +1,5 @@
 package com.team.cos.userinfo.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
@@ -25,7 +23,6 @@ public class UserInfoChangePwController {
 	@RequestMapping(value = "/userinfo/changepw", method = RequestMethod.GET)
 	public ModelAndView getChangePw(UserInfoVo userInfoVo) {
 		ModelAndView modelAndView = new ModelAndView();
-		System.out.println("들어오냐?" + userInfoVo);
 
 		modelAndView.setViewName("userinfo/changepw");
 		modelAndView.addObject("userInfoVo", userInfoVo);
