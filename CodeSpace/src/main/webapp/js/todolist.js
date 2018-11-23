@@ -6,7 +6,6 @@
 console.log("tdl module~");
 
 var tdlService = (function() {
-
 	// tdl 가져오는 함수
 	function getList(param, callback, error) {
 
@@ -35,11 +34,28 @@ var tdlService = (function() {
 
 		return [ yy, '/', (mm > 9 ? '' : '0') + mm, '/',
 				(dd > 9 ? '' : '0') + dd ].join('');
+	};
+	
+	//project에 참여중인 멤버 정보 가져오기
+	function getProjectMember(param, callback, error){
+		var project_no = param.project_no;
+		
+		$.getJSON("/cos/project/projectMember/"+project_no+".json", function(data){
+			if(callback){
+				callback(data);
+			}
+		}).fail(function(xhr, status, err) {
+			if (error) {
+				error();
+			}
+		});
 	}
-	;
+	
+	
 
 	return {
 		getList : getList,
-		displayTime : displayTime
+		displayTime : displayTime,
+		getProjectMember : getProjectMember
 	};
 })();

@@ -33,7 +33,7 @@ public class ProjectRegService {
 	public ProjectInfoVO selectProList(int project_no) {
 		dao = sqlSessionTemplate.getMapper(ProjectInfoInterface.class);
 		
-		ProjectInfoVO list = dao.selectProjectList(project_no);
+		ProjectInfoVO list = dao.selectAllProjectList(project_no);
 		return list;
 	}
 	

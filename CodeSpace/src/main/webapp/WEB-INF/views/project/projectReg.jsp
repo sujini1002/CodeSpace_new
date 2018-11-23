@@ -13,7 +13,7 @@
 <!-- 로그인한 사용자가 현재 참여중인 프로젝트 목록 보여줌 -->
 <c:if test="${userJoinProjects!=null }"> 
 	<table class="table">
-		<thread>
+		<thead>
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col">프로젝트 제목</th>
@@ -22,20 +22,20 @@
 				<th scope="col">시작일</th>
 				<th scope="col">종료일</th>
 			</tr>
-		</thread>
+		</thead>
 		<tbody>
 			<c:forEach var="item" items="${userJoinProjects }" varStatus="status">
-			<tr>
+			<tr style="font-size:15px;">
 				<td scope="row">${status.count }</td>
 				<td><a href="${pageContext.request.contextPath}/project/prjdash?project_no=${item.project_no }
 						&user_no=${loginInfo.user_no}">${item.project_title }</a></td>
 				<td>${item.project_content }</td>
 				<td>
 					<c:if test="${item.project_status ==false}">
-					종료
+					<p style="color:red;">종료</p>
 					</c:if>
 					<c:if test="${item.project_status ==true}">
-					진행중
+					<p style="color:blue;">진행중</p>
 					</c:if>
 				</td>
 				<td>${item.project_startdate }</td>

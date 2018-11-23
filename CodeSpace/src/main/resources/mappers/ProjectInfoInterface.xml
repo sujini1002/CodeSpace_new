@@ -87,6 +87,14 @@
 		values
 		(#{project_no}, #{member_no})
 	</insert> 
+	
+	<!-- project에 참여중인 member list 표출하기 -->
+	<select id="selectMember" parameterType="com.team.cos.project.vo.ProjectMemberVO"
+		resultType="com.team.cos.project.vo.ProjectMemberVO">
+		select member_no from project_member where project_no=#{project_no}
+	</select>
+	
+	
 
 	<!-- 공지사항 받아오기 위함 -->
 	<select id="projectNoticeView"

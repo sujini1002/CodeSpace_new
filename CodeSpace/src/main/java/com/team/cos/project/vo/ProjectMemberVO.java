@@ -6,7 +6,6 @@ public class ProjectMemberVO {
 
 	private int project_no;
 	private int member_no;
-	private boolean ispm;
 	private String user_nickname;
 	private List<Integer> member;
 	
@@ -24,12 +23,7 @@ public class ProjectMemberVO {
 	public void setMember_no(int member_no) {
 		this.member_no = member_no;
 	}
-	public boolean isIspm() {
-		return ispm;
-	}
-	public void setIspm(boolean ispm) {
-		this.ispm = ispm;
-	}
+
 	public String getUser_nickname() {
 		return user_nickname;
 	}

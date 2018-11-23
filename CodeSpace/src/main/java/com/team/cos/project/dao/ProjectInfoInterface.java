@@ -25,7 +25,7 @@ public interface ProjectInfoInterface {
 	public List<ProjectInfoVO> selectUserPro(int user_no);
 	public List<ProjectInfoVO> selectPmProject(int pm_no);
 
-	//로그인한 사용자가 참여중인 project_no를 보여줌 >> project, project_member table left join으로 함
+	// 로그인한 사용자가 참여중인 project_no를 보여줌 >> project, project_member table left join으로 함
 	public List<Integer> selectProjectNo(int user_no);
 	
 	// 사용자 정보 project에 insert
@@ -40,6 +40,9 @@ public interface ProjectInfoInterface {
 	// 공지사항 글 삭제
 	public int noticeDelete(ProjectNoticeVO projectNoticeVO);
 
-	//PM 체크
+	// PM 체크
 	public ProjectInfoVO checkPm(ProjectInfoVO projectInfoVO);
+	
+	// project에 참여중인 member list 표출하기
+	public List<ProjectMemberVO> selectMember(int project_no);
 }
