@@ -41,15 +41,10 @@ public class UsersPageController {
 		pageMakerQ.setTotalCount(service.countUsersQst(user_no, cri));
 		modelAndView.addObject("pageMaker", pageMakerQ);
 		
-		
-		// 사용자가 한 답변 받아오기
-		//UsersPageMaker pageMakerA = new UsersPageMaker();
-		//pageMakerA.setCri(cri);
-		//pageMakerA.setTotalCount(service.countUsersAns(user_no, cri));
-
-		//modelAndView.addObject("usersAns", service.getUsersAns(user_no,cri));
 		modelAndView.addObject("ansCnt", service.countUsersAns(user_no, cri));
-		//modelAndView.addObject("pageMakerA", pageMakerA);
+		
+		// 스코어 상위 10명 뽑기
+		modelAndView.addObject("topList", service.getTopTen());
 		
 		return modelAndView;
 	}

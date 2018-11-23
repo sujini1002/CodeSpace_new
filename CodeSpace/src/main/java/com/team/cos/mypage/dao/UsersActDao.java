@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.team.cos.mypage.vo.MyAnsInfo;
 import com.team.cos.mypage.vo.UsersActCriteria;
 import com.team.cos.question.vo.QuestionInfo;
+import com.team.cos.userinfo.vo.UserInfoVo;
 
 public interface UsersActDao {
 
@@ -26,4 +27,7 @@ public interface UsersActDao {
 	
 	// 사용자가 한 답변 개수 카운트
 	public int countUsersAns(@Param("user_no") int user_no, UsersActCriteria cri);
+	
+	// 스코어 상위 10명 뽑기
+	public List<UserInfoVo> getTopTen();
 }

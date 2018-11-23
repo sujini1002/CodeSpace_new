@@ -37,8 +37,14 @@
 	where q_no>0 and user_no = #{user_no}
 </select> 
  
- 
- 
+<!-- 스코어 상위 10명 뽑기 -->
+<select id="getTopTen" resultType="com.team.cos.userinfo.vo.UserInfoVo">
+	select *,
+	(select count(*) +1 from userinfo where user_score > b.user_score ) as rank
+	from userinfo as b
+	order by rank asc
+	limit 0,10
+</select> 
  
  
  

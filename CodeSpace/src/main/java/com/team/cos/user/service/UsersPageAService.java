@@ -71,6 +71,14 @@ public class UsersPageAService {
 		int ansCnt = dao.countUsersAns(user_no, cri);
 		return ansCnt;
 	}
+	
+	// 스코어 상위 10명 뽑기
+		public List<UserInfoVo> getTopTen(){
+			dao = sqlSessionTemplate.getMapper(UsersActDao.class);
+			List<UserInfoVo> topList = dao.getTopTen();
+			return topList;
+			
+		}
 
 
 }

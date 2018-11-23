@@ -39,6 +39,8 @@ public class UsersPageAController {
 		modelAndView.addObject("pageMaker", pageMaker);
 		modelAndView.setViewName("user/usersPageA");
 		
+		// 스코어 상위 10명 뽑기
+		modelAndView.addObject("topList", service.getTopTen());
 
 		//System.out.println("유저s페이지 컨트롤러 들어옴");
 		return modelAndView;
