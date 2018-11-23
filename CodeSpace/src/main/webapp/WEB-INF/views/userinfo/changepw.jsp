@@ -8,14 +8,20 @@
 <!-- right Contents 시작 -->
 <div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 50px;">
 <!--  여기다가 작성 해주세요 -->
-
-<input type="text" hidden="hidden" class="user_id" name="user_id" value="${userInfoVo.user_id}"/>
-<input type="password" placeholder="비밀번호 입력" class="user_pw" name="user_pw"/>
-<input type="password" placeholder="비밀번호 확인" class="reCheck_pw"/>
-<a href="#" onclick="changePw()">비밀 번호 변경</a>
-
-
-
+<%-- <div style="text-align: center;">
+	<input type="text" hidden="hidden" class="user_id" name="user_id" value="${userInfoVo.user_id}"/>
+	<input type="password" placeholder="비밀번호 입력" class="user_pw" name="user_pw" style="margin: auto; display: block;" />
+	<input type="password" placeholder="비밀번호 확인" class="reCheck_pw" style="margin: auto; display: block;"/>
+	<a href="#" onclick="changePw()">비밀 번호 변경</a>
+</div> --%>
+<div class="row justify-content-center h_loginForm">
+	<div class="col-md-12 h_loginForm2">
+	    <input type="text" hidden="hidden" class="user_id" name="user_id" value="${userInfoVo.user_id}"/>
+	    <input type="password" placeholder="비밀번호 입력" class="form-control user_pw" name="user_pw" style="margin-bottom: -1px; border-radius: 5px; border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;" autofocus/>
+	    <input type="password" placeholder="비밀번호 확인" class="form-control reCheck_pw"/>
+	    <a href="#"  class="btn btn-lg btn-primary btn-block" onclick="changePw()">비밀 번호 변경</a>
+	</div>
+</div>
 <script>
 function changePw(){
 	var data =[$('.user_pw'),$('.reCheck_pw')];

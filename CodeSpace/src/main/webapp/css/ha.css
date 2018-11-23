@@ -25,7 +25,6 @@
 	width: 100%;
 	max-width: 330px;
 	padding: 15px;
-	margin-left: 28%;
 }
 
 .h_loginForm2 .form-control {
@@ -145,4 +144,7 @@
 .abcRioButtonContentWrapper span {
 	margin-left: -19px;
 	/* font-size: 20px; */
+}
+.h_divcont div{
+	margin-top:3px; 
 }
