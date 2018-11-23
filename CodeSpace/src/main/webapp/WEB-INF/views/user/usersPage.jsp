@@ -13,6 +13,7 @@
 	<!--  여기다가 작성 해주세요 -->
 	<br> <br>
 
+
 	<div class="row">
 		<div class="col-3">
 			<div class="y_usersP_photo">
