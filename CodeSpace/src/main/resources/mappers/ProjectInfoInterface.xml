@@ -51,6 +51,11 @@
 		set project_status=0, project_enddate=now()
 		where project_no = #{project_no}
 	</update>
+	<update id="updateProStatusToStart" parameterType="com.team.cos.project.vo.ProjectInfoVO">
+		update project
+		set project_status=1, project_startdate=now(), project_enddate=#{project_enddate}
+		where project_no = #{project_no}
+	</update>
 
 
 	<!-- 로그인한 사용자가 참여중인 project가 있는지 확인 :: not pm-->
@@ -94,8 +99,6 @@
 		select member_no from project_member where project_no=#{project_no}
 	</select>
 	
-	
-
 	<!-- 공지사항 받아오기 위함 -->
 	<select id="projectNoticeView"
 		parameterType="com.team.cos.project.vo.ProjectInfoVO"
@@ -113,4 +116,13 @@
 		project_notice
 		where notice_no=#{notice_no}
 	</select>
+	
+	<!-- 공지사항 작성위한 pm 체크 -->
+	<select id="checkPm"
+		parameterType="com.team.cos.project.vo.ProjectInfoVO"
+		resultType="com.team.cos.project.vo.ProjectInfoVO">
+		select * from project where pm_no=#{user_no}
+	</select>
+	
+	
 </mapper>

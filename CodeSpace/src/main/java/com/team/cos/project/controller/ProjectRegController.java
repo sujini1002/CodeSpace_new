@@ -35,22 +35,27 @@ public class ProjectRegController {
 		
 		//user_no가 포함된 userInfoVO 가져옴
 		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
-		// 현재 로그인한 사용자가 pm으로 참여중인 프로젝트의 정보 가져옴 
-		/*List<ProjectInfoVO> userPmJoinProjects = userProInfoService.getPmPro(user_no);
-		System.out.println("pm임"+userPmJoinProjects);
-		List<ProjectInfoVO> userJoinProjects = userProInfoService.getUserPro(user_no);*/
 		
 		List<Integer> user_project_no = userProInfoService.getProject_no(user_no);
 		System.out.println("사용자가 참여중인 project_no: "+user_project_no);
 		
 		List<ProjectInfoVO> userJoinProjects = new ArrayList<ProjectInfoVO>();
 		if(user_project_no!=null) {
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String start="";
+			String end="";
 			
 			for(int i=0; i<user_project_no.size(); i++) {
 				int project_no = user_project_no.get(i);
-				ProjectInfoVO vo = userProInfoService.getUserAllProject(project_no);
-				System.out.println(vo);
-				userJoinProjects.add(vo);
+				ProjectInfoVO pro_info = userProInfoService.getUserAllProject(project_no);
+				
+				start = transFormat.format(pro_info.getProject_startdate());
+				end = transFormat.format(pro_info.getProject_enddate());
+				pro_info.setProstring_startdate(start);
+				pro_info.setProstring_enddate(end);
+				
+				System.out.println(pro_info);
+				userJoinProjects.add(pro_info);
 			}
 		} 
 		
@@ -74,7 +79,7 @@ public class ProjectRegController {
 
 		// 입력폼으로부터 전달받은 vo 객체 중, 종료일자 포맷 변경을 위한 처리
 		String enddate = vo.getProstring_enddate();
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Date to = transFormat.parse(enddate);
 		
 		vo.setProject_enddate(to);

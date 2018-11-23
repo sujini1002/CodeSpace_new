@@ -18,8 +18,10 @@ public interface ProjectInfoInterface {
 	// 프로젝트 정보 업데이트
 	public int updateProject(ProjectInfoVO vo);
 
-	// 프로젝트 상태 변경
+	// 프로젝트 상태 변경 (finish: false, 0)
 	public int updateProStatus(int project_no);
+	// 프로젝트 상태 변경 (restart: true, 1)
+	public int updateProStatusToStart(ProjectInfoVO vo);
 
 	// 로그인한 사용자가 참여중인 project 정보를 보여주는 메서드
 	public List<ProjectInfoVO> selectUserPro(int user_no);
@@ -45,4 +47,5 @@ public interface ProjectInfoInterface {
 	
 	// project에 참여중인 member list 표출하기
 	public List<ProjectMemberVO> selectMember(int project_no);
+	
 }

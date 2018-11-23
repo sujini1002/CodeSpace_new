@@ -1,5 +1,6 @@
 package com.team.cos.project.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,17 +38,19 @@ public class ProjectDashController {
 		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
 		//project_no에 해당하는 프로젝트 정보 가져옴
 		ProjectInfoVO pro_info = proInfoservice.selectProList(project_no);
+		System.out.println("project status: "+pro_info.isProject_status());
+		
 		//project_no에 해당하는 porject member 정보 가져옴
 		List<ProjectMemberVO> proMember_info = proMemberService.getMember(project_no);
 		//proMember_info에서 가져온 member_no를 가지고 List<UserInfoVo>에 저장
 		List<UserInfoVo> memberDetail_info = new ArrayList<UserInfoVo>();
 		List<String> member_nickname = new ArrayList<String>();
+		
+	
  		for(int i=0; i<proMember_info.size(); i++) {
-			System.out.println(proMember_info.get(i).getMember_no());
 			memberDetail_info.add(userInfoService.userInfoCheckWithNo(proMember_info.get(i).getMember_no()));
 			System.out.println(memberDetail_info.get(i).getUser_nickname());
 			member_nickname.add(memberDetail_info.get(i).getUser_nickname());
-			
 		}
 		
 		

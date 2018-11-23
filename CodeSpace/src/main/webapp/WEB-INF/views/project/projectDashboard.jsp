@@ -17,6 +17,17 @@
 <!-- 프로젝트 상세정보 표출 영역 -->
 <div>
 	<h4>${pro_info.project_title}  	
+	<c:if test="${pro_info.project_status==false }">
+		<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#proMemberInfo">
+			<i class="fas fa-user-friends"></i>
+		</button>
+
+		<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#projectRestart">
+			프로젝트 다시 시작하기
+		</button>
+
+	</c:if>
+	<c:if test="${pro_info.project_status==true }">
 		<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#proMemberInfo">
 			<i class="fas fa-user-friends"></i>
 		</button>
@@ -31,6 +42,7 @@
 		<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#proMemberInvite">
 			<i class="fas fa-user-plus"></i>		
 		</button>
+	</c:if>
 	</h4>
 	<h4>${pro_info.project_content }</h4>
 </div>
@@ -146,6 +158,52 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+
+<!-- 프로젝트 다시 시작하기 모달 -->
+<div class="modal fade" id="projectRestart">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">프로젝트를 다시 시작하시겠습니까? 종료일자를 선택해주세요.</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        	<span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/cos/project/projectRestart" method="post">
+	      <!-- project Info 수정 -->
+	      <div class="modal-body">
+	      	<!-- 사용자 번호 -->
+	      	<input type="hidden" name="user_no" value="${user_info.user_no }">
+	      	<!-- 프로젝트 번호 -->
+			<input type="hidden" name="project_no" value="${pro_info.project_no }">
+	      	<!-- 프로젝트 제목 -->
+			<div class="form-group">
+				<label>프로젝트 제목</label>
+				<input class="form-control" name="project_title" value="${pro_info.project_title }" readonly >
+			</div>
+	      	<!-- 프로젝트 설명 -->
+			<div class="form-group">
+				<label>프로젝트 설명</label>
+				<input class="form-control" name="project_content" value="${pro_info.project_content }" readonly>
+			</div>
+	      	<!-- 종료 일정 -->
+			<div class="form-group">
+				<label>종료 날짜</label>
+				<input type="date" class="form-control" name="prostring_enddate">
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-danger">Project Restart</button>
+	      </div>
+	     </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 
 
 
