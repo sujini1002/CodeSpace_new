@@ -29,6 +29,7 @@ public class UsersPageAController {
 
 		// 사용자가 한 질문 받아오기
 		modelAndView.addObject("qstCnt", service.countUsersQst(user_no, cri));
+		
 		UsersPageMaker pageMaker = new UsersPageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.countUsersAns(user_no, cri));

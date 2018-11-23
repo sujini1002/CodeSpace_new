@@ -41,6 +41,8 @@
 			</div>
 			
 			<script type="text/javascript">
+			
+			// 사진 수정할 때 파일 선택후 이미지 띄우기
 			$(function(){
 				$("#imgInput").on('change', function(){
 					readURL(this);

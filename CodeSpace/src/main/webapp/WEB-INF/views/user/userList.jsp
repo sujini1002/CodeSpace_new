@@ -47,10 +47,10 @@
               <c:forEach var="userInfo" items="${userList}">
                  <div class="row col-lg-3 user-info">
                   <div class="col-lg-4 userPic">
-                     <div class="picInfo"><a href="#"><img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="93" height="90"></a></div>
+                     <div class="picInfo"><a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}"><img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="93" height="90"></a></div>
                   </div>
                   <div class="col-lg-8 user-detail">
-                     <div class="col-lg-12 user-detail-attribute user-nickname"><a href="#">${userInfo.user_nickname}</a></div>
+                     <div class="col-lg-12 user-detail-attribute user-nickname"><a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}">${userInfo.user_nickname}</a></div>
                      <div class="col-lg-12 user-detail-attribute user-intro">${userInfo.user_intro}</div>
                      <div class="col-lg-12 user-detail-attribute user-score">${userInfo.user_score}</div>
                   </div>

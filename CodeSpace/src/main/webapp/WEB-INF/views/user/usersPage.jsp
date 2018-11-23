@@ -13,7 +13,7 @@
 	<!--  여기다가 작성 해주세요 -->
 	<br> <br>
 
-	<div class="row justyfy-content-center">
+	<div class="row">
 		<div class="col-3">
 			<div class="y_usersP_photo">
 				<img class="y_usersP_1"
@@ -24,6 +24,7 @@
 			<h3 style="">
 				<i class="fas fa-user-astronaut"></i>&nbsp;${usersInfo.user_nickname }
 			</h3>
+			 <%-- <c:if test="${!empty usersQst}"> --%>
 			<p>
 				<i class="fas fa-quote-left"></i>&nbsp;&nbsp;${usersInfo.user_intro }&nbsp;&nbsp;<i
 					class="fas fa-quote-right"></i>
@@ -31,6 +32,7 @@
 			<p>
 				<i class="fas fa-edit"></i>&nbsp;&nbsp;${usersInfo.user_tag }
 			</p>
+			<%-- </c:if> --%>
 		</div>
 		<div class="col-3 row y_userP_info justyfy-content-center">
 		<h4 style="padding-left: 50px; padding-top:15px;" class="y_userP_score"><i class="fas fa-pencil-alt"></i> 

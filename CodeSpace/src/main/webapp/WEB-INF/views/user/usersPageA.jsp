@@ -13,7 +13,7 @@
 	<!--  여기다가 작성 해주세요 -->
 	<br> <br>
 
-	<div class="row justyfy-content-center">
+	<div class="row">
 		<div class="col-3">
 			<div class="y_usersP_photo">
 				<img class="y_usersP_1"
@@ -100,28 +100,28 @@
 					</table>
 					<!-- 질문 글이 있을 시 페이징 표시 -->
 					<div class="search-paging">
-						<!-- view 단 페이징 모듈은 여기부터 -->
-						<div class="text-center">
-							<ul class="pagination">
-								<c:if test="${pageMaker.prev}">
-									<li><a
-										href="${pageContext.request.contextPath}/user/usersPageA${pageMaker.makeQuery(pageMaker.startPage - 1)}&user_no=${usersInfo.user_no}">&laquo;</a></li>
-								</c:if>
+							<!-- view 단 페이징 모듈은 여기부터 -->
+							<div class="text-center">
+								<ul class="pagination">
+									<c:if test="${pageMaker.prev}">
+										<li><a
+											href="${pageContext.request.contextPath}/user/usersPageA${pageMaker.makeQuery(pageMaker.startPage - 1)}&user_no=${usersInfo.user_no}">&laquo;</a></li>
+									</c:if>
 
-								<c:forEach begin="${pageMaker.startPage}"
-									end="${pageMakerA.endPage}" var="idx">
-									<li class="paging-number"
-										<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-										<a
-										href="${pageContext.request.contextPath}/user/usersPageA${pageMaker.makeQuery(idx)}&user_no=${usersInfo.user_no}">${idx}</a>
-									</li>
-								</c:forEach>
+									<c:forEach begin="${pageMaker.startPage}"
+										end="${pageMaker.endPage}" var="idx">
+										<li class="paging-number"
+											<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
+											<a
+											href="${pageContext.request.contextPath}/user/usersPageA${pageMaker.makeQuery(idx)}&user_no=${usersInfo.user_no}">${idx}</a>
+										</li>
+									</c:forEach>
 
-								<c:if test="${pageMaker.next && pageMakerA.endPage > 0}">
-									<li class="paging-number"><a
-										href="${pageContext.request.contextPath}/user/usersPageA${pageMaker.makeQuery(pageMaker.endPage + 1)}&user_no=${usersInfo.user_no}">&raquo;</a></li>
-								</c:if>
-							</ul>
+									<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+										<li class="paging-number"><a
+											href="${pageContext.request.contextPath}/user/usersPageA${pageMaker.makeQuery(pageMaker.endPage + 1)}&user_no=${usersInfo.user_no}">&raquo;</a></li>
+									</c:if>
+								</ul>
 						</div>
 						<!-- 여기 까지 -->
 					</div>
