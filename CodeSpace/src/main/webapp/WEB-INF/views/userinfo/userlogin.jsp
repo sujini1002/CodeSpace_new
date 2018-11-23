@@ -6,8 +6,8 @@
 <jsp:include page="../common/layout_content.jsp" />
 <!-- right Contents 시작 -->
 <div class="col-md-10" style="background-color: rgb(236, 240, 245); padding-top: 30px; padding-left: 50px;">
-	<div class="h_loginForm">
-		<div class="h_loginForm2">
+	<div class="row justify-content-center h_loginForm">
+		<div class="col-md-12 h_loginForm2">
 		    <label for="inputEmail" class="sr-only">Email address</label>
 		    <input type="text" id="inputEmail" class="form-control user_id" name="user_id" placeholder="E-Mail을 입력하세요" required autofocus>
 		    <label for="inputPassword" class="sr-only">Password</label>
