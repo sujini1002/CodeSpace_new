@@ -220,7 +220,7 @@
 			for(var i=0, len=list.length||0; i<len; i++){
 				str += "<option value="+list[i].member_no+">"+list[i].member_no+"</option>"
 			}
-			manager.html(str);
+			manager.append(str);
 		})
 	})
 	

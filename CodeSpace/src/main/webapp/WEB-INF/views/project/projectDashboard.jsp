@@ -17,8 +17,11 @@
 <!-- 프로젝트 상세정보 표출 영역 -->
 <div>
 	<h4>${pro_info.project_title}  	
+		<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#proMemberInfo">
+			<i class="fas fa-user-friends"></i>
+		</button>
 		<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#projectInfo">
-			수정하기
+			<i class="fas fa-edit"></i>
 		</button>
 		<!-- 프로젝트는 삭제 x, 프로젝트 끝내기 버튼을 누르면 방향으로 함 -->
 		<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#projectFinish">
@@ -174,12 +177,45 @@
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        <button type="submit" class="btn btn-primary" id="inviteMember">Invite member</button>
 	      </div>
-	      
-	      
 		 </form> 
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+
+<!-- 프로젝트에 참여중인 사용자 보기 모달 -->
+<div class="modal fade" id="proMemberInfo">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">함께 하는 사용자들</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        	<span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+	      <div class="modal-body" >
+	      	<ul class="list-group">
+	      	<c:forEach var="item" items="${member_nickname }">
+	      		<li class="list-group-item d-flex justify-content-between align-items-center">
+				    ${item }
+				    <a href="#" class="badge badge-light">x</a>
+				</li>
+	      	</c:forEach>
+	      	</ul>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+
 
 
 
