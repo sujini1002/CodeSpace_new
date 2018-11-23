@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.team.cos.recommand.dao.QuestionRecommandInterfaceDao;
+import com.team.cos.recommand.vo.QuestionRecommandInfo;
 
 public class QuestionRecommandViewService {
 	
@@ -19,5 +20,10 @@ public class QuestionRecommandViewService {
 		quesRecomDao = sqlSessionTemplate.getMapper(QuestionRecommandInterfaceDao.class);
 		
 		return quesRecomDao.userRecommand(q_no, user_no);
+	}
+	public int isExistUserRecom (QuestionRecommandInfo questionRecommandInfo) {
+		
+		quesRecomDao = sqlSessionTemplate.getMapper(QuestionRecommandInterfaceDao.class);
+		return quesRecomDao.isExistUserRecom(questionRecommandInfo);
 	}
 }

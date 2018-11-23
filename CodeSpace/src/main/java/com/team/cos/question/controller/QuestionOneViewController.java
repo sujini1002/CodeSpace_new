@@ -22,6 +22,7 @@ import com.team.cos.question.serivce.QuestionOneViewService;
 import com.team.cos.question.serivce.QuestionViewCntService;
 import com.team.cos.question.vo.QuestionInfo;
 import com.team.cos.recommand.service.QuestionRecommandViewService;
+import com.team.cos.recommand.vo.QuestionRecommandInfo;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
 @Controller
@@ -83,8 +84,14 @@ public class QuestionOneViewController {
 		if(session.getAttribute("loginInfo") != null) {
 			UserInfoVo user = (UserInfoVo) session.getAttribute("loginInfo");
 			user_no = user.getUser_no();
-			//질문 추천 사용자 추천 여부
-			qRecommand = qRecomService.qRecommand(q_no, user_no);
+			//질문 추천 사용자 존재여부
+			QuestionRecommandInfo qRecomInfo = new QuestionRecommandInfo();
+			qRecomInfo.setQ_no(q_no);
+			qRecomInfo.setUser_no(user_no);
+			if(qRecomService.isExistUserRecom(qRecomInfo)>0) {
+				//질문 추천 사용자 추천 여부
+				qRecommand = qRecomService.qRecommand(q_no, user_no);
+			}
 		}
 		
 		
