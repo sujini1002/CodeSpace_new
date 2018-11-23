@@ -26,6 +26,7 @@ public class ProjectRegService {
 	
 	public int memberReg(ProjectMemberVO vo) {
 		dao = sqlSessionTemplate.getMapper(ProjectInfoInterface.class);
+		
 		return dao.memberUpdate(vo);
 	}
 	

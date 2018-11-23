@@ -51,6 +51,11 @@
 		set project_status=0, project_enddate=now()
 		where project_no = #{project_no}
 	</update>
+	<update id="updateProStatusToStart" parameterType="com.team.cos.project.vo.ProjectInfoVO">
+		update project
+		set project_status=1, project_startdate=now(), project_enddate=#{project_enddate}
+		where project_no = #{project_no}
+	</update>
 
 
 	<!-- 로그인한 사용자가 참여중인 project가 있는지 확인 :: not pm-->

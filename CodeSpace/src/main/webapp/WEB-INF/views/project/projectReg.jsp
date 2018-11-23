@@ -38,8 +38,8 @@
 					<p style="color:blue;">진행중</p>
 					</c:if>
 				</td>
-				<td>${item.project_startdate }</td>
-				<td>${item.project_enddate }</td>
+				<td>${item.prostring_startdate}</td>
+				<td>${item.prostring_enddate }</td>
 			</tr>
 			</c:forEach>
 		</tbody>
