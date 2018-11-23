@@ -10,16 +10,18 @@
 <!-- right Contents 시작 -->
 <div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 50px;">
 <!--  여기다가 작성 해주세요 -->
-
-<div id="h_toolbar">111</div>
-<div id="h_editor">222</div>
-<button id="h_saveDelta">h_saveDelta</button>
-
+<form action="#" method="post">
+	<div id="h_toolbar" name="notice_title">111</div>
+	<div id="h_editor" name="notice_content">222</div>
+	<button id="h_saveDelta">h_saveDelta</button>
+	
+	
+</form>
 
 
 
 <script>
-	var toolbarOptions = [
+var toolbarOptions = [
 			['bold','italic','underline','strike'],
 			['blockquote','code-block'],
 			[{'header':1},{'header':2}],

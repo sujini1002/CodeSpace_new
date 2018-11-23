@@ -24,7 +24,6 @@
   </c:forEach>
   </tbody>
 </table>
-<h1>${loginInfo.user_no }</h1>
 <div class="h_golist"><a href="#" style="color: black;" onclick="noticeWrite()">공지사항 작성</a></div>
 <script>
 
@@ -43,9 +42,9 @@ function noticeWrite(){
 		},
 		success:function(response){
 			console.log(response);
-			if(response.pm_no==user_no && true){
+			if(response.pm_no==user_no && result == true){
 				location.href='${pageContext.request.contextPath}/project/notice/write';
-			}else if(response.pm_no==user_no){
+			}else if(response.pm_no!=user_no && result == false){
 				alert('프로젝트 매니저만 작성할 수 있습니다.');
 			}
 		}

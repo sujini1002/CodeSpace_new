@@ -99,8 +99,6 @@
 		select member_no from project_member where project_no=#{project_no}
 	</select>
 	
-	
-
 	<!-- 공지사항 받아오기 위함 -->
 	<select id="projectNoticeView"
 		parameterType="com.team.cos.project.vo.ProjectInfoVO"
@@ -118,4 +116,13 @@
 		project_notice
 		where notice_no=#{notice_no}
 	</select>
+	
+	<!-- 공지사항 작성위한 pm 체크 -->
+	<select id="checkPm"
+		parameterType="com.team.cos.project.vo.ProjectInfoVO"
+		resultType="com.team.cos.project.vo.ProjectInfoVO">
+		select * from project where pm_no=#{user_no}
+	</select>
+	
+	
 </mapper>

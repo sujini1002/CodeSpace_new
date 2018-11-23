@@ -47,7 +47,7 @@ public class ProjectNoticeController {
 		return modelAndView;
 	}
 
-	// 공지사항 작성
+	// 공지사항 작성권한 체크
 	@RequestMapping(value = "/project/notice/check", method = RequestMethod.GET)
 	@ResponseBody
 	public ProjectInfoVO writeNotice(ProjectInfoVO projectInfoVo) {
@@ -55,8 +55,16 @@ public class ProjectNoticeController {
 		return result;
 	}
 
-	@RequestMapping(value = "/project/notice/write")
-	public String writeNotice() {
+//	공지사항 페이지 이동
+	@RequestMapping(value = "/project/notice/write",method=RequestMethod.GET)
+	public String getWriteNotice() {
+		return "project/notice/write";
+	}
+	
+//	공지사항 작성 입력
+	@RequestMapping(value = "/project/notice/write",method=RequestMethod.POST)
+	public String postWriteNotice(ProjectNoticeVO projectNoticeVO) {
+		
 		return "project/notice/write";
 	}
 
