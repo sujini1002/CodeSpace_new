@@ -85,64 +85,79 @@
              </div>
          </div>
              <script>
-      //   $(document).ready(function(){
-            
-    //        searchUser();
-            
-   //      });
-         
-    //     function searchUser(){
-            
+             
             $("input:text[name=user_nickname]").keyup(function(){
                
                var user_nickname = $("input:text[name=user_nickname]").val(); // 검색 창에 입력한 값
                
-                  $.ajax({
-                     type: 'POST',
-                     url: '${pageContext.request.contextPath}/user/userList',
-                     data: {user_nickname : user_nickname},
-                     dataType: 'json',
-                     success: function(result){
-                        console.log("result : " + result);
-                        $(".userList").html('');
-                        if(result.length > 0){
-                           var str='';
-                           str +=   '<div class="row user-row">';
-                                       for(var i=0;i<result.length;i++){
-                                          console.log(result[i]);
-                                          str += '<div class="row col-lg-3 user-info">'
-                                             +      '<div class="col-lg-4 userPic">'
-                                             +         '<div class="picInfo">'
-                                             +            '<a href="#">'
-                                             +             '<img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="93" height="90">'
-                                             +            '</a>
-                                             +         '</div>'
-                                             +      '</div>'
-                                             +      '<div class="col-lg-8 user-detail">'
-                                             +         '<div class="col-lg-12 user-detail-attribute user-nickname">'
-                                             +            '<a href="#">' + result[i].user_nickname + '</a>'
-                                             +         '</div>'
-                                             +         '<div class="col-lg-12 user-detail-attribute user-intro">'
-                                             +             result[i].user_intro 
-                                             +          '</div>'
-                                             +         '<div class="col-lg-12 user-detail-attribute user-score">'
-                                             +            result[i].user_score
-                                             +         '</div>'
-                                             +      '</div>'
-                                             +      '<div class="row col-lg-12 user-tag">'
-                                             +         '<div class="col-lg-4"></div>'
-                                             +         '<div class="col-lg-8">'+ result[i].user_tag + '</div>'
-                                             +      '</div>'
-                                             +   '</div>'
-                           
-                                       }
-                           str += '</div>'; // div class="row user-row" 끝
-                           $(".userList").html(str);
-                        }else{
-                           str = '검색된 결과가 없습니다.';
-                           $(".userList").html(str);
-                        }
-                     },
+               $.ajax({
+                   type: 'POST',
+                   async: false,
+                   url: '${pageContext.request.contextPath}/user/userList',
+                   data: {user_nickname : user_nickname},
+                   dataType: 'json',
+                   success: function(result){
+                      console.log("result : " + result);
+                      $(".userList").empty();
+                      
+                      if(result.length > 0){
+                    	  console.log("user_nickname : " + user_nickname);
+                      	if(user_nickname){
+                      			console.log("넘어갔나?");
+		                           var list = result[0];
+		                           var paging = result[1];
+		                           
+		                           console.log("list변수 : " + list);
+		                           console.log("paging변수 : " + paging);
+		                           var str='';
+		                           str +=	'<div class="row user-row">';
+		                           				for(var i=0;i<list.length;i++){
+		                              				console.log("list["+i+"] : " + list[i]);
+		                              				
+		                              				if(list[i].user_intro==null){
+		                              					list[i].user_intro='';
+		                              				}
+		                              				
+		                              				if(list[i].user_tag==null){
+		                              					list[i].user_tag='';
+		                              				}
+		                              			
+		                              				str += '<div class="row col-lg-3 user-info">'
+		                              					+		'<div class="col-lg-4 userPic">'
+		                              					+			'<div class="picInfo">'
+		                              					+				'<a href="#">'
+		                              					+ 					'<img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="93" height="90">'
+		                              					+				'</a>'
+		                              					+			'</div>'
+		                              					+		'</div>'
+		                              					+		'<div class="col-lg-8 user-detail">'
+		                              					+			'<div class="col-lg-12 user-detail-attribute user-nickname">'
+		                              					+				'<a href="#">' + list[i].user_nickname + '</a>'
+		                              					+			'</div>'
+		                              					+			'<div class="col-lg-12 user-detail-attribute user-intro">'
+		                              					+ 				list[i].user_intro 
+		                              					+ 			'</div>'
+		                              					+			'<div class="col-lg-12 user-detail-attribute user-score">'
+		                              					+				list[i].user_score
+		                              					+			'</div>'
+		                              					+		'</div>'
+		                              					+		'<div class="row col-lg-12 user-tag">'
+		                              					+			'<div class="col-lg-4"></div>'
+		                              					+			'<div class="col-lg-8">'+ list[i].user_tag + '</div>'
+		                              					+		'</div>'
+		                              					+	'</div>'
+		                           
+		                           				}
+		                           str += '</div><br>';
+		                           
+		                           	   					
+		                           $(".userList").html(str);
+		                        }else{
+		                           str = '검색된 결과가 없습니다.';
+		                           $(".userList").html(str);
+		                        }
+                      }
+                   },
                      error: function(e){
                         console.log('error : ' + e.status);
                      }

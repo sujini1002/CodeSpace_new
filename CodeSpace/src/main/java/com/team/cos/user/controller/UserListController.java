@@ -1,5 +1,6 @@
 package com.team.cos.user.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import com.team.cos.paging.service.PagingService;
 import com.team.cos.paging.vo.PageMaker;
 import com.team.cos.paging.vo.UserCriteria;
 import com.team.cos.user.service.UserService;
-import com.team.cos.userinfo.vo.UserInfoVo;
 
 @Controller
 public class UserListController {
@@ -63,7 +63,16 @@ public class UserListController {
 		
 		System.out.println(cri);
 		
-		List<UserInfoVo> userInfo = userService.getUsers(cri.getUser_nickname());
+		List<Object> userInfo = new ArrayList();
+		
+		userInfo.add(userService.getUsers(cri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setUserCri(cri);
+		
+		pageMaker.setUserTotalCount(userService.getSearchCnt(cri));
+		
+		userInfo.add(pageMaker);
 		
 		System.out.println(userInfo);
 		

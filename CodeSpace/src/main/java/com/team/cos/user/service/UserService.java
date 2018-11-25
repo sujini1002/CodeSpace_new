@@ -39,11 +39,11 @@ public class UserService {
 	}
 
 	// 검색한 유저 결과를 가져오는 메서드
-	public List<UserInfoVo> getUsers(String nickname) {
+	public List<UserInfoVo> getUsers(UserCriteria cri) {
 
 		userDao = sqlSessionTemplate.getMapper(UserDaoInterface.class);
 
-		List<UserInfoVo> searchResult = userDao.searchUser(nickname);
+		List<UserInfoVo> searchResult = userDao.searchUser(cri);
 
 		return searchResult;
 

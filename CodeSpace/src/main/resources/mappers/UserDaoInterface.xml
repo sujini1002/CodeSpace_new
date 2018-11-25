@@ -23,12 +23,14 @@
 	<!-- 유저 페이지 검색 결과  쿼리-->
 	<select id="searchUser" resultType="com.team.cos.userinfo.vo.UserInfoVo">
 		select * from userinfo where user_nickname like CONCAT('%',#{user_nickname},'%')
+		order by user_no desc, user_score desc
+		limit #{pageStart}, #{perPageNum}
 	</select>
 	
 	<!-- 유저 페이지 검색 결과 Cnt 쿼리 -->
 	<select id="searchCnt" resultType="int">
 		select count(user_no) from userinfo 
-		where user_no > 0 and user_nickname like CONCAT('%',#{keyword},'%')
+		where user_no > 0 and user_nickname like CONCAT('%',#{user_nickname},'%')
 	</select>
 
 </mapper>
