@@ -12,6 +12,8 @@
 <!--  여기다가 작성 해주세요 -->
 
 <!-- 검색 창 입력 시 비동기 처리로 회원 정보 검색 -->
+
+
 <div class="container">
    <div class="head-container">
       <h1>Stars in Space</h1>
@@ -40,7 +42,6 @@
    
    <div class="list-container">
   
-      
       <c:if test="${!empty userList}">
          <div class="userList">
             <div class="row user-row">
@@ -54,7 +55,7 @@
                      <div class="col-lg-12 user-detail-attribute user-intro">${userInfo.user_intro}</div>
                      <div class="col-lg-12 user-detail-attribute user-score">${userInfo.user_score}</div>
                   </div>
-                  <div class="row col-lg-12 user-tag">
+                  <div class="row col-lg-12 user-tag">	
                      <div class="col-lg-4"></div>
                      <div class="col-lg-8">${userInfo.user_tag}</div>
                   </div>
@@ -84,7 +85,8 @@
                 </ul>
              </div>
          </div>
-             <script>
+         
+          <script>
              
             $("input:text[name=user_nickname]").keyup(function(){
                
@@ -100,9 +102,8 @@
                       console.log("result : " + result);
                       $(".userList").empty();
                       
-                      if(result.length > 0){
+                      if(result[0].length > 0){
                     	  console.log("user_nickname : " + user_nickname);
-                      	if(user_nickname){
                       			console.log("넘어갔나?");
 		                           var list = result[0];
 		                           var paging = result[1];
@@ -155,39 +156,22 @@
 		                        }else{
 		                           str = '검색된 결과가 없습니다.';
 		                           $(".userList").html(str);
-		                        }
-                      }
+		                        } 		// if(user_nickname){} 끝
+                      	// if(result.length > 0){} 끝
                    },
                      error: function(e){
                         console.log('error : ' + e.status);
                      }
                   }); // ajax 끝
             }); // keyup function 끝
-      //   }
          
       </script>
-      </c:if>
-         <%-- <table class="userListTbl" border="1px solid black">
-            <tr>
-               <c:set var="cnt" value="0" />
-               <c:forEach var="userInfo" items="${userList}">
-               <c:set var="cnt" value="${cnt+1}"></c:set>
-               <td colspan=3 class="userListTblImg"></td>
-               <td colspan=3 class="userListTblContent">
-                  ${userInfo.user_nickname}·${userInfo.user_score}<br>
-                  ${userInfo.user_intro}<br>
-                  ${userInfo.user_tag}
-               </td>
-         
-               <c:if test="${(cnt mod 3) eq 0}">
-                  </tr><tr>
-               </c:if>
-               </c:forEach>
-            </tr>
-         </table> --%>
    
+   
+         
+         
+      </c:if>
    </div> <!-- list-container 끝 -->
-
 <div> <!-- main-container 끝 -->
 
 
