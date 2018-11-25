@@ -91,7 +91,7 @@
             $("input:text[name=user_nickname]").keyup(function(){
                
                var user_nickname = $("input:text[name=user_nickname]").val(); // 검색 창에 입력한 값
-                 
+               
                $.ajax({
                    type: 'POST',
                    async: false,
