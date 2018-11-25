@@ -62,9 +62,8 @@
                </div>
             </c:forEach>
             </div>
-         </div>
-         
-         <br>
+            
+            <br>
             <div class="search-paging">
              <div class="text-center">
                 <ul class="pagination">
@@ -85,12 +84,21 @@
                 </ul>
              </div>
          </div>
+            
+            
+         </div><!-- <div=userList> 끝 -->
+         
+        
          
           <script>
              
             $("input:text[name=user_nickname]").keyup(function(){
                
                var user_nickname = $("input:text[name=user_nickname]").val(); // 검색 창에 입력한 값
+               
+               if($.trim(user_nickname)==''){
+                   user_nickname=$.trim(user_nickname);
+               }
                
                $.ajax({
                    type: 'POST',
@@ -103,13 +111,19 @@
                       $(".userList").empty();
                       
                       if(result[0].length > 0){
+                    	  if($("input:text[name=user_nickname]").val()!=''&&  user_nickname==''){
+
+                              var str = '검색된 결과가 없습니다.';
+                              $(".userList").html(str);
+
+                          }else{
                     	  console.log("user_nickname : " + user_nickname);
                       			console.log("넘어갔나?");
 		                           var list = result[0];
 		                           var paging = result[1];
 		                           
 		                           console.log("list변수 : " + list);
-		                           console.log("paging변수 : " + paging);
+		                           console.log("paging변수 : " + paging);	
 		                           var str='';
 		                           str +=	'<div class="row user-row">';
 		                           				for(var i=0;i<list.length;i++){
@@ -153,10 +167,11 @@
 		                           
 		                           	   					
 		                           $(".userList").html(str);
-		                        }else{
-		                           str = '검색된 결과가 없습니다.';
-		                           $(".userList").html(str);
-		                        } 		// if(user_nickname){} 끝
+		                        }
+		                }else{
+		                    str = '검색된 결과가 없습니다.';
+		                   	$(".userList").html(str);
+		                } // if(user_nickname){} 끝
                       	// if(result.length > 0){} 끝
                    },
                      error: function(e){
@@ -166,9 +181,6 @@
             }); // keyup function 끝
          
       </script>
-   
-   
-         
          
       </c:if>
    </div> <!-- list-container 끝 -->
