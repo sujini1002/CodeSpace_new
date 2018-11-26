@@ -21,7 +21,10 @@ import com.team.cos.comment.vo.QuestionCommentInfo;
 import com.team.cos.question.serivce.QuestionOneViewService;
 import com.team.cos.question.serivce.QuestionViewCntService;
 import com.team.cos.question.vo.QuestionInfo;
+import com.team.cos.recommand.service.AnswerRecommandViewService;
 import com.team.cos.recommand.service.QuestionRecommandViewService;
+import com.team.cos.recommand.vo.AnswerRecommandInfo;
+import com.team.cos.recommand.vo.AnswerRecommandViewInfo;
 import com.team.cos.recommand.vo.QuestionRecommandInfo;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
@@ -49,6 +52,9 @@ public class QuestionOneViewController {
 	
 	@Autowired
 	private QuestionRecommandViewService qRecomService;
+	
+	@Autowired
+	private AnswerRecommandViewService aRecomService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView questionView(@RequestParam("q_no")int q_no,
@@ -94,6 +100,21 @@ public class QuestionOneViewController {
 			}
 		}
 		
+		
+		//답변 추천
+		int aRecommand = 3;
+		if(session.getAttribute("loginInfo") != null) {
+			UserInfoVo user = (UserInfoVo) session.getAttribute("loginInfo");
+			user_no = user.getUser_no();
+			//질문 추천 사용자 존재여부
+			AnswerRecommandInfo aRecomInfo = new AnswerRecommandInfo();
+			aRecomInfo.setA_no(q_no);
+			aRecomInfo.setUser_no(user_no);
+			if(aRecomService.isExistUserRecom(aRecomInfo)>0) {
+				//질문 추천 사용자 추천 여부
+				//aRecommand = aRecomService.aRecommand(q_no, user_no);
+			}
+		}
 		
 		modelAndView.addObject("questionInfo", questionInfo);
 		modelAndView.addObject("userInfo", userInfoVo);

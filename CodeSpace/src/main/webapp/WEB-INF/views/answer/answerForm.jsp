@@ -164,7 +164,17 @@
 				contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 				dataType : 'json',
 				success : function(data){
-					console.log(data);
+					$('#k_aRecommandCnt_'+num).text(data.a_recommand);
+					if(data.a_isrecommand==1){
+						$('#k_aRecommandUpIcon_'+num).css('color','gray');
+						$('#k_aRecommandDownIcon_'+num).css('color','gray');
+					}else{
+						if(score == 1){
+							$('#k_aRecommandUpIcon_'+num).css('color','#17a2b8');
+						}else{
+							$('#k_aRecommandDownIcon_'+num).css('color','#17a2b8');
+						}
+					}
 				},
 				error : function(){
 					alert('불행하게도 에러네요');
