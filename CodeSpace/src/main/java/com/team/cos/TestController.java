@@ -10,5 +10,8 @@ public class TestController {
 	public String test() {
 		return "project/projectMain";
 	}
-
-}
+	@RequestMapping("/userinfo/test")
+	public String test2() {
+		return "userinfo/test";
+	}
+}	
