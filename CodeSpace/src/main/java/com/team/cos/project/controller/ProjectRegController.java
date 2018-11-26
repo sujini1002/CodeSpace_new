@@ -79,7 +79,7 @@ public class ProjectRegController {
 
 		// 입력폼으로부터 전달받은 vo 객체 중, 종료일자 포맷 변경을 위한 처리
 		String enddate = vo.getProstring_enddate();
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date to = transFormat.parse(enddate);
 		
 		vo.setProject_enddate(to);

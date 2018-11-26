@@ -12,6 +12,13 @@
 
 <!-- 로그인한 사용자가 현재 참여중인 프로젝트 목록 보여줌 -->
 <c:if test="${userJoinProjects!=null }"> 
+<h3>현재 진행중인 프로젝트
+<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#projectGenerate">
+프로젝트 생성하기
+</button>
+
+</h3>
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -44,7 +51,10 @@
 			</c:forEach>
 		</tbody>
 	</table>
-<hr>
+</c:if>
+<c:if test="${userJoinProjects==null }"> 
+현재 참여중인 프로젝트가 없습니다.<br>
+프로젝트를 진행해 보세요!
 </c:if>
 
 
@@ -65,36 +75,55 @@
 
 
 
-<div>
-	<h3>프로젝트 생성하기</h3>
-	
-	<!-- 프로젝트 생성하기 post방식으로  -->
-	<!-- 제목 project_title/설명 project_content/참여자 project_member/종료일 project_project_enddate-->
-	<form class="form-horizontal" id="proInfo" style="width:70%;" method="post">
-		<div class="form-group">
-			<label for="project_title">프로젝트 명</label> 
-			<input type="text"
-				class="form-control" name="project_title" id="project_title"
-				placeholder="프로젝트 명을 입력하세요" onkeyup="inputForm1()">
-		</div>
-		<div class="form-group">
-			<label for="project_content">프로젝트 설명</label> 
-			<input type="text"
-				class="form-control" name="project_content" placeholder="프로젝트 설명을 입력하세요">
-		</div>
-		<div class="form-group">
-			<label for="prostring_enddate">프로젝트 종료일</label> 
-			<input type="date" class="form-control" name="prostring_enddate" >
-		</div>
-		
-		<!-- project_member db 저장을 위한 현재 로그인한 사용자 no 가져옴
-		현재 로그인한 사용자가 프로젝트를 생성하므로, pm_no로 지정됨 -->
-		<input type="hidden" name="pm_no" value="${user_info.user_no}">
-		<input type="hidden" name="user_no" value="${user_info.user_no}">
-		<button type="submit" class="btn btn-default" id="proSubmit" disabled="">만들기</button>
-	</form>
 
-</div>
+
+
+
+<!-- 프로젝트 생성하기 모달 -->
+<div class="modal fade" id="projectGenerate">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">프로젝트 내용 수정하기</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        	<span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/cos/project/prjreg" method="post">
+     	<!-- project_member db 저장을 위한 현재 로그인한 사용자 no 가져옴
+		현재 로그인한 사용자가 프로젝트를 생성하므로, pm_no로 지정됨 -->
+      	<input type="hidden" name="pm_no" value="${user_info.user_no}">
+		<input type="hidden" name="user_no" value="${user_info.user_no}">
+	      <!-- project Info 수정 -->
+	      <div class="modal-body">
+	      	<!-- 프로젝트 제목 -->
+			<div class="form-group">
+				<label>프로젝트 제목</label>
+				<input type="text" class="form-control" name="project_title" id="project_title"
+				placeholder="프로젝트 명을 입력하세요" onkeyup="inputForm1()">
+			</div>
+	      	<!-- 프로젝트 설명 -->
+			<div class="form-group">
+				<label>프로젝트 설명</label>
+				<input type="text" class="form-control" name="project_content" placeholder="프로젝트 설명을 입력하세요">
+			</div>
+	      	<!-- 종료 일정 -->
+			<div class="form-group">
+				<label>종료 날짜</label>
+				<input type="date" class="form-control" name="prostring_enddate" >
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-primary">Save changes</button>
+	      </div>
+	     </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
 
 
 
