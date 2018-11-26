@@ -51,8 +51,9 @@
 				<div class="result-List">
 					<table class="table" style="text-align: center;">
 						<tr>
-							<td style="text-align: center;">프로젝트 이름</td>
-							<td style="text-align: center;">프로젝트 소개</td>
+							<td style="text-align: center;">프로젝트 제목</td>
+							<td style="text-align: center;">프로젝트 내용</td>
+							<td style="text-align: center;">프로젝트 상태</td>
 							<td style="text-align: center;">프로젝트 시작일</td>
 							<td style="text-align: center;">프로젝트 종료일</td>
 						</tr>
@@ -60,8 +61,14 @@
 						 <tr>
 							<td><a href='${pageContext.request.contextPath}/project/prjdash?project_no=<c:out value="${prj.project_no}"/>&user_no=<c:out value="${loginInfo.user_no}"/>'>${prj.project_title}</a></td>
 							<td>${prj.project_content}</td>
-							<td>${prj.project_startdate}</td>
-							<td>${prj.project_enddate}</td> 
+							<c:if test="${prj.project_status ==false}">
+								<td style="color:red;">종료</td>
+							</c:if>
+							<c:if test="${prj.project_status ==true}">
+								<td style="color:blue;">진행중</td>
+							</c:if>
+							<td>${prj.prostring_startdate}</td>
+							<td>${prj.prostring_enddate}</td> 
 						</tr> 
 						</c:forEach> 
 					</table>

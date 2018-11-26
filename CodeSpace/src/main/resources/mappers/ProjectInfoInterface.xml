@@ -81,7 +81,7 @@
 		select  distinct p.project_no from project p
 		left join project_member m
 		on p.project_no = m.project_no
-		where p.pm_no=#{user_no} or m.member_no=#{user_no};
+		where p.pm_no=#{user_no} or m.member_no=#{user_no}
 	</select>
 	
 	<!-- project 테이블에 member로 추가한 user_no update -->

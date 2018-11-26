@@ -15,8 +15,8 @@ public interface MypageInterface {
 	public void memberDelete(String user_id);
 	
 	
-	// 내가 참여한 프로젝트 정보 가져오기
-	public List<ProjectInfoVO> getMyprj(int user_no);
+	// 내가 참여한 프로젝트 정보 가져오기 (project 테이블에서)
+	public List<ProjectInfoVO> getProjectByProject(int user_no);
 	// 다른 사용자 클릭했을때 다른 사용자의 정보 가져오기
 	public UserInfoVo getUsersPage(int user_no);
 	

@@ -16,10 +16,13 @@ public class MyprjService {
 	
 	// 내가 참여한 프로젝트 정보 가져오기
 	public List<ProjectInfoVO> getMyprj(int user_no){
-		
 		mypageInterface = sqlSessionTemplate.getMapper(MypageInterface.class);
 		
-		List<ProjectInfoVO> myPrjList = mypageInterface.getMyprj(user_no);
+		
+		
+		
+		//user_no에 해당하는 project list 가져옴
+		List<ProjectInfoVO> myPrjList = mypageInterface.getProjectByProject(user_no);
 		
 		System.out.println(myPrjList);
 		
