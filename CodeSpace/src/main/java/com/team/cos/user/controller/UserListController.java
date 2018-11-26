@@ -38,7 +38,7 @@ public class UserListController {
 		pageMaker.setUserTotalCount(userService.getUserCnt(cri));
 		
 		
-		/*
+		
 		System.out.println("totalCount : " + pageMaker.getTotalCount());
 		System.out.println("userTotalCount : " + pageMaker.getUserTotalCount());
 		System.out.println("startPage : " + pageMaker.getStartPage());
@@ -47,7 +47,7 @@ public class UserListController {
 		System.out.println("next : " + pageMaker.isNext());
 		System.out.println("searchCri : " + pageMaker.getSearchCri());
 		System.out.println("userCri : " + pageMaker.getUserCri());
-		*/
+		
 		
 		mav.addObject("pageMaker", pageMaker);
 		

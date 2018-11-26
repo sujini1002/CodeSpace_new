@@ -68,18 +68,18 @@
              <div class="text-center">
                 <ul class="pagination">
                    <c:if test="${pageMaker.prev}">
-                      <li><a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeSearch(pageMaker.startPage - 1)}">&laquo;</a></li>
+                      <li><a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeUserList(pageMaker.startPage - 1)}">&laquo;</a></li>
                    </c:if>
                    
                    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
                       <li class="paging-number"
                          <c:out value="${pageMaker.userCri.page == idx?'class =active':''}"/>>
-                         <a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeSearch(idx)}">${idx}</a>
+                         <a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeUserList(idx)}">${idx}</a>
                       </li>   
                    </c:forEach>
                    
                    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-                      <li><a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeSearch(pageMaker.endPage + 1)}">&raquo;</a></li>
+                      <li class="paging-number"><a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeUserList(pageMaker.endPage + 1)}">&raquo;</a></li>
                    </c:if>
                 </ul>
              </div>
@@ -108,6 +108,7 @@
                    dataType: 'json',
                    success: function(result){
                       console.log("result : " + result);
+                      
                       $(".userList").empty();
                       
                       if(result[0].length > 0){
@@ -123,7 +124,17 @@
 		                           var paging = result[1];
 		                           
 		                           console.log("list변수 : " + list);
-		                           console.log("paging변수 : " + paging);	
+		                           console.log("paging변수 : " + paging);
+		                           
+		                           console.log("totalCount : " + paging.totalCount);
+		                           console.log("userTotalCount : " + paging.userTotalCount);
+		                           console.log("startPage : " + paging.startPage);
+		                           console.log("endPage : " + paging.endPage);
+		                           console.log("prev : " + paging.prev);
+		                           console.log("next : " + paging.next);
+		                           
+		                           console.log('${pageContext.request.contextPath}');
+		                           
 		                           var str='';
 		                           str +=	'<div class="row user-row">';
 		                           				for(var i=0;i<list.length;i++){
@@ -165,8 +176,33 @@
 		                           				}
 		                           str += '</div><br>';
 		                           
+		                           
+		                           str += '<div class="search-paging">'
+		                           	   +  		'<div class="text-center">'
+		                           	   +			'<ul class="pagination">';
+		                           	   					console.log("paging.prev : " + paging.prev)
+						                           	   if(paging.prev){
+						                           		   str += '<li><a href="${pageContext.request.contextPath}/user/userList?page=' + paging.startPage-1 + '&perPageNum=' + paging.userCri.perPageNum + '&user_nickname=' + user_nickname + '>&laquo;</a></li>';
+						                           	   }
+						                           	   
+						                           	   for(var i=paging.startPage;i<=paging.endPage;i++){
+						                           		   console.log("paging.startPage : " + paging.startPage);
+						                           		   console.log("paging.endPage : " + paging.endPage);
+						                           		   console.log("paging.userCri.page : " + paging.userCri.page);
+						                           		   console.log("i : " + i);
+						                           			   console.log("왜 안생겨?");
+						                           		   		str += '<li class="paging-number">'
+						                           			   		+  		'<a href="${pageContext.request.contextPath}/user/userList?page=' + i + '&perPageNum=' + paging.userCri.perPageNum + '&user_nickname=' + user_nickname + '">' + i + '</a>'
+						                           			   		+  '</li>';
+						                           	   }
+						                           	   
+						                           	   if(paging.next && paging.endPage > 0){
+						                           		   str += '<li><a href="${pageContext.request.contextPath}/user/userList?page=' + paging.endPage+1 + '&perPageNum=' + paging.userCri.perPageNum + '&user_nickname=' + user_nickname + '>&raquo;</a></li>';
+						                           	   }
+						                           	   
+						          str += '</ul></div></div>'                 	   
 		                           	   					
-		                           $(".userList").html(str);
+		                          $(".userList").html(str);
 		                        }
 		                }else{
 		                    str = '검색된 결과가 없습니다.';
@@ -185,8 +221,6 @@
       </c:if>
    </div> <!-- list-container 끝 -->
 <div> <!-- main-container 끝 -->
-
-
 
    
 <jsp:include page="../common/layout_footer.jsp" />

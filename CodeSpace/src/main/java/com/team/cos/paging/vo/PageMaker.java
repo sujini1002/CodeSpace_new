@@ -23,7 +23,6 @@ public class PageMaker {
 
 	private UserCriteria userCri;
 
-	
 	// 10개씩 출력되는 게시판에 대한 전체 데이터 개수 계산
 	public int getTotalCount() {
 		return totalCount;
@@ -34,8 +33,7 @@ public class PageMaker {
 
 		calcData();
 	}
-	
-	
+
 	// 24개씩 출력되는 유저리스트에 대한 전체 데이터 개수 계산
 	public int getUserTotalCount() {
 		return userTotalCount;
@@ -43,10 +41,9 @@ public class PageMaker {
 
 	public void setUserTotalCount(int userTotalCount) {
 		this.userTotalCount = userTotalCount;
-		
+
 		userCalcData();
 	}
-
 
 	// 데이터 계산을 위한 메서드
 	public void calcData() {
@@ -96,15 +93,14 @@ public class PageMaker {
 
 		prev = startPage == 1 ? false : true;
 
-		next = endPage * userCri.getPerPageNum() >= totalCount ? false : true;
+		next = endPage * userCri.getPerPageNum() >= userTotalCount ? false : true;
 
 	}
 
 	// 일반 게시글 Parameter 값(page, perPageNum 등)을 유지하기 위한 메서드
 	public String makeQuery(int page) throws Exception {
 
-		UriComponents uriComponents = UriComponentsBuilder.newInstance()
-				.queryParam("page", page)
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
 				.queryParam("perPageNum", searchCri.getPerPageNum()).build();
 
 		return uriComponents.toUriString();
@@ -112,33 +108,38 @@ public class PageMaker {
 
 	// 게시물 검색 시 해당 Parameter 값을 유지하기 위한 메서드
 	public String makeSearch(int page) throws Exception {
-		
-		UriComponents uriComponents = null;
-		
-		if(searchCri!=null) {
 
-			uriComponents = UriComponentsBuilder.newInstance()
-					.queryParam("page", page)
+		UriComponents uriComponents = null;
+
+		if (searchCri != null) {
+
+			uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
 					.queryParam("perPageNum", searchCri.getPerPageNum())
 					.queryParam("keyword", encoding(((SearchCriteria) searchCri).getKeyword())).build();
 
 		} else {
-			
-			uriComponents = UriComponentsBuilder.newInstance()
-					.queryParam("page", page)
-					.queryParam("perPageNum", userCri.getPerPageNum())
-					.build();
+
+			uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
+					.queryParam("perPageNum", userCri.getPerPageNum()).build();
 		}
-		
+
 		return uriComponents.toUriString();
-		
+
+	}
+
+	// 일반 게시글 Parameter 값(page, perPageNum 등)을 유지하기 위한 메서드
+	public String makeUserList(int page) throws Exception {
+
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
+				.queryParam("perPageNum", userCri.getPerPageNum()).build();
+
+		return uriComponents.toUriString();
 	}
 
 	// 유저 페이지 Parameter 값 유지
 	public String makeUser(int page) throws Exception {
 
-		UriComponents uriComponents = UriComponentsBuilder.newInstance()
-				.queryParam("page", page)
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
 				.queryParam("perPageNum", userCri.getPerPageNum())
 				.queryParam("user_nickname", encoding(((UserCriteria) userCri).getUser_nickname())).build();
 
@@ -215,6 +216,5 @@ public class PageMaker {
 	public void setUserCri(UserCriteria userCri) {
 		this.userCri = userCri;
 	}
-
 
 }
