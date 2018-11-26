@@ -26,14 +26,22 @@
 		<!-- 답변 추천 -->
 		<td rowspan="4" style="width:15%;text-align:center">
 			<div id="k_Arecommand">
-				<button type="button" class="btn" style="background-color: #ecf0f5">
-					<i class="fa fa-chevron-up fa-2x" style="color: gray;"></i>
-				</button>
-				<h3>${item.a_recommand}</h3>
-				<button type="button" class="btn" style="background-color: #ecf0f5">
-					<i class="fa fa-chevron-down fa-2x" style="color: gray;"></i>
-				</button>
-			</div>
+					<button type="button"
+						id="k_aRecommandUpBtn_<c:out value="${num.index}"/>" class="btn"
+						style="background-color: #ecf0f5" onclick="k_aRecommand(this)">
+						<i class="fa fa-chevron-up fa-2x"
+							id="k_aRecommandUpIcon_<c:out value="${num.index}"/>"
+							style="color: gray;"></i>
+					</button>
+					<h3 id="k_aRecommandCnt_<c:out value="${num.index}"/>">${item.a_recommand}</h3>
+					<button type="button"
+						id="k_aRecommandDownBtn_<c:out value="${num.index}"/>" class="btn"
+						style="background-color: #ecf0f5" onclick="k_aRecommand(this)">
+						<i class="fa fa-chevron-down fa-2x"
+							id="k_aRecommandDownIcon_<c:out value="${num.index}"/>"
+							style="color: gray;"></i>
+					</button>
+				</div>
 			<!-- 답변 채택  -->
 			<div id="k_Choose" style="margin-top: 10px">
 				<button type="button" class="btn" style="background-color:#ecf0f5">
@@ -118,6 +126,54 @@
   </div>
 </div>
 
+<!-- 추천 비추천 처리  -->
+<script>
+	
+	function k_aRecommand(value){
+		//추천 누른 답변의 번호 추출 하기위한 변수
+		var num = value.id.substring(value.id.lastIndexOf('_')+1)*1;
+		//추천or비추천인지 알기 위한 변수
+		var id = value.id.substring(0,value.id.lastIndexOf('_'));
+		//로그인한 사용자 정보
+		var userNo = '${loginInfo.user_no}'*1;
+		//로그인 체크
+		if(userNo == 0){
+			alert('추천 하려면 로그인이 필요합니다.');
+			return
+		}else{
+			//답변 고유 번호,추천 누른 사용자 번호, 추전/비추천 점수 전달
+			var ano = $('#k_aNo_'+num).val()*1;
+			var score = id=='k_aRecommandUpBtn'?1:-1;
+			var status = 0;
+			
+			if(document.querySelectorAll('#k_aRecommandUpIcon_'+num)[0].style.color=='rgb(23, 162, 184)'){
+				status = -1;
+			}else if(document.querySelectorAll('#k_aRecommandDownIcon_'+num)[0].style.color=='rgb(23, 162, 184)'){
+				status = 1;
+			}
+			//추천 / 비추천 적용하기
+			$.ajax({
+				url : '${pageContext.request.contextPath}/answer/answerRecommand',
+				type : 'POST',
+				data : {
+					"a_no" : ano,
+					"user_no" : userNo,
+					"score" : score,
+					"status" : status
+				},
+				contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+				dataType : 'json',
+				success : function(data){
+					console.log(data);
+				},
+				error : function(){
+					alert('불행하게도 에러네요');
+				}
+			});//end ajax
+		}//end else
+		
+	}//end function
+</script>
 <script>
 
 	var length = '${fn:length(answerList)}';

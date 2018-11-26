@@ -5,7 +5,7 @@
 
 	<hr>
 	<div id="k_questionCommList">
-		<c:if test="${!empty questionCommList}">
+		
 
 			<div id="k_questionComm" style="padding:0px">
 				<c:forEach var="list" items="${questionCommList}" begin="0" end="${fn:length(questionCommList)}" varStatus="status">
@@ -31,7 +31,7 @@
 
 			</div>
 
-		</c:if>
+	
 	
 	<a onclick="commentForm()" id="k_insertQCommA" class="badge badge-info">댓글달기</a>
 
