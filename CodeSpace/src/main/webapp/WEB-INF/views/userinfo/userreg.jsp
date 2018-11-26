@@ -88,11 +88,13 @@ $(document).ready(function(){
 				$.ajax({
 					url:'${pageContext.request.contextPath}/userinfo/useridcheck',
 					type:'post',
+					dataType:'json',
 					data:{
 						'user_id':data.val()
 					},
 					success:function(response){
-						if(response==''){
+						console.log(response);
+						if(response.user_no==0){
 							$('.h_check').text('멋진 Email이네요!!').css('color','green');
 							checkemail = true;
 							buttonstatus();
