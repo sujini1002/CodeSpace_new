@@ -69,6 +69,7 @@
 			<div class="list-container">
 				<c:if test="${empty usersQst}">
 					<div class="result-noList">
+					<br>
 						<h3>${usersInfo.user_nickname}님이 작성한 질문이 없습니다.</h3>
 					</div>
 				</c:if>

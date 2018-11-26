@@ -67,7 +67,8 @@
 		<div class="list-container">
 			<c:if test="${empty ansList}">
 				<div class="result-noList">
-					<h2>${usersInfo.user_nickname }님이 작성한 답변이 없습니다.</h2>
+					<br>
+					<h3>${usersInfo.user_nickname }님이 작성한 답변이 없습니다.</h3>
 				</div>
 			</c:if>
 
