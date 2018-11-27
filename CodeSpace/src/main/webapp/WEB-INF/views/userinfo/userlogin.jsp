@@ -23,6 +23,9 @@
 		    <a href="#" onclick="forgotPW()" style="float: right; margin-top: 3px; color: darkgray;">forgot P/W?</a>
      	</div>
      </div>
+     
+     
+     <a href="${pageContext.request.contextPath }/userinfo/hjscal">달력 보러가자</a>
 <script>
 $(function(){
 	var checkcookie = '${cookie.user_id.value}';

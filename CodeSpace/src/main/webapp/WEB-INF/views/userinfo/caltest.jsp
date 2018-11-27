@@ -4,7 +4,6 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Calendar" %>
 <%
-
 Calendar cal = Calendar.getInstance();
 
 String strYear = request.getParameter("year");
@@ -43,9 +42,6 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
        <meta http-equiv="content-type" content="text/html; charset=utf-8">
  
  
-       <script type="text/javaScript" language="javascript"> 
-      
-       </script>
        <style TYPE="text/css">
              body {
              scrollbar-face-color: #F6F6F6;
@@ -78,39 +74,33 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 </HEAD>
 <BODY>
 <form name="calendarFrm" id="calendarFrm" action="" method="post">
-<DIV id="content" style="width:712px;">
- 
-<table width="100%" border="0" cellspacing="1" cellpadding="1">
-<tr>
-       <td align ="right">
-             <input type="button" onclick="javascript:location.href='<c:url value='/' />'" value="오늘"/>
-       </td>
- 
-</tr>
-</table>
+	<DIV id="content" style="width:712px;">
+		<table width="100%" border="0" cellspacing="1" cellpadding="1">
+			<tr>
+       			<td align ="right">	
+             		<input type="button" onclick="javascript:location.href='<c:url value='/' />'" value="오늘"/>
+       			</td>
+ 			</tr>
+		</table>
 <!--날짜 네비게이션  -->
-<table width="100%" border="0" cellspacing="1" cellpadding="1" id="KOO" bgcolor="#F3F9D7" style="border:1px solid #CED99C">
- 
-<tr>
-<td height="60">
- 
-       <table width="100%" border="0" cellspacing="0" cellpadding="0">
-       <tr>
-             <td height="10">
-             </td>
-       </tr>
-      
-       <tr>
-             <td align="center" >
-                    <a href="<c:url value='/' />?year=<%=year-1%>&amp;month=<%=month%>" target="_self">
-                           <b>&lt;&lt;</b><!-- 이전해 -->
-                    </a>
-                    <%if(month > 0 ){ %>
-                    <a href="<c:url value='/' />?year=<%=year%>&amp;month=<%=month-1%>" target="_self">
-                           <b>&lt;</b><!-- 이전달 -->
-                    </a>
+		<table width="100%" border="0" cellspacing="1" cellpadding="1" id="KOO" bgcolor="#F3F9D7" style="border:1px solid #CED99C">
+			<tr>
+				<td height="60">
+			       <table width="100%" border="0" cellspacing="0" cellpadding="0">
+       					<tr>
+             				<td height="10">
+             				</td>
+       					</tr>
+						<tr>
+             				<td align="center" >
+                    			<a href="<c:url value='/' />?year=<%=year-1%>&amp;month=<%=month%>" target="_self">
+                           			<b>&lt;&lt;</b><!-- 이전해 -->
+                    			</a><%if(month > 0 ){ %>
+								<a href="<c:url value='/' />?year=<%=year%>&amp;month=<%=month-1%>" target="_self">
+                           			<b>&lt;</b><!-- 이전달 -->
+                    			</a>
                     <%} else {%>
-                           <b>&lt;</b>
+                           		<b>&lt;</b>
                     <%} %>
                     &nbsp;&nbsp;
                     <%=year%>년
