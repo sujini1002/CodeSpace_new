@@ -36,8 +36,6 @@ public class MyprjController {
 				end = transFormat.format(myPrjList.get(i).getProject_enddate());
 				myPrjList.get(i).setProstring_startdate(start);
 				myPrjList.get(i).setProstring_enddate(end);
-				
-				System.out.println(myPrjList);
 			}
 		}
 		
@@ -45,8 +43,6 @@ public class MyprjController {
 		
 		modelAndView.addObject("myPrjList", myPrjList);
 		modelAndView.setViewName("mypage/myPrj");
-		
-		System.out.println(user_no);
 		
 		return modelAndView;
 	}

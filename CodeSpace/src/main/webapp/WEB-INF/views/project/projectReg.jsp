@@ -3,6 +3,47 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- <%@ page session="false"%> --%>
 
+
+<style>
+.ui-datepicker { 
+	background-color: white;
+    z-index: 999 ;
+    height: auto;
+    font-size: 12px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+.ui-datepicker-title {
+	text-align: center;
+	line-height: inherit;
+	font-size: 16px;
+	font-weight: bold;
+}
+.ui-datepicker-next {
+	padding-right: 10px;
+	padding-top: 6px;
+	float: right;
+}
+.ui-datepicker-prev {
+	padding-left: 10px;
+	padding-top: 6px;
+	float: left;
+}
+.ui-datepicker ui-datepicker-month {
+	font-size: 12px;
+}
+.ui-datepicker-calendar thead{
+	font-size: 12px;
+}
+.ui-datepicker td span {
+	font-size: 12px;
+}
+.ui-datepicker td a {
+	font-size: 12px;
+}
+
+
+</style>
 <jsp:include page="../common/layout_top.jsp" />
 <jsp:include page="../common/layout_content.jsp" />
 
@@ -12,12 +53,12 @@
 
 <!-- 로그인한 사용자가 현재 참여중인 프로젝트 목록 보여줌 -->
 <c:if test="${userJoinProjects!=null }"> 
-<h3>현재 진행중인 프로젝트
+<h5>${user_info.user_nickname } 님의 프로젝트
 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#projectGenerate">
 프로젝트 생성하기
 </button>
 
-</h3>
+</h5>
 
 	<table class="table">
 		<thead>
@@ -108,10 +149,11 @@
 				<input type="text" class="form-control" name="project_content" placeholder="프로젝트 설명을 입력하세요">
 			</div>
 	      	<!-- 종료 일정 -->
-			<div class="form-group">
+			<div class="form-group" id="inputDate">
 				<label>종료 날짜</label>
-				<input type="date" class="form-control" name="prostring_enddate" >
+				<input type="text" class="form-control" id="datepicker" name="prostring_enddate" >
 			</div>
+			
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -129,7 +171,31 @@
 
 <jsp:include page="../common/layout_footer.jsp" />
 
+<!-- datepicker -->
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
+    
+$(function(){    
+    $('#datepicker').datepicker({
+    	container: '#inputDate',
+    	dateFormat : 'yy-mm-dd',
+    	minDate : 0
+    });
+});
+    
+
+    
+    
+    
+</script> 
+
+
+
+<script>
+
+
+
 
 	//필수값 입력 안한 경우 프로젝트 생성하기 버튼 비활성
 	function inputForm1(){

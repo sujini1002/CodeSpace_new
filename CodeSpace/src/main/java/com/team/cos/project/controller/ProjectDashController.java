@@ -42,15 +42,15 @@ public class ProjectDashController {
 		
 		//project_no에 해당하는 porject member 정보 가져옴
 		List<ProjectMemberVO> proMember_info = proMemberService.getMember(project_no);
+		//pm의 정보
+		UserInfoVo pm_info = userInfoService.userInfoCheckWithNo(pro_info.getPm_no());
 		//proMember_info에서 가져온 member_no를 가지고 List<UserInfoVo>에 저장
-		List<UserInfoVo> memberDetail_info = new ArrayList<UserInfoVo>();
-		List<String> member_nickname = new ArrayList<String>();
+		List<UserInfoVo> member_info = new ArrayList<UserInfoVo>();
 		
 	
  		for(int i=0; i<proMember_info.size(); i++) {
-			memberDetail_info.add(userInfoService.userInfoCheckWithNo(proMember_info.get(i).getMember_no()));
-			System.out.println(memberDetail_info.get(i).getUser_nickname());
-			member_nickname.add(memberDetail_info.get(i).getUser_nickname());
+ 			member_info.add(userInfoService.userInfoCheckWithNo(proMember_info.get(i).getMember_no()));
+			System.out.println(member_info.get(i).getUser_nickname());
 		}
 		
 		
@@ -60,7 +60,9 @@ public class ProjectDashController {
 		//project 정보 보냄
 		modelAndView.addObject("pro_info", pro_info);
 		//project member 정보 보냄
-		modelAndView.addObject("member_nickname", member_nickname);
+		modelAndView.addObject("member_info", member_info);
+		//pm 정보 보냄
+		modelAndView.addObject("pm_info", pm_info);
 		modelAndView.setViewName("project/projectDashboard");
 	
 		return modelAndView;

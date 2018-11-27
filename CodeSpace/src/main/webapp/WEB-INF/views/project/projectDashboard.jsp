@@ -29,19 +29,23 @@
 	</c:if>
 	<c:if test="${pro_info.project_status==true }">
 		<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#proMemberInfo">
+			<!-- 프로젝트 참여 사용자 리스트  -->
 			<i class="fas fa-user-friends"></i>
 		</button>
-		<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#projectInfo">
-			<i class="fas fa-edit"></i>
-		</button>
-		<!-- 프로젝트는 삭제 x, 프로젝트 끝내기 버튼을 누르면 방향으로 함 -->
-		<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#projectFinish">
-			프로젝트 끝내기
-		</button>
-		<!-- 사용자 추가 -->
-		<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#proMemberInvite">
-			<i class="fas fa-user-plus"></i>		
-		</button>
+		<c:if test="${pro_info.pm_no == user_info.user_no }">
+			<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#projectInfo">
+				<!-- 프로젝트 정보 수정 -->
+				<i class="fas fa-edit"></i>
+			</button>
+			<!-- 프로젝트는 삭제 x, 프로젝트 끝내기 버튼을 누르면 방향으로 함 -->
+			<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#projectFinish">
+				프로젝트 끝내기
+			</button>
+			<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#proMemberInvite">
+				<!-- 사용자 추가 -->
+				<i class="fas fa-user-plus"></i>		
+			</button>
+		</c:if>
 	</c:if>
 	</h4>
 	<h4>${pro_info.project_content }</h4>
@@ -254,9 +258,13 @@
       </div>
 	      <div class="modal-body" >
 	      	<ul class="list-group">
-	      	<c:forEach var="item" items="${member_nickname }">
 	      		<li class="list-group-item d-flex justify-content-between align-items-center">
-				    ${item }
+	      			<span style="color:blue;">${pm_info.user_nickname} (PM)
+	      			<a href="#" class="badge badge-light">x</a></span>
+	      		</li>
+	      	<c:forEach var="item" items="${member_info }">
+	      		<li class="list-group-item d-flex justify-content-between align-items-center">
+				    ${item.user_nickname }
 				    <a href="#" class="badge badge-light">x</a>
 				</li>
 	      	</c:forEach>
