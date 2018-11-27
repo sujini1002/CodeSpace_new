@@ -42,4 +42,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on a.a_no = ar.a_no
 		where a.q_no = #{q_no} and ar.user_no = #{user_no};
 	</select>
+	<!-- 질문 상세보기에서 답변 추천색상 표시할 때 테이블에 존재 유무-->
+	<select id="isExistUserByQ_no" resultType="int">
+		select count(*)
+		from answer_recom
+		where a_no in (
+			select a_no
+			from answer
+			where q_no = #{q_no} and
+				  user_no = #{user_no}
+		)
+	</select>
+	
 </mapper>

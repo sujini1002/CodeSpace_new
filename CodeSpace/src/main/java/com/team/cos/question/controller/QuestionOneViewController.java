@@ -1,5 +1,6 @@
 package com.team.cos.question.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -102,19 +103,16 @@ public class QuestionOneViewController {
 		
 		
 		//답변 추천
-		int aRecommand = 3;
+		List<AnswerRecommandViewInfo> aRecommandList = new ArrayList<>();
 		if(session.getAttribute("loginInfo") != null) {
-			UserInfoVo user = (UserInfoVo) session.getAttribute("loginInfo");
-			user_no = user.getUser_no();
 			//질문 추천 사용자 존재여부
-			AnswerRecommandInfo aRecomInfo = new AnswerRecommandInfo();
-			aRecomInfo.setA_no(q_no);
-			aRecomInfo.setUser_no(user_no);
-			if(aRecomService.isExistUserRecom(aRecomInfo)>0) {
+			System.out.println("컨트롤러 답변 추천 가져올 때 사용자 번호 = "+user_no);
+			if(aRecomService.isExistUserByQ_no(q_no,user_no)>0) {
 				//질문 추천 사용자 추천 여부
-				//aRecommand = aRecomService.aRecommand(q_no, user_no);
+				aRecommandList = aRecomService.aRecommand(q_no, user_no);
 			}
 		}
+		System.out.println("컨트롤러 로그인한 사용자의 답변 추천 번호와 상태="+aRecommandList);
 		
 		modelAndView.addObject("questionInfo", questionInfo);
 		modelAndView.addObject("userInfo", userInfoVo);
@@ -123,6 +121,7 @@ public class QuestionOneViewController {
 		modelAndView.addObject("questionCommList", questionCommList);
 		modelAndView.addObject("answerCommentList", answerCommList);
 		modelAndView.addObject("qRecommand", qRecommand);
+		modelAndView.addObject("aRecommandList", aRecommandList);
 		modelAndView.setViewName("question/questionOneView");
 		
 		//System.out.println("컨트롤러"+userInfoList);

@@ -27,4 +27,9 @@ public class AnswerRecommandViewService {
 		answRecomDao = sqlSessionTemplate.getMapper(AnswerRecommandInterfaceDao.class);
 		return answRecomDao.isExistUserRecom(answerRecommandInfo);
 	}
+	public int isExistUserByQ_no(int q_no, int user_no) {
+		
+		answRecomDao = sqlSessionTemplate.getMapper(AnswerRecommandInterfaceDao.class);
+		return answRecomDao.isExistUserByQ_no(q_no, user_no);
+	}
 }

@@ -16,4 +16,5 @@ public interface AnswerRecommandInterfaceDao {
 	public int changeUserStatus(AnswerRecommandInfo AnswerRecommandInfo);
 	public int UserUpdown(AnswerRecommandInfo AnswerRecommandInfo);
 	public List<AnswerRecommandViewInfo> userRecommand(@Param("q_no")int q_no,@Param("user_no")int user_no);
+	public int isExistUserByQ_no(@Param("q_no")int q_no,@Param("user_no")int user_no);
 }
