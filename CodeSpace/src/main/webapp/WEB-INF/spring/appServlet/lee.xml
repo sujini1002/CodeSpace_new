@@ -30,5 +30,6 @@
 	<!-- to do list service 등록 -->
 	<beans:bean id="tdlViewService" class="com.team.cos.project.service.TDLViewService"></beans:bean>
 	<beans:bean id="todolistInsertService" class="com.team.cos.project.service.TodolistInsertService"></beans:bean>
+	<beans:bean id="todolistModifyService" class="com.team.cos.project.service.TodolistModifyService"></beans:bean>
 
 </beans:beans>

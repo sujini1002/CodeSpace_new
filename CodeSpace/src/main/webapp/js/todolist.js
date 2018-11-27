@@ -51,11 +51,27 @@ var tdlService = (function() {
 		});
 	}
 	
+	//todolist 정보 가져오기
+	function getTodolistInfo(param, callback, error){
+		var todolist_no = param.todolist_no;
+		
+		$.getJSON("/cos/project/oneTodolistInfo/"+todolist_no+".json", function(data){
+			if(callback){
+				callback(data);
+			}
+		}).fail(function(xhr, status, err){
+			if(error){
+				error();
+			}
+		});
+	}
+	
 	
 
 	return {
 		getList : getList,
 		displayTime : displayTime,
-		getProjectMember : getProjectMember
+		getProjectMember : getProjectMember,
+		getTodolistInfo : getTodolistInfo
 	};
 })();

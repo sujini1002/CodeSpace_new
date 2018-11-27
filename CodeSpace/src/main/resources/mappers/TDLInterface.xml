@@ -9,12 +9,28 @@
 			t.tdlmanager_no=u.user_no;
 	</select>
 	
+	<select id="selectOntTDL" resultType="com.team.cos.project.vo.TodolistVO">
+		select * from project_todolist
+		where todolist_no=#{todolist_no}
+	</select>
+	
 	<insert id="insertTDL">
 		insert into project_todolist 
 		(project_no, tdlmanager_no, todolist_content, todolist_file, todolist_status, todolist_startdate, todolist_enddate)
 		values (#{project_no}, #{tdlmanager_no}, #{todolist_content}, #{todolist_file}, #{todolist_status},
 				now(), #{todolist_enddate})
 	</insert>
+	
+	<update id="updateTDL"
+	parameterType="com.team.cos.project.vo.TodolistVO">
+		update project_todolist
+		set
+		tdlmanager_no = #{tdlmanager_no},
+		todolist_content = #{todolist_content},
+		todolist_file = #{todolist_file},
+		todolist_status = #{todolist_status},
+		todolist_enddate = #{todolist_enddate}
+	</update>
 	
 	
 </mapper>

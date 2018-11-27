@@ -6,7 +6,7 @@ public class ProjectMemberVO {
 
 	private int project_no;
 	private int member_no;
-	private String user_nickname;
+	private String user_name;
 	private List<Integer> member;
 	
 	
@@ -24,11 +24,11 @@ public class ProjectMemberVO {
 		this.member_no = member_no;
 	}
 
-	public String getUser_nickname() {
-		return user_nickname;
+	public String getUser_name() {
+		return user_name;
 	}
-	public void setUser_nickname(String user_nickname) {
-		this.user_nickname = user_nickname;
+	public void setUser_name(String user_nickname) {
+		this.user_name = user_nickname;
 	}
 	public List<Integer> getMember() {
 		return member;

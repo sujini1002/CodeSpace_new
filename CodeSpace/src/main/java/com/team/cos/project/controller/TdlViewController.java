@@ -14,13 +14,12 @@ import com.team.cos.project.vo.TodolistVO;
 
 // RestController의 경우 순수 데이터를 전달하는 controller의 역할을 함
 @RestController
-@RequestMapping("project/tdl")
 public class TdlViewController {
 	
 	@Autowired
 	private TDLViewService tdlService;
 	
-	@RequestMapping("/{project_no}")
+	@RequestMapping("project/tdl/{project_no}")
 	public ResponseEntity<List<TodolistVO>> getList(
 			@PathVariable("project_no") int project_no){
 
@@ -28,5 +27,15 @@ public class TdlViewController {
 		
 		return new ResponseEntity<>(tdl, HttpStatus.OK);
 	}
+	
+	@RequestMapping("project/oneTodolistInfo/{todolist_no}")
+	public ResponseEntity<TodolistVO> getInfo(
+			@PathVariable("todolist_no") int todolist_no){
+		
+		TodolistVO todolist = tdlService.getOneTodo(todolist_no);
+		
+		return new ResponseEntity<>(todolist, HttpStatus.OK);
+	}
+	
 
 }

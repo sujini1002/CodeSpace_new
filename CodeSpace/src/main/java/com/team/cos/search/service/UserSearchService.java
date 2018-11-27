@@ -28,7 +28,7 @@ public class UserSearchService {
 	
 	public List<UserInfoVo> getSearchUsers(ProjectMemberVO vo) {
 		searchDao = sqlSessionTemplate.getMapper(SearchDaoInterface.class);
-		System.out.println("word: "+vo.getUser_nickname());
+		System.out.println("word: "+vo.getUser_name());
 		List<UserInfoVo> searchResult = searchDao.searchUserExceptSelectedMember(vo);
 		
 		return searchResult;

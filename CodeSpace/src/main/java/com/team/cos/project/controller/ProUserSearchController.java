@@ -36,7 +36,7 @@ public class ProUserSearchController {
 			@RequestParam("member") List<Integer> member) {
 		// user_nickname에 해당하고, member에 해당하지 않는 userInfoVo 가져옴
 		ProjectMemberVO projectMemberInfo = new ProjectMemberVO();
-		projectMemberInfo.setUser_nickname(user_nickname);
+		projectMemberInfo.setUser_name(user_nickname);
 		projectMemberInfo.setMember(member);
 		
 		List<UserInfoVo> searchUserInfo = service.getSearchUsers(projectMemberInfo);

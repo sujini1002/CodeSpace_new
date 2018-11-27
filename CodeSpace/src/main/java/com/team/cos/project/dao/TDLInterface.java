@@ -15,5 +15,9 @@ public interface TDLInterface {
 			@Param("project_no") int project_no);
 	
 	public int insertTDL(TodolistVO vo);
+
+	public int updateTDL(TodolistVO vo);
+
+	public TodolistVO selectOntTDL(int todolist_no);
 	
 }
