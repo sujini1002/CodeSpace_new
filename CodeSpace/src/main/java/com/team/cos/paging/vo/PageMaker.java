@@ -86,6 +86,8 @@ public class PageMaker {
 		startPage = (endPage - displayPageNum) + 1;
 
 		int tempEndPage = (int) (Math.ceil(userTotalCount / (double) userCri.getPerPageNum()));
+		
+		System.out.println("tempEndPage : " + tempEndPage);
 
 		if (endPage > tempEndPage) {
 			endPage = tempEndPage;
@@ -127,7 +129,7 @@ public class PageMaker {
 
 	}
 
-	// 일반 게시글 Parameter 값(page, perPageNum 등)을 유지하기 위한 메서드
+	// 검색 없는 유저리스트 Param 값(page, perPageNum 등)을 유지하기 위한 메서드
 	public String makeUserList(int page) throws Exception {
 
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)

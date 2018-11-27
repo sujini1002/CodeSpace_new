@@ -34,8 +34,8 @@
             <a href="#">리스트 보기</a>
          </div>
          
-      </div>
-   </div>
+      </div> <!-- userSearch class 끝 -->
+   </div> <!-- head-container class 끝 -->
    <br>
    <hr>
    <br>
@@ -91,8 +91,157 @@
         
          
           <script>
-             
-            $("input:text[name=user_nickname]").keyup(function(){
+          	
+          	
+          	function ajaxList(user_nickname, pageNum){
+          		
+          		var nickname = user_nickname;
+          		var page = pageNum;
+          		
+          		if(!page){
+          			page = parseInt('1');
+          		}
+          		
+          		var sendData = {user_nickname : nickname, page : pageNum}
+          		
+          		$.ajax({
+                    type: 'GET',
+                    async: false,
+                    url: '${pageContext.request.contextPath}/user/search',
+                    data: sendData,
+                    dataType: 'json',
+                    success: function(result){
+                       
+                       $(".userList").empty();
+                       
+                       if(result[0].length > 0){
+                    	   
+                     	  if($("input:text[name=user_nickname]").val()!='' && user_nickname==''){
+
+                               var str = '검색된 결과가 없습니다.';
+                               $(".userList").html(str);
+
+                           }else{
+ 		                           var list = result[0];
+ 		                           var paging = result[1];
+ 		         
+ 		                           console.log("nickname : " + paging.userCri.user_nickname);
+ 		                           console.log("totalCount : " + paging.totalCount);
+ 		                           console.log("userTotalCount : " + paging.userTotalCount);
+ 		                           console.log("startPage : " + paging.startPage);
+ 		                           console.log("endPage : " + paging.endPage);
+ 		                           console.log("prev : " + paging.prev);
+ 		                           console.log("next : " + paging.next);
+ 		                           
+ 		                           var str='';
+ 		                           
+ 		                           str += '<div class="row user-row">';
+ 		                           				for(var i=0;i<list.length;i++){
+ 		                              				
+ 		                              				if(list[i].user_intro==null){
+ 		                              					list[i].user_intro='';
+ 		                              				}
+ 		                              				
+ 		                              				if(list[i].user_tag==null){
+ 		                              					list[i].user_tag='';
+ 		                              				}
+ 		                              			
+ 		                              				str += '<div class="row col-lg-3 user-info">'
+ 		                              					+		'<div class="col-lg-4 userPic">'
+ 		                              					+			'<div class="picInfo">'
+ 		                              					+				'<a href="#">'
+ 		                              					+ 					'<img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="93" height="90">'
+ 		                              					+				'</a>'
+ 		                              					+			'</div>'
+ 		                              					+		'</div>'
+ 		                              					+		'<div class="col-lg-8 user-detail">'
+ 		                              					+			'<div class="col-lg-12 user-detail-attribute user-nickname">'
+ 		                              					+				'<a href="#">' + list[i].user_nickname + '</a>'
+ 		                              					+			'</div>'
+ 		                              					+			'<div class="col-lg-12 user-detail-attribute user-intro">'
+ 		                              					+ 				list[i].user_intro 
+ 		                              					+ 			'</div>'
+ 		                              					+			'<div class="col-lg-12 user-detail-attribute user-score">'
+ 		                              					+				list[i].user_score
+ 		                              					+			'</div>'
+ 		                              					+		'</div>'
+ 		                              					+		'<div class="row col-lg-12 user-tag">'
+ 		                              					+			'<div class="col-lg-4"></div>'
+ 		                              					+			'<div class="col-lg-8">'+ list[i].user_tag + '</div>'
+ 		                              					+		'</div>'
+ 		                              					+	'</div>'
+ 		                           
+ 		                           				}
+ 		                           str += '</div><br>';
+ 		                           
+ 		                           var val = '1';
+ 		                           value = parseInt(val);
+ 		                           
+ 		                           str += '<div class="search-paging">'
+ 		                           	   +  		'<div class="text-center">'
+ 		                           	   +			'<ul class="pagination">';
+ 		                           	   					
+ 		                           	   					if(paging.prev){
+ 		   				                           		   str += '<li onclick="paging(' + (paging.startPage-value) + ')">&laquo;</li>';
+ 		   				                           	    }
+ 		                           	   					
+ 		                           	   					for(var i=paging.startPage;i<=paging.endPage;i++){
+ 		                           	   						var classStr = paging.userCri.page == i ? 'class=active' : '';
+ 		                           	   					   	str += '<li class="paging-number" ' + classStr + ' onclick="paging(' + i + ')">'
+ 		                           	   					   	   	+  	i
+ 		                           	   					   	   	+  '</li>';
+ 		                           	   					}
+ 		                           	   					if(paging.next){
+ 		                           	   						str += '<li class="paging-number" onclick="paging(' + (paging.endPage+value) + ')">&raquo;</li>';
+ 		                           	   					}
+ 		   						                        	  
+ 		                           	   					
+ 		                           	   				   /*
+ 		                           	   				   if(paging.prev){
+ 		   				                           		   str += '<li><a href="${pageContext.request.contextPath}/user/userList?page=' + (paging.startPage-value) + '&perPageNum=' + paging.userCri.perPageNum + '&user_nickname=' + paging.userCri.user_nickname + '">&laquo;</a></li>';
+ 		   				                           	   }
+ 		   				                           	   
+ 		   				                           	   for(var i=paging.startPage;i<=paging.endPage;i++){
+ 		   				                           		   console.log("paging.startPage : " + paging.startPage);
+ 		   				                           		   console.log("paging.endPage : " + paging.endPage);
+ 		   				                           		   console.log("paging.userCri.page : " + paging.userCri.page);
+ 		   				                           		   console.log("i : " + i);
+ 		   				                           		   console.log("paging.next : " + paging.next);
+ 		   				                           		   
+ 		   				                           		   		str += '<li class="paging-number">'
+ 		   				                           			   		+  		'<a href="${pageContext.request.contextPath}/user/userList?page=' + i + '&perPageNum=' + paging.userCri.perPageNum + '&user_nickname=' + paging.userCri.user_nickname + '">' + i + '</a>'
+ 		   				                           			   		+  '</li>';
+ 		   				                           	   }
+ 		   				                           	   
+ 		   				                           	   if(paging.next){
+ 		   				                           		   str += '<li class="paging-number">'
+ 		   				                           		   	   +  	   '<a href="${pageContext.request.contextPath}/user/userList?page=' + (paging.endPage+value) + '&perPageNum=' + paging.userCri.perPageNum + '&user_nickname=' + paging.userCri.user_nickname + '">&raquo;</a>'
+ 		   				                           		   	   +  '</li>';
+ 		   				                           	   } 
+ 		   				                           	   */
+ 		   				                           	   
+ 		   				                           	   
+ 		   				          str += '</ul></div></div>';
+ 		   				          
+ 		   				      $(".userList").html(str);
+		                        
+                           } // if($("input:text[name=user_nickname]").val()!=''&&  user_nickname=='') 끝
+ 		                
+                       }else{
+                    	   str = '검색된 결과가 없습니다.';
+                    	   $(".userList").html(str);
+                       }// if(result.length > 0){} 끝
+                    },
+                    error: function(e){
+                 	   console.log('error : ' + e.status);
+                    }
+                }); // ajax 끝
+          	} // ajaxList 끝
+          
+            
+          	
+          	
+          	$("input:text[name=user_nickname]").keyup(function(){
                
                var user_nickname = $("input:text[name=user_nickname]").val(); // 검색 창에 입력한 값
                
@@ -100,127 +249,30 @@
                    user_nickname=$.trim(user_nickname);
                }
                
-               $.ajax({
-                   type: 'POST',
-                   async: false,
-                   url: '${pageContext.request.contextPath}/user/userList',
-                   data: {user_nickname : user_nickname},
-                   dataType: 'json',
-                   success: function(result){
-                      console.log("result : " + result);
-                      
-                      $(".userList").empty();
-                      
-                      if(result[0].length > 0){
-                    	  if($("input:text[name=user_nickname]").val()!=''&&  user_nickname==''){
-
-                              var str = '검색된 결과가 없습니다.';
-                              $(".userList").html(str);
-
-                          }else{
-                    	  console.log("user_nickname : " + user_nickname);
-                      			console.log("넘어갔나?");
-		                           var list = result[0];
-		                           var paging = result[1];
-		                           
-		                           console.log("list변수 : " + list);
-		                           console.log("paging변수 : " + paging);
-		                           
-		                           console.log("totalCount : " + paging.totalCount);
-		                           console.log("userTotalCount : " + paging.userTotalCount);
-		                           console.log("startPage : " + paging.startPage);
-		                           console.log("endPage : " + paging.endPage);
-		                           console.log("prev : " + paging.prev);
-		                           console.log("next : " + paging.next);
-		                           
-		                           console.log('${pageContext.request.contextPath}');
-		                           
-		                           var str='';
-		                           str +=	'<div class="row user-row">';
-		                           				for(var i=0;i<list.length;i++){
-		                              				console.log("list["+i+"] : " + list[i]);
-		                              				
-		                              				if(list[i].user_intro==null){
-		                              					list[i].user_intro='';
-		                              				}
-		                              				
-		                              				if(list[i].user_tag==null){
-		                              					list[i].user_tag='';
-		                              				}
-		                              			
-		                              				str += '<div class="row col-lg-3 user-info">'
-		                              					+		'<div class="col-lg-4 userPic">'
-		                              					+			'<div class="picInfo">'
-		                              					+				'<a href="#">'
-		                              					+ 					'<img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="93" height="90">'
-		                              					+				'</a>'
-		                              					+			'</div>'
-		                              					+		'</div>'
-		                              					+		'<div class="col-lg-8 user-detail">'
-		                              					+			'<div class="col-lg-12 user-detail-attribute user-nickname">'
-		                              					+				'<a href="#">' + list[i].user_nickname + '</a>'
-		                              					+			'</div>'
-		                              					+			'<div class="col-lg-12 user-detail-attribute user-intro">'
-		                              					+ 				list[i].user_intro 
-		                              					+ 			'</div>'
-		                              					+			'<div class="col-lg-12 user-detail-attribute user-score">'
-		                              					+				list[i].user_score
-		                              					+			'</div>'
-		                              					+		'</div>'
-		                              					+		'<div class="row col-lg-12 user-tag">'
-		                              					+			'<div class="col-lg-4"></div>'
-		                              					+			'<div class="col-lg-8">'+ list[i].user_tag + '</div>'
-		                              					+		'</div>'
-		                              					+	'</div>'
-		                           
-		                           				}
-		                           str += '</div><br>';
-		                           
-		                           
-		                           str += '<div class="search-paging">'
-		                           	   +  		'<div class="text-center">'
-		                           	   +			'<ul class="pagination">';
-		                           	   					console.log("paging.prev : " + paging.prev)
-						                           	   if(paging.prev){
-						                           		   str += '<li><a href="${pageContext.request.contextPath}/user/userList?page=' + paging.startPage-1 + '&perPageNum=' + paging.userCri.perPageNum + '&user_nickname=' + user_nickname + '>&laquo;</a></li>';
-						                           	   }
-						                           	   
-						                           	   for(var i=paging.startPage;i<=paging.endPage;i++){
-						                           		   console.log("paging.startPage : " + paging.startPage);
-						                           		   console.log("paging.endPage : " + paging.endPage);
-						                           		   console.log("paging.userCri.page : " + paging.userCri.page);
-						                           		   console.log("i : " + i);
-						                           			   console.log("왜 안생겨?");
-						                           		   		str += '<li class="paging-number">'
-						                           			   		+  		'<a href="${pageContext.request.contextPath}/user/userList?page=' + i + '&perPageNum=' + paging.userCri.perPageNum + '&user_nickname=' + user_nickname + '">' + i + '</a>'
-						                           			   		+  '</li>';
-						                           	   }
-						                           	   
-						                           	   if(paging.next && paging.endPage > 0){
-						                           		   str += '<li><a href="${pageContext.request.contextPath}/user/userList?page=' + paging.endPage+1 + '&perPageNum=' + paging.userCri.perPageNum + '&user_nickname=' + user_nickname + '>&raquo;</a></li>';
-						                           	   }
-						                           	   
-						          str += '</ul></div></div>'                 	   
-		                           	   					
-		                          $(".userList").html(str);
-		                        }
-		                }else{
-		                    str = '검색된 결과가 없습니다.';
-		                   	$(".userList").html(str);
-		                } // if(user_nickname){} 끝
-                      	// if(result.length > 0){} 끝
-                   },
-                     error: function(e){
-                        console.log('error : ' + e.status);
-                     }
-                  }); // ajax 끝
+               // 페이지 번호 없을 시 디폴트 1로 변환해서 
+               
+               var page = parseInt('1');
+               
+               ajaxList(user_nickname, page);
+               
+            
             }); // keyup function 끝
+            
+            function paging(page){
+          		
+         		 var searchVal = $("input:text[name=user_nickname]").val();
+         		
+         		 ajaxList(searchVal, page);
+         		
+         	}
+            
          
       </script>
          
       </c:if>
    </div> <!-- list-container 끝 -->
 <div> <!-- main-container 끝 -->
+
 
    
 <jsp:include page="../common/layout_footer.jsp" />
