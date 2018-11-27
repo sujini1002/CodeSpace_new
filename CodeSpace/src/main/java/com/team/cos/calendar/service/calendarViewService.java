@@ -23,7 +23,7 @@ public class calendarViewService {
 		cal.set(vo.getYear(), vo.getMonth(), 1);
 		vo.setStartDay(cal.getMinimum(Calendar.DATE));
 		vo.setEndDay(cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-		vo.setStart(cal.get(Calendar.DAY_OF_WEEK)); // 요일 찾기 1부터 일요일 7 토요일
+		vo.setStart(cal.get(Calendar.DAY_OF_WEEK)); // 요일 찾기 1부터 일요일 , 7 토요일
 		
 		vo.setToday(Integer.parseInt(sdf.format(todayCal.getTime())));
 		

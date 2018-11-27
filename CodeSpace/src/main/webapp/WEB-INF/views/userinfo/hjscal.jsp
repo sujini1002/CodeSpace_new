@@ -15,8 +15,14 @@
 }
 
 a {
+	padding 0px;
 	font-weight: bolder;
 	font-size: 20px;
+	color: black;
+	border: 1px solid #b4b4b4;
+	border-radius: 75px; 
+	background-color: rgb(126, 148, 216);
+	line-height: inherit;
 }
 
 a:hover {
@@ -25,7 +31,7 @@ a:hover {
 
 table {
 	width: 600px;
-	border: 1px solid aqua;
+	border: 1px solid black;
 }
 
 tr {
@@ -34,30 +40,40 @@ tr {
 
 td {
 	width: 80px;
-	border: 1px solid blue;
+	margin: 1px;
+	/* border: 1px solid blue; */
 }
 
 .holiday {
 	color: red;
+}
+.week{
+	border: 1px solid gray;
+}
+.empty_room{
+	border:none;
+}
+.h_day:hover {
+	background-color: #867979;
 }
 </style>
 </head>
 
 <body>
 	<h2>${cal }</h2>
+	<button onclick="today()">오늘 날짜로 이동!</button>
 	<table>
 		<tr>
-			<td colspan="7"><a
-				href="${pageContext.request.contextPath }/userinfo/precal?year=${cal.year-1 }&month=${cal.month }">&lt;&lt;</a>
-				<a
-				href="${pageContext.request.contextPath }/userinfo/precal?year=${cal.year }&month=${cal.month-1 }">&lt;</a>
-				&nbsp;${cal.year }년 ${cal.month+1 }월&nbsp; <a
-				href="${pageContext.request.contextPath }/userinfo/postcal?year=${cal.year }&month=${cal.month+1 }">&gt;</a>
-				<a
-				href="${pageContext.request.contextPath }/userinfo/postcal?year=${cal.year+1 }&month=${cal.month }">&gt;&gt;</a>
+			<td colspan="7">
+			
+				<a href="${pageContext.request.contextPath }/userinfo/precal?year=${cal.year-1 }&month=${cal.month }">&lt;&lt;</a>&nbsp;
+				<a href="${pageContext.request.contextPath }/userinfo/precal?year=${cal.year }&month=${cal.month-1 }">&lt;</a>
+				&nbsp;${cal.year }년 ${cal.month+1 }월&nbsp; 
+				<a href="${pageContext.request.contextPath }/userinfo/postcal?year=${cal.year }&month=${cal.month+1 }">&gt;</a>&nbsp;
+				<a href="${pageContext.request.contextPath }/userinfo/postcal?year=${cal.year+1 }&month=${cal.month }">&gt;&gt;</a>
 			</td>
 		</tr>
-		<tr>
+		<tr class="week">
 			<td class="holiday">일</td>
 			<td>월</td>
 			<td>화</td>
@@ -66,54 +82,39 @@ td {
 			<td>금</td>
 			<td class="holiday">토</td>
 		</tr>
-		<tbody class="day_of_the_week">
-		</tbody>
+		<tbody class="day_of_the_week"></tbody>
 	</table>
 	<script>
 		$(document).ready(function() {
 			var kk = '${cal}';
-			var day = '${cal.start}';
-			var startDay = '${cal.startDay}';
-			var endDay = '${cal.endDay}';
+			var day = '${cal.start}' * 1;	//day == 5
+			var startDay = '${cal.startDay}' * 1;	//startDay == 1 
+			var endDay = '${cal.endDay}' * 1;		//endDay == 30
 			var newLine = 0;
-			var cnt = 0;
-			console.log(day);
 			var str = '<tr>';
-			for (var i = 1; i < day; i++) {
-				str += '<td class="h_date">&nbsp;</td>';
-				/* newLine++; */
+			
+			//달력 앞쪽 공백 출력		   5
+			for ( var i = 1 ; i < day ; i ++ ){
+				str += '<td class="empty_room">&nbsp;</td>';
+				newLine++;
 			}
-
-			console.log("연산 끝,newLine:" + newLine);
-			console.log(endDay * 1 + 6);
-			for (var i = startDay; i <= ((endDay * 1) + 6); i++) {
-				
-				if (/* newLine % 7 == 0 */(i + ((day * 1) - 1)) % 7 == 0) {
-					$('.day_of_the_week').append(str + '</tr>');
-
-					if (/* newLine */i >= endDay) {
-						break;
-					} else {
-						console.log("@@@"+i+":"+day);
-						console.log((day * 1)+"@@@");
-						console.log(i+(day)+"@@@");
-						console.log((i + (day * 1)) - 1);
-						console.log(i + ((day * 1) - 1));
-						console.log(i + (day * 1) - 1);
-						/* $('.day_of_the_week').append(str + '</tr>'); */
-						str = '<tr>';
-					}
+			
+			//달력 1일 부터 날짜 계산
+			for ( var i = startDay ; i <= endDay ; i++ ){
+				str += '<td class="h_day">' + i + '</td>';
+				newLine++;
+				if(newLine % 7 == 0){
+					str+='</tr>';
+					$('.day_of_the_week').html(str);
+				}else{
+					$('.day_of_the_week').html(str);
 				}
-				if (i <= endDay) {
-					console.log("dkr");
-					str += '<td class="h_date">' + i + '</td>';
-				} else {
-					str += '<td class="h_date">&nbsp;</td>';
-				}
-				/* newLine++; */
 			}
-
 		});
+		
+		function today(){
+			location.href="${pageContext.request.contextPath}/userinfo/hjscal"
+		}
 	</script>
 </body>
 </html>
