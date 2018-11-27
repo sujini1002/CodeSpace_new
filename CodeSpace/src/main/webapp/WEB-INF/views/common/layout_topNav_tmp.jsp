@@ -7,7 +7,7 @@
 		style="text-decoration: none; color: white">CODESPACE</a>
 
 	<form class="form-inline col-md-4 my-2 my-lg-0" action="${pageContext.request.contextPath}/search/searchResults">
-			<input class="form-control mr-sm-2" type="search" name="keyword"
+			<input class="form-control mr-sm-2" type="search" name="keyword" id="mainSearchBox" 
 				placeholder="Search" aria-label="Search">
 			<button class="btn btn-outline-info my-2 my-sm-0" id="searchBtn" type="submit">Search</button>
 	</form>

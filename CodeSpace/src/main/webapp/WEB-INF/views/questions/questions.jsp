@@ -15,21 +15,7 @@
 	<div class="container">
 		<div class="head-container">
 			<h1>All Questions</h1>
-			
 		</div>
-		<!-- 구글 서치 -->
-		<script>
-			(function() {
-				var cx = '006034808662729394004:iebnkmlcbvm';
-				var gcse = document.createElement('script');
-				gcse.type = 'text/javascript';
-				gcse.async = true;
-				gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(gcse, s);
-			})();
-		</script>
-		<gcse:search></gcse:search>
 
 		<br> <br>
 		<div class="list-container">
@@ -105,7 +91,6 @@
 			<!-- !empty 조건 -->
 		</div>
 		<!-- list-container 끝 -->
-
 	</div>
 	<!-- container 끝  -->
 
