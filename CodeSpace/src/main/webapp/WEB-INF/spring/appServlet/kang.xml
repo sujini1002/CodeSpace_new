@@ -64,7 +64,11 @@
 	<beans:bean id="answerRecommandViewService"
 		class="com.team.cos.recommand.service.AnswerRecommandViewService" />
 	<beans:bean id="answerChooseService"
-		class="com.team.cos.choose.service.AnswerChooseService"/>
+		class="com.team.cos.choose.service.AnswerChooseService" />
 	<beans:bean id="answerChooseViewService"
-		class="com.team.cos.choose.service.AnswerChooseViewService"/>
+		class="com.team.cos.choose.service.AnswerChooseViewService" />
+	<beans:bean id="bookmarkService"
+		class="com.team.cos.bookmark.service.BookmarkService" />
+	<beans:bean id="bookmarkViewService"
+		class="com.team.cos.bookmark.service.BookmarkViewService" />
 </beans:beans>

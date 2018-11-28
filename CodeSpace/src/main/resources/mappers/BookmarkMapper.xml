@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.cos.bookmark.dao.BookmarkInterfaceDao">
+	<!-- 즐겨찾기 추가  -->
+	<insert id="insertBookmark" parameterType="com.team.cos.bookmark.vo.BookmarkInfo">
+		insert into bookmark
+		values (#{q_no},#{user_no})
+	</insert>
+	<!-- 즐겨찾기 삭제 -->
+	<delete id="deleteBookmark" parameterType="com.team.cos.bookmark.vo.BookmarkInfo">
+		delete from bookmark where q_no = #{q_no} and user_no = #{user_no}
+	</delete>
+	<!-- 즐겨찾기 유무 출력 -->
+	<select id="bookmarkSelectCnt" 
+			parameterType="com.team.cos.bookmark.vo.BookmarkInfo"
+			resultType="int">
+		select count(*)
+		from bookmark
+		where q_no =#{q_no} and user_no = #{user_no}
+	</select>
+	<!-- 내가 즐겨찾기한 질문 -->
+	<select id="userBookmark" resultType="int">
+		select q_no
+		from bookmark
+		where user_no = #{user_no}
+	</select>
+	<!-- 즐겨찾기 유무 출력 질문 창 들어갈때 -->
+	<select id="bookmarkSelectCntView" resultType="int">
+		select count(*)
+		from bookmark
+		where q_no =#{q_no} and user_no = #{user_no}
+	</select>
+</mapper>

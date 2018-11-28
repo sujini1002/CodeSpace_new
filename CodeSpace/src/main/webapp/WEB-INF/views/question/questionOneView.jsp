@@ -62,8 +62,13 @@
 					</button>
 			</div>
 			<div id="k_bookmark"  style="margin-top: 10px">
-				<button type="button" class="btn" style="background-color:#ecf0f5">
-					<i class="fa fa-star fa-2x" style="color: gray;"></i>
+				<button type="button" class="btn" id="k_bookmarkBtn" onclick="k_bookmark()" style="background-color:#ecf0f5">
+					<c:if test="${bookmark ne 0 }">
+						<i class="fa fa-star fa-2x" id="k_bookmarkIcon" style="color: orange;"></i>
+					</c:if>
+					<c:if test="${bookmark eq 0 }">
+						<i class="fa fa-star fa-2x" id="k_bookmarkIcon" style="color: gray;"></i>
+					</c:if>
 				</button>
 			</div>
 		</td>
@@ -164,6 +169,33 @@
 
   </div>
 </div>
+<!-- 북마크 -->
+<script>
+	function k_bookmark(){
+		var qno = '${questionInfo.q_no}'*1;
+		var userNo = '${loginInfo.user_no}'*1;
+		$.ajax({
+			url : '${pageContext.request.contextPath}/question/bookmark',
+			type : 'POST',
+			data : {
+				"q_no" : qno,
+				"user_no" : userNo
+			},
+			contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+			dataType : 'json',
+			success : function(data){
+				if(data.message == 'insert'){
+					$('#k_bookmarkIcon').css('color','orange');
+				}else{
+					$('#k_bookmarkIcon').css('color','gray');
+				}
+			},
+			error : function(){
+				alert('불행하게도 에러 입다');
+			}
+		});//end ajax
+	}//end k_bookmark()
+</script>
 <!-- 추천 관련 스크립트  -->
 <script>
 	function k_qRecommand(value){

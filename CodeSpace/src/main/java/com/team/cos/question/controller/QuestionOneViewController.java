@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.team.cos.answer.service.AnswerListService;
 import com.team.cos.answer.service.AnswerUserInfoService;
 import com.team.cos.answer.vo.AnswerInfo;
+import com.team.cos.bookmark.service.BookmarkViewService;
 import com.team.cos.choose.service.AnswerChooseViewService;
 import com.team.cos.comment.service.AnswerCommentListService;
 import com.team.cos.comment.service.QuestionCommentListService;
@@ -61,6 +62,9 @@ public class QuestionOneViewController {
 	@Autowired
 	private AnswerChooseViewService aChooseService;
 	
+	@Autowired
+	private BookmarkViewService bookmarkService;
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView questionView(@RequestParam("q_no")int q_no,
 									@RequestParam(value="order",defaultValue="score")String order,
@@ -105,7 +109,6 @@ public class QuestionOneViewController {
 			}
 		}
 		
-		
 		//답변 추천
 		List<AnswerRecommandViewInfo> aRecommandList = new ArrayList<>();
 		if(session.getAttribute("loginInfo") != null) {
@@ -124,6 +127,9 @@ public class QuestionOneViewController {
 			aChooseNum = aChooseService.viewChoose(q_no);
 		}
 		
+		//즐겨찾기
+		int bookmark = bookmarkService.bookmarkSelectCntView(q_no, user_no);
+		
 		modelAndView.addObject("questionInfo", questionInfo);
 		modelAndView.addObject("userInfo", userInfoVo);
 		modelAndView.addObject("answerList", answerList);
@@ -133,6 +139,7 @@ public class QuestionOneViewController {
 		modelAndView.addObject("qRecommand", qRecommand);
 		modelAndView.addObject("aRecommandList", aRecommandList);
 		modelAndView.addObject("aChooseNum", aChooseNum);
+		modelAndView.addObject("bookmark", bookmark);
 		modelAndView.setViewName("question/questionOneView");
 		
 		//System.out.println("컨트롤러"+userInfoList);
