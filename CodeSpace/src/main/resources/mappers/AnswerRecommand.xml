@@ -49,9 +49,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where a_no in (
 			select a_no
 			from answer
-			where q_no = #{q_no} and
-				  user_no = #{user_no}
+			where q_no = #{q_no}
 		)
+		and user_no = #{user_no}
 	</select>
 	
 </mapper>
