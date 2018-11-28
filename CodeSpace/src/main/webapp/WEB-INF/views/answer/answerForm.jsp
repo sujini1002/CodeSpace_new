@@ -69,11 +69,28 @@
 				</div>
 			<!-- 답변 채택  -->
 			<div id="k_Choose" style="margin-top: 10px">
-				<button type="button" class="btn" style="background-color:#ecf0f5">
-					<i class="fas fa-check fa-2x" style="color:gray"></i>
-				</button>
-			</div>
-		</td>
+					<c:if test="${loginInfo.user_no eq questionInfo.user_no and aChooseNum eq 0}">
+						<button type="button"
+							data-id="k_ChooseBtn_<c:out value="${num.index}"/>" class="btn"
+							style="background-color: #ecf0f5" data-toggle="modal"
+							data-target="#k_chooseModal">
+							<i class="far fa-check-circle fa-2x"
+								id="k_ChooseIcon_<c:out value="${num.index}"/>"
+								style="color: gray"></i>
+						</button>
+					</c:if>
+					<c:if test="${aChooseNum eq item.a_no}">
+						<button type="button"
+							data-id="k_ChooseBtn_<c:out value="${num.index}"/>" class="btn"
+							style="background-color: #ecf0f5" data-toggle="modal"
+							data-target="#k_chooseModal" disabled>
+							<i class="far fa-check-circle fa-2x"
+								id="k_ChooseIcon_<c:out value="${num.index}"/>"
+								style="color: #17a2b8"></i>
+						</button>
+					</c:if>
+				</div>
+			</td>
 		<!-- 답변 내용 -->
 		<td style="width:85%;" id="k_td_<c:out value="${num.index}"/>">
 			<div id="editor_<c:out value="${num.index}"/>">
@@ -151,9 +168,87 @@
   </div>
 </div>
 
-<!-- 추천 비추천 처리  -->
+<!-- 채택 모달  -->
+<!-- Modal -->
+<div id="k_chooseModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">답변 채택하기</h4>
+        <button type="button" class="close" data-dismiss="modal">x</button>
+      </div>
+      <div class="modal-body" id="k_chooseModalContent">
+        <p>지금 채택 하시면 다른 답변들은 채택 하실 수 없습니다. <br> 정말 채택하시겠습니까?</p>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" id="k_chooseBtn_final" class="btn btn-outline-info" onclick="k_ChooseAnswer(this)">채택하기</button>
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- 채택 성공 모달 -->
+<div id="k_chooseSuccessModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">답변 채택하기 성공</h4>
+        <button type="button" class="close" data-dismiss="modal">x</button>
+      </div>
+      <div class="modal-body" id="k_chooseModalContent">
+        <p>채택되었습니다.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 <script>
-	
+
+	$('#k_chooseModal').on('show.bs.modal', function (event) { // myModal 윈도우가 오픈할때 아래의 옵션을 적용
+	  var button = $(event.relatedTarget); // 모달 윈도우를 오픈하는 버튼
+	  var id = button.data('id'); // 버튼에서 data-title 값을 titleTxt 변수에 저장
+	  var modal = $(this);
+	  modal.find('#k_chooseBtn_final').val(id); // 모달위도우에서 .modal-title을 찾아 titleTxt 값을 치환
+	});
+	//답변 채택
+	function k_ChooseAnswer(value){
+		var num = value.value.substring(value.value.lastIndexOf('_')+1);
+		var ano = $('#k_aNo_'+num).val();
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/answer/answerChoose',
+			type : 'GET',
+			data : { "a_no" : ano},
+			contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+			dataType : 'json',
+			success : function(data){
+				if(data.message == '1'){
+					$('#k_chooseModal').modal('hide');
+					$('#k_chooseSuccessModal').modal();
+					$('#k_ChooseIcon_'+num).css('color','#17a2b8');
+					$('#k_ChooseBtn_'+num).prop('disabled',true);
+					$('#k_chooseModalContent').html('<p>이미 채택되었습니다.</p>');
+					$('#k_chooseBtn_final').css('display','none');
+				}
+			},
+			error : function(){
+				
+				alert('불행하게도 에러 입니다ㅠㅠ');
+			}
+		});
+						
+	}
+	//추천 비추천 처리  
 	function k_aRecommand(value){
 		//추천 누른 답변의 번호 추출 하기위한 변수
 		var num = value.id.substring(value.id.lastIndexOf('_')+1)*1;

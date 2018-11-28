@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.team.cos.answer.service.AnswerListService;
 import com.team.cos.answer.service.AnswerUserInfoService;
 import com.team.cos.answer.vo.AnswerInfo;
+import com.team.cos.choose.service.AnswerChooseViewService;
 import com.team.cos.comment.service.AnswerCommentListService;
 import com.team.cos.comment.service.QuestionCommentListService;
 import com.team.cos.comment.vo.AnswerCommentInfo;
@@ -56,6 +57,9 @@ public class QuestionOneViewController {
 	
 	@Autowired
 	private AnswerRecommandViewService aRecomService;
+	
+	@Autowired
+	private AnswerChooseViewService aChooseService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView questionView(@RequestParam("q_no")int q_no,
@@ -114,6 +118,12 @@ public class QuestionOneViewController {
 		}
 		System.out.println("컨트롤러 로그인한 사용자의 답변 추천 번호와 상태="+aRecommandList);
 		
+		//답변 채택 
+		int aChooseNum = 0;
+		if(aChooseService.choosedCnt(q_no)>0) {
+			aChooseNum = aChooseService.viewChoose(q_no);
+		}
+		
 		modelAndView.addObject("questionInfo", questionInfo);
 		modelAndView.addObject("userInfo", userInfoVo);
 		modelAndView.addObject("answerList", answerList);
@@ -122,6 +132,7 @@ public class QuestionOneViewController {
 		modelAndView.addObject("answerCommentList", answerCommList);
 		modelAndView.addObject("qRecommand", qRecommand);
 		modelAndView.addObject("aRecommandList", aRecommandList);
+		modelAndView.addObject("aChooseNum", aChooseNum);
 		modelAndView.setViewName("question/questionOneView");
 		
 		//System.out.println("컨트롤러"+userInfoList);

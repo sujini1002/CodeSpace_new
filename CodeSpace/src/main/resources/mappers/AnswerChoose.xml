@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.cos.choose.dao.AnswerChooseInterfaceDao">
+	<!-- 답변의 질문 번호 출력  -->
+	<select id="selectQNo" resultType="int">
+		select q_no
+		from answer where a_no = #{a_no}
+	</select>
+	<!-- 답변에 대한 채택 여부 -->
+	<select id="isExistChoose"  resultType="int">
+		select count(*)
+		from answer
+		where q_no = #{q_no} and a_choose = 1
+	</select>
+	<!-- 답변 채택하기  -->
+	<update id="Choose">
+		update answer set a_choose = 1 where a_no = #{a_no}
+	</update>
+	<!--  답변자 번호를 구하기 위한 쿼리문  -->
+	<select id="findUser" resultType="int">
+		select user_no
+		from answer where a_no = #{a_no}
+	</select>
+	<!--  채택한 답변자 점수 증가 -->
+	<update id="updateUserScore">
+		update userinfo set user_score = user_score + 20 where user_no = #{user_no}
+	</update>
+	<!-- 채택된 답변에 아이콘 띄우기 위한 쿼리문 -->
+	<select id="choosedAnswer" resultType="int">
+		select a_no
+		from answer
+		where q_no = #{q_no} and a_choose = 1
+	</select>
+	<select id="choosedCnt" resultType="int">
+		select count(*)
+		from answer
+		where q_no = #{q_no} and a_choose = 1
+	</select>
+</mapper>
