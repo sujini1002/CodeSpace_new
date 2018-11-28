@@ -15,9 +15,26 @@
 	<div class="container">
 		<div class="head-container">
 			<h1>All Questions</h1>
+			
+			<br>
+			<div>
+				<div class="all-questions-cnt">	
+					<h4>총 ${pageMaker.totalCount}개의 질문</h4>
+				</div>
+				
+				<div class="list-view-filter">
+					<table>
+						<tr>
+							<td><a href="#">최신 순</a></td>
+							<td><a href="#">조회 순</a></td>
+							<td><a href="#">추천 순</a></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
 		</div>
 
-		<br> <br>
 		<div class="list-container">
 			<c:if test="${empty list}">
 				<div class="result-noList">
@@ -61,23 +78,23 @@
 					<div class="search-paging">
 						<!-- view 단 페이징 모듈은 여기부터 -->
 						<div class="text-center">
-							<ul class="pagination">
+							<ul class="pagination justify-content-center">
 								<c:if test="${pageMaker.prev}">
-									<li><a
+									<li class="page-item"><a class="page-link"
 										href="${pageContext.request.contextPath}/questions/questions${pageMaker.makeQuery(pageMaker.startPage - 1)}">&laquo;</a></li>
 								</c:if>
 
 								<c:forEach begin="${pageMaker.startPage}"
 									end="${pageMaker.endPage}" var="idx">
-									<li class="paging-number"
+									<li class="paging-item"
 										<c:out value="${pageMaker.searchCri.page == idx?'class =active':''}"/>>
-										<a
+										<a class="page-link"
 										href="${pageContext.request.contextPath}/questions/questions${pageMaker.makeQuery(idx)}">${idx}</a>
 									</li>
 								</c:forEach>
 
 								<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-									<li class="paging-number"><a
+									<li class="page-item"><a class="page-link"
 										href="${pageContext.request.contextPath}/questions/questions${pageMaker.makeQuery(pageMaker.endPage + 1)}">&raquo;</a></li>
 								</c:if>
 							</ul>

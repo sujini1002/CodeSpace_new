@@ -111,23 +111,23 @@
 						<!-- 검색 결과가 있을 시 페이징 표시 -->
 						<div class="search-paging">
 							<div class="text-center">
-								<ul class="pagination">
+								<ul class="pagination justify-content-center">
 									<c:if test="${pageMaker.prev}">
-										<li><a
+										<li class="page-item"><a class="page-link"
 											href="${pageContext.request.contextPath}/search/searchResults${pageMaker.makeSearch(pageMaker.startPage - 1)}">&laquo;</a></li>
 									</c:if>
 
 									<c:forEach begin="${pageMaker.startPage}"
 										end="${pageMaker.endPage}" var="idx">
-										<li class="paging-number"
+										<li class="page-item"
 											<c:out value="${pageMaker.searchCri.page == idx?'class =active':''}"/>>
-											<a
+											<a class="page-link"
 											href="${pageContext.request.contextPath}/search/searchResults${pageMaker.makeSearch(idx)}">${idx}</a>
 										</li>
 									</c:forEach>
 
 									<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-										<li><a
+										<li class="page-item"><a class="page-link"
 											href="${pageContext.request.contextPath}/search/searchResults${pageMaker.makeSearch(pageMaker.endPage + 1)}">&raquo;</a></li>
 									</c:if>
 								</ul>

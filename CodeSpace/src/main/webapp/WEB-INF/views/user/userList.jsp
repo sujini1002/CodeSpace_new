@@ -29,7 +29,7 @@
             -->
          </div>
          
-         <div class="user-view-change">
+         <div class="user-view-filter">
             <span class="viewGrid">
             	<a href="#" onclick="showGrid()">
             		<img src="https://image.flaticon.com/icons/svg/1250/1250641.svg" height=25 width=25>
@@ -128,7 +128,7 @@
 		                  	 <div class="row col-lg-12">
 		                  	 	<div class="row col-lg-12 user-detail-attribute user-view-list-title">
 		                  	 		<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}">${userInfo.user_nickname}</a>
-		                  	 		<div class="col-lg-3 user-detail-attribute">&nbsp;· ${userInfo.user_score}</div>
+		                  	 		<div class="col-lg-3 user-detail-attribute user-score">&nbsp;· ${userInfo.user_score}</div>
 		                  	 	</div>
 		                  	 </div>
 		                     <div class="col-lg-12 user-detail-attribute user-intro">${userInfo.user_intro}</div>
