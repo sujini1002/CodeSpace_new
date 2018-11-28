@@ -66,6 +66,10 @@ public class ProjectDashController {
 		List<Integer> dateList = new ArrayList<Integer>();
 		
 		for (int i = 0; i < list.size(); i++) {
+			System.out.println("시작");
+			System.out.println(Integer.parseInt(sdf.format(list.get(i).getTodolist_startdate())));
+			System.out.println(Integer.parseInt(sdf.format(list.get(i).getTodolist_enddate())));
+			System.out.println("끝");
 			dateList.add(Integer.parseInt(sdf.format(list.get(i).getTodolist_enddate())));
 		}
 		System.out.println("@@@"+dateList);
