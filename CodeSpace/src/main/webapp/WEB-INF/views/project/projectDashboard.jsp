@@ -475,6 +475,10 @@
 				var endDay = '${cal.endDay}' * 1;		//endDay == 30
 				var newLine = 0;
 				var str = '<tr>';
+				var fulldate = ${cal.fulldate};
+				var today = ${cal.today};
+				var regDate = ${regged_date};
+				console.log(regDate.length);
 				
 				//달력 앞쪽 공백 출력		   5
 				for ( var i = 1 ; i < day ; i ++ ){
@@ -483,13 +487,11 @@
 				}
 				//달력 1일 부터 날짜 계산
 				for ( var i = startDay ; i <= endDay ; i++ ){
-					var fulldate = ${cal.fulldate};
-					var today = ${cal.today};
 					if(today == fulldate[i]){
-						str += '<td class="h_day ' + fulldate[i] + '"style="background-color: green;" >' + i + '</td>';
+						str += '<td class="h_day ' + fulldate[i-1] + '"style="background-color: green;" >' + i + '</td>';
 						newLine++;
 					}else{
-						str += '<td class="h_day ' + fulldate[i] + '">' + i + '</td>';
+						str += '<td class="h_day ' + fulldate[i-1] + '">' + i + '</td>';
 						newLine++;
 					}
 					if(newLine % 7 == 0){
@@ -499,6 +501,17 @@
 						$('.day_of_the_week').html(str);
 					}
 				}
+				
+				for(var i = 0 ; i < regDate.length ; i++){
+					for(var j = 0 ; j <= endDay-1; j++){
+						console.log('여긴 들어오냐?');
+						if(regDate[i]==fulldate[j]){
+							console.log("들어오냐");
+							var k = fulldate[j];
+							$('.'+k).css('background-color','black');
+						}						
+					}
+				} 
 				
 				function today(){
 					location.href='${pageContext.request.contextPath}/project/prjdash?project_no='+${pro_info.project_no }+'&user_no='+${loginInfo.user_no};

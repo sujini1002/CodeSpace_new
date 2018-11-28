@@ -2,6 +2,7 @@ package com.team.cos.project.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,15 +65,24 @@ public class ProjectDashController {
 		modelAndView.addObject("cal", result);
 		List<TodolistVO> list = tdlService.h_getTDL(project_no);
 		List<Integer> dateList = new ArrayList<Integer>();
-		
+		List<Integer>tmp = new ArrayList<Integer>();
+
 		for (int i = 0; i < list.size(); i++) {
-			System.out.println("시작");
-			System.out.println(Integer.parseInt(sdf.format(list.get(i).getTodolist_startdate())));
-			System.out.println(Integer.parseInt(sdf.format(list.get(i).getTodolist_enddate())));
-			System.out.println("끝");
-			dateList.add(Integer.parseInt(sdf.format(list.get(i).getTodolist_enddate())));
+			Calendar c1 = Calendar.getInstance();
+			Calendar c2 = Calendar.getInstance();
+			c1.setTime(list.get(i).getTodolist_startdate());
+			c2.setTime(list.get(i).getTodolist_enddate());
+			while (c1.compareTo(c2) != 1) {
+				System.out.println("출력" + c1.getTime());
+				System.out.println("검사" + Integer.parseInt(sdf.format(c1.getTime())));
+				tmp.add(Integer.parseInt(sdf.format(c1.getTime())));
+				c1.add(Calendar.DATE, 1);
+			}
+			dateList.addAll(tmp);
 		}
-		System.out.println("@@@"+dateList);
+		System.out.println(dateList);
+		System.out.println(dateList.get(0));
+//		System.out.println("@@@"+dateList);
 		modelAndView.addObject("regged_date", dateList);
 		// 여기까지 달력관련!!!!!!!!!!!!!!!!!
 
