@@ -1,4 +1,4 @@
-11111@charset "UTF-8";
+@charset "UTF-8";
 
 /* nav tab 설정 */
 
@@ -154,14 +154,25 @@ y_editForm input{
 	font-weight: 600;
 	
 }
-
-
-
-
-
-
-
-
-
-
 /* 다른 사용자 페이지 끝 */
+
+/* 드래그 앤 드롭 시작 */
+div.todoPost{
+	width: 150px;
+	height: 150px;
+	background-color: yellow;
+	border:1px solid black;
+    box-shadow: 2px 2px 2px;
+} 
+
+
+
+
+
+
+
+
+
+
+
+/* 드래그 앤 드롭 끝 */

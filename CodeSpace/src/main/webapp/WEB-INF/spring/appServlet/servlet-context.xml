@@ -25,6 +25,7 @@
 	<!-- <resources mapping="/resources/**" location="/resources/" /> -->
 	<resources mapping="/css/**" location="/css/" />
 	<resources mapping="/js/**" location="/js/" />
+	<resources mapping="/jqueryui/**" location="/jqueryui/" />
 	<resources mapping="/images/**" location="/images/" />
 	<resources mapping="/uploadfile/**" location="/uploadfile/" />
 

@@ -42,7 +42,7 @@
 										+ cx;
 								var s = document.getElementsByTagName('script')[0];
 								s.parentNode.insertBefore(gcse, s);
-								$('#gsc-i-id1').val('${keyword}');
+								//$('#gsc-i-id1').val('${keyword}');
 							})();
 
 							//$('#gsc-i-id1').val('${keyword}');
