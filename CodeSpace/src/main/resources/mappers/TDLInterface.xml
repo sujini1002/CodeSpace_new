@@ -9,6 +9,14 @@
 			t.tdlmanager_no=u.user_no;
 	</select>
 	
+	<!-- 하하하하하하 -->
+	<select id="h_selectTDL" resultType="com.team.cos.project.vo.TodolistVO">
+		select * from project_todolist t, userinfo u
+		where project_no = #{project_no} and 
+			t.tdlmanager_no=u.user_no;
+	</select>
+	
+	
 	<select id="selectOntTDL" resultType="com.team.cos.project.vo.TodolistVO">
 		select * from project_todolist
 		where todolist_no=#{todolist_no}

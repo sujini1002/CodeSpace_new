@@ -7,13 +7,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.team.cos.calendar.Vo.calendarVo;
+import com.team.cos.project.vo.calendarVo;
 
 @Service
 public class calendarViewService {
 
 	public calendarVo viewCalendar(calendarVo vo) {
 		List<Integer> arrayDay = new ArrayList<Integer>();
+		List<Integer> fulldate = new ArrayList<Integer>();
+		
 		Calendar cal = Calendar.getInstance();
 		Calendar todayCal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -24,13 +26,16 @@ public class calendarViewService {
 		vo.setStartDay(cal.getMinimum(Calendar.DATE));
 		vo.setEndDay(cal.getActualMaximum(Calendar.DAY_OF_MONTH));
 		vo.setStart(cal.get(Calendar.DAY_OF_WEEK)); // 요일 찾기 1부터 일요일 , 7 토요일
-		
+		System.out.println(todayCal.getTime());
 		vo.setToday(Integer.parseInt(sdf.format(todayCal.getTime())));
 		
 		for (int i = vo.getStartDay(); i <= vo.getEndDay(); i++) {
 			arrayDay.add(i);
+			cal.set(vo.getYear(), vo.getMonth(), i);
+			fulldate.add(Integer.parseInt(sdf.format(cal.getTime())));
 		}
-		
+	
+		vo.setFulldate(fulldate);
 		vo.setArrayDay(arrayDay);
 		System.out.println(vo);
 		return vo;
@@ -38,6 +43,7 @@ public class calendarViewService {
 
 	public calendarVo changePostCalendar(calendarVo vo) {
 		List<Integer> arrayDay = new ArrayList<Integer>();
+		List<Integer> fulldate = new ArrayList<Integer>();
 		Calendar cal = Calendar.getInstance();
 		Calendar todayCal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -56,15 +62,20 @@ public class calendarViewService {
 		
 		for (int i = vo.getStartDay(); i <= vo.getEndDay(); i++) {
 			arrayDay.add(i);
+			cal.set(vo.getYear(), vo.getMonth(), i);
+			fulldate.add(Integer.parseInt(sdf.format(cal.getTime())));
 		}
-		
+		vo.setFulldate(fulldate);
 		vo.setArrayDay(arrayDay);
 		vo.setToday(Integer.parseInt(sdf.format(todayCal.getTime())));
+		System.out.println(vo);
 		return vo;
 	}
 
 	public calendarVo changePreCalendar(calendarVo vo) {
 		List<Integer> arrayDay = new ArrayList<Integer>();
+		List<Integer> fulldate = new ArrayList<Integer>();
+//		String tmp = "";
 		Calendar cal = Calendar.getInstance();
 		Calendar todayCal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -82,10 +93,14 @@ public class calendarViewService {
 		
 		for (int i = vo.getStartDay(); i <= vo.getEndDay(); i++) {
 			arrayDay.add(i);
+			cal.set(vo.getYear(), vo.getMonth(), i);
+			fulldate.add(Integer.parseInt(sdf.format(cal.getTime())));
 		}
+		vo.setFulldate(fulldate);
 		
 		vo.setArrayDay(arrayDay);
 		vo.setToday(Integer.parseInt(sdf.format(todayCal.getTime())));
+		System.out.println(vo);
 		return vo;
 	}
 }

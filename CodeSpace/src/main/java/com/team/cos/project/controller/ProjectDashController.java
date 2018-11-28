@@ -1,5 +1,6 @@
 package com.team.cos.project.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.team.cos.calendar.Vo.calendarVo;
 import com.team.cos.project.service.ProjectMemberListGetService;
 import com.team.cos.project.service.ProjectRegService;
+import com.team.cos.project.service.TDLViewService;
 import com.team.cos.project.service.calendarViewService;
 import com.team.cos.project.vo.ProjectInfoVO;
 import com.team.cos.project.vo.ProjectMemberVO;
+import com.team.cos.project.vo.TodolistVO;
+import com.team.cos.project.vo.calendarVo;
 import com.team.cos.userinfo.service.UserInfoCheckService;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
@@ -24,7 +27,8 @@ public class ProjectDashController {
 
 	@Autowired
 	private calendarViewService service; // 이거 달력임!!!!!!!!!!!!!!!
-
+	@Autowired
+	private TDLViewService tdlService;
 	@Autowired
 	private ProjectRegService proInfoservice;
 	@Autowired
@@ -37,7 +41,7 @@ public class ProjectDashController {
 	public ModelAndView getProDashboard(calendarVo vo, @RequestParam("project_no") int project_no,
 			@RequestParam("user_no") int user_no) {
 		ModelAndView modelAndView = new ModelAndView();
-
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		// user_no가 포함된 userInfoVO 가져옴
 		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
 		// project_no에 해당하는 프로젝트 정보 가져옴
@@ -58,7 +62,15 @@ public class ProjectDashController {
 		// 달력관련임!!!!!!!!!!!!!!!!
 		calendarVo result = service.viewCalendar(vo);
 		modelAndView.addObject("cal", result);
-		// 여기까지 달력!!!!!!!!!!!!!!!!!
+		List<TodolistVO> list = tdlService.h_getTDL(project_no);
+		List<Integer> dateList = new ArrayList<Integer>();
+		
+		for (int i = 0; i < list.size(); i++) {
+			dateList.add(Integer.parseInt(sdf.format(list.get(i).getTodolist_enddate())));
+		}
+		System.out.println("@@@"+dateList);
+		modelAndView.addObject("regged_date", dateList);
+		// 여기까지 달력관련!!!!!!!!!!!!!!!!!
 
 		// login 사용자 정보 보냄
 		modelAndView.addObject("user_info", user_info);

@@ -22,6 +22,12 @@ public class TDLViewService {
 		List<TodolistVO> list = dao.selectTDL(project_no);
 		return list;
 	}
+	public List<TodolistVO> h_getTDL(int project_no) {
+		dao = sqlSessionTemplate.getMapper(TDLInterface.class);
+		
+		List<TodolistVO> list = dao.h_selectTDL(project_no);
+		return list;
+	}
 
 	public TodolistVO getOneTodo(int todolist_no) {
 		dao = sqlSessionTemplate.getMapper(TDLInterface.class);

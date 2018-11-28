@@ -1,4 +1,4 @@
-/*package com.team.cos.calendar.Vo;
+package com.team.cos.project.vo;
 
 import java.util.List;
 
@@ -102,4 +102,3 @@ public class calendarVo {
 	}
 
 }
-*/
