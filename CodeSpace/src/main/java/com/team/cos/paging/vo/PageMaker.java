@@ -133,7 +133,8 @@ public class PageMaker {
 	public String makeUserList(int page) throws Exception {
 
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
-				.queryParam("perPageNum", userCri.getPerPageNum()).build();
+				.queryParam("perPageNum", userCri.getPerPageNum())
+				.queryParam("viewType", userCri.getViewType()).build();
 
 		return uriComponents.toUriString();
 	}

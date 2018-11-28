@@ -10,6 +10,7 @@ public class UserCriteria {
 	public UserCriteria() {
 		this.page = 1; // 페이지 번호는 1
 		this.perPageNum = 24; // 페이지 당 보여지는 데이터 개수는  24로 초기화
+		this.viewType = "grid";	// 기본 보기 방식은 grid 방식
 	}
 
 	public void setPage(int page) {

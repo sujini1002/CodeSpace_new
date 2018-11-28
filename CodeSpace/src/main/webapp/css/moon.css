@@ -65,16 +65,16 @@
 .user-row{
 	
 	margin: 1px;
+	text-align: center;
 }
 
 .user-info{
 	
 	margin: 0px 0px 50px 0px;
-	padding: 0px;
-	padding-right: 30px;
 	padding-bottom: 30px;
 	min-height: 100px;
 	max-height: 100px;
+	min-width: 200px;
 	
 }
 
@@ -89,12 +89,14 @@
 	margin-bottom: 30px;
 	min-height: 30px;
 	text-align: left;
-	color: grey;
+	color: white;
+	padding-left: 20px;
 }
 
 
 .user-detail {
 	text-align: left;
+	padding-left: 25px;
 }
 
 .user-detail-attribute{
@@ -123,13 +125,18 @@
 	margin-left: 10px;
 }
 
-.userListChange {
+.user-view-change {
 	margin-left: 100px;
 	display: inline-block;
 	float: right;
 }
 
+.user-view-change a:link{
+	text-decoration: none;
+}
+
 .userList {
+	padding-left:0;
 }
 
 .userFrame {
@@ -145,4 +152,45 @@
 	border-top: 1px solid transparent;
 	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+}
+
+.user-view-list-pic{
+	padding: 0;
+	margin: 0;
+}
+
+.user-view-list-detail {
+	margin-left: 20px;
+	text-align: left;
+}
+
+.user-view-list-tag{
+	margin: 0px;
+	margin-top: 5px;
+	text-align: left;
+	color: white;
+	min-height: 50px;
+}
+
+.user-view-list-title{
+	font-size: 20px;
+}
+
+.tag-value{
+	padding : 0;
+	margin: 0;
+	background-color: grey;
+	border-radius: 5px;
+}
+
+.top-hr{
+	
+	border: 0;
+	height: 3px;
+	background: #ccc;
+}
+
+.user-list-row{
+	
+	margin: 1px;
 }

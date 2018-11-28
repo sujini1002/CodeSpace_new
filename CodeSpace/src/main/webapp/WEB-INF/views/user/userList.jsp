@@ -29,20 +29,48 @@
             -->
          </div>
          
-         <div class="userListChange">
-            <a href="#">바둑판식 보기</a> &nbsp; | &nbsp;
-            <a href="#">리스트 보기</a>
+         <div class="user-view-change">
+            <span class="viewGrid">
+            	<a href="#" onclick="showGrid()">
+            		<img src="https://image.flaticon.com/icons/svg/1250/1250641.svg" height=25 width=25>
+				</a>
+			</span> &nbsp; &nbsp; &nbsp; 
+			<span class="viewList">
+				<a href="#" onclick="showList()">
+					<img src="https://image.flaticon.com/icons/svg/1141/1141964.svg" height=25 width=25>
+				</a>
+			</span>
          </div>
+         
+         <script>
+
+       		function showList(){
+       		
+       			var type="list";
+       		
+       			location.href="${pageContext.request.contextPath}/user/userList?viewType="+type;
+       		
+       		}
+       		
+       		function showGrid(){
+           		
+       			var type="grid";
+       		
+       			location.href="${pageContext.request.contextPath}/user/userList?viewType="+type;
+       		
+       		}
+         
+         </script>
          
       </div> <!-- userSearch class 끝 -->
    </div> <!-- head-container class 끝 -->
    <br>
-   <hr>
+   <hr class="top-hr">
    <br>
    
    <div class="list-container">
-  
       <c:if test="${!empty userList}">
+      	 <c:if test="${pageMaker.userCri.viewType eq 'grid'}">
          <div class="userList">
             <div class="row user-row">
               <c:forEach var="userInfo" items="${userList}">
@@ -57,7 +85,7 @@
                   </div>
                   <div class="row col-lg-12 user-tag">	
                      <div class="col-lg-4"></div>
-                     <div class="col-lg-8">${userInfo.user_tag}</div>
+                     <div class="col-lg-8"><span class="tag-value">${userInfo.user_tag}</span></div>
                   </div>
                </div>
             </c:forEach>
@@ -66,43 +94,93 @@
             <br>
             <div class="search-paging">
              <div class="text-center">
-                <ul class="pagination">
+                <ul class="pagination justify-content-center">
                    <c:if test="${pageMaker.prev}">
-                      <li><a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeUserList(pageMaker.startPage - 1)}">&laquo;</a></li>
+                      <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/user/userList${pageMaker.makeUserList(pageMaker.startPage - 1)}">&laquo;</a></li>
                    </c:if>
                    
                    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-                      <li class="paging-number"
+                      <li class="page-item"
                          <c:out value="${pageMaker.userCri.page == idx?'class =active':''}"/>>
-                         <a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeUserList(idx)}">${idx}</a>
+                         <a class="page-link" href="${pageContext.request.contextPath}/user/userList${pageMaker.makeUserList(idx)}">${idx}</a>
                       </li>   
                    </c:forEach>
                    
                    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-                      <li class="paging-number"><a href="${pageContext.request.contextPath}/user/userList${pageMaker.makeUserList(pageMaker.endPage + 1)}">&raquo;</a></li>
+                      <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/user/userList${pageMaker.makeUserList(pageMaker.endPage + 1)}">&raquo;</a></li>
                    </c:if>
                 </ul>
              </div>
-         </div>
-            
-            
+         	</div> <!-- <div=search-paging> 끝 -->
          </div><!-- <div=userList> 끝 -->
-         
-        
-         
-          <script>
-          	
-          	
-          	function ajaxList(user_nickname, pageNum){
+		</c:if> <!-- c:if viewType=="grid" -->
+      
+      	<c:if test="${pageMaker.userCri.viewType eq 'list'}">
+	      
+	      <div class="userList">
+	            <div class="row user-list-row">
+	               <c:forEach var="userInfo" items="${userList}">
+	                 <div class="row col-lg-12">
+		                  <div class="col-lg-1 user-view-list-pic">
+		                     <div class="picInfo"><a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}"><img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="90" height="90"></a></div>
+		                  </div>
+		                  <div class="col-lg-8 user-view-list-detail">
+		                  	 <div class="row col-lg-12">
+		                  	 	<div class="row col-lg-12 user-detail-attribute user-view-list-title">
+		                  	 		<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}">${userInfo.user_nickname}</a>
+		                  	 		<div class="col-lg-3 user-detail-attribute">&nbsp;· ${userInfo.user_score}</div>
+		                  	 	</div>
+		                  	 </div>
+		                     <div class="col-lg-12 user-detail-attribute user-intro">${userInfo.user_intro}</div>
+		                     <div class="col-lg-12 user-detail-attribute user-view-list-tag"><span class="tag-value">${userInfo.user_tag}</span></div>
+		                  </div>
+	               	 </div>
+	               <div><hr width="1110px"></div>
+	               </c:forEach>
+	            </div>
+	            
+	            <br>
+	            <div class="search-paging">
+	             <div class="text-center">
+	                <ul class="pagination justify-content-center">
+	                   <c:if test="${pageMaker.prev}">
+	                      <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/user/userList${pageMaker.makeUserList(pageMaker.startPage - 1)}">&laquo;</a></li>
+	                   </c:if>
+	                   
+	                   <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+	                      <li class="page-item"
+	                         <c:out value="${pageMaker.userCri.page == idx?'class =active':''}"/>>
+	                         <a class="page-link" href="${pageContext.request.contextPath}/user/userList${pageMaker.makeUserList(idx)}">${idx}</a>
+	                      </li>   
+	                   </c:forEach>
+	                   
+	                   <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+	                      <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/user/userList${pageMaker.makeUserList(pageMaker.endPage + 1)}">&raquo;</a></li>
+	                   </c:if>
+	                </ul>
+	             </div>
+	         	</div>
+	       </div><!-- <div=userList> 끝 -->
+      	</c:if> <!-- c:if viewType=="list" -->
+      
+      
+      
+
+
+			<script>
+          
+          	function ajaxList(user_nickname, pageNum, view){
           		
           		var nickname = user_nickname;
           		var page = pageNum;
+          		var viewType = view
+          		
           		
           		if(!page){
           			page = parseInt('1');
           		}
           		
-          		var sendData = {user_nickname : nickname, page : pageNum}
+          		var sendData = {user_nickname : nickname, page : pageNum, viewType : viewType}
           		
           		$.ajax({
                     type: 'GET',
@@ -132,9 +210,16 @@
  		                           console.log("endPage : " + paging.endPage);
  		                           console.log("prev : " + paging.prev);
  		                           console.log("next : " + paging.next);
+ 		                           console.log("viewType : " + paging.userCri.viewType);
+ 		                           
+ 		                           var viewType = paging.userCri.viewType;
  		                           
  		                           var str='';
  		                           
+ 		                           console.log("현재 viewType : " + viewType);
+ 		                           
+ 		                           if(viewType=='grid'){
+ 		        				                      
  		                           str += '<div class="row user-row">';
  		                           				for(var i=0;i<list.length;i++){
  		                              				
@@ -167,11 +252,12 @@
  		                              					+		'</div>'
  		                              					+		'<div class="row col-lg-12 user-tag">'
  		                              					+			'<div class="col-lg-4"></div>'
- 		                              					+			'<div class="col-lg-8">'+ list[i].user_tag + '</div>'
+ 		                              					+			'<div class="col-lg-8"><span class="tag-value">'+ list[i].user_tag + '</span></div>'
  		                              					+		'</div>'
  		                              					+	'</div>'
  		                           
- 		                           				}
+ 		                           				} // for문 끝
+ 		                           				
  		                           str += '</div><br>';
  		                           
  		                           var val = '1';
@@ -179,50 +265,103 @@
  		                           
  		                           str += '<div class="search-paging">'
  		                           	   +  		'<div class="text-center">'
- 		                           	   +			'<ul class="pagination">';
+ 		                           	   +			'<ul class="pagination justify-content-center">';
  		                           	   					
  		                           	   					if(paging.prev){
- 		   				                           		   str += '<li onclick="paging(' + (paging.startPage-value) + ')">&laquo;</li>';
+ 		   				                           		   str += '<li class="page-item"><a class="page-link" onclick="paging(' + (paging.startPage-value) + ')">&laquo;</a></li>';
  		   				                           	    }
  		                           	   					
  		                           	   					for(var i=paging.startPage;i<=paging.endPage;i++){
  		                           	   						var classStr = paging.userCri.page == i ? 'class=active' : '';
- 		                           	   					   	str += '<li class="paging-number" ' + classStr + ' onclick="paging(' + i + ')">'
+ 		                           	   					   	str += '<li class="page-item" ' + classStr + '><a class="page-link" onclick="paging(' + i + ')">'
  		                           	   					   	   	+  	i
  		                           	   					   	   	+  '</li>';
  		                           	   					}
  		                           	   					if(paging.next){
- 		                           	   						str += '<li class="paging-number" onclick="paging(' + (paging.endPage+value) + ')">&raquo;</li>';
+ 		                           	   						str += '<li class="page-item"><a class="page-link" onclick="paging(' + (paging.endPage+value) + ')">&raquo;</li>';
  		                           	   					}
- 		   						                        	  
- 		                           	   					
- 		                           	   				   /*
- 		                           	   				   if(paging.prev){
- 		   				                           		   str += '<li><a href="${pageContext.request.contextPath}/user/userList?page=' + (paging.startPage-value) + '&perPageNum=' + paging.userCri.perPageNum + '&user_nickname=' + paging.userCri.user_nickname + '">&laquo;</a></li>';
- 		   				                           	   }
- 		   				                           	   
- 		   				                           	   for(var i=paging.startPage;i<=paging.endPage;i++){
- 		   				                           		   console.log("paging.startPage : " + paging.startPage);
- 		   				                           		   console.log("paging.endPage : " + paging.endPage);
- 		   				                           		   console.log("paging.userCri.page : " + paging.userCri.page);
- 		   				                           		   console.log("i : " + i);
- 		   				                           		   console.log("paging.next : " + paging.next);
- 		   				                           		   
- 		   				                           		   		str += '<li class="paging-number">'
- 		   				                           			   		+  		'<a href="${pageContext.request.contextPath}/user/userList?page=' + i + '&perPageNum=' + paging.userCri.perPageNum + '&user_nickname=' + paging.userCri.user_nickname + '">' + i + '</a>'
- 		   				                           			   		+  '</li>';
- 		   				                           	   }
- 		   				                           	   
- 		   				                           	   if(paging.next){
- 		   				                           		   str += '<li class="paging-number">'
- 		   				                           		   	   +  	   '<a href="${pageContext.request.contextPath}/user/userList?page=' + (paging.endPage+value) + '&perPageNum=' + paging.userCri.perPageNum + '&user_nickname=' + paging.userCri.user_nickname + '">&raquo;</a>'
- 		   				                           		   	   +  '</li>';
- 		   				                           	   } 
- 		   				                           	   */
- 		   				                           	   
  		   				                           	   
  		   				          str += '</ul></div></div>';
- 		   				          
+ 		                          } // grid 끝
+ 		                          
+ 		                           
+ 		                          /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 		                           
+ 		                          else if(viewType=='list'){
+ 		                        	  
+ 		                        	 str += '<div class="row user-list-row">';
+                         				for(var i=0;i<list.length;i++){
+                            				
+                            				if(list[i].user_intro==null){
+                            					list[i].user_intro='';
+                            				}
+                            				
+                            				if(list[i].user_tag==null){
+                            					list[i].user_tag='';
+                            				}
+                            			
+                            				str     += '<div class="row col-lg-12">'
+	                              					+		'<div class="col-lg-1 user-view-list-pic">'
+	                              					+			'<div class="picInfo">'
+	                              					+				'<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}">'
+	                              					+ 					'<img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="90" height="90">'
+	                              					+				'</a>'
+	                              					+			'</div>'
+	                              					+		'</div>'
+	                              					+		'<div class="col-lg-8 user-view-list-detail">'
+	                              					+			'<div class="row col-lg-12">'
+	                              					+				'<div class="row col-lg-12 user-detail-attribute user-view-list-title">'
+	                              					+					'<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}">'
+	                              					+							list[i].user_nickname
+	                              					+					'</a>'
+	                              					+					'<div class="col-lg-3 user-detail-attribute">&nbsp;· '
+	                              					+						list[i].user_score
+	                              					+					'</div>'
+	                              					+				'</div>' // user-view-list-title 끝
+	                              					+			'</div>' // col-lg-12 끝
+	                              					+			'<div class="col-lg-12 user-detail-attribute user-intro">'
+	                              					+ 				list[i].user_intro 
+	                              					+ 			'</div>'
+	                              					+			'<div class="col-lg-12 user-detail-attribute user-view-list-tag">'
+	                              					+				'<span class="tag-value">'
+	                              					+					list[i].user_tag
+	                              					+				'</span>'
+	                              					+			'</div>'
+	                              					+		'</div>' // user-view-list-detail 끝
+	                              					+	'</div>' // row col-lg-12 끝
+	                              					+	'<div><hr width="1110px"></div>'
+                         						
+                         				} // for문 끝
+                         				
+                         str += '</div><br>';
+                         
+                         var val = '1';
+                         value = parseInt(val);
+                         
+                         str   += '<div class="search-paging">'
+                         	   +  		'<div class="text-center">'
+                         	   +			'<ul class="pagination justify-content-center">';
+                         	   					
+                         	   					if(paging.prev){
+ 				                           		   str += '<li class="page-item"><a class="page-link" onclick="paging(' + (paging.startPage-value) + ')">&laquo;</a></li>';
+ 				                           	    }
+                         	   					
+                         	   					for(var i=paging.startPage;i<=paging.endPage;i++){
+                         	   						var classStr = paging.userCri.page == i ? 'class=active' : '';
+                         	   					   	str += '<li class="page-item" ' + classStr + '><a class="page-link" onclick="paging(' + i + ')">'
+                         	   					   	   	+  	i
+                         	   					   	   	+  '</li>';
+                         	   					}
+                         	   					if(paging.next){
+                         	   						str += '<li class="page-item"><a class="page-link" onclick="paging(' + (paging.endPage+value) + ')">&raquo;</li>';
+                         	   					}
+ 				                           	   
+ 				          str += '</ul></div></div>';
+                        } // list 끝
+ 		                        	  
+ 		                        	  
+ 		                        	  
+ 		                        	  
  		   				      $(".userList").html(str);
 		                        
                            } // if($("input:text[name=user_nickname]").val()!=''&&  user_nickname=='') 끝
@@ -253,7 +392,9 @@
                
                var page = parseInt('1');
                
-               ajaxList(user_nickname, page);
+               var viewType = "${pageMaker.userCri.viewType}";
+               
+               ajaxList(user_nickname, page, viewType);
                
             
             }); // keyup function 끝
@@ -261,14 +402,17 @@
             function paging(page){
           		
          		 var searchVal = $("input:text[name=user_nickname]").val();
+         		 var viewType = "${pageMaker.userCri.viewType}";
          		
-         		 ajaxList(searchVal, page);
+         		 ajaxList(searchVal, page, viewType);
          		
          	}
             
          
       </script>
-         
+      
+      
+      
       </c:if>
    </div> <!-- list-container 끝 -->
 <div> <!-- main-container 끝 -->

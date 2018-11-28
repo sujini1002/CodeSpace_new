@@ -48,7 +48,7 @@
       
       	<c:if test="${!empty topQuestions}">
          	<div class="result-List">
-            <hr>
+            <hr class="top-hr">
             <c:forEach var="questionList" items="${topQuestions}">
                <div class="row result-row">
                   <div class="col-lg-1 question-viewCnt">
