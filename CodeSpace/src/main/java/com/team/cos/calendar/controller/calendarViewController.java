@@ -1,4 +1,4 @@
-package com.team.cos.calendar.controller;
+/*package com.team.cos.calendar.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,3 +40,4 @@ public class calendarViewController {
 		return modelAndView;
 	}
 }
+*/

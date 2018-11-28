@@ -29,23 +29,26 @@ a:hover {
 	color: red;
 }
 
-table {
+.h_table {
 	width: 600px;
 	border: 1px solid black;
 }
 
-tr {
+.h_table tr {
 	height: 50px;
 }
 
-td {
+.h_table td {
 	width: 80px;
 	margin: 1px;
 	/* border: 1px solid blue; */
 }
 
-.holiday {
+.sun {
 	color: red;
+}
+.sat {
+	color: blue;
 }
 .week{
 	border: 1px solid gray;
@@ -60,9 +63,8 @@ td {
 </head>
 
 <body>
-	<h2>${cal }</h2>
 	<button onclick="today()">오늘 날짜로 이동!</button>
-	<table>
+	<table class = "h_table">
 		<tr>
 			<td colspan="7">
 			
@@ -74,13 +76,13 @@ td {
 			</td>
 		</tr>
 		<tr class="week">
-			<td class="holiday">일</td>
+			<td class="sun">일</td>
 			<td>월</td>
 			<td>화</td>
 			<td>수</td>
 			<td>목</td>
 			<td>금</td>
-			<td class="holiday">토</td>
+			<td class="sat">토</td>
 		</tr>
 		<tbody class="day_of_the_week"></tbody>
 	</table>

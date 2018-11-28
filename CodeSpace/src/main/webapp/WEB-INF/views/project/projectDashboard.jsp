@@ -55,7 +55,62 @@
 <!-- 캘린더와 공지사항 표출 영역  -->
 <table class='table'>
 	<tr>
-		<td>캘린더  <a href="#">더보기</a></td>
+		<td>캘린더  <a href="#">더보기</a>
+		<button onclick="today()">오늘 날짜로 이동!</button>
+	<table class="h_table" style="text-align: center; border: 1px;">
+		<tr>
+			<td colspan="7">
+				<a href="${pageContext.request.contextPath }/userinfo/precal?year=${cal.year-1 }&month=${cal.month }&project_no=${pro_info.project_no }&user_no=${user_info.user_no}">&lt;&lt;</a>&nbsp;
+				<a href="${pageContext.request.contextPath }/userinfo/precal?year=${cal.year }&month=${cal.month-1 }&project_no=${pro_info.project_no }&user_no=${user_info.user_no}">&lt;</a>
+				&nbsp;${cal.year }년 ${cal.month+1 }월&nbsp; 
+				<a href="${pageContext.request.contextPath }/userinfo/postcal?year=${cal.year }&month=${cal.month+1 }&project_no=${pro_info.project_no }&user_no=${user_info.user_no}">&gt;</a>&nbsp;
+				<a href="${pageContext.request.contextPath }/userinfo/postcal?year=${cal.year+1 }&month=${cal.month }&project_no=${pro_info.project_no }&user_no=${user_info.user_no}">&gt;&gt;</a>
+			</td>
+		</tr>
+		<tr class="week">
+			<td class="sun">일</td>
+			<td>월</td>
+			<td>화</td>
+			<td>수</td>
+			<td>목</td>
+			<td>금</td>
+			<td class="sat">토</td>
+		</tr>
+		<tbody class="day_of_the_week"></tbody>
+	</table>
+	<script>
+		$(document).ready(function() {
+			var kk = '${cal}';
+			var day = '${cal.start}' * 1;	//day == 5
+			var startDay = '${cal.startDay}' * 1;	//startDay == 1 
+			var endDay = '${cal.endDay}' * 1;		//endDay == 30
+			var newLine = 0;
+			var str = '<tr>';
+			
+			//달력 앞쪽 공백 출력		   5
+			for ( var i = 1 ; i < day ; i ++ ){
+				str += '<td class="empty_room">&nbsp;</td>';
+				newLine++;
+			}
+			
+			//달력 1일 부터 날짜 계산
+			for ( var i = startDay ; i <= endDay ; i++ ){
+				str += '<td class="h_day">' + i + '</td>';
+				newLine++;
+				if(newLine % 7 == 0){
+					str+='</tr>';
+					$('.day_of_the_week').html(str);
+				}else{
+					$('.day_of_the_week').html(str);
+				}
+			}
+		});
+		
+		function today(){
+			location.href='${pageContext.request.contextPath}/project/prjdash?project_no='+${pro_info.project_no }+'&user_no='+${loginInfo.user_no};
+		}
+	</script>
+	</td>
 		<td>공지사항 <a href="${pageContext.request.contextPath }/project/notice/notice?project_no=${pro_info.project_no }">더보기</a></td>
 	</tr>
 	<tr>

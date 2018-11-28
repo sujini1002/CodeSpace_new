@@ -145,6 +145,42 @@
 	margin-left: -19px;
 	/* font-size: 20px; */
 }
-.h_divcont div{
-	margin-top:3px; 
+
+.h_divcont div {
+	margin-top: 3px;
+}
+	/* @@@여기서 부터 달력@@@ */
+.h_table {
+	width: 600px;
+	border: 1px solid black;
+}
+
+.h_table tr {
+	height: 50px;
+}
+
+.h_table td {
+	width: 80px;
+	margin: 1px;
+	/* border: 1px solid blue; */
+}
+
+.sun {
+	color: red;
+}
+
+.sat {
+	color: blue;
+}
+
+.week {
+	border: 1px solid gray;
+}
+
+.empty_room {
+	border: none;
+}
+
+.h_day:hover {
+	background-color: #867979;
 }
