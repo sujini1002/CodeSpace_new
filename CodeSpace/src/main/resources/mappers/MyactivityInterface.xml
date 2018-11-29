@@ -38,7 +38,18 @@
 </select> 
  
  
- 
+<!-- 내가 북마크 한거 가져오기  -->
+<select id="getMyBmark" resultType="com.team.cos.mypage.vo.MyBookmarkInfo">
+	select q.q_no, q_title, q_regdate, q_viewcnt, q_recommand
+	from question q inner join bookmark b
+	on b.q_no = q.q_no where b.user_no=#{user_no}
+</select>
+
+<!-- 내가 한 북마크 개수 카운트 -->
+<select id="countMyBmark" resultType="int">
+	select count(*) from bookmark
+	where q_no>0 and user_no = #{user_no}
+</select> 
  
  
  
