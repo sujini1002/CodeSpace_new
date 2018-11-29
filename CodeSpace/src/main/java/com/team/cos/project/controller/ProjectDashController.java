@@ -73,16 +73,11 @@ public class ProjectDashController {
 			c1.setTime(list.get(i).getTodolist_startdate());
 			c2.setTime(list.get(i).getTodolist_enddate());
 			while (c1.compareTo(c2) != 1) {
-				System.out.println("출력" + c1.getTime());
-				System.out.println("검사" + Integer.parseInt(sdf.format(c1.getTime())));
 				tmp.add(Integer.parseInt(sdf.format(c1.getTime())));
 				c1.add(Calendar.DATE, 1);
 			}
 			dateList.addAll(tmp);
 		}
-		System.out.println(dateList);
-		System.out.println(dateList.get(0));
-//		System.out.println("@@@"+dateList);
 		modelAndView.addObject("regged_date", dateList);
 		// 여기까지 달력관련!!!!!!!!!!!!!!!!!
 
@@ -102,8 +97,10 @@ public class ProjectDashController {
 	@RequestMapping("/userinfo/postcal")
 	public ModelAndView getPostCal(calendarVo vo, @RequestParam("project_no") int project_no,
 			@RequestParam("user_no") int user_no) {
+		System.out.println("들어오냐?");
 		ModelAndView modelAndView = new ModelAndView();
-
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		
 		// user_no가 포함된 userInfoVO 가져옴
 		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
 		// project_no에 해당하는 프로젝트 정보 가져옴
@@ -124,6 +121,22 @@ public class ProjectDashController {
 		// 달력관련임!!!!!!!!!!!!!!!!
 		calendarVo result = service.changePostCalendar(vo);
 		modelAndView.addObject("cal", result);
+		List<TodolistVO> list = tdlService.h_getTDL(project_no);
+		List<Integer> dateList = new ArrayList<Integer>();
+		List<Integer>tmp = new ArrayList<Integer>();
+
+		for (int i = 0; i < list.size(); i++) {
+			Calendar c1 = Calendar.getInstance();
+			Calendar c2 = Calendar.getInstance();
+			c1.setTime(list.get(i).getTodolist_startdate());
+			c2.setTime(list.get(i).getTodolist_enddate());
+			while (c1.compareTo(c2) != 1) {
+				tmp.add(Integer.parseInt(sdf.format(c1.getTime())));
+				c1.add(Calendar.DATE, 1);	//시작날짜 +1일
+			}
+			dateList.addAll(tmp);
+		}
+		modelAndView.addObject("regged_date", dateList);
 		// 여기까지 달력!!!!!!!!!!!!!!!!!
 
 		// login 사용자 정보 보냄
@@ -136,6 +149,7 @@ public class ProjectDashController {
 		modelAndView.addObject("pm_info", pm_info);
 		modelAndView.setViewName("project/projectDashboard");
 
+		System.out.println("완료했냐?");
 		return modelAndView;
 	}
 
@@ -143,7 +157,8 @@ public class ProjectDashController {
 	public ModelAndView getPreCal(calendarVo vo, @RequestParam("project_no") int project_no,
 			@RequestParam("user_no") int user_no) {
 		ModelAndView modelAndView = new ModelAndView();
-
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		
 		// user_no가 포함된 userInfoVO 가져옴
 		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
 		// project_no에 해당하는 프로젝트 정보 가져옴
@@ -164,6 +179,22 @@ public class ProjectDashController {
 		// 달력관련임!!!!!!!!!!!!!!!!
 		calendarVo result = service.changePreCalendar(vo);
 		modelAndView.addObject("cal", result);
+		List<TodolistVO> list = tdlService.h_getTDL(project_no);
+		List<Integer> dateList = new ArrayList<Integer>();
+		List<Integer>tmp = new ArrayList<Integer>();
+
+		for (int i = 0; i < list.size(); i++) {
+			Calendar c1 = Calendar.getInstance();
+			Calendar c2 = Calendar.getInstance();
+			c1.setTime(list.get(i).getTodolist_startdate());
+			c2.setTime(list.get(i).getTodolist_enddate());
+			while (c1.compareTo(c2) != 1) {
+				tmp.add(Integer.parseInt(sdf.format(c1.getTime())));
+				c1.add(Calendar.DATE, 1);
+			}
+			dateList.addAll(tmp);
+		}
+		modelAndView.addObject("regged_date", dateList);
 		// 여기까지 달력!!!!!!!!!!!!!!!!!
 
 		// login 사용자 정보 보냄

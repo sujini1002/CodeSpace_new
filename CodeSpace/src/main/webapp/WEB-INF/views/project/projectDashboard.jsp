@@ -469,7 +469,6 @@
 	
 	
 		 $(document).ready(function(){
-				var kk = '${cal}';
 				var day = '${cal.start}' * 1;	//day == 5
 				var startDay = '${cal.startDay}' * 1;	//startDay == 1 
 				var endDay = '${cal.endDay}' * 1;		//endDay == 30
@@ -478,7 +477,22 @@
 				var fulldate = ${cal.fulldate};
 				var today = ${cal.today};
 				var regDate = ${regged_date};
+				console.log('시작');
 				console.log(regDate.length);
+				console.log(day);
+				console.log(startDay);
+				console.log(endDay);
+				console.log(fulldate);
+				console.log(today);
+				console.log(regDate);
+				console.log(typeof(regDate.length));
+				console.log(typeof(day));
+				console.log(typeof(startDay));
+				console.log(typeof(endDay));
+				console.log(typeof(fulldate));
+				console.log(typeof(today));
+				console.log(typeof(regDate));
+				console.log('끝');
 				
 				//달력 앞쪽 공백 출력		   5
 				for ( var i = 1 ; i < day ; i ++ ){
@@ -508,7 +522,7 @@
 						if(regDate[i]==fulldate[j]){
 							console.log("들어오냐");
 							var k = fulldate[j];
-							$('.'+k).css('background-color','black');
+							$('.'+k).css({'background-color':'#FF8C00','opacity':'0.6'});
 						}						
 					}
 				} 
