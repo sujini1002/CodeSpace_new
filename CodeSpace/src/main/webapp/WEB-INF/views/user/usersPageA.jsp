@@ -55,7 +55,7 @@
 	<ul class="nav nav-tabs">
 	
 		<li class="nav-item"><a class="nav-link" 
-		href="${pageContext.request.contextPath}/user/usersPage?user_no=${usersInfo.user_no}">질문</a></li>
+		href="${pageContext.request.contextPath}/user/usersPage?user_no=${usersInfo.user_no}" style="color:gray;">질문</a></li>
 		<li class="nav-item"><a class="nav-link active" 
 		href="${pageContext.request.contextPath}/user/usersPageA?user_no=${usersInfo.user_no}">답변</a></li>
 		

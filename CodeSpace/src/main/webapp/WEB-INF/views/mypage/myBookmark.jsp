@@ -15,10 +15,10 @@
 	
 	<ul class="nav nav-pills">
 		<li class="nav-item">
-			<a class="nav-link active" href="${pageContext.request.contextPath}/mypage/mypage">프로필</a></li>
+			<a class="nav-link" href="${pageContext.request.contextPath}/mypage/mypage"  style="color:gray;">프로필</a></li>
 		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-			aria-expanded="false" style="color:gray;">내 활동</a>
+			<a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+			aria-expanded="false" style="color:white;">내 활동</a>
 			<div class="dropdown-menu">
 				<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/myqst?page=1&perPageNum=10&user_no=${loginInfo.user_no}">내가 한 질문</a> 
 				<a class="dropdown-item" href="${pageContext.request.contextPath}/mypage/myans?page=1&perPageNum=10&user_no=${loginInfo.user_no}">내가 한 답변</a> 
