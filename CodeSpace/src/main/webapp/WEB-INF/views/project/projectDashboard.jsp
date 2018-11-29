@@ -56,7 +56,7 @@
 	<tr>
 		<td>캘린더  <a href="#">더보기</a>
 		<button onclick="today()">Today</button>
-		<table class="h_table" style="text-align: center; border: 1px;">
+		<table class="h_table" style="text-align: center; border: 1px; background-color: white;">
 			<tr>
 				<td colspan="7">
 					<a href="${pageContext.request.contextPath }/userinfo/precal?year=${cal.year-1 }&month=${cal.month }&project_no=${pro_info.project_no }&user_no=${user_info.user_no}">&lt;&lt;</a>&nbsp;
