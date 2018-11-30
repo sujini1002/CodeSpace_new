@@ -18,7 +18,7 @@
 	<!--  여기다가 작성 해주세요 -->
 
 	<script>
-		$(function() {
+		/* $(function() {
 			//클래스가 draggable인 요소에 드래그 기본 함수를 적용한다.
 			$(".todoPost").draggable({
 				cursor : "move",
@@ -27,12 +27,8 @@
 				snap : true
 			});
 
-			$(".todoPost").droppable({
-				drop:function(event, ui){
-					$(this).css('background-color', 'orange');
-				}
-			});
-
+			
+		
 			/* 	//  dragtest이벤트는 드래그가 시작하면 발생
 				$("#draggable").bind("dragstart", function(event, ui) {
 					$(this).addClass("invert");//   invert 클래스가 적용되어 배경 이미지가 변경됨
@@ -41,18 +37,33 @@
 				//  dragstop이벤트는 드래그가 멈추면 발생
 				$("#draggable").bind("dragstop", function(event, ui) {
 					$(this).removeClass("invert");//   invert클래스가 제거되어 원래 배경이미지로 돌아감
-				}); */
+				}); 
+		});  */
+		
+		$(function() {
+			$("#animateBtn").on("click", function() {
+				$(".todoPost1").animate(		// 클래스가 "todoPost1"인 요소를
+					{
+						left: "+=100",		// 오른쪽으로 100픽셀 이동하고,
+						opacity: 0.2		// 투명도를 0.2로 변경함.
+					}, 500
+				);
+			});
 		});
+		
+		
+		
 	</script>
 
 	<div class="col-3" style="background-color: gray">
 		<h1>to do</h1>
-		<div class="todoPost"
+		<div class="todoPost1"
 			style="width: 200px; background-color: lightgoldenrodyellow; border: 1px solid black; box-shadow: 2px 2px 2px">
 			<p>담당자 : 유자영</p>
 			<p>할 일 : 작업지시</p>
 			<p>시작일</p>
 			<p>종료일</p>
+			<button id="animateBtn">진행 시작</button>
 		</div>
 
 		<div class="todoPost"
