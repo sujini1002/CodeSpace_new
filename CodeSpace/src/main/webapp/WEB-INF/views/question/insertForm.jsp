@@ -24,10 +24,14 @@
 		</td>
 	</tr>
 	<tr>
-		<td>
-			<input type="text" name="q_tag"  id="q_tag" placeholder="태그를 입력해 주세요"  class="form-control" required/>
-		</td>
-	</tr>
+			<td>
+			 	<ul id="myTags">
+					<!-- Existing list items will be pre-added to the tags -->
+					<!-- <li>Tag1</li>
+					<li>Tag2</li> -->
+				</ul>
+			</td>
+		</tr>
 	<tr>
 		<td>
 			<button id="k_save" class="btn btn-primary">등록하기</button>
@@ -37,7 +41,12 @@
 	
 
 </table>
-<script>
+	<script type="text/javascript">
+	 $(document).ready(function() {
+	        $("#myTags").tagit();
+	    });
+	</script>
+	<script>
 	
 	var toolbarOptions =[
 		['bold','italic','underline','strike'],
@@ -65,15 +74,15 @@
 		var title = $('#q_title').val();
 		var user_no = $('#user_no').val();
 		var content = JSON.stringify(quill.getContents());
-		var tag = $('#q_tag').val();
 		var nickname=$('#user_nickname').val();
-		//테스트
-		/*console.log(title);
-		console.log(user_no);
-		console.log(content);
-		console.log(typeof content);
-		console.log(tag);*/
-		$.ajax({
+		var tag = '';
+		$('input[name="tags"]').each(function(i){
+			tag += $('input[name="tags"]').eq(i).attr('value');
+			if(i!= $('input[name="tags"]').length-1){
+				tag += '/';
+			}
+		});
+		 $.ajax({
 			url:'${pageContext.request.contextPath}/question/insertQuestion',
 			type:'POST',
 			data:{
@@ -91,7 +100,7 @@
 			error:function(){
 				alert('불행하게도 에러입니다 ㅠㅠ');
 			}
-		}); 
+		});
 	});
 </script>
 <jsp:include page="../common/layout_footer.jsp" />

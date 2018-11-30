@@ -20,10 +20,8 @@
 	<!-- 태그 -->
 	<tr>
 		<td></td>
-		<td style="height: 70px">
-			<button type="button" class="btn k_qtagBtn">${questionInfo.q_tag}</button>
-			<input type="text" class="form-control" id="k_qtag"
-			value="${questionInfo.q_tag}" />
+		<td style="height: 70px" id="k_qTag">
+			
 			<hr>
 		</td>
 
@@ -85,49 +83,7 @@
 			</div> 
 			<div id="k_regdate" style="float:right"><p>${questionInfo.q_regdate}</p></div> 
 
-			<script>
-				var delta = JSON.parse($('#k_questionText').val());
-
-				var toolbarOptions = [
-						[ 'bold', 'italic', 'underline', 'strike' ],
-						[ 'blockquote', 'code-block' ], [ {
-							'header' : [ 1, 2, 3, 4, 5, 6, false ]
-						} ], [ {
-							'list' : 'ordered'
-						}, {
-							'list' : 'bullet'
-						} ], [ {
-							'script' : 'sub'
-						}, {
-							'script' : 'super'
-						} ], [ {
-							'indent' : '-1'
-						}, {
-							'indent' : '+1'
-						} ], [ {
-							'direction' : 'rtl'
-						} ], [ 'link', 'image', 'formula' ], [ {
-							'color' : []
-						}, {
-							'background' : []
-						} ], [ {
-							'font' : []
-						} ], [ {
-							'align' : []
-						} ] ];
-
-				var Questionquill = new Quill('#editor', {
-					modules : {
-						toolbar : toolbarOptions
-					},
-					theme : 'snow'
-				});
-
-				$('.ql-toolbar').css('visibility', 'hidden');
-				$('#editor').css('border', 'none');
-				Questionquill.setContents(delta);
-				Questionquill.enable(false);
-			</script>
+			
 		</td>
 	</tr>
 	<tr>
@@ -169,6 +125,19 @@
 
   </div>
 </div>
+<!-- 로드시 태그 가져오기 -->
+<script>
+	$(document).ready(function(){
+		var tags = '${questionInfo.q_tag}';
+		var tagArr = tags.split("/");
+		
+		for(var i =0 ;i<tagArr.length;i++){
+			if(tagArr[i]!= ''){
+				$('#k_qTag').append('<button type="button" class="btn k_qtagBtn" id="k_qtagBtnId_'+i+'">'+tagArr[i]+'</button>');
+			}
+		}
+	});
+</script>
 <!-- 북마크 -->
 <script>
 	function k_bookmark(){
@@ -344,6 +313,49 @@
 			}
 		});//end ajax;
 	}//end k_questiondelete()
+</script>
+<script>
+				var delta = JSON.parse($('#k_questionText').val());
+
+				var toolbarOptions = [
+						[ 'bold', 'italic', 'underline', 'strike' ],
+						[ 'blockquote', 'code-block' ], [ {
+							'header' : [ 1, 2, 3, 4, 5, 6, false ]
+						} ], [ {
+							'list' : 'ordered'
+						}, {
+							'list' : 'bullet'
+						} ], [ {
+							'script' : 'sub'
+						}, {
+							'script' : 'super'
+						} ], [ {
+							'indent' : '-1'
+						}, {
+							'indent' : '+1'
+						} ], [ {
+							'direction' : 'rtl'
+						} ], [ 'link', 'image', 'formula' ], [ {
+							'color' : []
+						}, {
+							'background' : []
+						} ], [ {
+							'font' : []
+						} ], [ {
+							'align' : []
+						} ] ];
+
+				var Questionquill = new Quill('#editor', {
+					modules : {
+						toolbar : toolbarOptions
+					},
+					theme : 'snow'
+				});
+
+				$('.ql-toolbar').css('visibility', 'hidden');
+				$('#editor').css('border', 'none');
+				Questionquill.setContents(delta);
+				Questionquill.enable(false);
 </script>
 <!-- 답변 리스트  인클루드 하기 -->
 <%@include file="../answer/answerForm.jsp"%>

@@ -23,6 +23,9 @@
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="${pageContext.request.contextPath}/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+<script src="${pageContext.request.contextPath}/js/tag-it-min.js" type="text/javascript" charset="utf-8"></script>
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -36,9 +39,10 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/yu.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/lee.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ha.css">
-
-<!-- 구글 로그인 api -->
-
+<!-- tag it css -->
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+<link href="${pageContext.request.contextPath}/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
 <!-- 구글폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Myeongjo" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
