@@ -21,7 +21,9 @@
 	<tr>
 		<td></td>
 		<td style="height: 70px" id="k_qTag">
-			
+			<ul id="k_qTagUl">
+				
+			</ul>
 			<hr>
 		</td>
 
@@ -134,6 +136,7 @@
 		for(var i =0 ;i<tagArr.length;i++){
 			if(tagArr[i]!= ''){
 				$('#k_qTag').append('<button type="button" class="btn k_qtagBtn" id="k_qtagBtnId_'+i+'">'+tagArr[i]+'</button>');
+				$('#k_qTagUl').append('<li>'+tagArr[i]+'</li>');
 			}
 		}
 	});
@@ -244,7 +247,8 @@
 			//태그 및 제목 수정 가능
 			$('#k_qTitle').css('display', 'none');
 			$('.k_qtagBtn').css('display', 'none');
-			$('#k_qtag').css('display', 'inline-block');
+			$("#k_qTagUl").css('visibility','visible');
+			$("#k_qTagUl").tagit();
 			$('#k_qtitleForm').css('display', 'inline-block');
 			//삭제 버튼 숨기기
 			$('#k_questionDelete').css('visibility', 'hidden');
@@ -256,7 +260,13 @@
 			qno *= 1;
 			var title = $('#k_qtitleForm').val();
 			var content = JSON.stringify(Questionquill.getContents());
-			var tag = $('#k_qtag').val();
+			var tag = '';
+			$('input[name="tags"]').each(function(i){
+				tag += $('input[name="tags"]').eq(i).attr('value');
+				if(i!= $('input[name="tags"]').length-1){
+					tag += '/';
+				}
+			});
 
 			$.ajax({
 						url : '${pageContext.request.contextPath}/question/updateQuestion',

@@ -53,5 +53,8 @@
 #k_qTag>button{
 	margin-right:10px;
 }
+#k_qTagUl{
+	visibility: hidden;
+}
 
 
