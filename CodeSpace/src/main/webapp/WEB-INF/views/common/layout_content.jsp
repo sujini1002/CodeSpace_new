@@ -25,7 +25,9 @@
 				<li><a class="nav-link" href="#"><i class="fas fa-hashtag" style="color:white;">&nbsp;&nbsp;태그</i></a></li>
 				<li><a class="nav-link"
 					href="${pageContext.request.contextPath}/project/prjreg?user_no=${loginInfo.user_no}"><i class="fas fa-project-diagram" style="color:white;">&nbsp;&nbsp;프로젝트</i></a></li>
-				<li><a class="nav-link" onclick="chatwindow()"><i class="fas fa-comment" style="color:white;">&nbsp;&nbsp;채팅(미구현)</i></a></li>
+				<li><a class="nav-link" 
+				href="${pageContext.request.contextPath}/news/news"><i class="fas fa-info-circle" style="color:white;">&nbsp;&nbsp;소식</i></a></li>
+				<!-- <li><a class="nav-link" onclick="chatwindow()"><i class="fas fa-comment" style="color:white;">&nbsp;&nbsp;채팅(미구현)</i></a></li> -->
 
 				 <%-- <c:if test="${!loginInfo.isEmpty() }"> 
 					<li><a class="nav-link" href="#">프로젝트</a></li>
