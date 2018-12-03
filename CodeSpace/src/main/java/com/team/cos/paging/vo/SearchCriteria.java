@@ -7,6 +7,15 @@ public class SearchCriteria{
 	private int page; 			// 페이지 번호
 	private int perPageNum; 	// 페이지 당 보여지는 데이터 개수
 	private String filter;		// 게시판 보기 방식
+	private int user_no;		// 프로젝트용
+
+	public int getUser_no() {
+		return user_no;
+	}
+
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
 
 	public SearchCriteria() {
 		this.page = 1; // 페이지 번호는 1

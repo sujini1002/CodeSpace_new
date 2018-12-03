@@ -41,4 +41,24 @@ public class PagingService {
 	   
    }
    
+   // 프로젝트
+   public List projectListCriteria(SearchCriteria cri) {
+	      
+	      pagingDao = sqlSessionTemplate.getMapper(PagingDaoInterface.class);
+	      
+	      List list = pagingDao.projectListCriteria(cri);
+	      
+	      return list;
+   }
+   
+   public int projectListCountCriteria(SearchCriteria cri) {
+	   
+	   pagingDao = sqlSessionTemplate.getMapper(PagingDaoInterface.class);
+	   
+	   int resultCnt = pagingDao.projectCountPaging(cri);
+	   
+	   return resultCnt;
+	   
+   }
+   
 }

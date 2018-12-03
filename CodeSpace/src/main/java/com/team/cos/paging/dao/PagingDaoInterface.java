@@ -11,4 +11,8 @@ public interface PagingDaoInterface {
 	
 	public int countPaging(SearchCriteria cri); 	// 전체 게시물을 Count 하기 위한 쿼리
 	
+	// 프로젝트 
+	public List projectListCriteria(SearchCriteria cri);
+	public int projectCountPaging(SearchCriteria cri);
+	
 }

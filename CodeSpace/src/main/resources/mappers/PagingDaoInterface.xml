@@ -19,6 +19,21 @@
 	<select id="countPaging" resultType="int">
 		select count(q_no) from question where q_no > 0
 	</select>
-
+	
+	
+	<!-- //////////////// 프로젝트 ////////////////////// -->
+	<select id="projectListCriteria" parameterType="int" resultType="com.team.cos.project.vo.ProjectInfoVO">
+		select  distinct p.project_no, project_title, project_content, project_status, project_startdate, project_enddate from project p
+		left join project_member m
+		on p.project_no = m.project_no
+		where p.pm_no=#{user_no} or m.member_no=#{user_no}
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	<select id="projectCountPaging" resultType="int">
+		select  distinct count( p.project_no) from project p
+		left join project_member m
+		on p.project_no = m.project_no
+		where p.pm_no=#{user_no} or m.member_no=#{user_no}
+	</select>
 
 </mapper>

@@ -8,11 +8,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.cos.paging.service.PagingService;
+import com.team.cos.paging.vo.PageMaker;
+import com.team.cos.paging.vo.SearchCriteria;
 import com.team.cos.project.service.ProjectRegService;
 import com.team.cos.project.service.UserProjectViewService;
 import com.team.cos.project.vo.ProjectInfoVO;
@@ -29,9 +33,14 @@ public class ProjectRegController {
 	private UserProjectViewService userProInfoService;
 	@Autowired
 	private UserInfoCheckService userInfoService;
+	// 페이징
+	@Autowired
+	private PagingService pagingService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView projectRegForm(@RequestParam("user_no") int user_no) {
+	public ModelAndView projectRegForm(
+			@RequestParam("user_no") int user_no,
+			@ModelAttribute("cri") SearchCriteria cri) {
 		
 		//user_no가 포함된 userInfoVO 가져옴
 		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
@@ -59,12 +68,23 @@ public class ProjectRegController {
 			}
 		} 
 		
+		// 페이징처리
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setSearchCri(cri);
+		
+		pageMaker.setTotalCount(pagingService.projectListCountCriteria(cri));
+		
+
+		
 		
 		
 		ModelAndView modelAndView = new ModelAndView();
 		// 로그인한 사용자가 참여중인 프로젝트 리스트 모두 전달
-		modelAndView.addObject("userJoinProjects", userJoinProjects);
+		//modelAndView.addObject("userJoinProjects", userJoinProjects);
 		modelAndView.addObject("user_info", user_info);
+		// 페이징처리
+		modelAndView.addObject("userJoinProjects", pagingService.projectListCriteria(cri));
+		modelAndView.addObject("pageMaker", pageMaker);
 		
 		modelAndView.setViewName("project/projectReg");
 
