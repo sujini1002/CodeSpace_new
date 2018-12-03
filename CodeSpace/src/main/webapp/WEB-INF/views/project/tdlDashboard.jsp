@@ -178,7 +178,7 @@
 			for (var i = 0, len = list.length || 0; i < len; i++) {
 				if(list[i].todolist_status=="todo"){
 					var todoStr = "<p>";
-						todoStr += "<a data-toggle='modal' href='#modifyTodolist' class='oneTodo' onclick='getInfo(this)' data-todolist_no=";
+						todoStr += "<a data-toggle='modal' href='#modifyTodolist' class='oneTodo' data-todolist_no=";
 						todoStr += list[i].todolist_no+">"+list[i].todolist_content+"</a><br>";
 						todoStr += "담당자: "+list[i].user_name+"<br>" ;
 						todoStr += "마감일: "+tdlService.displayTime(list[i].todolist_enddate)+"까지<br>" ;
@@ -293,7 +293,14 @@
 	})();
 	
 	//to do list '추가하기' 버튼 클릭 시 project_no에 해당하는 member_no 가져와서 selectbox에 뿌리기
-	$("#todolistForm").on("click", function(e){
+	$("#todolistForm").on("click", getMember);
+	$(".oneTodo").on("click", getInfo);
+	
+	function getMember(e){
+		e.preventDefault();
+		//버튼 클릭할 때 마다 ajax 요청하는 것 취소시킴
+		$(this).off('click');
+		
 		var project_noValue = ${project_no};
 		var manager = $("#tdlmanager_no");
 		//var str= "<option value="+${user_no}+">"+${user_no}+"</option>"
@@ -307,20 +314,37 @@
 			}
 			manager.append(str);
 		})
-	})
+	}
 	
 	
 	//to do list title 클릭 시 todolist_no에 해당하는 todolist 정보 가져와서 보여주기
 	function getInfo(e){
+		e.preventDefault();
+		//버튼 클릭할 때 마다 ajax 요청하는 것 취소시킴
+		$(this).off('click');
+		
+		var project_noValue = ${project_no};
+		var manager = $("#modify_tdlmanager_no");
+		tdlService.getProjectMember({
+			project_no:project_noValue
+		}, function(list){
+			var str = "";
+			for(var i=0, len=list.length||0; i<len; i++){
+				str += "<option value="+list[i].member_no+">"+list[i].user_name+"</option>"
+			}
+			manager.append(str);
+		})
+		str="";
+
 		//클릭한 todolist_no 저장
-		var todolist_no = $(e).data("todolist_no");
+		var todolist_no = $(this).data("todolist_no");
 		
 		tdlService.getTodolistInfo({
 			todolist_no : todolist_no
 		}, function(info){
 			console.log(info);
 			$("#modify_project_no").val(info.project_no);
-			$("#modify_tdlmanager_no").val(info.tdlmanager_no);		
+			//$("#modify_tdlmanager_no").val(info.tdlmanager_no);		
 			$("#modify_todolist_content").val(info.todolist_content);
 			$("#modify_todolist_status").val(info.todolist_status);
 			//$("#tdlstring_enddate").val() = info.todolist_enddate

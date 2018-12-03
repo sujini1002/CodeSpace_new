@@ -110,7 +110,7 @@
         	<span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="/cos/project/projectUpdate" method="post">
+      <form action="/cos/project/projectUpdate" method="post" autocomplete=off>
 	      <!-- project Info 수정 -->
 	      <div class="modal-body">
 	      	<!-- 사용자 번호 -->
@@ -130,7 +130,7 @@
 	      	<!-- 종료 일정 -->
 			<div class="form-group">
 				<label>종료 날짜</label>
-				<input type="date" class="form-control" name="prostring_enddate" value="${pro_info.prostring_enddate }">
+				<input type="date" class="form-control" id="datepicker" name="prostring_enddate" value="${pro_info.prostring_enddate }">
 			</div>
 	      </div>
 	      <div class="modal-footer">
@@ -281,7 +281,6 @@
 	      	<ul class="list-group">
 	      		<li class="list-group-item d-flex justify-content-between align-items-center">
 	      			<span style="color:blue;">${pm_info.user_nickname} (PM)
-	      			<a href="#" class="badge badge-light">x</a></span>
 	      		</li>
 	      	<c:forEach var="item" items="${member_info }">
 	      		<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -317,6 +316,15 @@
   <script src="../js/jquery.autocomplete.multiselect.js"></script>
 
 <script>
+
+	$(function(){    
+	    $('#datepicker').datepicker({
+	    	container: '#inputDate',
+	    	dateFormat : 'yy-mm-dd',
+	    	minDate : 0
+	    });
+	});
+
 	var project_noValue = '<c:out value="${pro_info.project_no}" />';
 	var tdlUL = $("#tdlboard");
 	

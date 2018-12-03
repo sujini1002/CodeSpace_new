@@ -41,6 +41,14 @@ public class ProjectUpdateController {
 
 		// project_no에 해당하는 정보 저장하여 projectModifyForm에 뿌려줄 예정
 		ProjectInfoVO pro_info = service.selectProList(project_no);
+		
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String start="";
+		String end="";
+		start = transFormat.format(pro_info.getProject_startdate());
+		end = transFormat.format(pro_info.getProject_enddate());
+		pro_info.setProstring_startdate(start);
+		pro_info.setProstring_enddate(end);
 
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("pro_info", pro_info);

@@ -125,12 +125,12 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">프로젝트 내용 수정하기</h4>
+        <h4 class="modal-title">프로젝트 생성하기</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         	<span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="/cos/project/prjreg" method="post">
+      <form action="/cos/project/prjreg" method="post" autocomplete=off>
      	<!-- project_member db 저장을 위한 현재 로그인한 사용자 no 가져옴
 		현재 로그인한 사용자가 프로젝트를 생성하므로, pm_no로 지정됨 -->
       	<input type="hidden" name="pm_no" value="${user_info.user_no}">
@@ -186,13 +186,6 @@ $(function(){
     
 
     
-    
-    
-</script> 
-
-
-
-<script>
 
 
 
