@@ -12,7 +12,7 @@ import com.team.cos.paging.vo.SearchCriteria;
 public class PagingService { 
        
    @Autowired  
-   SqlSessionTemplate sqlSessionTemplate;
+   private SqlSessionTemplate sqlSessionTemplate;
    
    private PagingDaoInterface pagingDao;
    

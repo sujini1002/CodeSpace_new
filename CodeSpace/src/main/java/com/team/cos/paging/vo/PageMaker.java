@@ -103,7 +103,8 @@ public class PageMaker {
 	public String makeQuery(int page) throws Exception {
 
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
-				.queryParam("perPageNum", searchCri.getPerPageNum()).build();
+				.queryParam("perPageNum", searchCri.getPerPageNum())
+				.queryParam("filter", searchCri.getFilter()).build();
 
 		return uriComponents.toUriString();
 	}

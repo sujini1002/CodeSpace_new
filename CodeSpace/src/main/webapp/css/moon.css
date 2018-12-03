@@ -119,6 +119,10 @@
 	font-weight:bold;
 }
 
+.user-list-score{
+	font-weight:bold;
+}
+
 
 .userSearchBar {
 	display: inline-block;
@@ -136,7 +140,6 @@
 
 .user-view-filter a:link, .list-view-filter a:link{
 	text-decoration: none;
-	color: white;
 }
 
 .all-questions-cnt{

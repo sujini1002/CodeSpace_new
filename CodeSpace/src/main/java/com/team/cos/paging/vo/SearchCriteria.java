@@ -4,12 +4,14 @@ public class SearchCriteria{
 	
 	private String searhType;
 	private String keyword;
-	private int page; // 페이지 번호
-	private int perPageNum; // 페이지 당 보여지는 데이터 개수
+	private int page; 			// 페이지 번호
+	private int perPageNum; 	// 페이지 당 보여지는 데이터 개수
+	private String filter;		// 게시판 보기 방식
 
 	public SearchCriteria() {
 		this.page = 1; // 페이지 번호는 1
 		this.perPageNum = 10; // 페이지 당 보여지는 데이터 개수는 10으로 초기화
+		this.filter = "q_regdate";
 	}
 
 	public void setPage(int page) {
@@ -55,11 +57,23 @@ public class SearchCriteria{
 		this.keyword = keyword;
 	}
 
+	public String getFilter() {
+		return filter;
+	}
+
+	public void setFilter(String filter) {
+		this.filter = filter;
+	}
+
 	@Override
 	public String toString() {
 		return "SearchCriteria [searhType=" + searhType + ", keyword=" + keyword + ", page=" + page + ", perPageNum="
-				+ perPageNum + "]";
+				+ perPageNum + ", filter=" + filter + "]";
 	}
+	
+	
+
+
 	
 	
 	

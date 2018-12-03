@@ -8,7 +8,7 @@
 	<select id="getTopQuestion" resultType="com.team.cos.question.vo.QuestionInfo">
 		select * from question 
 		where q_no > 0
-		order by q_regdate desc
+		order by q_regdate desc, q_no desc
 		limit 20
 	</select>
 

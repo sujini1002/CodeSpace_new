@@ -25,14 +25,41 @@
 				<div class="list-view-filter">
 					<table>
 						<tr>
-							<td><a href="#">최신 순</a></td>
-							<td><a href="#">조회 순</a></td>
-							<td><a href="#">추천 순</a></td>
+							<td><a href="#" onclick="viewNewest()">최신 순</a></td>
+							<td><a href="#" onclick="viewHit()">조회 순</a></td>
+							<td><a href="#" onclick="viewRecommend()">추천 순</a></td>
 						</tr>
 					</table>
 				</div>
 			</div>
 			
+			<script>
+				function viewNewest(){
+		       		
+	       			var filter="q_regdate";
+	       		
+	       			location.href="${pageContext.request.contextPath}/questions/questions?filter="+filter;
+	       		
+	       		}
+				
+				function viewHit(){
+		       		
+	       			var filter="q_viewcnt";
+	       		
+	       			location.href="${pageContext.request.contextPath}/questions/questions?filter="+filter;
+	       		
+	       		}
+				
+				function viewRecommend(){
+		       		
+	       			var filter="q_recommand";
+	       		
+	       			location.href="${pageContext.request.contextPath}/questions/questions?filter="+filter;
+	       		
+	       		}
+	       		
+	       		
+			</script>
 		</div>
 
 		<div class="list-container">
@@ -65,8 +92,9 @@
 								<span class="result-tag"><a href="#"><h6>${questionList.q_tag}</h6></a></span>
 							</div>
 							<!-- question-title 끝 -->
-							<div class="col-lg-2 question-info">
+							<div class="col-lg-3 question-info">
 								<a href="#">${questionList.user_nickname}</a>
+								<div>${questionList.q_regdate}</div>
 							</div>
 						</div>
 						<!-- 게시글 row행 끝 -->
