@@ -52,11 +52,12 @@
 </div>
 
 <!-- 캘린더와 공지사항 표출 영역  -->
+<h1>${regged_date }</h1>
 <table class='table'>
 	<tr>
 		<td>캘린더  <a href="#">더보기</a>
 		<button onclick="today()">Today</button>
-		<table class="h_table" style="text-align: center; border: 1px; background-color: white;">
+		<table class="h_table" style="text-align: center; border: 1px solid black; background-color: white;">
 			<tr>
 				<td colspan="7">
 					<a href="${pageContext.request.contextPath }/userinfo/precal?year=${cal.year-1 }&month=${cal.month }&project_no=${pro_info.project_no }&user_no=${user_info.user_no}">&lt;&lt;</a>&nbsp;
@@ -484,24 +485,11 @@
 				var str = '<tr>';
 				var fulldate = ${cal.fulldate};
 				var today = ${cal.today};
-				var regDate = ${regged_date};
-				console.log('시작');
-				console.log(regDate.length);
-				console.log(day);
-				console.log(startDay);
-				console.log(endDay);
-				console.log(fulldate);
-				console.log(today);
+				var regDate =${regged_date[0].startDate};
+				var color = ['red','orange','yellow','green','blue','purple'];
 				console.log(regDate);
-				console.log(typeof(regDate.length));
-				console.log(typeof(day));
-				console.log(typeof(startDay));
-				console.log(typeof(endDay));
-				console.log(typeof(fulldate));
-				console.log(typeof(today));
-				console.log(typeof(regDate));
-				console.log('끝');
-				
+				console.log(typeof fulldate);
+				console.log(typeof fulldate[0]);
 				//달력 앞쪽 공백 출력		   5
 				for ( var i = 1 ; i < day ; i ++ ){
 					str += '<td class="empty_room">&nbsp;</td>';
@@ -509,7 +497,7 @@
 				}
 				//달력 1일 부터 날짜 계산
 				for ( var i = startDay ; i <= endDay ; i++ ){
-					if(today == fulldate[i]){
+					if(today == fulldate[i-1]){
 						str += '<td class="h_day ' + fulldate[i-1] + '"style="background-color: green;" >' + i + '</td>';
 						newLine++;
 					}else{
@@ -526,14 +514,12 @@
 				
 				for(var i = 0 ; i < regDate.length ; i++){
 					for(var j = 0 ; j <= endDay-1; j++){
-						console.log('여긴 들어오냐?');
 						if(regDate[i]==fulldate[j]){
-							console.log("들어오냐");
 							var k = fulldate[j];
-							$('.'+k).css({'background-color':'#FF8C00','opacity':'0.6'});
+							$('.'+k).css({'background-color':color[ i % 6 ],'opacity':'0.6'});
 						}						
 					}
-				} 
+				}
 				
 				function today(){
 					location.href='${pageContext.request.contextPath}/project/prjdash?project_no='+${pro_info.project_no }+'&user_no='+${loginInfo.user_no};

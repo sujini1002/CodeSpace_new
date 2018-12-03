@@ -152,17 +152,16 @@
 	/* @@@여기서 부터 달력@@@ */
 .h_table {
 	width: 600px;
-	/* border: 1px solid black; */
 }
 
 .h_table tr {
 	height: 50px;
+	border: 1px solid #dee2e6;
 }
 
 .h_table td {
 	width: 80px;
 	margin: 1px;
-	/* border: 1px solid blue; */
 }
 
 .sun {

@@ -12,7 +12,7 @@ public class calendarVo {
 	private int newLine;
 	private int today;
 	private List<Integer> arrayDay;
-	private List<Integer> fulldate;
+	private List<String> fulldate;
 
 	public int getYear() {
 		return year;
@@ -86,11 +86,11 @@ public class calendarVo {
 		this.arrayDay = arrayDay;
 	}
 
-	public List<Integer> getFulldate() {
+	public List<String> getFulldate() {
 		return fulldate;
 	}
 
-	public void setFulldate(List<Integer> fulldate) {
+	public void setFulldate(List<String> fulldate) {
 		this.fulldate = fulldate;
 	}
 

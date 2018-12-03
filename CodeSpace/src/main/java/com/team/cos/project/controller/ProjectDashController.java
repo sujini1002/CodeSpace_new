@@ -18,6 +18,7 @@ import com.team.cos.project.service.TDLViewService;
 import com.team.cos.project.service.calendarViewService;
 import com.team.cos.project.vo.ProjectInfoVO;
 import com.team.cos.project.vo.ProjectMemberVO;
+import com.team.cos.project.vo.TDLVo;
 import com.team.cos.project.vo.TodolistVO;
 import com.team.cos.project.vo.calendarVo;
 import com.team.cos.userinfo.service.UserInfoCheckService;
@@ -40,7 +41,7 @@ public class ProjectDashController {
 //	@RequestMapping("/project/prjdash")
 	@RequestMapping(value = "/project/prjdash", method = RequestMethod.GET)
 	public ModelAndView getProDashboard(calendarVo vo, @RequestParam("project_no") int project_no,
-			@RequestParam("user_no") int user_no) {
+			@RequestParam("user_no") int user_no) throws CloneNotSupportedException {
 		ModelAndView modelAndView = new ModelAndView();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		// user_no가 포함된 userInfoVO 가져옴
@@ -64,23 +65,36 @@ public class ProjectDashController {
 		calendarVo result = service.viewCalendar(vo);
 		modelAndView.addObject("cal", result);
 		List<TodolistVO> list = tdlService.h_getTDL(project_no);
-		List<Integer> dateList = new ArrayList<Integer>();
-		List<Integer>tmp = new ArrayList<Integer>();
 
+		System.out.println(list);
+
+		List<TDLVo> dateList = new ArrayList<TDLVo>();
+		List<Integer> tmp = new ArrayList<Integer>();
+		
+		
 		for (int i = 0; i < list.size(); i++) {
+			TDLVo temp = new TDLVo();
 			Calendar c1 = Calendar.getInstance();
 			Calendar c2 = Calendar.getInstance();
 			c1.setTime(list.get(i).getTodolist_startdate());
 			c2.setTime(list.get(i).getTodolist_enddate());
-			while (c1.compareTo(c2) != 1) {
+			/*while (c1.compareTo(c2) != 1) {
 				tmp.add(Integer.parseInt(sdf.format(c1.getTime())));
 				c1.add(Calendar.DATE, 1);
-			}
-			dateList.addAll(tmp);
+			}*/
+			temp.setStartDate(sdf.format(c1.getTime()));
+			temp.setEndDate(sdf.format(c2.getTime()));
+			System.out.println("@@@"+temp);
+			dateList.add(temp);
+			System.out.println("dateList:"+dateList);
 		}
+		System.out.println("@@" + dateList);
+		System.out.println(dateList.get(0));
+		System.out.println(dateList.get(1));
 		modelAndView.addObject("regged_date", dateList);
 		// 여기까지 달력관련!!!!!!!!!!!!!!!!!
 
+		
 		// login 사용자 정보 보냄
 		modelAndView.addObject("user_info", user_info);
 		// project 정보 보냄
@@ -97,10 +111,9 @@ public class ProjectDashController {
 	@RequestMapping("/userinfo/postcal")
 	public ModelAndView getPostCal(calendarVo vo, @RequestParam("project_no") int project_no,
 			@RequestParam("user_no") int user_no) {
-		System.out.println("들어오냐?");
 		ModelAndView modelAndView = new ModelAndView();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		
+
 		// user_no가 포함된 userInfoVO 가져옴
 		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
 		// project_no에 해당하는 프로젝트 정보 가져옴
@@ -123,7 +136,7 @@ public class ProjectDashController {
 		modelAndView.addObject("cal", result);
 		List<TodolistVO> list = tdlService.h_getTDL(project_no);
 		List<Integer> dateList = new ArrayList<Integer>();
-		List<Integer>tmp = new ArrayList<Integer>();
+		List<Integer> tmp = new ArrayList<Integer>();
 
 		for (int i = 0; i < list.size(); i++) {
 			Calendar c1 = Calendar.getInstance();
@@ -132,7 +145,7 @@ public class ProjectDashController {
 			c2.setTime(list.get(i).getTodolist_enddate());
 			while (c1.compareTo(c2) != 1) {
 				tmp.add(Integer.parseInt(sdf.format(c1.getTime())));
-				c1.add(Calendar.DATE, 1);	//시작날짜 +1일
+				c1.add(Calendar.DATE, 1); // 시작날짜 +1일
 			}
 			dateList.addAll(tmp);
 		}
@@ -158,7 +171,7 @@ public class ProjectDashController {
 			@RequestParam("user_no") int user_no) {
 		ModelAndView modelAndView = new ModelAndView();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		
+
 		// user_no가 포함된 userInfoVO 가져옴
 		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
 		// project_no에 해당하는 프로젝트 정보 가져옴
@@ -178,10 +191,11 @@ public class ProjectDashController {
 		}
 		// 달력관련임!!!!!!!!!!!!!!!!
 		calendarVo result = service.changePreCalendar(vo);
+		System.out.println(result);
 		modelAndView.addObject("cal", result);
 		List<TodolistVO> list = tdlService.h_getTDL(project_no);
 		List<Integer> dateList = new ArrayList<Integer>();
-		List<Integer>tmp = new ArrayList<Integer>();
+		List<Integer> tmp = new ArrayList<Integer>();
 
 		for (int i = 0; i < list.size(); i++) {
 			Calendar c1 = Calendar.getInstance();

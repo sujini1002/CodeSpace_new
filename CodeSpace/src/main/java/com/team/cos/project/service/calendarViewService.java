@@ -14,7 +14,7 @@ public class calendarViewService {
 
 	public calendarVo viewCalendar(calendarVo vo) {
 		List<Integer> arrayDay = new ArrayList<Integer>();
-		List<Integer> fulldate = new ArrayList<Integer>();
+		List<String> fulldate = new ArrayList<String>();
 		
 		Calendar cal = Calendar.getInstance();
 		Calendar todayCal = Calendar.getInstance();
@@ -31,7 +31,8 @@ public class calendarViewService {
 		for (int i = vo.getStartDay(); i <= vo.getEndDay(); i++) {
 			arrayDay.add(i);
 			cal.set(vo.getYear(), vo.getMonth(), i);
-			fulldate.add(Integer.parseInt(sdf.format(cal.getTime())));
+			fulldate.add(sdf.format(cal.getTime()));
+//			fulldate.add(Integer.parseInt(sdf.format(cal.getTime())));
 		}
 	
 		vo.setFulldate(fulldate);
@@ -42,7 +43,7 @@ public class calendarViewService {
 
 	public calendarVo changePostCalendar(calendarVo vo) {
 		List<Integer> arrayDay = new ArrayList<Integer>();
-		List<Integer> fulldate = new ArrayList<Integer>();
+		List<String> fulldate = new ArrayList<String>();
 		Calendar cal = Calendar.getInstance();
 		Calendar todayCal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -62,7 +63,8 @@ public class calendarViewService {
 		for (int i = vo.getStartDay(); i <= vo.getEndDay(); i++) {
 			arrayDay.add(i);
 			cal.set(vo.getYear(), vo.getMonth(), i);
-			fulldate.add(Integer.parseInt(sdf.format(cal.getTime())));
+			fulldate.add(sdf.format(cal.getTime()));
+//			fulldate.add(Integer.parseInt(sdf.format(cal.getTime())));
 		}
 		vo.setFulldate(fulldate);
 		vo.setArrayDay(arrayDay);
@@ -73,7 +75,7 @@ public class calendarViewService {
 
 	public calendarVo changePreCalendar(calendarVo vo) {
 		List<Integer> arrayDay = new ArrayList<Integer>();
-		List<Integer> fulldate = new ArrayList<Integer>();
+		List<String> fulldate = new ArrayList<String>();
 //		String tmp = "";
 		Calendar cal = Calendar.getInstance();
 		Calendar todayCal = Calendar.getInstance();
@@ -93,7 +95,8 @@ public class calendarViewService {
 		for (int i = vo.getStartDay(); i <= vo.getEndDay(); i++) {
 			arrayDay.add(i);
 			cal.set(vo.getYear(), vo.getMonth(), i);
-			fulldate.add(Integer.parseInt(sdf.format(cal.getTime())));
+			fulldate.add(sdf.format(cal.getTime()));
+//			fulldate.add(Integer.parseInt(sdf.format(cal.getTime())));
 		}
 		vo.setFulldate(fulldate);
 		
