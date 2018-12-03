@@ -102,12 +102,13 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="height: 70px">
+		<td style="height: 70px" id="k_aTagsView_<c:out value="${num.index}"/>">
 		<hr>
-		<c:if test="${!item.a_tag.isEmpty()}">
-			<button type="button" class="btn k_qtagBtn btn-sm k_atagBtn_<c:out value="${num.index}"/>">${item.a_tag}</button>
-		</c:if>
-		<input type="text" class="form-control" id="k_atag_<c:out value="${num.index}"/>"  value="${item.a_tag}" placeholder="태그를 입력하세요" style="display:none"  />
+		<div class="k_aTag" id="k_aTag_<c:out value="${num.index}"/>">
+			<ul class="k_aTagUl" id="k_aTagUl_<c:out value="${num.index}"/>">
+			
+			</ul>
+		</div>
 		</td>
 		<input type="hidden" id="k_aNo_<c:out value="${num.index}"/>" value="${item.a_no}"/>
 		<input type="hidden" id="k_qNo_<c:out value="${num.index}"/>" value="${item.q_no}"/>
@@ -142,7 +143,7 @@
  <div id="k_AnswerEditor" onclick="checkLevel()">
  	
  </div>
- <input type="text" name="a_tag"  id="a_tag" placeholder="태그를 입력해 주세요"  class="form-control" required/>
+<ul id="k_atags"></ul>
  <button type="button" id="k_saveAnswer"
 	class="btn btn-outline-info">답변 등록</button>
 </div>
@@ -210,7 +211,24 @@
 
   </div>
 </div>
-
+<script type="text/javascript">
+	 $(document).ready(function() {
+	        $("#k_atags").tagit();
+	        var length = '${fn:length(answerList)}'*1;
+	        
+	        <c:forEach items="${answerList}" var="item" begin="0" end="${fn:length(answerList)}" varStatus="tag">
+			var tags = '${item.a_tag}';
+			var tagArr = tags.split("/");
+			
+			for(var i =0 ;i<tagArr.length;i++){
+				if(tagArr[i]!= ''){
+					$('#k_aTag_'+<c:out value="${tag.index}"/>).append('<button type="button" class="btn k_atagBtn k_atagBtn_'+<c:out value="${tag.index}"/>+'" id="k_atagBtnId_'+i+'">'+tagArr[i]+'</button>');
+					$('#k_aTagUl_'+<c:out value="${tag.index}"/>).append('<li>'+tagArr[i]+'</li>');
+				}
+			}
+			</c:forEach>
+	    });
+</script>
 
 <script>
 
@@ -357,20 +375,26 @@
 				eval("updateQuill"+num+".enable(true);");
 				//태그 및 제목 수정 가능
 				$('.k_atagBtn_'+num).css('display', 'none');
-				$('#k_atag_'+num).css('display', 'inline-block');
+				$('#k_aTagUl_'+num).css('visibility','visible');
+				$('#k_aTagUl_'+num).tagit();
 				$('#k_td_'+num+'> div.ql-toolbar.ql-snow').css('width', '100%');
 				
 				//버튼 수정 
 				$('#k_updateBtn_'+num).text('수정완료');
 			}else{
 				//답변 고유번호,내용,태그 가져오기
-				var a_no = $('#k_aNo_'+num).val();
-				a_no *= 1;
+				var a_no = $('#k_aNo_'+num).val()*1;
 				var q_no =$('#k_qNo_'+num).val();
 				var content = eval("JSON.stringify(updateQuill"+num+".getContents());");
-				var tag = $('#k_atag_'+num).val();
-				
-				$.ajax({
+				var tag = '';
+				$('#k_aTagUl_'+num+'>li>input[name="tags"]').each(function(i){
+					 tag += $('#k_aTagUl_'+num+'>li>input[name="tags"]').eq(i).attr('value');
+					if(i!= $('#k_aTagUl_'+num+'>li>input[name="tags"]').length-1){
+						tag += '/';
+					}
+					
+				});
+				 $.ajax({
 					url : '${pageContext.request.contextPath}/answer/updateAnswer',
 					type : 'POST',
 					data : {
@@ -391,7 +415,7 @@
 					error : function() {
 						alert('불행하게도 에러입니다 ㅠㅠ');
 					}
-				});
+				}); 
 			}
 			
 	}
@@ -476,7 +500,13 @@
 		var q_no = $('#k_qNO').val();
 		var userno = '${loginInfo.user_no}';
 		var content = JSON.stringify(Answerquill.getContents());
-		var tag = $('#a_tag').val();
+		var tag = '';
+		$('input[name="tags"]').each(function(i){
+			tag += $('input[name="tags"]').eq(i).attr('value');
+			if(i!= $('input[name="tags"]').length-1){
+				tag += '/';
+			}
+		});
 		//테스트
 		
 	   if(content != '\{"ops":\[\{"insert":"\\n"\}\]\}'){
