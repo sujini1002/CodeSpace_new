@@ -11,8 +11,19 @@
 		select q_no, user_no, user_nickname, q_title, q_content, q_tag, DATE_FORMAT(q_regdate, '%Y-%m-%d %r') as q_regdate, q_recommand, q_viewcnt 
 		from question 
 		where q_no > 0
-		order by #{filter} desc
+		<trim prefix="ORDER by">
+			<if test="filter == 'q_regdate'"> 
+			q_regdate desc, q_no desc
+			</if>
+			<if test="filter == 'q_viewcnt'"> 
+			q_viewcnt desc, q_no desc
+			</if>
+			<if test="filter == 'q_recommand'"> 
+			q_recommand desc, q_no desc
+			</if>
+		</trim>
 		limit #{pageStart}, #{perPageNum}
+		
 	</select>
 	
 	<!-- 페이징 카운트 -->

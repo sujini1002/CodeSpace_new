@@ -99,8 +99,9 @@
 									</div>
 									<span class="result-tag"><a href="#"><h6>${searchResult.q_tag}</h6></a></span>
 								</div>
-								<div class="col-lg-2 question-info">
+								<div class="col-lg-3 question-info">
 									<a href="#">${searchResult.user_nickname}</a>
+									<div>${questionList.q_regdate}</div>
 								</div>
 							</div>
 							<!-- 게시글 row행 끝 -->
