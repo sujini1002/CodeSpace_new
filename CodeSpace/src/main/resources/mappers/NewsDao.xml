@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.cos.news.dao.NewsDao">
+
+<select id="getNewsList" resultType="com.team.cos.news.vo.NewsInfo">
+	select * 
+	from news
+	where n_no > 0
+	order by n_no desc
+	limit #{startNum}, #{perPageNum}
+</select>
+
+<select id="countNews" resultType="int">
+	select count(*)
+	from news
+	where n_no>0 
+</select>
+
+<!-- 게시글 한개 보기 -->
+<select id="getNewsView" resultType="com.team.cos.news.vo.NewsInfo">
+	select *
+	from news
+	where n_no>0 and n_no=#{n_no}
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
