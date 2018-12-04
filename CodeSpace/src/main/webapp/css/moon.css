@@ -31,12 +31,17 @@
 
 .result-row{
 	margin-top: 10px;
+	margin-bottom: 15px;
 }
 
 .result-link {
-	padding: 4px;
-	margin-top: 0px;
+	padding: 0px;
 	text-align: left;
+	max-height: 50px;
+}
+
+.result-link a{
+	max-height: 40px;
 }
 
 .result-tag {
@@ -206,3 +211,27 @@
 	
 	margin: 1px;
 }
+
+.questions-tag-::after{
+	padding-top: 10px;
+	text-align: center;
+}
+
+.tag-box{
+	
+	display: inline-block;
+	float: left;
+	margin-right: 5px;
+}
+
+.tag-box a{
+	background-color: lightgrey;
+	border-radius: 5px;
+	color: black;
+}
+
+.tag-box a:hover{
+	text-decoration:none;
+	border: 0;
+}
+

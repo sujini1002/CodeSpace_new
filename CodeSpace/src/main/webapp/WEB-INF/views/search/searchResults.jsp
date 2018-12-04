@@ -75,12 +75,34 @@
 				</c:if>
 
 				<c:if test="${fn:trim(keyword) ne '' and keyword ne null}">
-					<div class="result-List">
+					<div class="result-list">
 						<h4>검색 키워드 : "${keyword}"</h4>
 						<br>
 						<h5>"${keyword}"에 대한 ${pageMaker.totalCount}개의 검색 결과</h5>
 						<hr>
-						<c:forEach var="searchResult" items="${list}">
+						
+						<script>
+							$(document).ready(function(){
+								
+								var length = '${fn:length(list)}' * 1;
+								
+								<c:forEach items="${list}" var="questionList" begin="0" end="${fn:length(list)}" varStatus="tag">
+								
+									var tags = '${questionList.q_tag}';
+									var tagArr = tags.split("/");
+									
+									for(var i in tagArr){
+										if(tagArr[i] != ''){
+											$('.questions-tag-'+<c:out value="${tag.index}"/>).append('<div class="tag-box"><a href="#" class="btn btn-sm" role="button">'+tagArr[i]+'</a></div>');
+										}
+									}
+									
+								</c:forEach>
+								
+							});
+						</script>
+						
+						<c:forEach var="searchResult" items="${list}" begin="0" end="${fn:length(list)}" varStatus="num">
 							<div class="row result-row">
 								<div class="col-lg-1 question-viewCnt">
 									<div class="question-number">${searchResult.q_viewCnt}</div>
@@ -92,16 +114,17 @@
 								</div>
 								<div class="col-lg-7 question-title">
 									<div class="result-link">
-										<h3>
+										<h4>
 											<a
 												href="${pageContext.request.contextPath}/question/questionView?q_no=${searchResult.q_no}">${searchResult.q_title}</a>
-										</h3>
+										</h4>
 									</div>
-									<span class="result-tag"><a href="#"><h6>${searchResult.q_tag}</h6></a></span>
+									<div class="questions-tag-<c:out value="${num.index}"/>">
+									</div>
 								</div>
 								<div class="col-lg-3 question-info">
 									<a href="#">${searchResult.user_nickname}</a>
-									<div>${questionList.q_regdate}</div>
+									<div>${searchResult.q_regdate}</div>
 								</div>
 							</div>
 							<!-- 게시글 row행 끝 -->

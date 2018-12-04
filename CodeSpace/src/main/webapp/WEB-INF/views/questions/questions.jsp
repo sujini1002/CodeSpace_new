@@ -34,6 +34,27 @@
 			</div>
 			
 			<script>
+			
+				$(document).ready(function(){
+					
+					var length = '${fn:length(list)}' * 1;
+					
+					<c:forEach items="${list}" var="questionList" begin="0" end="${fn:length(list)}" varStatus="tag">
+					
+						var tags = '${questionList.q_tag}';
+						var tagArr = tags.split("/");
+						
+						for(var i in tagArr){
+							if(tagArr[i] != ''){
+								$('.questions-tag-'+<c:out value="${tag.index}"/>).append('<div class="tag-box"><a href="#" class="btn btn-sm" role="button">'+tagArr[i]+'</a></div>');
+							}
+						}
+						
+					</c:forEach>
+					
+				});
+				
+				// 최신 순 필터
 				function viewNewest(){
 		       		
 	       			var filter="q_regdate";
@@ -42,6 +63,7 @@
 	       		
 	       		}
 				
+				// 조회 순 필터
 				function viewHit(){
 		       		
 	       			var filter="q_viewcnt";
@@ -50,6 +72,7 @@
 	       		
 	       		}
 				
+				// 추천 순 필터
 				function viewRecommend(){
 		       		
 	       			var filter="q_recommand";
@@ -72,7 +95,7 @@
 			<c:if test="${!empty list}">
 				<div class="result-List">
 					<hr class="top-hr">
-					<c:forEach var="questionList" items="${list}">
+					<c:forEach var="questionList" items="${list}" begin="0" end="${fn:length(list)}" varStatus="num">
 						<div class="row result-row">
 							<div class="col-lg-1 question-viewCnt">
 								<div class="question-number">${questionList.q_viewCnt}</div>
@@ -84,12 +107,13 @@
 							</div>
 							<div class="col-lg-7 question-title">
 								<div class="result-link">
-									<h3>
+									<h4>
 										<a
 											href="${pageContext.request.contextPath}/question/questionView?q_no=${questionList.q_no}">${questionList.q_title}</a>
-									</h3>
+									</h4>
 								</div>
-								<span class="result-tag"><a href="#"><h6>${questionList.q_tag}</h6></a></span>
+								<div class="questions-tag-<c:out value="${num.index}"/>">
+								</div>
 							</div>
 							<!-- question-title 끝 -->
 							<div class="col-lg-3 question-info">
