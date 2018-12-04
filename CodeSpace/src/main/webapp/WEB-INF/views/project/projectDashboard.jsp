@@ -52,7 +52,6 @@
 </div>
 
 <!-- 캘린더와 공지사항 표출 영역  -->
-<h1>${regged_date }</h1>
 <table class='table'>
 	<tr>
 		<td>캘린더  <a href="#">더보기</a>
@@ -485,11 +484,14 @@
 				var str = '<tr>';
 				var fulldate = ${cal.fulldate};
 				var today = ${cal.today};
-				var regDate =${regged_date[0].startDate};
+				
+				var regDate_start= ${regged_date.startDay};
+				var regDate_end= ${regged_date.endDay};
+				console.log(regDate_start);
+				console.log(regDate_end);
+				/* var regDate =${regged_date}; */
 				var color = ['red','orange','yellow','green','blue','purple'];
-				console.log(regDate);
-				console.log(typeof fulldate);
-				console.log(typeof fulldate[0]);
+				
 				//달력 앞쪽 공백 출력		   5
 				for ( var i = 1 ; i < day ; i ++ ){
 					str += '<td class="empty_room">&nbsp;</td>';
@@ -503,7 +505,8 @@
 					}else{
 						str += '<td class="h_day ' + fulldate[i-1] + '">' + i + '</td>';
 						newLine++;
-					}
+					} 
+									
 					if(newLine % 7 == 0){
 						str+='</tr>';
 						$('.day_of_the_week').html(str);
@@ -511,14 +514,21 @@
 						$('.day_of_the_week').html(str);
 					}
 				}
-				
-				for(var i = 0 ; i < regDate.length ; i++){
+				//투두리스트 표시해주자
+				for(var i = 0 ; i < regDate_start.length ; i++){
 					for(var j = 0 ; j <= endDay-1; j++){
-						if(regDate[i]==fulldate[j]){
+						if(regDate_start[i] <= fulldate[j] && fulldate[j]<=regDate_end[i]){
+							var k = fulldate[j];
+							/* $('.'+k).css({'background-color':color[0],'opacity':'0.6'}); */
+							$('.'+k).append('<hr style="margin-left:-13px;margin-right:-13px; border: 1px solid '+color[0]+';">');
+						}
+					}
+					/* for(var j = 0 ; j <= endDay-1; j++){
+						if(regDate[i] == fulldate[j]){
 							var k = fulldate[j];
 							$('.'+k).css({'background-color':color[ i % 6 ],'opacity':'0.6'});
 						}						
-					}
+					}  */
 				}
 				
 				function today(){

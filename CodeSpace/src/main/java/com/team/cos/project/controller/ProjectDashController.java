@@ -65,36 +65,25 @@ public class ProjectDashController {
 		calendarVo result = service.viewCalendar(vo);
 		modelAndView.addObject("cal", result);
 		List<TodolistVO> list = tdlService.h_getTDL(project_no);
+		List<String> start = new ArrayList<>();
+		List<String> end = new ArrayList<>();
 
-		System.out.println(list);
-
-		List<TDLVo> dateList = new ArrayList<TDLVo>();
-		List<Integer> tmp = new ArrayList<Integer>();
-		
-		
+		TDLVo temp = new TDLVo();
 		for (int i = 0; i < list.size(); i++) {
-			TDLVo temp = new TDLVo();
 			Calendar c1 = Calendar.getInstance();
 			Calendar c2 = Calendar.getInstance();
 			c1.setTime(list.get(i).getTodolist_startdate());
 			c2.setTime(list.get(i).getTodolist_enddate());
-			/*while (c1.compareTo(c2) != 1) {
-				tmp.add(Integer.parseInt(sdf.format(c1.getTime())));
-				c1.add(Calendar.DATE, 1);
-			}*/
-			temp.setStartDate(sdf.format(c1.getTime()));
-			temp.setEndDate(sdf.format(c2.getTime()));
-			System.out.println("@@@"+temp);
-			dateList.add(temp);
-			System.out.println("dateList:"+dateList);
+			start.add(sdf.format(c1.getTime()));
+			end.add(sdf.format(c2.getTime()));
+		
+			temp.setStartDay(start);
+			temp.setEndDay(end);
 		}
-		System.out.println("@@" + dateList);
-		System.out.println(dateList.get(0));
-		System.out.println(dateList.get(1));
-		modelAndView.addObject("regged_date", dateList);
+		
+		modelAndView.addObject("regged_date", temp);
 		// 여기까지 달력관련!!!!!!!!!!!!!!!!!
 
-		
 		// login 사용자 정보 보냄
 		modelAndView.addObject("user_info", user_info);
 		// project 정보 보냄
@@ -135,22 +124,24 @@ public class ProjectDashController {
 		calendarVo result = service.changePostCalendar(vo);
 		modelAndView.addObject("cal", result);
 		List<TodolistVO> list = tdlService.h_getTDL(project_no);
-		List<Integer> dateList = new ArrayList<Integer>();
-		List<Integer> tmp = new ArrayList<Integer>();
+		List<String> start = new ArrayList<>();
+		List<String> end = new ArrayList<>();
 
+		TDLVo temp = new TDLVo();
 		for (int i = 0; i < list.size(); i++) {
 			Calendar c1 = Calendar.getInstance();
 			Calendar c2 = Calendar.getInstance();
 			c1.setTime(list.get(i).getTodolist_startdate());
 			c2.setTime(list.get(i).getTodolist_enddate());
-			while (c1.compareTo(c2) != 1) {
-				tmp.add(Integer.parseInt(sdf.format(c1.getTime())));
-				c1.add(Calendar.DATE, 1); // 시작날짜 +1일
-			}
-			dateList.addAll(tmp);
+			start.add(sdf.format(c1.getTime()));
+			end.add(sdf.format(c2.getTime()));
+		
+			temp.setStartDay(start);
+			temp.setEndDay(end);
 		}
-		modelAndView.addObject("regged_date", dateList);
-		// 여기까지 달력!!!!!!!!!!!!!!!!!
+		
+		modelAndView.addObject("regged_date", temp);
+		// 여기까지 달력관련!!!!!!!!!!!!!!!!!
 
 		// login 사용자 정보 보냄
 		modelAndView.addObject("user_info", user_info);
@@ -191,25 +182,26 @@ public class ProjectDashController {
 		}
 		// 달력관련임!!!!!!!!!!!!!!!!
 		calendarVo result = service.changePreCalendar(vo);
-		System.out.println(result);
 		modelAndView.addObject("cal", result);
 		List<TodolistVO> list = tdlService.h_getTDL(project_no);
-		List<Integer> dateList = new ArrayList<Integer>();
-		List<Integer> tmp = new ArrayList<Integer>();
+		List<String> start = new ArrayList<>();
+		List<String> end = new ArrayList<>();
 
+		TDLVo temp = new TDLVo();
 		for (int i = 0; i < list.size(); i++) {
 			Calendar c1 = Calendar.getInstance();
 			Calendar c2 = Calendar.getInstance();
 			c1.setTime(list.get(i).getTodolist_startdate());
 			c2.setTime(list.get(i).getTodolist_enddate());
-			while (c1.compareTo(c2) != 1) {
-				tmp.add(Integer.parseInt(sdf.format(c1.getTime())));
-				c1.add(Calendar.DATE, 1);
-			}
-			dateList.addAll(tmp);
+			start.add(sdf.format(c1.getTime()));
+			end.add(sdf.format(c2.getTime()));
+		
+			temp.setStartDay(start);
+			temp.setEndDay(end);
 		}
-		modelAndView.addObject("regged_date", dateList);
-		// 여기까지 달력!!!!!!!!!!!!!!!!!
+		
+		modelAndView.addObject("regged_date", temp);
+		// 여기까지 달력관련!!!!!!!!!!!!!!!!!
 
 		// login 사용자 정보 보냄
 		modelAndView.addObject("user_info", user_info);
