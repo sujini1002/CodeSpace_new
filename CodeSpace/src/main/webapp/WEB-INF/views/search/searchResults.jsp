@@ -79,7 +79,7 @@
 						<h4>검색 키워드 : "${keyword}"</h4>
 						<br>
 						<h5>"${keyword}"에 대한 ${pageMaker.totalCount}개의 검색 결과</h5>
-						<hr>
+						<hr class="top-hr">
 						
 						<script>
 							$(document).ready(function(){

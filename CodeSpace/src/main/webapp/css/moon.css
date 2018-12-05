@@ -76,6 +76,7 @@
 .user-info{
 	
 	margin: 0px 0px 50px 0px;
+	padding-left: 0px;
 	padding-bottom: 30px;
 	min-height: 100px;
 	max-height: 100px;
@@ -85,23 +86,30 @@
 
 .userPic{
 	padding: 0;
-	padding-right: 50px;
+	margin-right: 10px;
 }
 
-
 .user-tag{
+	padding: 0px;
+	font-size: 8px;
+}
+
+.user-tag2{
+	
 	margin: 0px;
 	margin-bottom: 30px;
 	min-height: 30px;
 	text-align: left;
 	color: white;
 	padding-left: 20px;
+	
 }
 
 
 .user-detail {
 	text-align: left;
-	padding-left: 25px;
+	padding-left: 3px;
+	margin-left: 11px;
 }
 
 .user-detail-attribute{
@@ -171,6 +179,10 @@
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
 }
 
+.picInfo{
+	text-align:left;
+}
+
 .user-view-list-pic{
 	padding: 0;
 	margin: 0;
@@ -217,6 +229,11 @@
 	text-align: center;
 }
 
+.user-tag-::after{
+	padding-top: 10px;
+	text-align: center;
+}
+
 .tag-box{
 	
 	display: inline-block;
@@ -235,3 +252,14 @@
 	border: 0;
 }
 
+.user-box-tag{
+	margin-left: 10px;
+}
+
+.tag-info{
+	
+	color: black;
+	background-color: lightgrey;
+	margin-right: 5px;
+	border-radius: 5px;
+}
