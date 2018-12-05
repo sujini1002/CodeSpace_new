@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%-- <%@ page session="false"%> --%>
 
 <jsp:include page="common/layout_top.jsp" />
@@ -43,6 +44,27 @@
   </div>
 </div>
 <script>
+	
+	$(document).ready(function(){
+		
+		var length = '${fn:length(topQuestions)}' * 1;
+		
+		<c:forEach items="${topQuestions}" var="questionList" begin="0" end="${fn:length(topQuestions)}" varStatus="tag">
+		
+			var tags = '${questionList.q_tag}';
+			var tagArr = tags.split("/");
+			
+			for(var i in tagArr){
+				if(tagArr[i] != ''){
+					$('.questions-tag-'+<c:out value="${tag.index}"/>).append('<div class="tag-box"><a href="#" class="btn btn-sm" role="button">'+tagArr[i]+'</a></div>');
+				}
+			}
+			
+		</c:forEach>
+		
+	});
+
+
 	function isLogin(data) {
 		var session = '${loginInfo.user_no}';
 		console.log(session);
@@ -71,7 +93,7 @@
       	<c:if test="${!empty topQuestions}">
          	<div class="result-List">
             <hr class="top-hr">
-            <c:forEach var="questionList" items="${topQuestions}">
+            <c:forEach var="questionList" items="${topQuestions}" begin="0" end="${fn:length(topQuestions)}" varStatus="num">
                <div class="row result-row">
                   <div class="col-lg-1 question-viewCnt">
                      <div class="question-number">${questionList.q_viewCnt}</div>
@@ -85,7 +107,8 @@
                      <div class="result-link">
                      	<h3><a href="${pageContext.request.contextPath}/question/questionView?q_no=${questionList.q_no}">${questionList.q_title}</a></h3>
                      </div>
-                     <span class="result-tag"><a href="#"><h6>${questionList.q_tag}</h6></a></span>
+                     <div class="questions-tag-<c:out value="${num.index}"/>">
+					 </div>
                   </div> <!-- question-title 끝 -->
                   <div class="col-lg-3 question-info">
                      	<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${questionList.user_no}">${questionList.user_nickname}</a>
