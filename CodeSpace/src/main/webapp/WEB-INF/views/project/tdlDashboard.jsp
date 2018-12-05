@@ -69,8 +69,9 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" id="modalRegisterBtn">Save
-						changes</button>
+					<button type="button" class="btn btn-primary" id="modalRegisterBtn">Save changes</button>
+					<button type="button" class="btn btn-warning" id="modalModBtn">Modify</button>
+					<button type="button" class="btn btn-danger" id="modalRemoveBtn">Remove</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -306,6 +307,9 @@
 			}
 			manager.html(str);
 		})
+		
+		$("#modalModBtn").hide();
+		$("#modalRemoveBtn").hide();
 	});
 	
 	
@@ -330,6 +334,7 @@
 			$(".modal").data("todolist_no", info.todolist_no);
 			
 			$(".modal").find("buttin[id !='modalCloseBtn']").hide();
+			$("#modalRegisterBtn").hide();
 			$("#modalModBtn").show();
 			$("#modalRemoveBtn").show();
 			
