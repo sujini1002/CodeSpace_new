@@ -45,26 +45,23 @@ public class ProjectRegController {
 		//user_no가 포함된 userInfoVO 가져옴
 		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
 		
-		List<Integer> user_project_no = userProInfoService.getProject_no(user_no);
-		System.out.println("사용자가 참여중인 project_no: "+user_project_no);
+		//페이징 처리된 project 정보 list 형태로 가져옴
+		List<ProjectInfoVO> userJoinProjects = pagingService.projectListCriteria(cri);
+		System.out.println("====================paging list: "+userJoinProjects.size());
 		
-		List<ProjectInfoVO> userJoinProjects = new ArrayList<ProjectInfoVO>();
-		if(user_project_no!=null) {
+		// 시작일, 종료일 표출을 위한 처리
+		if(userJoinProjects!=null) {
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 			String start="";
 			String end="";
 			
-			for(int i=0; i<user_project_no.size(); i++) {
-				int project_no = user_project_no.get(i);
-				ProjectInfoVO pro_info = userProInfoService.getUserAllProject(project_no);
+			for(int i=0; i<userJoinProjects.size(); i++) {
 				
-				start = transFormat.format(pro_info.getProject_startdate());
-				end = transFormat.format(pro_info.getProject_enddate());
-				pro_info.setProstring_startdate(start);
-				pro_info.setProstring_enddate(end);
+				start = transFormat.format(userJoinProjects.get(i).getProject_startdate());
+				end = transFormat.format(userJoinProjects.get(i).getProject_enddate());
+				userJoinProjects.get(i).setProstring_startdate(start);
+				userJoinProjects.get(i).setProstring_enddate(end);
 				
-				System.out.println(pro_info);
-				userJoinProjects.add(pro_info);
 			}
 		} 
 		
@@ -80,10 +77,9 @@ public class ProjectRegController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		// 로그인한 사용자가 참여중인 프로젝트 리스트 모두 전달
-		//modelAndView.addObject("userJoinProjects", userJoinProjects);
-		modelAndView.addObject("user_info", user_info);
 		// 페이징처리
-		modelAndView.addObject("userJoinProjects", pagingService.projectListCriteria(cri));
+		modelAndView.addObject("userJoinProjects", userJoinProjects);
+		modelAndView.addObject("user_info", user_info);
 		modelAndView.addObject("pageMaker", pageMaker);
 		
 		modelAndView.setViewName("project/projectReg");

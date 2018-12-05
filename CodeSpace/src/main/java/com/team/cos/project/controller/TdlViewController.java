@@ -19,6 +19,8 @@ public class TdlViewController {
 	@Autowired
 	private TDLViewService tdlService;
 	
+	
+	//project_no에 해당하는 여러개의 to do list 가져오기
 	@RequestMapping("project/tdl/{project_no}")
 	public ResponseEntity<List<TodolistVO>> getList(
 			@PathVariable("project_no") int project_no){
@@ -28,6 +30,8 @@ public class TdlViewController {
 		return new ResponseEntity<>(tdl, HttpStatus.OK);
 	}
 	
+	
+	//todolist_no 한개에 대한 세부 정보 가져오기
 	@RequestMapping("project/oneTodolistInfo/{todolist_no}")
 	public ResponseEntity<TodolistVO> getInfo(
 			@PathVariable("todolist_no") int todolist_no){

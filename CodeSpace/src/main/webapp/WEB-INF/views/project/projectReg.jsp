@@ -4,7 +4,7 @@
 <%-- <%@ page session="false"%> --%>
 
 
-<style>
+<!-- <style>
 .ui-datepicker {
 	background-color: white;
 	z-index: 999;
@@ -48,7 +48,7 @@
 .ui-datepicker td a {
 	font-size: 12px;
 }
-</style>
+</style> -->
 <jsp:include page="../common/layout_top.jsp" />
 <jsp:include page="../common/layout_content.jsp" />
 

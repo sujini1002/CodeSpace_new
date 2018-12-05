@@ -39,22 +39,23 @@
 				<!-- project_todolist 추가 항목 -->
 				<div class="modal-body">
 					<!-- project no -->
-					<input type="hidden" id='project_no' value="${project_no }">
+					<input type="hidden" name='project_no' id='project_no' value="${project_no }">
 					<!-- 담당자 번호 -->
 					<div class="form-group">
-						<label>담당자 번호</label> 
-						<select class="form-control" id='tdlmanager_no'>
+						<label>담당자</label> 
+						<select class="form-control" name='tdlmanager_no' id='tdlmanager_no'>
 							
 						</select>
 					</div>
 					<!-- 담당 업무 -->
 					<div class="form-group">
-						<label>업무 내용</label> <input class="form-control"
-							id='todolist_content'>
+						<label>업무 내용</label> 
+						<input class="form-control" name='todolist_content' id='todolist_content'>
 					</div>
 					<!-- 업무 진행 상태 -->
 					<div class="form-group">
-						<label>업무 진행 상태</label> <select id='todolist_status'>
+						<label>업무 진행 상태</label> 
+						<select id='todolist_status'>
 							<option value="todo">todo</option>
 							<option value="doing">doing</option>
 							<option value="done">done</option>
@@ -62,8 +63,8 @@
 					</div>
 					<!-- 종료 일정 -->
 					<div class="form-group">
-						<label>종료 날짜</label> <input type="date" class="form-control"
-							id='tdlstring_enddate'>
+						<label>종료 날짜</label> 
+						<input type="date" class="form-control" name='tdlstring_enddate' id='tdlstring_enddate'>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -81,7 +82,7 @@
 	
 	<!-- todolist 수정하기 modal -->
 	<!-- tdlmanager_no, todolist_content, todolist_status, todolist_enddate -->
-	<div class="modal fade" id="modifyTodolist">
+<!-- 	<div class="modal fade" id="modifyTodolist">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -91,24 +92,26 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<!-- project_todolist 추가 항목 -->
+				project_todolist 추가 항목
 				<div class="modal-body">
-					<!-- project no -->
+					project no
 					<input type="hidden" id='modify_project_no'>
-					<!-- 담당자 번호 -->
+					to do list no
+					<input type="hidden" id='modify_todolist_no'>
+					담당자 번호
 					<div class="form-group">
-						<label>담당자 번호</label> 
+						<label>담당자</label> 
 						<select class="form-control" id='modify_tdlmanager_no'>
 							
 							
 						</select>
 					</div>
-					<!-- 담당 업무 -->
+					담당 업무
 					<div class="form-group">
 						<label>업무 내용</label> <input class="form-control"
 							id='modify_todolist_content'>
 					</div>
-					<!-- 업무 진행 상태 -->
+					업무 진행 상태
 					<div class="form-group">
 						<label>업무 진행 상태</label> 
 						<select id='modify_todolist_status'>
@@ -117,7 +120,7 @@
 							<option value="done">done</option>
 						</select>
 					</div>
-					<!-- 종료 일정 -->
+					종료 일정
 					<div class="form-group">
 						<label>종료 날짜</label> <input type="date" class="form-control"
 							id='modify_tdlstring_enddate'>
@@ -129,18 +132,18 @@
 						changes</button>
 				</div>
 			</div>
-			<!-- /.modal-content -->
+			/.modal-content
 		</div>
-		<!-- /.modal-dialog -->
+		/.modal-dialog
 	</div>
-	<!-- /.modal -->
+	/.modal
 
-
+ -->
 <!-- todolist 처리를 위한 js -->
 <script type="text/javascript" src="../js/todolist.js"></script>
 
 <script>
-	//to do list 페이지 접근 시 자동으로 댓글 목록 가져옴
+	//to do list 페이지 접근 시 자동으로 목록 가져옴
 	$(document).ready(function() {
 		var project_noValue = ${project_no};
 
@@ -153,57 +156,53 @@
 			var str = "<div class='row'>";
 				str += "	<div class='col-md-4'>";
 				str += "		<h2>TO DO</h2>";
-				str += "		<div id='todo'></div>";
+				str += "		<ul class='todolistcontent' id='todo'></ul>";
 				str += "	</div>";
 				str += "	<div class='col-md-4'>";
 				str += "		<h2>DOING</h2>";
-				str += "		<div id='doing'></div>";
+				str += "		<ul class='todolistcontent' id='doing'></ul>";
 				str += "	</div>";
 				str += "	<div class='col-md-4'>";
 				str += "		<h2>DONE</h2>";
-				str += "		<div id='done'></div>";
+				str += "		<ul class='todolistcontent' id='done'></div>";
 				str += "	</div>";
 				str += "</div>";
-				
 				
 			if (list == null || list.length == 0) {
 				container.html("");
 				return;
 			}
 			container.html(str);
+
 			var todo = $("#todo");
 			var doing = $("#doing");
 			var done = $("#done");
 			
 			for (var i = 0, len = list.length || 0; i < len; i++) {
 				if(list[i].todolist_status=="todo"){
-					var todoStr = "<p>";
-						todoStr += "<a data-toggle='modal' href='#modifyTodolist' class='oneTodo' data-todolist_no=";
-						todoStr += list[i].todolist_no+">"+list[i].todolist_content+"</a><br>";
-						todoStr += "담당자: "+list[i].user_name+"<br>" ;
-						todoStr += "마감일: "+tdlService.displayTime(list[i].todolist_enddate)+"까지<br>" ;
-						todoStr += "</p>";
+					var todoStr = "<li class='left clearfix' data-todolist_no='"+list[i].todolist_no+"'>";
+						todoStr += "<div><div class='header'><strong class='primary-font'>"+list[i].todolist_content+"</strong>";
+						todoStr += "<small class='pull-right text-muted'>"+tdlService.displayTime(list[i].todolist_enddate)+"까지</small></div>";
+						todoStr += "<p>담당자: "+list[i].user_name+"</p></div></li>";
 					todo.append(todoStr);
+						
 				} else if(list[i].todolist_status=="doing"){
-					var doingStr = "<p data-todolist_no="+list[i].todolist_no+">";
-						doingStr += "<a data-toggle='modal' href='#modifyTodolist' class='oneTodo' data-todolist_no=";
-						doingStr += list[i].todolist_no+">"+list[i].todolist_content+"</a><br>";
-						doingStr += "담당자: "+list[i].user_name+"<br>" ;
-						doingStr += "마감일: "+tdlService.displayTime(list[i].todolist_enddate)+"까지<br>" ;
-						doingStr += "</p>";
+					var doingStr = "<li class='left clearfix' data-todolist_no='"+list[i].todolist_no+"'>";
+						doingStr += "<div><div class='header'><strong class='primary-font'>"+list[i].todolist_content+"</strong>";
+						doingStr += "<small class='pull-right text-muted'>"+tdlService.displayTime(list[i].todolist_enddate)+"까지</small></div>";
+						doingStr += "<p>담당자: "+list[i].user_name+"</p></div></li>";
 					doing.append(doingStr);
+					
 				} else if(list[i].todolist_status=="done"){
-					var doneStr = "<p data-todolist_no="+list[i].todolist_no+">";
-						doneStr += "<a data-toggle='modal' href='#modifyTodolist' class='oneTodo' data-todolist_no=";
-						doneStr += list[i].todolist_no+">"+list[i].todolist_content+"</a><br>";
-						doneStr += "담당자: "+list[i].user_name+"<br>" ;
-						doneStr += "마감일: "+tdlService.displayTime(list[i].todolist_enddate)+"까지<br>" ;
-						doneStr += "</p>";
+					var doneStr = "<li class='left clearfix' data-todolist_no='"+list[i].todolist_no+"'>";
+						doneStr += "<div><div class='header'><strong class='primary-font'>"+list[i].todolist_content+"</strong>";
+						doneStr += "<small class='pull-right text-muted'>"+tdlService.displayTime(list[i].todolist_enddate)+"까지</small></div>";
+						doneStr += "<p>담당자: "+list[i].user_name+"</p></div></li>";
 					done.append(doneStr);
 				}
 			}
 		}); 
-	});
+	}); //document.ready 끝
 
 	
 	
@@ -293,14 +292,7 @@
 	})();
 	
 	//to do list '추가하기' 버튼 클릭 시 project_no에 해당하는 member_no 가져와서 selectbox에 뿌리기
-	$("#todolistForm").on("click", getMember);
-	$(".oneTodo").on("click", getInfo);
-	
-	function getMember(e){
-		e.preventDefault();
-		//버튼 클릭할 때 마다 ajax 요청하는 것 취소시킴
-		$(this).off('click');
-		
+	$("#todolistForm").on("click", function(e){
 		var project_noValue = ${project_no};
 		var manager = $("#tdlmanager_no");
 		//var str= "<option value="+${user_no}+">"+${user_no}+"</option>"
@@ -312,19 +304,45 @@
 			for(var i=0, len=list.length||0; i<len; i++){
 				str += "<option value="+list[i].member_no+">"+list[i].user_name+"</option>"
 			}
-			manager.append(str);
+			manager.html(str);
 		})
-	}
+	});
 	
 	
 	//to do list title 클릭 시 todolist_no에 해당하는 todolist 정보 가져와서 보여주기
-	function getInfo(e){
-		e.preventDefault();
-		//버튼 클릭할 때 마다 ajax 요청하는 것 취소시킴
-		$(this).off('click');
-		
+	$(".row").on("click", "li", function(e){
 		var project_noValue = ${project_no};
-		var manager = $("#modify_tdlmanager_no");
+		var todolist_no = $(this).data("todolist_no");
+		console.log(todolist_no);
+		
+		
+
+		tdlService.getTodolistInfo({
+			todolist_no: todolist_no}, 
+			function(info){
+		
+			console.log(info);
+			
+			$(".modal").find("input[id='project_no']").val(info.project_no);
+			$(".modal").find("input[id='todolist_content']").val(info.todolist_content);
+			$(".modal").find("input[id='todolist_status']").val(info.todolist_status);
+			
+			$(".modal").data("todolist_no", info.todolist_no);
+			
+			$(".modal").find("buttin[id !='modalCloseBtn']").hide();
+			$("#modalModBtn").show();
+			$("#modalRemoveBtn").show();
+			
+			$("#tdlModal").modal("show");
+			
+			//$("#modify_project_no").val(info.project_no);
+			//$("#modify_tdlmanager_no").val(info.tdlmanager_no);		
+			//$("#modify_todolist_content").val(info.todolist_content);
+			//$("#modify_todolist_status").val(info.todolist_status);
+			//$("#tdlstring_enddate").val() = info.todolist_enddate
+		}) 
+		
+		var manager = $("#tdlmanager_no");
 		tdlService.getProjectMember({
 			project_no:project_noValue
 		}, function(list){
@@ -332,25 +350,11 @@
 			for(var i=0, len=list.length||0; i<len; i++){
 				str += "<option value="+list[i].member_no+">"+list[i].user_name+"</option>"
 			}
-			manager.append(str);
+			manager.html(str);
 		})
 		str="";
-
-		//클릭한 todolist_no 저장
-		var todolist_no = $(this).data("todolist_no");
 		
-		tdlService.getTodolistInfo({
-			todolist_no : todolist_no
-		}, function(info){
-			console.log(info);
-			$("#modify_project_no").val(info.project_no);
-			//$("#modify_tdlmanager_no").val(info.tdlmanager_no);		
-			$("#modify_todolist_content").val(info.todolist_content);
-			$("#modify_todolist_status").val(info.todolist_status);
-			//$("#tdlstring_enddate").val() = info.todolist_enddate
-		})
-		
-	}
+	});
 	
 	
 </script>
