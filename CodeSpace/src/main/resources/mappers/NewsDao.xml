@@ -23,7 +23,16 @@
 	where n_no>0 and n_no=#{n_no}
 </select>
 
+<insert id="writeNews" parameterType="com.team.cos.news.vo.NewsInfo" useGeneratedKeys="true" keyColumn="n_no">
+	<!-- insert into news
+	(n_title, n_content, n_regdate)
+	values (#{param1}, #{param2}, now()) -->
+	
+	insert into news (n_title, n_writer, n_content, n_regdate)
+	values (#{n_title}, #{n_writer}, #{n_content}, now())
 
+</insert>
+           
 
 
 
