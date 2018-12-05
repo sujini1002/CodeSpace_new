@@ -16,4 +16,7 @@ public interface NewsDao {
 	// 게시글 하나만 보기
 	public NewsInfo getNewsView(@Param("n_no") int n_no);
 	
+	// 게시글 등록하기
+	public int writeNews(NewsInfo newsInfo);
+	
 }

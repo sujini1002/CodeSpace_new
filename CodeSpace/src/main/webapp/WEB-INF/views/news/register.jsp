@@ -14,6 +14,7 @@
 <!-- include summernote css/js-->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
 <!-- SummerNote 에디터 관련 끝 -->
 
 <!-- right Contents 시작 -->
@@ -25,23 +26,55 @@
 <h1>글 작성하기</h1>
 <hr>
 
-<!-- <form method="post">
-	<textarea id="summernote" name="editordata" rows="" cols=""></textarea>
-</form> -->
-<div id="summernote">Hello! CodeSpace</div>
+<form id="summerForm" method="post"> 
+<input type="text" name="n_title" class="form-control">
+<input type="hidden" name="n_writer">
+<textarea id="summernote" name="n_content"></textarea>
+<div align="center">
+<button type="submit" class="btn btn-info" >작성하기</button>
+</div>
+</form> 
+
+
  <script>
+ $(document).ready(function() {
+	 /* summernote에서 이미지 업로드시 실행할 함수 */
+	 	function sendFile(file, editor) {
+         // 파일 전송을 위한 폼생성
+	 		data = new FormData();
+	 	    data.append("uploadFile", file);
+	 	    $.ajax({ // ajax를 통해 파일 업로드 처리
+	 	        data : data,
+	 	        type : "POST",
+	 	        url : "./summernote_imageUpload.jsp",
+	 	        cache : false,
+	 	        contentType : false,
+	 	        processData : false,
+	 	        success : function(data) { // 처리가 성공할 경우
+                 // 에디터에 이미지 출력
+	 	        	$(editor).summernote('editor.insertImage', data.url);
+	 	        }
+	 	    });
+	 	}
+
  	  /* 서머노트 선언 */
       $('#summernote').summernote({
-        placeholder: 'Hello bootstrap 4',
+        placeholder: 'Welcome! CodeSpace :D',
         tabsize: 5,
         height: 300
       });
+ 	   	  
  	  /* 에디터 설정 */
       $('#summernote').summernote({
     	  height: 300,                 
     	  minHeight: null,             
     	  maxHeight: null,             
-    	  focus: true                  
+    	  focus: true,
+    	  collback : {
+    		  onImageUpload : function(files, editor, welEditable){
+    			  sendFile(files[0], this);
+    		  }
+    	  }
     	});
  	  
  	  /* 툴바 설정 */
@@ -57,10 +90,16 @@
     	  ]
     	});
  	  
+      var summerForm = function() {
+
+    	    var contents =  $('textarea[name="n_content"]').html($('#summernote').code());
+
+    	}
+ });
 </script>
 
 
-<a type="button" class="btn btn-primary" onclick="">작성하기</a>
+
 
 
 

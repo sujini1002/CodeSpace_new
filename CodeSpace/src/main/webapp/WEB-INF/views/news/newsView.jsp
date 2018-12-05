@@ -20,10 +20,10 @@
 		<tr>
 			<td colspan="2">${newsInfo.n_content }</td>
 		</tr>
-		<tr>
+		<%-- <tr>
 			<td colspan="2">${newsInfo.n_photo }</td>
 		</tr>
-	
+	 --%>
 	</table>
 
 
