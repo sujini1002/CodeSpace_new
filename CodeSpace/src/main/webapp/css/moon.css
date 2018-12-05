@@ -189,16 +189,13 @@
 }
 
 .user-view-list-detail {
-	margin-left: 20px;
+	margin-left: 15px;
 	text-align: left;
 }
 
-.user-view-list-tag{
-	margin: 0px;
-	margin-top: 5px;
+.user-view-list-tag-::after{
 	text-align: left;
-	color: white;
-	min-height: 50px;
+	padding-top: 30px;
 }
 
 .user-view-list-title{
@@ -231,7 +228,6 @@
 
 .user-tag-::after{
 	padding-top: 10px;
-	text-align: center;
 }
 
 .tag-box{

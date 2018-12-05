@@ -58,10 +58,20 @@
 				
 					var tags = '${userInfo.user_tag}';
 					var tagArr = tags.split("/");
-					
-					for(var i in tagArr){
-						if(tagArr[i] != ''){
-							$('.user-tag-'+<c:out value="${tag.index}"/>).append('<a href="#" class="tag-info">'+tagArr[i]+'</a>');
+					var viewType = '${pageMaker.userCri.viewType}'; 
+						
+					if(viewType == 'grid'){
+						for(var i in tagArr){
+							if(tagArr[i] != ''){
+								$('.user-tag-'+<c:out value="${tag.index}"/>).append('<a href="#" class="tag-info">'+tagArr[i]+'</a>');
+							}
+						}
+					}
+					else if(viewType == 'list'){
+						for(var i in tagArr){
+							if(tagArr[i] != ''){
+								$('.user-view-list-tag-'+<c:out value="${tag.index}"/>).append('<a href="#" class="tag-info">'+tagArr[i]+'</a>');
+							}
 						}
 					}
 					
@@ -141,7 +151,7 @@
 	      
 	      <div class="userList">
 	            <div class="row user-list-row">
-	               <c:forEach var="userInfo" items="${userList}">
+	               <c:forEach var="userInfo" items="${userList}" begin="0" end="${fn:length(userList)}" varStatus="num">
 	                 <div class="row col-lg-12">
 		                  <div class="col-lg-1 user-view-list-pic">
 		                     <div class="picInfo"><a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}"><img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="90" height="90"></a></div>
@@ -154,7 +164,7 @@
 		                  	 	</div>
 		                  	 </div>
 		                     <div class="col-lg-12 user-detail-attribute user-intro">${userInfo.user_intro}</div>
-		                     <div class="col-lg-12 user-detail-attribute user-view-list-tag"><span class="tag-value">${userInfo.user_tag}</span></div>
+		                     <div class="col-lg-12 user-detail-attribute user-view-list-tag-<c:out value="${num.index}"/>"></div>
 		                  </div>
 	               	 </div>
 	               <div><hr width="1110px"></div>
@@ -348,6 +358,9 @@
                             				if(list[i].user_tag==null){
                             					list[i].user_tag='';
                             				}
+                            				
+                            				var tags = list[i].user_tag;
+	     		                        	var tagArr = tags.split("/");
                             			
                             				str     += '<div class="row col-lg-12">'
 	                              					+		'<div class="col-lg-1 user-view-list-pic">'
@@ -371,11 +384,15 @@
 	                              					+			'<div class="col-lg-12 user-detail-attribute user-intro">'
 	                              					+ 				list[i].user_intro 
 	                              					+ 			'</div>'
-	                              					+			'<div class="col-lg-12 user-detail-attribute user-view-list-tag">'
-	                              					+				'<span class="tag-value">'
-	                              					+					list[i].user_tag
-	                              					+				'</span>'
-	                              					+			'</div>'
+	                              					+			'<div class="col-lg-12 user-detail-attribute user-view-list-tag-'+ i +'">';
+	                              					
+	                              					for(var j in tagArr){
+		                              						if(tagArr[j] != ''){
+		       	                    							str+='<a href="#" class="tag-info">'+tagArr[j]+'</a>';
+		       	                    						}
+		                              				}
+	                              					
+	                              				 str+=			'</div>'
 	                              					+		'</div>' // user-view-list-detail 끝
 	                              					+	'</div>' // row col-lg-12 끝
 	                              					+	'<div><hr width="1110px"></div>'
