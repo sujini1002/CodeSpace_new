@@ -500,7 +500,7 @@
 				//달력 1일 부터 날짜 계산
 				for ( var i = startDay ; i <= endDay ; i++ ){
 					if(today == fulldate[i-1]){
-						str += '<td class="h_day ' + fulldate[i-1] + '"style="background-color: green;" >' + i + '</td>';
+						str += '<td class="h_day ' + fulldate[i-1] + '"style="background-color: #17a2b8;opacity:0.7;" >' + i + '</td>';
 						newLine++;
 					}else{
 						str += '<td class="h_day ' + fulldate[i-1] + '">' + i + '</td>';
@@ -517,18 +517,12 @@
 				//투두리스트 표시해주자
 				for(var i = 0 ; i < regDate_start.length ; i++){
 					for(var j = 0 ; j <= endDay-1; j++){
+						var k = fulldate[j];
+						$('.'+k).append('<hr class="h_'+i+fulldate[j]+'" style="margin-left:-13px;margin-right:-13px;border: 1px solid white;opacity:0;">');
 						if(regDate_start[i] <= fulldate[j] && fulldate[j]<=regDate_end[i]){
-							var k = fulldate[j];
-							/* $('.'+k).css({'background-color':color[0],'opacity':'0.6'}); */
-							$('.'+k).append('<hr style="margin-left:-13px;margin-right:-13px; border: 1px solid '+color[0]+';">');
+							$('.h_'+i+k).css({'border':'1px solid '+ color[ i % 6 ],'opacity':'0.8'});
 						}
 					}
-					/* for(var j = 0 ; j <= endDay-1; j++){
-						if(regDate[i] == fulldate[j]){
-							var k = fulldate[j];
-							$('.'+k).css({'background-color':color[ i % 6 ],'opacity':'0.6'});
-						}						
-					}  */
 				}
 				
 				function today(){
