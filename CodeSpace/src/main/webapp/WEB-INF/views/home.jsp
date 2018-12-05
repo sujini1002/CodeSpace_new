@@ -66,7 +66,7 @@
                      <span class="result-tag"><a href="#"><h6>${questionList.q_tag}</h6></a></span>
                   </div> <!-- question-title 끝 -->
                   <div class="col-lg-3 question-info">
-                     	<a href="#">${questionList.user_nickname}</a>
+                     	<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${questionList.user_no}">${questionList.user_nickname}</a>
                      	<div>${questionList.q_regdate}</div>
                   </div>
                </div> <!-- 게시글 row행 끝 -->

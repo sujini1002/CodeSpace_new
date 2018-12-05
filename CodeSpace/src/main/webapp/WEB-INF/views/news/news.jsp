@@ -15,8 +15,8 @@
 	<div class="row">
 		<div class="col-12">
 			<p class="page-header" style="font-size: 48px; font-weight: 400; float: left;">News</p>
-			<button class="btn btn-outline-info my-2 my-sm-0" id="newsWrite" type="button" style="float:right; margin-top: 30px;" 
-			data-toggle="modal" data-target="#confirmPW" ><a href="${pageContext.request.contextPath}/news/register">등록하기</a></button>
+			<button class="btn btn-outline-info my-2 my-sm-0" id="newsWrite" type="button" style="float:right; margin-top: 70px;" 
+			data-toggle="modal" data-target="#confirmPW" ><a href="${pageContext.request.contextPath}/news/register" style="text-decoration: none;">등록하기</a></button>
 		
 			<!-- 글쓰기 버튼누르면 비밀번호 입력하게 -->
 			<!-- <div class="modal fade" id="confirmPW" >
