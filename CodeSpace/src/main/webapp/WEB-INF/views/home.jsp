@@ -101,5 +101,5 @@
    
 </div> <!-- container 끝  -->
 
-
+<!-- 주석 -->
 <jsp:include page="common/layout_footer.jsp" />
