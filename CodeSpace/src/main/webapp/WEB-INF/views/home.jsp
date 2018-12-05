@@ -22,18 +22,40 @@
 		data-container="body" data-toggle="popover" data-placement="bottom"
 		onclick="isLogin(this)" data-content="로그인이 필요한 기능 입니다.">질문 작성</button>
    </div>
+<!-- 모달 -->
+<div id="k_loginModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">로그인하기</h4>
+      </div>
+      <div class="modal-body">
+        <p>질문등록은 로그인이 필요한 영역입니다.<br>로그인 하시겠습니까?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-info" onclick="k_loginPage()">로그인</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 <script>
 	function isLogin(data) {
 		var session = '${loginInfo.user_no}';
 		console.log(session);
 		console.log(session == "");
 		if (session == "") {
-			$('[data-toggle="popover"]').prop("disabled", true);
+			$('#k_loginModal').modal();
 		} else {
 			$('[data-toggle="popover"]').prop("disabled", false);
 			location.href = '${pageContext.request.contextPath}/question/insertQuestion';
 		} 
+	}
+	function k_loginPage(){
+		location.href = '${pageContext.request.contextPath}/userinfo/userlogin';
 	}
 </script>
 	
