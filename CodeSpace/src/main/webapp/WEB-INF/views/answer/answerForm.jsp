@@ -154,7 +154,7 @@
  <div id="k_AnswerEditor" onclick="checkLevel()">
  	
  </div>
-<ul id="k_atags"></ul>
+<ul id="k_atags" onclick="checkLevel()"></ul>
  <button type="button" id="k_saveAnswer"
 	class="btn btn-outline-info">답변 등록</button>
 </div>
@@ -384,11 +384,13 @@
 				//수정 폼 테두리 설정
 				$('#editor_'+num).css('border', '1px solid lightgray');
 				$('#editor_'+num).css('height', '250px');
+				$('#editor_'+num).css('background-color', 'white');
 				//수정 폼 작성 가능
 				eval("updateQuill"+num+".enable(true);");
 				//태그 및 제목 수정 가능
 				$('.k_atagBtn_'+num).css('display', 'none');
 				$('#k_aTagUl_'+num).css('visibility','visible');
+				$('#k_aTagUl_'+num).css('background-color','white');
 				$('#k_aTagUl_'+num).tagit();
 				$('#k_td_'+num+'> div.ql-toolbar.ql-snow').css('width', '100%');
 				

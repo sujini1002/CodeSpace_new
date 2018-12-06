@@ -20,7 +20,7 @@
 	<tr>
 		<td>
 			<!-- <div id="toolbar"></div> -->
-			<div id="editor" style="height: 500px"></div>
+			<div id="editor" style="height: 500px;background-color: white;"></div>
 		</td>
 	</tr>
 	<tr>

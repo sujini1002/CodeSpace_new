@@ -44,7 +44,7 @@
 	display:none;
 }
 #k_inputQuesComm{
-	background-color: #ecf0f5;
+	background-color: white;
 	border :none;
 }
 #a_tag{
@@ -68,5 +68,18 @@
 #k_orderBy>li>a:hover{
 	color: #17a2b8;
 }
+.ql-toolbar{
+	background-color: white;
+}
+#myTags{
+	background-color: white;
+}
+#k_AnswerEditor{
+	background-color: white;
+}
+#k_atags{
+	background-color: white;
+}
+
 
 

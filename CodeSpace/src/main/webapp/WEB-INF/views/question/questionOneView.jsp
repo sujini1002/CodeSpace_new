@@ -21,7 +21,7 @@
 		<!-- 태그 -->
 		<tr>
 			<td></td>
-			<td style="height: 70px" id="k_qTag">
+			<td style="height: 70px;" id="k_qTag">
 				<ul id="k_qTagUl">
 
 				</ul>
@@ -82,7 +82,7 @@
 				<div id="editor">
 					<textarea rows="50" cols="50" id="k_questionText"
 						style="display: none">
-				${questionInfo.q_content}
+					${questionInfo.q_content}
 				</textarea>
 
 				</div>
@@ -250,12 +250,14 @@
 			$('.ql-toolbar').css('visibility', 'visible');
 			//수정 폼 테두리 설정
 			$('#editor').css('border', '1px solid lightgray');
+			$('#editor').css('background-color','white');
 			//수정 폼 작성 가능
 			Questionquill.enable(true);
 			//태그 및 제목 수정 가능
 			$('#k_qTitle').css('display', 'none');
 			$('.k_qtagBtn').css('display', 'none');
 			$("#k_qTagUl").css('visibility','visible');
+			$('#k_qTagUl').css('background-color','white');
 			$("#k_qTagUl").tagit();
 			$('#k_qtitleForm').css('display', 'inline-block');
 			//삭제 버튼 숨기기
