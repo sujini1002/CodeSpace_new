@@ -10,13 +10,14 @@
 <!-- right Contents 시작 -->
 <div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 50px;">
 <!--  여기다가 작성 해주세요 -->
-<form action="#" method="post">
-	<div id="h_toolbar" name="notice_title">111</div>
-	<div id="h_editor" name="notice_content">222</div>
-	<button id="h_saveDelta">h_saveDelta</button>
-	
-	
-</form>
+<!-- <form action="#" method="post"> -->
+	<!-- <div id="h_toolbar" name="notice_title">111</div> -->
+	<div id="h_wrapper">
+		<!-- <div id="h_toolbar" name="notice_title"> --><input type="text" placeholder="제목을 입력해주세요"/><!-- </div> -->
+		<div id="h_editor" name="notice_content"></div>
+		<button id="h_saveDelta" style="margin-top: 10px;">h_saveDelta</button>
+	</div>
+<!-- </form> -->
 
 
 
@@ -43,9 +44,16 @@ var toolbarOptions = [
 		theme:'snow'
 	});
 	
-	$('#h_saveDelta').click(function(){
+	$('#h_saveDelta').click(function(data){
 		var delta = quill.getContents();
-		console.log(delta);
+		var ops = JSON.stringify(delta);
+		$.post('#',
+				{
+				"project_no":"${project_no}",
+				"notice_title":$('#h_wrapper>input').val(),
+				"notice_content":$('#h_editor')[0].innerText,
+				"ops":ops
+				});
 	});
 </script>
 	

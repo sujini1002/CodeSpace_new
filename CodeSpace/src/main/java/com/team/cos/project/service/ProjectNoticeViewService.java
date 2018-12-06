@@ -47,5 +47,14 @@ public class ProjectNoticeViewService {
 		result = dao.checkPm(projectInfoVO);
 		return result;
 	}
+	
+//	공지사항 작성
+	public int noticeWrite(ProjectNoticeVO projectNoticeVO) {
+		dao = template.getMapper(ProjectInfoInterface.class);
+		int result = dao.noticeWrite(projectNoticeVO);
+		System.out.println(result);
+		return 0;
+		
+	}
 
 }

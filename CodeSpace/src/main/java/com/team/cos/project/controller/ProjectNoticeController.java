@@ -2,6 +2,7 @@ package com.team.cos.project.controller;
 
 import java.util.List;
 
+import org.mortbay.util.ajax.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cos.project.service.ProjectNoticeViewService;
-import com.team.cos.project.service.ProjectRegService;
 import com.team.cos.project.vo.ProjectInfoVO;
 import com.team.cos.project.vo.ProjectNoticeVO;
 
@@ -44,6 +44,7 @@ public class ProjectNoticeController {
 		ProjectNoticeVO result = service.noticeDetailView(projectNoticeVO);
 		modelAndView.setViewName("project/notice/detailnotice");
 		modelAndView.addObject("projectNotice", result);
+//		modelAndView.addObject("noticeOps", JSON.parse(result.getOps()));
 		return modelAndView;
 	}
 
@@ -56,16 +57,19 @@ public class ProjectNoticeController {
 	}
 
 //	공지사항 페이지 이동
-	@RequestMapping(value = "/project/notice/write",method=RequestMethod.GET)
-	public String getWriteNotice() {
-		return "project/notice/write";
+	@RequestMapping(value = "/project/notice/write", method = RequestMethod.GET)
+	public ModelAndView getWriteNotice(ProjectNoticeVO projectNoticeVO) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("project/notice/write");
+		modelAndView.addObject("project_no", projectNoticeVO.getProject_no());
+		return modelAndView;
 	}
-	
+
 //	공지사항 작성 입력
-	@RequestMapping(value = "/project/notice/write",method=RequestMethod.POST)
+	@RequestMapping(value = "/project/notice/write", method = RequestMethod.POST)
 	public String postWriteNotice(ProjectNoticeVO projectNoticeVO) {
-		
-		return "project/notice/write";
+		service.noticeWrite(projectNoticeVO);
+		return "redirect:/project/notice/notice";
 	}
 
 //	공지사항 수정

@@ -41,10 +41,9 @@ function noticeWrite(){
 			"user_no":user_no
 		},
 		success:function(response){
-			console.log(response);
-			if(response.pm_no==user_no && result == true){
-				location.href='${pageContext.request.contextPath}/project/notice/write';
-			}else if(response.pm_no!=user_no && result == false){
+			if(response.pm_no == user_no && result == true){
+				location.href='${pageContext.request.contextPath}/project/notice/write?project_no='+response.project_no;
+			}else if(response.pm_no != user_no && result == false){
 				alert('프로젝트 매니저만 작성할 수 있습니다.');
 			}
 		}

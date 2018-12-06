@@ -19,7 +19,11 @@
 					<a href="#" onclick="deletenotice()">삭제</a>
 				</span>
 			</h1>
-			<p>${projectNotice.notice_content }</p>
+			<!-- <div id="h_editor" name="notice_content">
+			</div> -->
+			<div id="hajiseung" hidden="hidden">${projectNotice.ops }</div>
+			<div id="h_editor"><!-- hidden="hidden" --></div>
+			<!-- <textarea id="h_textarea" rows="30" cols="200" ></textarea> -->
 		</div>
 	</div>
 	<div class="h_golist"><a href="${pageContext.request.contextPath }/project/notice/notice?project_no=${projectNotice.project_no}" style="color: black;">목록으로</a></div>
@@ -42,6 +46,34 @@
 			location.href= '${pageContext.request.contextPath }/project/notice/modify?notice_no=' + notice_no + '&project_no=' + project_no;
 		}
 	}
-	
+	$(document).ready(function(){
+	var toolbarOptions = [
+				['bold','italic','underline','strike'],
+				['blockquote','code-block'],
+				[{'header':1},{'header':2}],
+				[{'list':'ordered'},{'list':'bullet'}],
+				[{'script':'sub'},{'script':'super'}],
+				[{'indent':'-1'},{'indent':'+1'}],
+				[{'direction':'rtl'}],
+				[{'size':['small',false,'large','huge']}],
+				['link','image','video','formula'],
+				[{'color':[]},{'background':[]}],
+				[{'font':[]}],
+				[{'align':[]}]
+			];
+		
+		var	quill = new Quill('#h_editor',{
+			modules:{
+				toolbar:toolbarOptions
+			},
+			theme:'bubble'
+		});
+		
+		var textdata = $('#hajiseung')[0].innerText;
+		textdata = JSON.parse(textdata);
+
+		quill.enable(false);
+		quill.setContents(textdata);
+	});
 	</script>	
 	<jsp:include page="../../common/layout_footer.jsp" />

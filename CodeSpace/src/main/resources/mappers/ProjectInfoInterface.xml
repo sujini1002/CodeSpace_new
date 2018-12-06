@@ -107,6 +107,13 @@
 		project_notice
 		where project_no=#{project_no}
 	</select>
+	
+	<!-- 공지사항 작성 -->
+	<insert id="noticeWrite" parameterType="com.team.cos.project.vo.ProjectNoticeVO">
+		insert into project_notice(project_no,notice_title,notice_content,notice_regdate,ops)
+		values(#{project_no},#{notice_title},#{notice_content},now(),#{ops})
+		
+	</insert>
 
 	<!-- 공지사항 클릭시 세부 내용 -->
 	<select id="noticeDetailView"

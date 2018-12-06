@@ -12,6 +12,15 @@ public class ProjectNoticeVO {
 	private String notice_file;
 	private SimpleDateFormat notice_regdate;
 	private MultipartFile file;
+	private String ops;
+
+	public String getOps() {
+		return ops;
+	}
+
+	public void setOps(String ops) {
+		this.ops = ops;
+	}
 
 	public int getNotice_no() {
 		return notice_no;
@@ -73,7 +82,6 @@ public class ProjectNoticeVO {
 	public String toString() {
 		return "ProjectNoticeVO [notice_no=" + notice_no + ", project_no=" + project_no + ", notice_title="
 				+ notice_title + ", notice_content=" + notice_content + ", notice_file=" + notice_file
-				+ ", notice_regdate=" + notice_regdate + ", file=" + file + "]";
+				+ ", notice_regdate=" + notice_regdate + ", file=" + file + ", ops=" + ops + "]";
 	}
-
 }

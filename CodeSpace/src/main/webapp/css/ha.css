@@ -149,7 +149,7 @@
 .h_divcont div {
 	margin-top: 3px;
 }
-	/* @@@여기서 부터 달력@@@ */
+/* @@@여기서 부터 달력@@@ */
 .h_table {
 	width: 600px;
 }
@@ -174,6 +174,7 @@
 
 .week {
 	/* border: 1px solid gray; */
+	
 }
 
 .empty_room {
@@ -182,4 +183,28 @@
 
 .h_day:hover {
 	background-color: #867979;
+}
+
+#h_toolbar {
+	border: 1px solid #ccc;
+	height: 60px;
+	margin-bottom: 3px;
+}
+
+#h_wrapper input {
+	border: 1px solid #ccc;
+	border-radius:7px;
+	width: 100%;
+	height: 40px;
+	padding:7px;
+	margin-bottom: 10px;
+}
+
+#h_editor{
+	background-color: white;
+	height: 500px;
+}
+
+#h_wrapper{
+	width: 80%;
 }
