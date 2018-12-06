@@ -9,15 +9,24 @@
 		<td colspan="2">
 			<!-- 답변 갯수 -->
 			<div class="k_AnswerCnt">
-				<b> ${fn:length(answerList)} 답변들</b>
+			<c:choose>
+				<c:when test="${fn:length(answerList) ne 0}">
+					<b> ${fn:length(answerList)} 답변들</b>
+				</c:when>
+				<c:otherwise>
+					<b>답변이 존재 하지 않습니다.</b>
+				</c:otherwise>
+			</c:choose>
 			</div>
+			<c:if test="${fn:length(answerList) ne 0}">
 			<!-- 정렬 순 -->
-				<ul class="nav justify-content-end">
+				<ul class="nav justify-content-end" id="k_orderBy">
 					<li class="nav-item"><a class="nav-link active k_color" href="${pageContext.request.contextPath}/question/questionView?q_no=${questionInfo.q_no}&order=score">활동순</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/question/questionView?q_no=${questionInfo.q_no}&order=votes">추천순</a></li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/question/questionView?q_no=${questionInfo.q_no}&order=date">최신순</a></li>
 				</ul>
+			</c:if>
 		</td>
 	</tr>
 	<c:forEach var="item" items="${answerList}" begin="0" end="${fn:length(answerList)}" varStatus="num">
@@ -139,7 +148,9 @@
 
 <!-- 답변 작성 -->
 <div id="k_insertQuestion">
- <h4>${loginInfo.user_nickname}님의 답변</h4>
+ <c:if test="${loginInfo.user_no ne null }">
+ 	<h4>${loginInfo.user_nickname}님의 답변</h4>
+ </c:if>
  <div id="k_AnswerEditor" onclick="checkLevel()">
  	
  </div>
@@ -147,6 +158,8 @@
  <button type="button" id="k_saveAnswer"
 	class="btn btn-outline-info">답변 등록</button>
 </div>
+
+ 
 <!-- 모달 -->
 <div id="k_checkModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -160,7 +173,7 @@
       <div class="modal-body" id="k_modalBody">
         <p>${loginInfo.user_nickname}은 입문등급이므로  답변 작성이 불가 합니다.<br>초급 부터 작성 가능 합니다</p>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" id="k_modalFooter">
         <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
         <button type="button" class="btn btn-primary" id="k_modalBtn" onclick="k_goToQuestion()">질문하러가기</button>
       </div>

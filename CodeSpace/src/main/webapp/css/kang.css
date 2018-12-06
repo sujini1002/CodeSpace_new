@@ -62,5 +62,11 @@
 .k_aTagUl{
 	visibility: hidden;
 }
+#k_orderBy>li>a{
+	color: #007bff;
+}
+#k_orderBy>li>a:hover{
+	color: #17a2b8;
+}
 
 
