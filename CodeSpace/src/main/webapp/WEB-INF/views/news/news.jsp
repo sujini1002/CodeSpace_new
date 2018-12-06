@@ -75,7 +75,7 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<table class="table table-striped table-bordered table-hover"
-						style="background-color: white;">
+						style="background-color: white; text-align: center;">
 						<thead>
 							<tr>
 								<th style="width: 50px">번호</th>
@@ -88,7 +88,7 @@
 						<c:forEach items="${list }" var="news">
 							<tr>
 								<td>${news.n_no }</td>
-								<td><a
+								<td style="text-align: left;"><a
 									href='${pageContext.request.contextPath}/news/newsView?n_no=<c:out value="${news.n_no}"/>'>${news.n_title }</a></td>
 								<td>${news.n_regdate}</td>
 								<td>${news.n_viewcnt}</td>

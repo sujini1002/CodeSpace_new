@@ -23,5 +23,8 @@ public interface NewsDao {
 	// 게시글 삭제하기
 	public void deleteNews(@Param("n_no") int n_no);
 	
+	// 조회수 증가
+	public void n_viewcnt(@Param("n_no") int n_no);
+	
 	
 }

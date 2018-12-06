@@ -5,21 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team.cos.news.dao.NewsDao;
-import com.team.cos.news.vo.NewsInfo;
 
 @Service
-public class NewsViewService {
-
+public class NewsViewcntService {
+	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	private NewsDao dao;
 	
-	public NewsInfo getNewsView(int n_no) {
+	public void n_viewcnt (int n_no) {
 		
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
-		NewsInfo newsOneView = dao.getNewsView(n_no);
-				
-		return newsOneView;
+		
+		dao.n_viewcnt(n_no);
 	}
-	
+
 }

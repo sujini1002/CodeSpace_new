@@ -28,8 +28,8 @@
 	(n_title, n_content, n_regdate)
 	values (#{param1}, #{param2}, now()) -->
 	
-	insert into news (n_title, n_writer, n_content, n_regdate)
-	values (#{n_title}, #{n_writer}, #{n_content}, now())
+	insert into news (n_title, n_writer, n_content, n_regdate, n_viewcnt)
+	values (#{n_title}, #{n_writer}, #{n_content}, now(), 0)
 
 </insert>
 
@@ -46,4 +46,10 @@
 	delete from news where n_no = #{n_no}
 </delete>
 
+
+<update id="n_viewcnt">
+	update news 
+	set	n_viewcnt = n_viewcnt +1
+	where n_no = #{n_no}
+</update>
 </mapper>
