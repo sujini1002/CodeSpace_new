@@ -14,47 +14,68 @@
 
 	<div class="row">
 		<div class="col-12">
-			<p class="page-header" style="font-size: 48px; font-weight: 400; float: left;">News</p>
-			<button class="btn btn-outline-info my-2 my-sm-0" id="newsWrite" type="button" style="float:right; margin-top: 70px;" 
-			data-toggle="modal" data-target="#confirmPW" ><a href="${pageContext.request.contextPath}/news/register" style="text-decoration: none;">등록하기</a></button>
-		
+			<p class="page-header"
+				style="font-size: 48px; font-weight: 400; float: left;">News</p>
+			<button class="btn btn-outline-info my-2 my-sm-0" id="newsWrite"
+				type="button" style="float: right; margin-top: 70px;"
+				data-toggle="modal" data-target="#writePW">
+				등록하기
+			</button>
+
 			<!-- 글쓰기 버튼누르면 비밀번호 입력하게 -->
-			<!-- <div class="modal fade" id="confirmPW" >
-				<div class="modal-dialog">
+			<div class="modal fade" id="writePW" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
 					<div class="modal-content">
-						header
 						<div class="modal-header">
-							header title
-							<h4 class="modal-title">비밀번호 입력</h4>
-							닫기(x) 버튼
-							<button type="button" class="close" data-dismiss="modal">×</button>
+							<h5 class="modal-title" id="exampleModalLabel">글 작성하기</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
 						</div>
-						body
 						<div class="modal-body">
-							공지사항을 쓰시겠습니까?<br> 
-							공지사항은 관리자만 입력가능합니다.
-							<br>공지사항 입력을 위해 비밀번호를 입력해주세요.
+							<h5>
+								공지를 작성하시겠습니까? <br>관리자 비밀번호를 입력해주십시오
+							</h5>
+							<div class="form-group">
+								<input type="password" class="form-control" id="write_pw">
+								<input type="hidden" name="n_no" value="${newsInfo.n_no }">
+							</div>
 						</div>
-						<form>
-						<input type="password" style="margin-left: 20px;"></form>
-						Footer
 						<div class="modal-footer">
-							<input type="button" class="btn btn-default" data-dismiss="modal"
-								value="취소"> <input type="button" class="btn btn-danger"
-								onclick="write_news()" value="입력하기">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">취소</button>
+							<button class="btn btn-danger" id="deleteCon"
+								onclick="write_news()">등록하기</button>
 						</div>
 					</div>
 				</div>
-			</div> -->
+			</div>
 		</div>
 	</div>
-	
+	<script>
+		var check_pw = '1234'; // 관리자 비밀번호
+
+		function write_news() {
+			var pw = $('#write_pw').val(); // 입력한 pw 값	 
+			console.log(pw);
+
+			// 입력한 pw와 관리자 pw가 같으면 
+			if (pw == check_pw) {
+				location.href = "${pageContext.request.contextPath}/news/register";
+			} else {
+				alert('비밀번호가 틀렸습니다.');
+			}
+		};
+	</script>
 
 	<div class="row">
 		<div class="col-12">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<table class="table table-striped table-bordered table-hover" style="background-color: white;">
+					<table class="table table-striped table-bordered table-hover"
+						style="background-color: white;">
 						<thead>
 							<tr>
 								<th style="width: 50px">번호</th>
@@ -67,8 +88,9 @@
 						<c:forEach items="${list }" var="news">
 							<tr>
 								<td>${news.n_no }</td>
-								<td><a href='${pageContext.request.contextPath}/news/newsView?n_no=<c:out value="${news.n_no}"/>'>${news.n_title }</a></td>
-								<td>{news.n_regdate}</td>
+								<td><a
+									href='${pageContext.request.contextPath}/news/newsView?n_no=<c:out value="${news.n_no}"/>'>${news.n_title }</a></td>
+								<td>${news.n_regdate}</td>
 								<td>${news.n_viewcnt}</td>
 						</c:forEach>
 
@@ -98,7 +120,7 @@
 										href="${pageContext.request.contextPath}/news/news${pageMaker.makeQuery(pageMaker.endPage + 1)}">&raquo;</a></li>
 								</c:if>
 							</ul>
-						
+
 
 						</div>
 						<!-- 여기 까지 -->
@@ -107,25 +129,16 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- <div>
 		<button class type="submit" value="글쓰기"></button>
 	</div> -->
-<!-- <script>
+	<!-- <script>
 function del_mypage() {
 	location.href = "${pageContext.request.contextPath}/news/writeNews";
 };
 
 </script> -->
-
-
-
-
-
-
-
-
-
 
 
 	<jsp:include page="../common/layout_footer.jsp" />

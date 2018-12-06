@@ -32,15 +32,18 @@
 	values (#{n_title}, #{n_writer}, #{n_content}, now())
 
 </insert>
+
+<update id="editNews" parameterType="com.team.cos.news.vo.NewsInfo">
+	update news set
+	n_title = #{n_title},
+	n_writer = #{n_writer},
+	n_content = #{n_content},
+	n_regdate = now()
+	where n_no = #{n_no}
+</update>
            
-
-
-
-
-
-
-
-
-
+<delete id="deleteNews" >
+	delete from news where n_no = #{n_no}
+</delete>
 
 </mapper>

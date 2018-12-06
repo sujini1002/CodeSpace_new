@@ -18,5 +18,10 @@ public interface NewsDao {
 	
 	// 게시글 등록하기
 	public int writeNews(NewsInfo newsInfo);
+	// 게시글 수정하기
+	public int editNews(NewsInfo newsInfo);
+	// 게시글 삭제하기
+	public void deleteNews(@Param("n_no") int n_no);
+	
 	
 }

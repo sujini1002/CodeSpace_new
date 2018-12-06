@@ -103,10 +103,10 @@
 					<div class="modal-content">
 						<!-- header -->
 						<div class="modal-header">
-							<!-- 닫기(x) 버튼 -->
-							<button type="button" class="close" data-dismiss="modal">×</button>
 							<!-- header title -->
 							<h4 class="modal-title">탈퇴하기</h4>
+							<!-- 닫기(x) 버튼 -->
+							<button type="button" class="close" data-dismiss="modal">×</button>
 						</div>
 						<!-- body -->
 						<div class="modal-body">
