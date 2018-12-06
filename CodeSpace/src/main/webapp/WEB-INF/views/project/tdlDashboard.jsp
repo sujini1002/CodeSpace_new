@@ -225,15 +225,17 @@
 			$(".modal").modal("hide");
 		})
 	})
-	// to do list 정보 수정 관련
-	$("#modalModifyBtn").on("click", function(e) {
+	// to do list 정보 수정 관련 modalModBtn
+	$("#modalModBtn").on("click", function(e) {
 		var todolist = {
+			todolist_no : $(".modal").data("todolist_no"),
 			project_no : $("#project_no").val(),
 			tdlmanager_no : $("#tdlmanager_no").val(),				
 			todolist_content : $("#todolist_content").val(),
 			todolist_status : $("#todolist_status").val(),
 			tdlstring_enddate : $("#tdlstring_enddate").val()
 		};
+		console.log(todolist);
 
 		setTodolist.modify(todolist, function(result) {
 			alert(result);
@@ -268,8 +270,8 @@
 		//todolist 정보 수정
 		function modify(todolist, callback, error){
 			$.ajax ({
-				type: 'post',
-				url: '/cos/project/todolistModify',
+				type : 'post',
+				url : '/cos/project/todolistModify',
 				data : JSON.stringify(todolist),
 				contentType : "application/json; charset=utf-8",
 				success : function(result, status, xhr) {
@@ -340,11 +342,6 @@
 			
 			$("#tdlModal").modal("show");
 			
-			//$("#modify_project_no").val(info.project_no);
-			//$("#modify_tdlmanager_no").val(info.tdlmanager_no);		
-			//$("#modify_todolist_content").val(info.todolist_content);
-			//$("#modify_todolist_status").val(info.todolist_status);
-			//$("#tdlstring_enddate").val() = info.todolist_enddate
 		}) 
 		
 		var manager = $("#tdlmanager_no");

@@ -33,11 +33,12 @@
 	parameterType="com.team.cos.project.vo.TodolistVO">
 		update project_todolist
 		set
-		tdlmanager_no = #{tdlmanager_no},
-		todolist_content = #{todolist_content},
-		todolist_file = #{todolist_file},
-		todolist_status = #{todolist_status},
-		todolist_enddate = #{todolist_enddate}
+			tdlmanager_no = #{tdlmanager_no},
+			todolist_content = #{todolist_content},
+			todolist_file = #{todolist_file},
+			todolist_status = #{todolist_status},
+			todolist_enddate = #{todolist_enddate}
+		where todolist_no=#{todolist_no}
 	</update>
 	
 	
