@@ -52,4 +52,31 @@
 	set	n_viewcnt = n_viewcnt +1
 	where n_no = #{n_no}
 </update>
+
+
+
+<!-- 댓글 -->
+<!-- 댓글 불러오기 -->
+<select id="getNewsCommList" resultType="com.team.cos.news.vo.NewsCommentInfo">
+	select nc_no, n_no, c.user_no, user_nickname,  nc_content, nc_regdate
+	from news_comm c, userinfo u
+	where c.user_no = u.user_no and n_no = #{n_no}
+</select>
+
+<!-- 댓글 개수 카운트 -->
+<select id="countNewsComm" resultType="int">
+	select count(*) from news_comm
+	where n_no = #{n_no}
+</select>
+
+
+
+
+
+
+
+
+
+
+
 </mapper>

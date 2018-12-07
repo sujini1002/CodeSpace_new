@@ -8,10 +8,9 @@ public class NewsInfo {
 	private String n_title;
 	private String n_content;
 	private String n_writer;
-	//private String n_pic;
 	private String n_regdate;
-	private int n_viewcnt;
-	//private MultipartFile n_photo;
+	private int n_viewcnt; // 조회수
+	private int nc_cnt; // 댓글 수 
 	
 	public synchronized int getN_no() {
 		return n_no;
@@ -37,12 +36,6 @@ public class NewsInfo {
 	public synchronized void setN_writer(String n_writer) {
 		this.n_writer = n_writer;
 	}
-	/*public synchronized String getN_pic() {
-		return n_pic;
-	}
-	public synchronized void setN_pic(String n_pic) {
-		this.n_pic = n_pic;
-	}*/
 	public synchronized String getN_regdate() {
 		return n_regdate;
 	}
@@ -55,20 +48,18 @@ public class NewsInfo {
 	public synchronized void setN_viewcnt(int n_viewcnt) {
 		this.n_viewcnt = n_viewcnt;
 	}
-	/*public synchronized MultipartFile getN_photo() {
-		return n_photo;
+	public synchronized int getNc_cnt() {
+		return nc_cnt;
 	}
-	public synchronized void setN_photo(MultipartFile n_photo) {
-		this.n_photo = n_photo;
-	}*/
+	public synchronized void setNc_cnt(int nc_cnt) {
+		this.nc_cnt = nc_cnt;
+	}
 	
 	@Override
 	public String toString() {
 		return "NewsInfo [n_no=" + n_no + ", n_title=" + n_title + ", n_content=" + n_content + ", n_writer=" + n_writer
-				+", n_regdate=" + n_regdate + ", n_viewcnt=" + n_viewcnt +  "]";
+				+ ", n_regdate=" + n_regdate + ", n_viewcnt=" + n_viewcnt + ", nc_cnt=" + nc_cnt + "]";
 	}
-	
-	
 	
 	
 

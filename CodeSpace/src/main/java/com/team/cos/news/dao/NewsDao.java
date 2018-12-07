@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.team.cos.news.vo.NewsCommentInfo;
 import com.team.cos.news.vo.NewsCriteria;
 import com.team.cos.news.vo.NewsInfo;
 
@@ -25,6 +26,12 @@ public interface NewsDao {
 	
 	// 조회수 증가
 	public void n_viewcnt(@Param("n_no") int n_no);
+	
+	
+	// 댓글 불러오기
+	public List<NewsCommentInfo> getNewsCommList(@Param("n_no") int n_no);
+	// 전체 댓글 개수
+	public int countNewsComm();
 	
 	
 }

@@ -85,11 +85,11 @@
 							</tr>
 						</thead>
 
-						<c:forEach items="${list }" var="news">
+						<c:forEach var="news" items="${list }"  >
 							<tr>
 								<td>${news.n_no }</td>
 								<td style="text-align: left;"><a
-									href='${pageContext.request.contextPath}/news/newsView?n_no=<c:out value="${news.n_no}"/>'>${news.n_title }</a></td>
+									href='${pageContext.request.contextPath}/news/newsView?n_no=<c:out value="${news.n_no}"/>'>${news.n_title }<span>${i }</span></a></td>
 								<td>${news.n_regdate}</td>
 								<td>${news.n_viewcnt}</td>
 						</c:forEach>

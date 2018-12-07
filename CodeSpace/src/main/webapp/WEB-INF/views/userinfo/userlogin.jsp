@@ -25,7 +25,7 @@
      </div>
      
      
-     <a href="${pageContext.request.contextPath }/userinfo/hjscal">달력 보러가자</a>
+     <%-- <a href="${pageContext.request.contextPath }/userinfo/hjscal">달력 보러가자</a> --%>
 <script>
 $(function(){
 	var checkcookie = '${cookie.user_id.value}';
