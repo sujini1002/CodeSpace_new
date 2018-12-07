@@ -50,12 +50,30 @@
 	</h4>
 	<h4>${pro_info.project_content }</h4>
 </div>
-
+<!-- <table>
+	<tr>
+		<th>공지사항</th>
+	</tr>
+	<tr style="border-bottom: 2px solid grey">
+		<td>제목</td>
+		<td>날짜</td>
+	</tr>
+	<tr>
+		<td>니가 나냐?</td>
+		<td>히익</td>
+	</tr>
+	
+</table> -->
+<div class="list-group h_list_group">
+  <button type="button" class="list-group-item list-group-item-action active" style="background-color: #17a2b8; width: 600px;" disabled="disabled">
+    	공지사항<span style="float: right;"> <a href="${pageContext.request.contextPath }/project/notice/notice?project_no=${pro_info.project_no }" style="color: white;">더보기</a></span>
+  </button>
+</div>
 <!-- 캘린더와 공지사항 표출 영역  -->
 <table class='table'>
 	<tr>
 		<td>캘린더  <a href="#">더보기</a>
-		<button onclick="today()">Today</button>
+		<button onclick="goToday()">Today</button>
 		<table class="h_table" style="text-align: center; border: 1px solid black; background-color: white;">
 			<tr>
 				<td colspan="7">
@@ -77,16 +95,16 @@
 			</tr>
 			<tbody class="day_of_the_week"></tbody>
 		</table></td>
-		<td>공지사항 <a href="${pageContext.request.contextPath }/project/notice/notice?project_no=${pro_info.project_no }">더보기</a></td>
+		<%-- <td>공지사항 <a href="${pageContext.request.contextPath }/project/notice/notice?project_no=${pro_info.project_no }">더보기</a></td> --%>
 	</tr>
-	<tr>
-		<td></td>
+	<!-- <tr>
+		<td>ㅁㄴㅇㅁㄴㅇ</td>
 		<td>
 			<ul class="h_ul">
 				
 			</ul>
 		</td>
-	</tr>
+	</tr> -->
 	
 </table>
 
@@ -466,16 +484,6 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 		 $(document).ready(function(){
 				var day = '${cal.start}' * 1;	//day == 5
 				var startDay = '${cal.startDay}' * 1;	//startDay == 1 
@@ -487,9 +495,6 @@
 				
 				var regDate_start= ${regged_date.startDay};
 				var regDate_end= ${regged_date.endDay};
-				console.log(regDate_start);
-				console.log(regDate_end);
-				/* var regDate =${regged_date}; */
 				var color = ['red','orange','yellow','green','blue','purple'];
 				
 				//달력 앞쪽 공백 출력		   5
@@ -525,9 +530,7 @@
 					}
 				}
 				
-				function today(){
-					location.href='${pageContext.request.contextPath}/project/prjdash?project_no='+${pro_info.project_no }+'&user_no='+${loginInfo.user_no};
-				}
+			
 			var url='${pageContext.request.contextPath}/project/notice';
 			$.ajax({
 				url: url,
@@ -538,14 +541,18 @@
 				success:function(response){
 					$.each(response,function(index,item){
 						if(index<5){
-							var data = '<li>'+item.notice_no+":"+item.notice_title+":"+item.notice_content+'</li>';
-							$('.h_ul').append(data);
+							/* var data = '<li>'+item.notice_no+":"+item.notice_title+":"+item.notice_content+'</li>'; */
+							var data = '<button type="button" class="list-group-item list-group-item-action" style="width: 600px;">'+item.notice_title+'</button>';
+							/* $('.h_ul').append(data); */
+							$('.h_list_group').append(data);
 						}
 					})
 				}
 			});
-			
-			
 		});
+		 //<button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
+		function goToday(){
+			location.href='${pageContext.request.contextPath}/project/prjdash?project_no='+${pro_info.project_no }+'&user_no='+${loginInfo.user_no};
+		}
 </script>
 

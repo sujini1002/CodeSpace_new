@@ -53,8 +53,13 @@ public class ProjectNoticeViewService {
 		dao = template.getMapper(ProjectInfoInterface.class);
 		int result = dao.noticeWrite(projectNoticeVO);
 		System.out.println(result);
-		return 0;
+		return result;
 		
+	}
+
+	public void noticeUpdate(ProjectNoticeVO projectNoticeVO) {
+		dao = template.getMapper(ProjectInfoInterface.class);
+		dao.noticeUpdate(projectNoticeVO);
 	}
 
 }

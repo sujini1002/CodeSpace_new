@@ -44,7 +44,6 @@ public class ProjectNoticeController {
 		ProjectNoticeVO result = service.noticeDetailView(projectNoticeVO);
 		modelAndView.setViewName("project/notice/detailnotice");
 		modelAndView.addObject("projectNotice", result);
-//		modelAndView.addObject("noticeOps", JSON.parse(result.getOps()));
 		return modelAndView;
 	}
 
@@ -67,9 +66,8 @@ public class ProjectNoticeController {
 
 //	공지사항 작성 입력
 	@RequestMapping(value = "/project/notice/write", method = RequestMethod.POST)
-	public String postWriteNotice(ProjectNoticeVO projectNoticeVO) {
+	public void postWriteNotice(ProjectNoticeVO projectNoticeVO) {
 		service.noticeWrite(projectNoticeVO);
-		return "redirect:/project/notice/notice";
 	}
 
 //	공지사항 수정
@@ -80,6 +78,11 @@ public class ProjectNoticeController {
 		modelAndView.setViewName("project/notice/modify");
 		modelAndView.addObject("projectNotice", result);
 		return modelAndView;
+	}
+//	공지사항 수정사항 저장
+	@RequestMapping(value = "/project/notice/modify", method = RequestMethod.POST)
+	public void saveModifyNotice(ProjectNoticeVO projectNoticeVO) {
+		service.noticeUpdate(projectNoticeVO);
 	}
 
 //	공지사항 삭제

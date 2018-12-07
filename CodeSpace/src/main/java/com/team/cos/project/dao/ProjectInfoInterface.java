@@ -54,4 +54,7 @@ public interface ProjectInfoInterface {
 	// project에 참여중인 member list 표출하기
 	public List<ProjectMemberVO> selectMember(int project_no);
 
+	// 공지사항 업데이트
+	public void noticeUpdate(ProjectNoticeVO projectNoticeVO);
+
 }

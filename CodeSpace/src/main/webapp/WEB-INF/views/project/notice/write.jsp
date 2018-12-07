@@ -15,7 +15,7 @@
 	<div id="h_wrapper">
 		<!-- <div id="h_toolbar" name="notice_title"> --><input type="text" placeholder="제목을 입력해주세요"/><!-- </div> -->
 		<div id="h_editor" name="notice_content"></div>
-		<button id="h_saveDelta" style="margin-top: 10px;">h_saveDelta</button>
+		<div id="h_saveDelta" class="btn btn-outline-info btn-info" style="margin-top: 10px;">공지사항 작성</div>
 	</div>
 <!-- </form> -->
 
@@ -53,6 +53,11 @@ var toolbarOptions = [
 				"notice_title":$('#h_wrapper>input').val(),
 				"notice_content":$('#h_editor')[0].innerText,
 				"ops":ops
+				},
+				function(data,status){
+					if(status == 'success'){
+						location.href='${pageContext.request.contextPath}/project/notice/notice?project_no='+${project_no};
+					}
 				});
 	});
 </script>

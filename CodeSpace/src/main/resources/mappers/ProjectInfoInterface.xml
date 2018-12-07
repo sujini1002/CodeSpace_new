@@ -6,9 +6,10 @@
 	<!-- project_no에 해당하고, 현재 진행중인 플젝 정보 반환 -->
 	<select id="selectProjectList"
 		resultType="com.team.cos.project.vo.ProjectInfoVO">
-		select * from project where project_no = #{project_no} and project_status=1
+		select * from project where project_no = #{project_no} and
+		project_status=1
 	</select>
-	
+
 	<!-- project_no에 해당하는 모든 플젝 정보 반환 -->
 	<select id="selectAllProjectList"
 		resultType="com.team.cos.project.vo.ProjectInfoVO">
@@ -22,7 +23,8 @@
 		project_enddate, pm_no)
 		values
 		(#{project_title},
-		#{project_content}, now(), #{project_enddate}, #{pm_no})
+		#{project_content},
+		now(), #{project_enddate}, #{pm_no})
 		<!-- 입력한후에 입력된 값의 컬럼값(자동증가값)을 가져오고 싶다면 아래와 같이 진행한다. SELECT LAST_INSERT_ID()은 
 			mysql(mariadb)에서 사용한다. 방금입력한 테이블의 auto_increment로 증가된 컬럼값을 가져오는 쿼리이다. order=AFTER로 
 			설정 -->
@@ -30,75 +32,85 @@
 			order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
-		
+
 	</insert>
 
 	<!-- project_no에 해당하는 플젝 정보 수정 -->
 	<update id="updateProject"
 		parameterType="com.team.cos.project.vo.ProjectInfoVO">
 		update project
-		set 
+		set
 		project_title = #{project_title},
 		project_content = #{project_content},
-		project_enddate = #{project_enddate}
-		where 
+		project_enddate =
+		#{project_enddate}
+		where
 		project_no = #{project_no}
 	</update>
 
 	<!-- project finish 클릭 시 project_status = 0으로 update -->
 	<update id="updateProStatus">
 		update project
-		set project_status=0, project_enddate=now()
+		set project_status=0,
+		project_enddate=now()
 		where project_no = #{project_no}
 	</update>
-	<update id="updateProStatusToStart" parameterType="com.team.cos.project.vo.ProjectInfoVO">
+	<update id="updateProStatusToStart"
+		parameterType="com.team.cos.project.vo.ProjectInfoVO">
 		update project
-		set project_status=1, project_startdate=now(), project_enddate=#{project_enddate}
-		where project_no = #{project_no}
+		set project_status=1,
+		project_startdate=now(), project_enddate=#{project_enddate}
+		where
+		project_no = #{project_no}
 	</update>
 
 
-	<!-- 로그인한 사용자가 참여중인 project가 있는지 확인 :: not pm-->
+	<!-- 로그인한 사용자가 참여중인 project가 있는지 확인 :: not pm -->
 	<select id="selectUserPro" parameterType="int"
 		resultType="com.team.cos.project.vo.ProjectInfoVO">
-		select * 
-		from 
-			project p
-		inner join 
-			project_member m
-		on 
-			p.project_no = m.project_no
-		where 
-			m.member_no=#{user_no}
+		select *
+		from
+		project p
+		inner join
+		project_member m
+		on
+		p.project_no = m.project_no
+		where
+		m.member_no=#{user_no}
 	</select>
-	
+
 	<select id="selectPmProject" parameterType="int"
 		resultType="com.team.cos.project.vo.ProjectInfoVO">
 		select * from project where pm_no=#{pm_no}
 	</select>
-	
-	<select id="selectProjectNo" parameterType="int" resultType="int">
-		select  distinct p.project_no from project p
-		left join project_member m
+
+	<select id="selectProjectNo" parameterType="int"
+		resultType="int">
+		select distinct p.project_no from project p
+		left join
+		project_member m
 		on p.project_no = m.project_no
-		where p.pm_no=#{user_no} or m.member_no=#{user_no}
+		where p.pm_no=#{user_no}
+		or m.member_no=#{user_no}
 	</select>
-	
+
 	<!-- project 테이블에 member로 추가한 user_no update -->
-	<insert id="memberUpdate" 
-	 	parameterType="com.team.cos.project.vo.ProjectMemberVO"> 
-		insert into project_member 
+	<insert id="memberUpdate"
+		parameterType="com.team.cos.project.vo.ProjectMemberVO">
+		insert into project_member
 		(project_no, member_no)
 		values
 		(#{project_no}, #{member_no})
-	</insert> 
-	
+	</insert>
+
 	<!-- project에 참여중인 member list 표출하기 -->
-	<select id="selectMember" parameterType="com.team.cos.project.vo.ProjectMemberVO"
+	<select id="selectMember"
+		parameterType="com.team.cos.project.vo.ProjectMemberVO"
 		resultType="com.team.cos.project.vo.ProjectMemberVO">
-		select member_no from project_member where project_no=#{project_no}
+		select member_no from project_member where
+		project_no=#{project_no}
 	</select>
-	
+
 	<!-- 공지사항 받아오기 위함 -->
 	<select id="projectNoticeView"
 		parameterType="com.team.cos.project.vo.ProjectInfoVO"
@@ -107,12 +119,14 @@
 		project_notice
 		where project_no=#{project_no}
 	</select>
-	
+
 	<!-- 공지사항 작성 -->
-	<insert id="noticeWrite" parameterType="com.team.cos.project.vo.ProjectNoticeVO">
-		insert into project_notice(project_no,notice_title,notice_content,notice_regdate,ops)
+	<insert id="noticeWrite"
+		parameterType="com.team.cos.project.vo.ProjectNoticeVO">
+		insert into
+		project_notice(project_no,notice_title,notice_content,notice_regdate,ops)
 		values(#{project_no},#{notice_title},#{notice_content},now(),#{ops})
-		
+
 	</insert>
 
 	<!-- 공지사항 클릭시 세부 내용 -->
@@ -123,13 +137,22 @@
 		project_notice
 		where notice_no=#{notice_no}
 	</select>
-	
+
 	<!-- 공지사항 작성위한 pm 체크 -->
 	<select id="checkPm"
 		parameterType="com.team.cos.project.vo.ProjectInfoVO"
 		resultType="com.team.cos.project.vo.ProjectInfoVO">
 		select * from project where pm_no=#{user_no}
 	</select>
-	
-	
+
+	<update id="noticeUpdate"
+		parameterType="com.team.cos.project.vo.ProjectNoticeVO">
+		update project_notice set ops=#{ops},
+		notice_regdate=now() where notice_no=${notice_no}
+	</update>
+
+	<delete id="noticeDelete"
+		parameterType="com.team.cos.project.vo.ProjectNoticeVO">
+		delete from project_notice where notice_no=#{notice_no};
+	</delete>
 </mapper>

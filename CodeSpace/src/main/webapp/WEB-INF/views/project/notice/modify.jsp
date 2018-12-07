@@ -10,16 +10,15 @@
 <!-- right Contents 시작 -->
 <div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 50px;">
 <!--  여기다가 작성 해주세요 -->
-
-<div id="h_toolbar">${projectNotice.notice_title }</div>
-<div id="h_editor">${projectNotice.notice_content }</div>
-<button id="h_saveDelta">h_saveDelta</button>
-<button>공지사항 수정</button>
-
+	<div id="h_hiddenModi" hidden="hidden">${projectNotice.ops}</div>
+	<div id="h_toolbar">${projectNotice.notice_title }</div>
+	<div id="h_editor" name="ops"></div>
+	<div id="h_saveDelta" class="btn btn-outline-info btn-info" style="margin-top: 5px;">수정</div>
 
 
 
 <script>
+$(document).ready(function(){
 	var toolbarOptions = [
 			['bold','italic','underline','strike'],
 			['blockquote','code-block'],
@@ -42,10 +41,26 @@
 		theme:'snow'
 	});
 	
-	$('#h_saveDelta').click(function(){
+	var textdata = $('#h_hiddenModi')[0].innerText;
+	textdata = JSON.parse(textdata);
+
+	quill.setContents(textdata);
+	
+	$('#h_saveDelta').click(function(data){
 		var delta = quill.getContents();
-		console.log(delta);
+		var ops = JSON.stringify(delta);
+		$.post('#',
+				{
+				"project_no":"${projectNotice.project_no}",
+				"ops":ops
+				},
+				function(data,status){
+					if(status == 'success'){
+						location.href='${pageContext.request.contextPath}/project/notice/notice?project_no='+${projectNotice.project_no};
+					}
+				});
 	});
+});
 </script>
 	
 <jsp:include page="../../common/layout_footer.jsp" />

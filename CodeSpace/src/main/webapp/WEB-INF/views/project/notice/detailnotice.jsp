@@ -14,11 +14,8 @@
 	<div class="h_detailnotice">
 		<div>
 			<h1>${projectNotice.notice_title }
-				<span>
-					<a href="#" onclick="modifynotice()">수정</a>
-					<a href="#" onclick="deletenotice()">삭제</a>
-				</span>
 			</h1>
+				
 			<!-- <div id="h_editor" name="notice_content">
 			</div> -->
 			<div id="hajiseung" hidden="hidden">${projectNotice.ops }</div>
@@ -26,7 +23,11 @@
 			<!-- <textarea id="h_textarea" rows="30" cols="200" ></textarea> -->
 		</div>
 	</div>
-	<div class="h_golist"><a href="${pageContext.request.contextPath }/project/notice/notice?project_no=${projectNotice.project_no}" style="color: black;">목록으로</a></div>
+	<span>
+		<a href="#" class="btn btn-outline-info btn-info" onclick="modifynotice()" style="margin-top: 5px;">수정</a>
+		<a href="#" class="btn btn-outline-info btn-info" onclick="deletenotice()" style="margin-top: 5px;">삭제</a>
+	</span>
+	<span class="h_golist"><a href="${pageContext.request.contextPath }/project/notice/notice?project_no=${projectNotice.project_no}" class="btn btn-outline-info btn-info" style="margin-top: 5px;">목록으로</a></span>
 	<script>
 	/* 공지사항 삭제 */
 	function deletenotice(){
