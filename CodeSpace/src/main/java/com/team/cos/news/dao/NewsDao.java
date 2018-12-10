@@ -30,7 +30,7 @@ public interface NewsDao {
 	public void n_viewcnt(@Param("n_no") int n_no);
 	
 	
-	// 댓글 불러오기
+	// 댓글 리스트 불러오기
 	public List<NewsCommentInfo> getNewsCommList(@Param("n_no") int n_no);
 	// 댓글 개수 
 	public int countNewsComm(@Param("n_no") int n_no);	
@@ -40,4 +40,11 @@ public interface NewsDao {
 	public void deleteComm(@Param("nc_no") int nc_no);
 	// 댓글 게시판 번호 찾기
 	public int selectNum(@Param("nc_no") int nc_no);
+	// 댓글 수정하기
+	public int editComm(NewsCommentInfo newsCommentInfo);
+	// 댓글 하나만 보기
+	public NewsCommentInfo getComm(@Param("nc_no") int nc_no);
+	
+	
+	
 }

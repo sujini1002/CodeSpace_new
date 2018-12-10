@@ -5,24 +5,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team.cos.news.dao.NewsDao;
+import com.team.cos.news.vo.NewsCommentInfo;
 
 @Service
-public class CommDeleteService {
+public class CommEditService {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	private NewsDao dao;
 	
-	public boolean deleteComm(int nc_no) {
+	// 댓글 하나만 선택하기
+	public NewsCommentInfo getComm(int nc_no) {
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
-		boolean result = false;
 		
-		dao.deleteComm(nc_no);
+		NewsCommentInfo comm = dao.getComm(nc_no);
 		
-		result = true;
-		
-		return result;
-		
+		return comm;		
 	}
 	// 컨트롤러에서 n_no 찾을수 있게
 	public int selectNum(int nc_no) {
@@ -31,5 +29,15 @@ public class CommDeleteService {
 		
 		return num;
 		
+	}
+	// 수정한거 저장하기
+	public int editComm(NewsCommentInfo newsCommentInfo) {
+		dao = sqlSessionTemplate.getMapper(NewsDao.class);
+		
+		int resultCnt = 0;
+		
+		resultCnt = dao.editComm(newsCommentInfo);
+		
+		return resultCnt;
 	}
 }

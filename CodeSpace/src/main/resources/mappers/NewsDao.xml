@@ -80,15 +80,26 @@
 	where nc_no = #{nc_no}
 </delete>
 
+<!-- 페이지 넘길때 게시글 번호 찾아주기 -->
 <select id="selectNum" resultType="int">
 	select n_no
 	from news_comm
 	where nc_no = #{nc_no}
-
 </select>
 
+<update id="editComm" parameterType="com.team.cos.news.vo.NewsCommentInfo">
+	update news_comm 
+	set
+	nc_content = #{nc_content},
+	nc_regdate = now()	
+	where nc_no = #{nc_no}
+</update>
 
-
+<select id="getComm" resultType="com.team.cos.news.vo.NewsCommentInfo">
+	select *
+	from news_comm
+	where nc_no = #{nc_no}
+</select>
 
 
 

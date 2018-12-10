@@ -79,14 +79,16 @@
 				style="background-color: white; margin-top: 0;">
 
 				<c:if test="${!empty commList}">
-					<c:forEach var="comm" items="${commList}" begin="0"
-						end="${fn:length(commList) }">
+					<c:forEach var="comm" items="${commList}" begin="0" end="${fn:length(commList) }">
 						<tr>
 							<td style="width: 120px;">${comm.user_nickname }</td>
-							<td style="width: 800px;">${comm.nc_content}</td>
+							<td style="width: 800px;"><span id="testD_${comm.nc_no}">${comm.nc_content}</span>
+							<input type="text" id="before_<c:out value="${comm.nc_no}"/>" style="display:none" value="${comm.nc_content }" />
+							</td>
 							<td style="width: 100px;">
-								<a href="#">수정</a> 
-								<a onclick="return confirm('delete??')" href="${pageContext.request.contextPath}/news/commDelete?nc_no=${comm.nc_no}">삭제</a> 
+								<a onclick="edit_comm(${comm.nc_no})" id="modi_${comm.nc_no}" href="#">수정</a>
+								
+								<a onclick="return confirm('삭제하시겠습니까?')" href="${pageContext.request.contextPath}/news/commDelete?nc_no=${comm.nc_no}">삭제</a> 
 							</td>
 							<td style="width: 100px;">${fn:substring(comm.nc_regdate, 0 ,10)}</td>
 						</tr>
@@ -125,14 +127,36 @@
 		};
 		
 				
-		// 댓글 삭제
-		function del_comm() {
-			$.ajax({
-				url : "/news/newsDelete",
-				type : "post",
-				data : {"n_no" : $}
-			})
-			
+		function edit_comm(no) {
+			//console.log(no);
+			var content = $('#before_'+no).val();
+			console.log(content);
+			if($('#modi_'+no).text() == '수정'){
+				$('#testD_'+no).css('display','none');
+				$('#before_'+no).css('display', '');
+				$('#modi_'+no).text('수정하기')
+				
+			} else if($('#modi_'+no).text() == '수정하기'){
+				 $.ajax({
+					 url : '${pageContext.request.contextPath}/news/commEdit',
+					 type : 'POST',
+					 data :{
+						 "nc_no":no,
+						 "nc_content": content
+					 },
+					 contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+					 success : function(data){
+						 console.log(data)
+							$('#testD_'+no).text($('#before_'+no).val());
+						 $('#testD_'+no).css('display','');
+							$('#before_'+no).css('display', 'none');
+							$('#modi_'+no).text('수정')
+					 },
+					 error:function(){
+						 alert('error');
+					 }
+				}); 
+			}
 		}
 	</script>
 	<jsp:include page="../common/layout_footer.jsp" />
