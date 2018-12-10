@@ -1,7 +1,5 @@
 package com.team.cos.news.vo;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class NewsInfo {
 	
 	private int n_no;

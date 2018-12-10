@@ -6,22 +6,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.team.cos.news.service.NewsDeleteService;
+import com.team.cos.news.service.CommDeleteService;
 
 @Controller
-@RequestMapping("/news/newsDelete")
-public class NewsDeleteController {
-
-	@Autowired
-	private NewsDeleteService service;
+@RequestMapping("/news/commDelete")
+public class CommDeleteController {
 	
-	@RequestMapping(method=RequestMethod.POST)
-	public String deleteNews(@RequestParam("n_no") int n_no) {
+	@Autowired
+	private CommDeleteService service;
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public String deleteComm(@RequestParam("nc_no") int nc_no ) {
 		
-		service.deleteNews(n_no);
+		int nno = service.selectNum(nc_no);
+		service.deleteComm(nc_no);
 		
-		return "redirect:/news/news";
-		
+		return "redirect:/news/newsView?n_no="+nno;
 	}
 
 }

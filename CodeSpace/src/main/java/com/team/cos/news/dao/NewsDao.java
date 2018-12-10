@@ -17,6 +17,7 @@ public interface NewsDao {
 	// 게시글 하나만 보기
 	public NewsInfo getNewsView(@Param("n_no") int n_no);
 	
+	
 	// 게시글 등록하기
 	public int writeNews(NewsInfo newsInfo);
 	// 게시글 수정하기
@@ -24,14 +25,19 @@ public interface NewsDao {
 	// 게시글 삭제하기
 	public void deleteNews(@Param("n_no") int n_no);
 	
+	
 	// 조회수 증가
 	public void n_viewcnt(@Param("n_no") int n_no);
 	
 	
 	// 댓글 불러오기
 	public List<NewsCommentInfo> getNewsCommList(@Param("n_no") int n_no);
-	// 전체 댓글 개수
-	public int countNewsComm();
-	
-	
+	// 댓글 개수 
+	public int countNewsComm(@Param("n_no") int n_no);	
+	// 댓글 등록하기
+	public int writeComm(NewsCommentInfo newsCommentInfo);
+	// 댓글 삭제
+	public void deleteComm(@Param("nc_no") int nc_no);
+	// 댓글 게시판 번호 찾기
+	public int selectNum(@Param("nc_no") int nc_no);
 }

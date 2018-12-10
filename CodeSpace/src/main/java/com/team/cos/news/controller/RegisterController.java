@@ -44,7 +44,7 @@ public class RegisterController {
 		try {
 			resultCnt = service.writeNews(newsInfo, request);
 			if (resultCnt < 1) {
-				modelAndView.setViewName("team/regFail");
+				modelAndView.setViewName("news/regFail");
 			} else {
 				modelAndView.setViewName("redirect:/");
 			}

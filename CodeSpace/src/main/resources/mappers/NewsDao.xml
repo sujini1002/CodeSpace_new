@@ -63,15 +63,29 @@
 	where c.user_no = u.user_no and n_no = #{n_no}
 </select>
 
-<!-- 댓글 개수 카운트 -->
-<select id="countNewsComm" resultType="int">
-	select count(*) from news_comm
+<!-- 댓글 개수 올리기 -->
+<update id="countNewsComm">
+	update news 
+	set	nc_cnt = nc_cnt +1
 	where n_no = #{n_no}
+</update>
+
+<insert id="writeComm" parameterType="com.team.cos.news.vo.NewsCommentInfo">
+	insert into news_comm (n_no, user_no, nc_content, nc_regdate)
+	values (#{n_no}, #{user_no}, #{nc_content}, now())
+</insert>
+
+<delete id="deleteComm">
+	delete from news_comm 
+	where nc_no = #{nc_no}
+</delete>
+
+<select id="selectNum" resultType="int">
+	select n_no
+	from news_comm
+	where nc_no = #{nc_no}
+
 </select>
-
-
-
-
 
 
 

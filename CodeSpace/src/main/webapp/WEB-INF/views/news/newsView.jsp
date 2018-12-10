@@ -74,28 +74,37 @@
 				</td>
 			</tr>
 		</table>
-		<table class="table col-12" border="1" style="background-color: white; margin-top: 0; ">
+		<form method="post">
+			<table class="table col-12" border="1"
+				style="background-color: white; margin-top: 0;">
 
-			<c:if test="${!empty commList}">
-				<c:forEach var="comm" items="${commList}" begin="0"
-					end="${fn:length(commList) }">
-					<tr>
-						<td style="width: 120px;">${comm.user_nickname }</td>
-						<td style="width: 800px;">${comm.nc_content}</td>
-						<td style="width: 100px;"><a href="#">수정</a> <a href="#">삭제</a></td>
-						<td style="width: 100px;">${fn:substring(comm.nc_regdate, 0 ,10)}</td>
-					</tr>
-				</c:forEach>
-			</c:if>
+				<c:if test="${!empty commList}">
+					<c:forEach var="comm" items="${commList}" begin="0"
+						end="${fn:length(commList) }">
+						<tr>
+							<td style="width: 120px;">${comm.user_nickname }</td>
+							<td style="width: 800px;">${comm.nc_content}</td>
+							<td style="width: 100px;">
+								<a href="#">수정</a> 
+								<a onclick="return confirm('delete??')" href="${pageContext.request.contextPath}/news/commDelete?nc_no=${comm.nc_no}">삭제</a> 
+							</td>
+							<td style="width: 100px;">${fn:substring(comm.nc_regdate, 0 ,10)}</td>
+						</tr>
+					</c:forEach>
+				</c:if>
 			</table>
 			<table>
-			<tr>
-				<td style="width: 120px;">${loginInfo.user_nickname}</td>
-				<td><textarea name="nc_content" cols="50" rows="2" class="textarea m-tcol-c" style="overflow:hidden; width: 1000px;"></textarea></td>
-				<td><button type="submit" style="width: 100px; height: 55px;">등록</button></td>
+				<tr>
 				
-			</tr>
-		</table>
+				
+					<td style="width: 120px;">${loginInfo.user_nickname}<input type="hidden" name="n_no" value="${newsInfo.n_no }"><input type="hidden" name="user_no" value="${loginInfo.user_no }"></td>
+					<td><textarea name="nc_content" cols="50" rows="2" id="commentContent"
+							class="textarea m-tcol-c"
+							style="overflow: hidden; width: 1000px;"></textarea></td>
+					<td><button type="submit" style="width: 100px; height: 55px;">등록</button> </td>
+				</tr>
+			</table>
+		</form>
 	</div>
 
 
@@ -114,5 +123,16 @@
 				alert('비밀번호가 틀렸습니다.');
 			}
 		};
+		
+				
+		// 댓글 삭제
+		function del_comm() {
+			$.ajax({
+				url : "/news/newsDelete",
+				type : "post",
+				data : {"n_no" : $}
+			})
+			
+		}
 	</script>
 	<jsp:include page="../common/layout_footer.jsp" />

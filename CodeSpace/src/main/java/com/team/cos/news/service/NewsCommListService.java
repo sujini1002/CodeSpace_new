@@ -27,9 +27,9 @@ public class NewsCommListService {
 	}
 	
 	// 한 게시글의 댓글 전체 개수
-	public int countCommList() {
+	public int countCommList(@RequestParam("n_no") int n_no) {
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
-		int resultCnt = dao.countNewsComm();
+		int resultCnt = dao.countNewsComm(n_no);
 		
 		return resultCnt;
 	}
