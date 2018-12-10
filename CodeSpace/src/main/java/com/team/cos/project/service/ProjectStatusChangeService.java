@@ -12,7 +12,6 @@ public class ProjectStatusChangeService {
 	
 	private ProjectInfoInterface dao;
 	
-	
 	//project status 를 finish (false, 0)으로 변경
 	public int changeToFinish(int project_no) {
 		dao = sqlSessionTemplate.getMapper(ProjectInfoInterface.class);

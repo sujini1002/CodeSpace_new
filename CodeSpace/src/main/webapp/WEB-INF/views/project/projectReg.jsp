@@ -59,46 +59,41 @@
 
 	<!-- 로그인한 사용자가 현재 참여중인 프로젝트 목록 보여줌 -->
 	<c:if test="${userJoinProjects!=null }">
-		<h5>${user_info.user_nickname }
-			님의 프로젝트
+		<h5>${user_info.user_nickname }님의 프로젝트   
 			<button type="button" class="btn btn-primary btn-sm"
-				data-toggle="modal" data-target="#projectGenerate">프로젝트
-				생성하기</button>
+				data-toggle="modal" data-target="#projectGenerate">프로젝트 생성하기</button>
 
 		</h5>
-
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">프로젝트 제목</th>
-					<th scope="col">프로젝트 내용</th>
-					<th scope="col">상태</th>
-					<th scope="col">시작일</th>
-					<th scope="col">종료일</th>
+		<br>
+		<table class="table table-hover" >
+			<thead >
+				<tr class="row" >
+					<th class="col-3">프로젝트 제목</th>
+					<th class="col-3">프로젝트 내용</th>
+					<th class="col-1">상태</th>
+					<th class="col-2">시작일</th>
+					<th class="col-2">종료일</th>
 				</tr>
 			</thead>
-			<tbody>
-				<c:forEach var="item" items="${userJoinProjects }"
-					varStatus="status">
-					<tr style="font-size: 15px;">
-						<td scope="row">${status.count }</td>
-						<td><a
+			<tbody >
+				<c:forEach var="item" items="${userJoinProjects }" varStatus="status">
+					<tr class="row" style="font-size: 15px;">
+						<td class="col-3"><a
 							href="${pageContext.request.contextPath}/project/prjdash?project_no=${item.project_no }
 						&user_no=${loginInfo.user_no}">${item.project_title }</a></td>
-						<td>${item.project_content }</td>
-						<td><c:if test="${item.project_status ==false}">
+						<td class="col-3">${item.project_content }</td>
+						<td class="col-1"><c:if test="${item.project_status ==false}">
 								<p style="color: red;">종료</p>
 							</c:if> <c:if test="${item.project_status ==true}">
 								<p style="color: blue;">진행중</p>
 							</c:if></td>
-						<td>${item.prostring_startdate}</td>
-						<td>${item.prostring_enddate }</td>
+						<td class="col-2">${item.prostring_startdate}</td>
+						<td class="col-2">${item.prostring_enddate }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<!-- 질문 글이 있을 시 페이징 표시 -->
+		<!-- 페이징 표시 -->
 		<div class="search-paging">
 			<!-- view 단 페이징 모듈은 여기부터 -->
 			<div class="text-center">
@@ -109,8 +104,7 @@
 						</li>
 					</c:if>
 
-					<c:forEach begin="${pageMaker.startPage}"
-						end="${pageMaker.endPage}" var="idx">
+					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 						<li class="paging-item"
 							<c:out value="${pageMaker.searchCri.page == idx?'class =active':''}"/>>
 							<a class="page-link"
