@@ -1,5 +1,7 @@
 package com.team.cos.project.controller;
 
+import java.text.SimpleDateFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,15 @@ public class TdlDashboardController {
 			@RequestParam("user_no") int user_no) {
 		
 		ProjectInfoVO pro_info = regService.selectProList(project_no);
+		// 시작일, 종료일 표출을 위한 처리
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String project_startdate="";
+		String project_enddate="";
+						
+		project_startdate = transFormat.format(pro_info.getProject_startdate());
+		project_enddate = transFormat.format(pro_info.getProject_enddate());
+		pro_info.setProstring_startdate(project_startdate);
+		pro_info.setProstring_enddate(project_enddate);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		

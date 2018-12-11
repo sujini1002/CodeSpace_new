@@ -48,6 +48,16 @@ public class ProjectDashController {
 		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
 		// project_no에 해당하는 프로젝트 정보 가져옴
 		ProjectInfoVO pro_info = proInfoservice.selectProList(project_no);
+		// 시작일, 종료일 표출을 위한 처리
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String project_startdate="";
+		String project_enddate="";
+						
+		project_startdate = transFormat.format(pro_info.getProject_startdate());
+		project_enddate = transFormat.format(pro_info.getProject_enddate());
+		pro_info.setProstring_startdate(project_startdate);
+		pro_info.setProstring_enddate(project_enddate);
+						
 
 		// project_no에 해당하는 porject member 정보 가져옴
 		List<ProjectMemberVO> proMember_info = proMemberService.getMember(project_no);

@@ -4,11 +4,12 @@
 
 <!-- 프로젝트 상세정보 표출 영역 -->
 <div>
+	<!-- 프로젝트 제목 -->
 	<h4>${pro_info.project_title}  	
+	<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#proMemberInfo">
+		<i class="fas fa-user-friends"></i>
+	</button>
 	<c:if test="${pro_info.project_status==false }">
-		<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#proMemberInfo">
-			<i class="fas fa-user-friends"></i>
-		</button>
 
 		<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#projectRestart">
 			프로젝트 다시 시작하기
@@ -16,10 +17,7 @@
 
 	</c:if>
 	<c:if test="${pro_info.project_status==true }">
-		<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#proMemberInfo">
-			<!-- 프로젝트 참여 사용자 리스트  -->
-			<i class="fas fa-user-friends"></i>
-		</button>
+	
 		<c:if test="${pro_info.pm_no == user_info.user_no }">
 			<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#projectInfo">
 				<!-- 프로젝트 정보 수정 -->
@@ -36,5 +34,16 @@
 		</c:if>
 	</c:if>
 	</h4>
-	<h4>${pro_info.project_content }</h4>
+	<!-- 프로젝트 상세 내용  -->
+	<h5>${pro_info.project_content } (${pro_info.prostring_startdate } ~ ${pro_info.prostring_enddate })</h5>
 </div>
+
+
+<script type="text/javascript" src="../js/todolist.js" ></script>
+<!-- project info 관련 -->
+
+
+
+	
+
+
