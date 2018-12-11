@@ -143,11 +143,21 @@
 		
 		for(var i =0 ;i<tagArr.length;i++){
 			if(tagArr[i]!= ''){
-				$('#k_qTag').append('<button type="button" class="btn k_qtagBtn" id="k_qtagBtnId_'+i+'">'+tagArr[i]+'</button>');
+				$('#k_qTag').append('<button type="button" onclick="moveTag(this.value)" value="'+ tagArr[i] +'" class="btn k_qtagBtn" id="k_qtagBtnId_'+i+'">'+tagArr[i]+'</button>');
 				$('#k_qTagUl').append('<li>'+tagArr[i]+'</li>');
 			}
 		}
 	});
+	
+	<!-- 태그 클릭 시 태그 검색 페이지로 이동-->
+	function moveTag(tag){
+		
+		var tagValue = tag;
+		
+		location.href="${pageContext.request.contextPath}/search/tagged?tag="+tagValue;
+		
+	}
+	
 </script>
 	<!-- 북마크 -->
 	<script>

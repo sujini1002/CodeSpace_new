@@ -58,7 +58,15 @@
 	<!-- 태그 검색 결과 Cnt 쿼리 -->
 	<select id="searchTagCnt" resultType="int">
 		select count(q_no) from question 
-		where q_no > 0 and (q_tag like CONCAT('%',#{tag},'%') and q_tag like #{tag})
+		where q_no > 0 
+			<choose>
+				<when test="tag == 'java'">
+				and (q_tag like CONCAT('%',#{tag},'%') and q_tag not like 'javascript')
+				</when>
+				<otherwise>
+				and (q_tag like CONCAT('%',#{tag},'%') or q_tag like #{tag})
+				</otherwise>
+			</choose>
 	</select>
 
 </mapper>
