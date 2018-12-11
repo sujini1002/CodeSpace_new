@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.team.cos.news.service.NewsViewService;
 import com.team.cos.news.service.RegisterService;
 import com.team.cos.news.vo.NewsInfo;
 
@@ -46,7 +44,7 @@ public class RegisterController {
 			if (resultCnt < 1) {
 				modelAndView.setViewName("news/regFail");
 			} else {
-				modelAndView.setViewName("redirect:/");
+				modelAndView.setViewName("redirect:/news/news");
 			}
 			
 		} catch (IllegalStateException e) {
@@ -54,11 +52,6 @@ public class RegisterController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-		System.out.println("등록 컨트롤러 탔음");
 		return modelAndView;
 	}
-	
 }

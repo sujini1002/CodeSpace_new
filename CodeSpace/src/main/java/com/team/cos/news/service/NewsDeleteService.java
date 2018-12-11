@@ -19,13 +19,9 @@ public class NewsDeleteService {
 	public boolean deleteNews(int n_no) {
 		
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
-		
 		boolean result = false;
-		
 		dao.deleteNews(n_no);
-		
 		result = true;
-		
 		return result;
 	}
 }

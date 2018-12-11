@@ -23,10 +23,7 @@ public class DeleteService {
 	// 탈퇴하기 처리
 	@Transactional
 	public boolean delete(String inputuser_id, String user_id, HttpSession session) throws IOException {
-		System.out.println("delete 서비스 들어옴");
 		
-		System.out.println("사용자 입력 값: "+inputuser_id); 
-		System.out.println("로그인 유저 아이디: "+user_id);
 		mypageInterface = sqlSessionTemplate.getMapper(MypageInterface.class);
 		
 		boolean result = false; 
@@ -36,14 +33,11 @@ public class DeleteService {
 
 		// 입력한 id와  DB의 id 비교
 		if(userInfoVo != null && userInfoVo.getUser_id().equals(inputuser_id)) {
-			System.out.println("사용자정보같음. 삭제진행");
 			mypageInterface.memberDelete(user_id);
 			session.invalidate();
 			result = true;
 		
 		} else {
-			System.out.println("사용자 정보 다름");
-		
 			result = false;
 		}
 		return result;

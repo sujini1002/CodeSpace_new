@@ -28,11 +28,6 @@ public class UsersPageController {
 		modelAndView.setViewName("user/usersPage");
 		modelAndView.addObject("usersInfo", service.getUsersPage(user_no));
 		
-		// System.out.println("사용자s 페이지 컨트롤러 들어오나");
-		// System.out.println(service.getUsersPage(user_no));
-		// System.out.println(service.getQstCnt(user_no, cri));
-		// System.out.println(service.getAnsCnt(cri, user_no));
-
 		// 사용자가 한 질문 받아오기
 		modelAndView.addObject("usersQst", service.getUsersQst(user_no, cri));
 		modelAndView.addObject("qstCnt", service.countUsersQst(user_no, cri));

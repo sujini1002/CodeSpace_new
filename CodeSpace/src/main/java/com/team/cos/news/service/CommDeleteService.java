@@ -16,11 +16,8 @@ public class CommDeleteService {
 	public boolean deleteComm(int nc_no) {
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
 		boolean result = false;
-		
 		dao.deleteComm(nc_no);
-		
 		result = true;
-		
 		return result;
 		
 	}
@@ -28,7 +25,6 @@ public class CommDeleteService {
 	public int selectNum(int nc_no) {
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
 		int num = dao.selectNum(nc_no);
-		
 		return num;
 		
 	}

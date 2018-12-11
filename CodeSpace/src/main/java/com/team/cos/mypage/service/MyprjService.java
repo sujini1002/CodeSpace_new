@@ -18,13 +18,8 @@ public class MyprjService {
 	public List<ProjectInfoVO> getMyprj(int user_no){
 		mypageInterface = sqlSessionTemplate.getMapper(MypageInterface.class);
 		
-		
-		
-		
 		//user_no에 해당하는 project list 가져옴
 		List<ProjectInfoVO> myPrjList = mypageInterface.getProjectByProject(user_no);
-		
-		System.out.println(myPrjList);
 		
 		return myPrjList;
 	}

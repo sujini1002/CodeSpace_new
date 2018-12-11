@@ -28,10 +28,6 @@ public class NewsListController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
-		// 댓글 개수
-		//commService.countCommList(n_no);
-		
-		
 		// 뉴스 정보 얻어오기
 		modelAndView.addObject("list", service.getNewsList(cri));
 		
@@ -40,8 +36,6 @@ public class NewsListController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.countNews(cri));
 		modelAndView.addObject("pageMaker", pageMaker);
-		
-		
 		
 		modelAndView.setViewName("news/news");
 		

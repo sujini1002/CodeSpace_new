@@ -33,11 +33,8 @@ public class CommEditService {
 	// 수정한거 저장하기
 	public int editComm(NewsCommentInfo newsCommentInfo) {
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
-		
 		int resultCnt = 0;
-		
 		resultCnt = dao.editComm(newsCommentInfo);
-		
 		return resultCnt;
 	}
 }

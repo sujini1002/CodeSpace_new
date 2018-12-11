@@ -18,11 +18,8 @@ public class CommInsertService {
 	
 	@Transactional
 	public int writeComm(NewsCommentInfo newsCommentInfo) {
-		
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
-		
 		int resultCnt = dao.writeComm(newsCommentInfo);
-		
 		return resultCnt;
 	}
 

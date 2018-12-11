@@ -24,7 +24,6 @@ public class MyQuestionController {
 			@ModelAttribute("cri") MyactCriteria cri) {
 		
 		ModelAndView modelAndView = new ModelAndView();
-		//System.out.println(cri);
 		
 		modelAndView.addObject("myQstList", service.getMyQst(user_no, cri));
 		

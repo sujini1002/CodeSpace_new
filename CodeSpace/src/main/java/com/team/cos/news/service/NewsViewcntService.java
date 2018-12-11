@@ -16,7 +16,6 @@ public class NewsViewcntService {
 	public void n_viewcnt (int n_no) {
 		
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
-		
 		dao.n_viewcnt(n_no);
 	}
 

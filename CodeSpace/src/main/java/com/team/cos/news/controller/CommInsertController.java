@@ -22,7 +22,6 @@ public class CommInsertController {
 	public ModelAndView getComm() {
 
 		ModelAndView modelAndView = new ModelAndView();
-
 		modelAndView.setViewName("news/comment");
 		return modelAndView;
 	}
@@ -36,7 +35,6 @@ public class CommInsertController {
 		modelAndView.setViewName("redirect:/news/newsView");
 
 		int resultCnt;
-
 		resultCnt = service.writeComm(newsCommentInfo);
 
 		if (resultCnt < 1) {

@@ -95,15 +95,16 @@
 					</c:forEach>
 				</c:if>
 			</table>
-			<table>
+			<table class="table row">
 				<tr>
-				
-				
-					<td style="width: 120px;">${loginInfo.user_nickname}<input type="hidden" name="n_no" value="${newsInfo.n_no }"><input type="hidden" name="user_no" value="${loginInfo.user_no }"></td>
+					<td style="width: 250px;">${loginInfo.user_nickname}
+						<input type="hidden" name="n_no" value="${newsInfo.n_no }"><input type="hidden" name="user_no" value="${loginInfo.user_no }"></td>
 					<td><textarea name="nc_content" cols="50" rows="2" id="commentContent"
 							class="textarea m-tcol-c"
 							style="overflow: hidden; width: 1000px;"></textarea></td>
 					<td><button type="submit" style="width: 100px; height: 55px;">등록</button> </td>
+					
+					
 				</tr>
 			</table>
 		</form>
@@ -114,6 +115,8 @@
 	<script>
 		var check_pw = '1234'; // 관리자 비밀번호
 
+		
+		// 뉴스 삭제하기
 		function del_news() {
 			var pw = $('#confirm_pw').val(); // 입력한 pw 값	 
 			console.log(pw);
@@ -125,8 +128,11 @@
 				alert('비밀번호가 틀렸습니다.');
 			}
 		};
-		
 				
+		
+		
+		
+		// 댓글 수정하기		
 		function edit_comm(no) {
 			//console.log(no);
 			var content = $('#before_'+no).val();

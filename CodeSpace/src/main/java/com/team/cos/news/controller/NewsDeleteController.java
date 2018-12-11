@@ -15,11 +15,10 @@ public class NewsDeleteController {
 	@Autowired
 	private NewsDeleteService service;
 	
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.GET)
 	public String deleteNews(@RequestParam("n_no") int n_no) {
 		
 		service.deleteNews(n_no);
-		
 		return "redirect:/news/news";
 		
 	}

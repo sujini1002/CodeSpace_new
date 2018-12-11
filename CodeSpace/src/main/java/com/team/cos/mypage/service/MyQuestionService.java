@@ -23,7 +23,6 @@ public class MyQuestionService {
 		cri.setUser_no(user_no);
 	    cri.setStartNum(cri.getPageStart());
 		List<QuestionInfo> myQstList = myActInterface.getMyQst(cri);
-		// System.out.println(myQstList.size());
 		return myQstList;
 
 	}
@@ -32,9 +31,7 @@ public class MyQuestionService {
 	public int countMyQst(int user_no, MyactCriteria cri) {
 
 		myActInterface = sqlSessionTemplate.getMapper(MyactivityInterface.class);
-
 		int resultCnt = myActInterface.countMyQst(user_no, cri);
-
 		return resultCnt;
 	}
 }

@@ -59,8 +59,6 @@ public class NewsViewController {
 		
 		ModelAndView modelAndView = new ModelAndView();
   		
-		//modelAndView.setViewName("redirect:/news/newsView");
-
 		int resultCnt;
 
 		resultCnt = insertService.writeComm(newsCommentInfo);

@@ -29,9 +29,7 @@ public class NewsListService {
 	public int countNews(NewsCriteria cri) {
 		
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
-		
 		int resultCnt = dao.countNews(cri);
-		
 		return resultCnt;
 	}
 

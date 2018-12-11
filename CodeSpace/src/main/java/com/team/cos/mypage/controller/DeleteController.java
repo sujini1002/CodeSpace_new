@@ -24,7 +24,6 @@ public class DeleteController {
 	public ModelAndView getDeleteForm(String user_id) {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		
 		modelAndView.setViewName("mypage/delete");
 		modelAndView.addObject("user_id", user_id); // 로그인한 회원 정보 -> 사용자 id값 확인하는 페이지 넘어갈 때 파라미터로 전달
 		return modelAndView;

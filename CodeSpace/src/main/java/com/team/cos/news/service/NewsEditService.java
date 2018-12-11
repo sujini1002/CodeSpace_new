@@ -20,19 +20,14 @@ public class NewsEditService {
 
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
 		NewsInfo newsOneView = dao.getNewsView(n_no);
-
-		System.out.println(newsOneView);
 		return newsOneView;
 	}
 	
 	public int editNews(NewsInfo newsInfo, HttpServletRequest request) {
 		
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
-		
 		int resultCnt = 0;
-		
 		resultCnt = dao.editNews(newsInfo);
-		
 		return resultCnt; 
 	}
 

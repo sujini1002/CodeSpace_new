@@ -22,7 +22,6 @@ public class NewsCommListService {
 		
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
 		List<NewsCommentInfo> commList = dao.getNewsCommList(n_no);
-		
 		return commList;
 	}
 	
@@ -30,7 +29,6 @@ public class NewsCommListService {
 	public int countCommList(@RequestParam("n_no") int n_no) {
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
 		int resultCnt = dao.countNewsComm(n_no);
-		
 		return resultCnt;
 	}
 }

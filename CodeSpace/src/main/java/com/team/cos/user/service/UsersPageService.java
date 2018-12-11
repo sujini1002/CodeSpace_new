@@ -25,10 +25,7 @@ public class UsersPageService {
 	public UserInfoVo getUsersPage(int user_no) {
 
 		mypageInterface = sqlSessionTemplate.getMapper(MypageInterface.class);
-
 		UserInfoVo users = mypageInterface.getUsersPage(user_no);
-
-		// System.out.println("사용자s 페이지 서비스 들어오나");
 		return users;
 	}
 

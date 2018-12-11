@@ -18,7 +18,6 @@ public class NewsViewService {
 		
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
 		NewsInfo newsOneView = dao.getNewsView(n_no);
-				
 		return newsOneView;
 	}
 	
