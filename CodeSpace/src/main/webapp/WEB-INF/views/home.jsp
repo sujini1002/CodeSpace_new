@@ -63,14 +63,19 @@
 	      </c:if><!-- !empty 조건 -->
 	      </div>
 	    <div class="col">
-	    	<div>
-	    		<h1>명예의 전당</h1>
+	    	<div class="card" style="width: 18rem;">
+			  <div class="card-body">
+			    <h5 class="card-title">명예의 전당  <img src="${pageContext.request.contextPath}/images/crown.png"></h5>
+			    
+			    <p class="card-text">
 	    		<c:forEach var="users" items="${topUsers }" varStatus="status">
-	    			순위: ${status.count }
+	    			${status.count }. 
 	    			이름: ${users.user_name }
 	    			점수: ${users.user_score }
 	    			<br>
 	    		</c:forEach>
+	    		</p>
+	    	  </div>
 	    	</div>
 	    	<br>
 	      	<div class="card" style="width: 18rem;">
