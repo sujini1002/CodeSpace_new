@@ -15,68 +15,59 @@
 
 
 <jsp:include page="projectCommon.jsp" />
-<!-- <table>
-	<tr>
-		<th>공지사항</th>
-	</tr>
-	<tr style="border-bottom: 2px solid grey">
-		<td>제목</td>
-		<td>날짜</td>
-	</tr>
-	<tr>
-		<td>니가 나냐?</td>
-		<td>히익</td>
-	</tr>
-	
-</table> -->
+<br>
 <div class="list-group h_list_group">
-  <button type="button" class="list-group-item list-group-item-action active" style="background-color: #17a2b8; width: 600px;" disabled="disabled">
-    	공지사항<span style="float: right;"> <a href="${pageContext.request.contextPath }/project/notice/notice?project_no=${pro_info.project_no }" style="color: white;">더보기</a></span>
+  <button type="button" class="list-group-item list-group-item-action active" style="background-color: #17a2b8; width: 100%;" disabled="disabled">
+    	공지사항
+    	<span style="float: right;"> 
+    	<a href="${pageContext.request.contextPath }/project/notice/notice?project_no=${pro_info.project_no }" style="color: white;">더보기</a>
+    	</span>
   </button>
 </div>
-<!-- 캘린더와 공지사항 표출 영역  -->
+<br>
+<!-- 캘린더 표출 영역  -->
 <table class='table'>
 	<tr>
-		<td>캘린더  <a href="#">더보기</a>
-		<button onclick="goToday()">Today</button>
-		<table class="h_table" style="text-align: center; border: 1px solid black; background-color: white;">
-			<tr>
-				<td colspan="7">
-					<a href="${pageContext.request.contextPath }/userinfo/precal?year=${cal.year-1 }&month=${cal.month }&project_no=${pro_info.project_no }&user_no=${user_info.user_no}">&lt;&lt;</a>&nbsp;
-					<a href="${pageContext.request.contextPath }/userinfo/precal?year=${cal.year }&month=${cal.month-1 }&project_no=${pro_info.project_no }&user_no=${user_info.user_no}">&lt;</a>
-					&nbsp;${cal.year }년 ${cal.month+1 }월&nbsp; 
-					<a href="${pageContext.request.contextPath }/userinfo/postcal?year=${cal.year }&month=${cal.month+1 }&project_no=${pro_info.project_no }&user_no=${user_info.user_no}">&gt;</a>&nbsp;
-					<a href="${pageContext.request.contextPath }/userinfo/postcal?year=${cal.year+1 }&month=${cal.month }&project_no=${pro_info.project_no }&user_no=${user_info.user_no}">&gt;&gt;</a>
-				</td>
-			</tr>
-			<tr class="week">
-				<td class="sun">일</td>
-				<td>월</td>
-				<td>화</td>
-				<td>수</td>
-				<td>목</td>
-				<td>금</td>
-				<td class="sat">토</td>
-			</tr>
-			<tbody class="day_of_the_week"></tbody>
-		</table></td>
-		<%-- <td>공지사항 <a href="${pageContext.request.contextPath }/project/notice/notice?project_no=${pro_info.project_no }">더보기</a></td> --%>
-	</tr>
-	<!-- <tr>
-		<td>ㅁㄴㅇㅁㄴㅇ</td>
 		<td>
-			<ul class="h_ul">
-				
-			</ul>
+			캘린더  <a href="#">더보기</a>
+			<button onclick="goToday()">Today</button>
+				<table class="h_table" style="text-align: center; border: 1px solid black; background-color: white;">
+					<tr>
+						<td colspan="7">
+							<a href="${pageContext.request.contextPath }/userinfo/precal?year=${cal.year-1 }&month=${cal.month }&project_no=${pro_info.project_no }&user_no=${user_info.user_no}">&lt;&lt;</a>&nbsp;
+							<a href="${pageContext.request.contextPath }/userinfo/precal?year=${cal.year }&month=${cal.month-1 }&project_no=${pro_info.project_no }&user_no=${user_info.user_no}">&lt;</a>
+							&nbsp;${cal.year }년 ${cal.month+1 }월&nbsp; 
+							<a href="${pageContext.request.contextPath }/userinfo/postcal?year=${cal.year }&month=${cal.month+1 }&project_no=${pro_info.project_no }&user_no=${user_info.user_no}">&gt;</a>&nbsp;
+							<a href="${pageContext.request.contextPath }/userinfo/postcal?year=${cal.year+1 }&month=${cal.month }&project_no=${pro_info.project_no }&user_no=${user_info.user_no}">&gt;&gt;</a>
+						</td>
+						
+					</tr>
+					<tr class="week">
+						<td class="sun">일</td>
+						<td>월</td>
+						<td>화</td>
+						<td>수</td>
+						<td>목</td>
+						<td>금</td>
+						<td class="sat">토</td>
+					</tr>
+					<tbody class="day_of_the_week"></tbody>
+				</table>
 		</td>
-	</tr> -->
+		<td>
+			to do list
+			<a href="${pageContext.request.contextPath}/project/tdlDashboard?project_no=${pro_info.project_no }&user_no=${user_info.user_no}">더보기</a>
+			<!-- REST 방식의 to do list -->
+			<table class="table" id="tdlboard" >	</table>
+		</td>
+		<%-- <td>공지사항 <a href="${pageContext.request.contextPath }/project/notice/notice?project_no=${pro_info.project_no }">더보기</a></td> --%>
+	
+	</tr>
+
 	
 </table>
 
-<!-- REST 방식의 to do list -->
-<span style="font-size: 30px;">to do list</span>
-<a href="${pageContext.request.contextPath}/project/tdlDashboard?project_no=${pro_info.project_no }&user_no=${user_info.user_no}">더보기</a>
-<table class="table" id="tdlboard" >	</table>
+
 
 
 
@@ -504,14 +495,19 @@
 					"project_no":"${pro_info.project_no}"
 				},
 				success:function(response){
-					$.each(response,function(index,item){
-						if(index<5){
-							/* var data = '<li>'+item.notice_no+":"+item.notice_title+":"+item.notice_content+'</li>'; */
-							var data = '<button type="button" class="list-group-item list-group-item-action" style="width: 600px;">'+item.notice_title+'</button>';
-							/* $('.h_ul').append(data); */
-							$('.h_list_group').append(data);
-						}
-					})
+					if(response!=null){
+						$.each(response,function(index,item){
+							if(index<5){
+								/* var data = '<li>'+item.notice_no+":"+item.notice_title+":"+item.notice_content+'</li>'; */
+								var data = '<button type="button" class="list-group-item list-group-item-action" style="width: 100%;">'+item.notice_title+'</button>';
+								/* $('.h_ul').append(data); */
+								$('.h_list_group').append(data);
+							}
+						})
+					}
+					var data = '<button type="button" class="list-group-item list-group-item-action" style="width: 100%;">아직 공지사항이 없습니다. 첫번째 공지사항을 작성해주세요!</button>';
+					$('.h_list_group').append(data);
+					
 				}
 			});
 		});
