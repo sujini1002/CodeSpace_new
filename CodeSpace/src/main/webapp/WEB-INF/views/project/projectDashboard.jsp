@@ -365,7 +365,7 @@
 			
 			str += "<tr data-todolist_no="+list[i].todolist_no+">";
 			str += "<td>"+list[i].todolist_content+"</a></td>";
-			str += "<td>"+list[i].user_name+"</td>";
+			str += "<td>"+list[i].user_nickname+"</td>";
 			str += "<td>"+list[i].todolist_status+"</td>";
 			str += "<td>"+tdlService.displayTime(list[i].todolist_enddate)+"</td>";
 			str += "</tr>";

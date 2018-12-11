@@ -40,8 +40,7 @@ public class ProjectMemberListController {
 		UserInfoVo user = new UserInfoVo();
 		for(int i=0; i<memberList.size(); i++) {
 			user = userService.userInfoCheckWithNo(memberList.get(i).getMember_no());
-			memberList.get(i).setUser_name(user.getUser_name());
-			System.out.println(memberList.get(i).getUser_name());
+			memberList.get(i).setUser_nickname(user.getUser_nickname());
 		}
 		
 		return new ResponseEntity<>(memberList, HttpStatus.OK);

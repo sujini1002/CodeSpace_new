@@ -127,21 +127,21 @@
 					var todoStr = "<li class='left clearfix' data-todolist_no='"+list[i].todolist_no+"'>";
 						todoStr += "<div><div class='header'><strong class='primary-font'>"+list[i].todolist_content+"</strong>";
 						todoStr += "<small class='pull-right text-muted'>"+tdlService.displayTime(list[i].todolist_enddate)+"까지</small></div>";
-						todoStr += "<p>담당자: "+list[i].user_name+"</p></div></li>";
+						todoStr += "<p>담당자: "+list[i].user_nickname+"</p></div></li>";
 					todo.append(todoStr);
 						
 				} else if(list[i].todolist_status=="doing"){
 					var doingStr = "<li class='left clearfix' data-todolist_no='"+list[i].todolist_no+"'>";
 						doingStr += "<div><div class='header'><strong class='primary-font'>"+list[i].todolist_content+"</strong>";
 						doingStr += "<small class='pull-right text-muted'>"+tdlService.displayTime(list[i].todolist_enddate)+"까지</small></div>";
-						doingStr += "<p>담당자: "+list[i].user_name+"</p></div></li>";
+						doingStr += "<p>담당자: "+list[i].user_nickname+"</p></div></li>";
 					doing.append(doingStr);
 					
 				} else if(list[i].todolist_status=="done"){
 					var doneStr = "<li class='left clearfix' data-todolist_no='"+list[i].todolist_no+"'>";
 						doneStr += "<div><div class='header'><strong class='primary-font'>"+list[i].todolist_content+"</strong>";
 						doneStr += "<small class='pull-right text-muted'>"+tdlService.displayTime(list[i].todolist_enddate)+"까지</small></div>";
-						doneStr += "<p>담당자: "+list[i].user_name+"</p></div></li>";
+						doneStr += "<p>담당자: "+list[i].user_nickname+"</p></div></li>";
 					done.append(doneStr);
 				}
 			}
@@ -249,7 +249,7 @@
 		}, function(list){
 			var str = "";
 			for(var i=0, len=list.length||0; i<len; i++){
-				str += "<option value="+list[i].member_no+">"+list[i].user_name+"</option>"
+				str += "<option value="+list[i].member_no+">"+list[i].user_nickname+"</option>"
 			}
 			manager.html(str);
 		})
@@ -263,15 +263,11 @@
 	$(".row").on("click", "li", function(e){
 		var project_noValue = ${project_no};
 		var project_status = ${projectInfo.project_status};
-		console.log("gg+"+project_status);
 		var todolist_no = $(this).data("todolist_no");
-		console.log(todolist_no);
 		
 		tdlService.getTodolistInfo({
 			todolist_no: todolist_no}, 
 			function(info){
-		
-			console.log(info);
 			
 			$(".modal").find("input[id='project_no']").val(info.project_no);
 			$(".modal").find("input[id='todolist_content']").val(info.todolist_content);
@@ -296,7 +292,7 @@
 		}, function(list){
 			var str = "";
 			for(var i=0, len=list.length||0; i<len; i++){
-				str += "<option value="+list[i].member_no+">"+list[i].user_name+"</option>"
+				str += "<option value="+list[i].member_no+">"+list[i].user_nickname+"</option>"
 			}
 			manager.html(str);
 		})

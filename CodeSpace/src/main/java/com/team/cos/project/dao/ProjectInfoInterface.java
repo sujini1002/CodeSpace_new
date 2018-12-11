@@ -24,6 +24,9 @@ public interface ProjectInfoInterface {
 
 	// 프로젝트 상태 변경 (restart: true, 1)
 	public int updateProStatusToStart(ProjectInfoVO vo);
+	
+	// 전체 프로젝트 상태 변경 
+	public int updateAllProStatus();
 
 	// 로그인한 사용자가 참여중인 project 정보를 보여주는 메서드
 	public List<ProjectInfoVO> selectUserPro(int user_no);

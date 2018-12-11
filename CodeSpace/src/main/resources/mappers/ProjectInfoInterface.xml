@@ -48,7 +48,7 @@
 		project_no = #{project_no}
 	</update>
 
-	<!-- project finish 클릭 시 project_status = 0으로 update -->
+	<!-- project finish 클릭 시 project_status = 0(done)으로 update -->
 	<update id="updateProStatus">
 		update project
 		set project_status=0,
@@ -62,6 +62,11 @@
 		project_startdate=now(), project_enddate=#{project_enddate}
 		where
 		project_no = #{project_no}
+	</update>
+	<!-- 전체 프로젝트 상태 업데이트 -->
+	<update id="updateAllProStatus">
+		update project set project_status=0
+		where project_enddate in (date(now()))
 	</update>
 
 

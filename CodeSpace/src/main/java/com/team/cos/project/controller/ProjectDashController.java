@@ -48,7 +48,6 @@ public class ProjectDashController {
 		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
 		// project_no에 해당하는 프로젝트 정보 가져옴
 		ProjectInfoVO pro_info = proInfoservice.selectProList(project_no);
-		System.out.println("project status: " + pro_info.isProject_status());
 
 		// project_no에 해당하는 porject member 정보 가져옴
 		List<ProjectMemberVO> proMember_info = proMemberService.getMember(project_no);
@@ -59,7 +58,6 @@ public class ProjectDashController {
 
 		for (int i = 0; i < proMember_info.size(); i++) {
 			member_info.add(userInfoService.userInfoCheckWithNo(proMember_info.get(i).getMember_no()));
-			System.out.println(member_info.get(i).getUser_nickname());
 		}
 		// 달력관련임!!!!!!!!!!!!!!!!
 		calendarVo result = service.viewCalendar(vo);
