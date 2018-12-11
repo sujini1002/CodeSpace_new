@@ -1,6 +1,7 @@
 @charset "UTF-8";
 #k_content{
-	min-height: 800px;
+	height: auto;
+    min-height:800px;
 	min-width: 1000px;
 }
 
