@@ -22,11 +22,11 @@ public class TdlDashboardController {
 			@RequestParam("project_no") int project_no,
 			@RequestParam("user_no") int user_no) {
 		
-		ProjectInfoVO projectInfo = regService.selectProList(project_no);
+		ProjectInfoVO pro_info = regService.selectProList(project_no);
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
-		modelAndView.addObject("projectInfo", projectInfo );
+		modelAndView.addObject("pro_info", pro_info );
 		modelAndView.addObject("project_no", project_no);
 		modelAndView.addObject("user_no", user_no);
 		modelAndView.setViewName("/project/tdlDashboard");

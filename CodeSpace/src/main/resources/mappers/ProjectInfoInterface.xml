@@ -14,6 +14,7 @@
 	<select id="selectAllProjectList"
 		resultType="com.team.cos.project.vo.ProjectInfoVO">
 		select * from project where project_no = #{project_no}
+		order by project_status
 	</select>
 
 	<!-- 플젝 정보 추가 -->
@@ -82,6 +83,7 @@
 		p.project_no = m.project_no
 		where
 		m.member_no=#{user_no}
+		order by project_status
 	</select>
 
 	<select id="selectPmProject" parameterType="int"

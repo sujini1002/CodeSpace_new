@@ -38,6 +38,7 @@
 		left join project_member m
 		on p.project_no = m.project_no
 		where p.pm_no=#{user_no} or m.member_no=#{user_no}
+		order by project_status desc
 		limit #{pageStart}, #{perPageNum}
 	</select>
 	<select id="projectCountPaging" resultType="int">

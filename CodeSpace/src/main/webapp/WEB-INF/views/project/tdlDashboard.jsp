@@ -9,18 +9,20 @@
 <!-- right Contents 시작 -->
 <div class="col-md-10" style="background-color: rgb(236, 240, 245); padding-top: 30px; padding-left: 50px;">
 	<!--  여기다가 작성 해주세요 -->
-
-	<!-- REST 방식의 to do list -->
+	
+<%@ include file="projectCommon.jsp" %> 	
+<!-- REST 방식의 to do list -->
 	<h3>
 		to do list
-		<c:if test="${projectInfo.project_status==true }">
+		<c:if test="${pro_info.project_status==true }">
 		<button type="button" class="btn btn-primary btn-sm"
 			data-toggle="modal" id="todolistForm" data-target="#tdlModal">추가하기</button>
 		</c:if>
 	</h3>
 	
-	<div class='container' id='todolistContainer'></div>
-
+	<div class='container' id='todolistContainer'>
+		
+	</div>
 	<jsp:include page="../common/layout_footer.jsp" />
 
 
@@ -32,9 +34,8 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">To do list 작성하기</h4>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+					<h4 class="modal-title">To do list</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
@@ -113,7 +114,7 @@
 				str += "</div>";
 				
 			if (list == null || list.length == 0) {
-				container.html("");
+				container.html("to do list가 없습니다. 추가해주세요.");
 				return;
 			}
 			container.html(str);
@@ -262,7 +263,7 @@
 	//to do list title 클릭 시 todolist_no에 해당하는 todolist 정보 가져와서 보여주기
 	$(".row").on("click", "li", function(e){
 		var project_noValue = ${project_no};
-		var project_status = ${projectInfo.project_status};
+		var project_status = ${pro_info.project_status};
 		var todolist_no = $(this).data("todolist_no");
 		
 		tdlService.getTodolistInfo({

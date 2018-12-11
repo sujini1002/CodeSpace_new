@@ -47,7 +47,6 @@ public class ProjectRegController {
 		
 		//페이징 처리된 project 정보 list 형태로 가져옴
 		List<ProjectInfoVO> userJoinProjects = pagingService.projectListCriteria(cri);
-		System.out.println("====================paging list: "+userJoinProjects.size());
 		
 		// 시작일, 종료일 표출을 위한 처리
 		if(userJoinProjects!=null) {
