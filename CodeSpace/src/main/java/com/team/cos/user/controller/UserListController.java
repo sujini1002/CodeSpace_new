@@ -37,18 +37,6 @@ public class UserListController {
 		
 		pageMaker.setUserTotalCount(userService.getUserCnt(cri));
 		
-		
-		System.out.println("일반 리스트 페이징 값");
-		System.out.println("totalCount : " + pageMaker.getTotalCount());
-		System.out.println("userTotalCount : " + pageMaker.getUserTotalCount());
-		System.out.println("startPage : " + pageMaker.getStartPage());
-		System.out.println("endPage : " + pageMaker.getEndPage());
-		System.out.println("prev : " + pageMaker.isPrev());
-		System.out.println("next : " + pageMaker.isNext());
-		System.out.println("searchCri : " + pageMaker.getSearchCri());
-		System.out.println("userCri : " + pageMaker.getUserCri());
-		
-		
 		mav.addObject("pageMaker", pageMaker);
 		
 		mav.setViewName("user/userList");
@@ -61,7 +49,6 @@ public class UserListController {
 	@ResponseBody
 	public List getUserSearch(@ModelAttribute("cri")UserCriteria cri) throws Exception {
 		
-		System.out.println(cri);
 		
 		List<Object> userInfo = new ArrayList();
 		
@@ -72,19 +59,7 @@ public class UserListController {
 		
 		pageMaker.setUserTotalCount(userService.getSearchCnt(cri));
 		
-		System.out.println("ajax 처리된 Paging 값");
-		System.out.println("totalCount : " + pageMaker.getTotalCount());
-		System.out.println("userTotalCount : " + pageMaker.getUserTotalCount());
-		System.out.println("startPage : " + pageMaker.getStartPage());
-		System.out.println("endPage : " + pageMaker.getEndPage());
-		System.out.println("prev : " + pageMaker.isPrev());
-		System.out.println("next : " + pageMaker.isNext());
-		System.out.println("searchCri : " + pageMaker.getSearchCri());
-		System.out.println("userCri : " + pageMaker.getUserCri());
-		
 		userInfo.add(pageMaker);
-		
-		System.out.println(userInfo);
 		
 		return userInfo;
 		
