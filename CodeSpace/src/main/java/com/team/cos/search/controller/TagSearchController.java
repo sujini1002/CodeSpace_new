@@ -21,9 +21,6 @@ public class TagSearchController {
 
 		ModelAndView mav = new ModelAndView();
 		
-		System.out.println("cri : " + cri);
-		///////////////////// paging //////////////////////
-		
 		mav.addObject("list", searchService.searchTag(cri));
 		mav.addObject("tag", cri.getTag());
 		

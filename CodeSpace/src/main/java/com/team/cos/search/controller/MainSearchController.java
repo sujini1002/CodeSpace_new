@@ -45,22 +45,15 @@ public class MainSearchController {
 
 		ModelAndView mav = new ModelAndView();
 		
-		System.out.println(cri);
-		///////////////////// paging //////////////////////
-		
-		System.out.println("검색 결과 쿼리 결과 : " + searchService.searchResult(cri));
 
 		mav.addObject("list", searchService.searchResult(cri));
 		mav.addObject("keyword", cri.getKeyword());
-		
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setSearchCri(cri);
 		
 		pageMaker.setTotalCount(searchService.getSearchCnt(cri));
 		
-		System.out.println("pageMaker : " + pageMaker);
-
 		mav.addObject("pageMaker", pageMaker);
 		
 		mav.setViewName("search/searchResults");

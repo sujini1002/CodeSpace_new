@@ -87,8 +87,6 @@ public class PageMaker {
 
 		int tempEndPage = (int) (Math.ceil(userTotalCount / (double) userCri.getPerPageNum()));
 		
-		System.out.println("tempEndPage : " + tempEndPage);
-
 		if (endPage > tempEndPage) {
 			endPage = tempEndPage;
 		}

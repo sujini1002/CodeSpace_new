@@ -236,29 +236,16 @@
                     	   
                      	  if($("input:text[name=user_nickname]").val()!='' && user_nickname==''){
 
-                               var str = '검색된 결과가 없습니다.';
+                               var str = '검색된 Star는 없습니다.';
                                $(".userList").html(str);
 
                            }else{
  		                           var list = result[0];
  		                           var paging = result[1];
  		                           
- 		                           console.log("nickname : " + paging.userCri.user_nickname);
- 		                           console.log("totalCount : " + paging.totalCount);
- 		                           console.log("userTotalCount : " + paging.userTotalCount);
- 		                           console.log("startPage : " + paging.startPage);
- 		                           console.log("endPage : " + paging.endPage);
- 		                           console.log("prev : " + paging.prev);
- 		                           console.log("next : " + paging.next);
- 		                           console.log("viewType : " + paging.userCri.viewType);
- 		                           
- 		                           console.log(list);
- 		                           
  		                           var viewType = paging.userCri.viewType;
  		                           
  		                           var str='';
- 		                           
- 		                           console.log("현재 viewType : " + viewType);
  		                           
  		                           if(viewType=='grid'){
  		        				                      
@@ -311,20 +298,6 @@
  		                           				} // for문 끝
  		                           				
  		                           str += '</div><br>';
- 		                          
- 		                           // tag ajax 삽입
- 		                           /*
- 		                           for(var i in list){
- 		                        	   
- 		                        	   
- 		                        	   
-	 		                           for(var j in tagArr){
-	                    					if(tagArr[j] != ''){
-	                    						$('.user-tag-'+ i).append('<a href="#" class="tag-info">'+tagArr[j]+'</a>');
-	                    					}
-	                    				}
- 		                            }
- 		                         	*/
  		                           
  		                           var val = '1';
  		                           value = parseInt(val);

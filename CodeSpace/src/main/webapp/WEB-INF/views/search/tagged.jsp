@@ -27,7 +27,7 @@
 				<div class="result-noList">
 					<h4>검색된 태그 : "${tag}"</h4>
 					<br>
-					<h2>"${tag}"에 대해 검색된 태그가 없습니다.</h2>
+					<h2>"${tag}"에 대한 태그 검색 결과가 없습니다.</h2>
 					
 
 
@@ -74,7 +74,7 @@
 				<c:if test="${fn:trim(tag) eq '' or tag eq null}">
 					<c:set var="value" value="" />
 					<div class="result-noList">
-						<h2>해당 Tag에 대한 검색 결과가 없습니다! Tag를 확인해 주세요!</h2>
+						<h2>"${tag}"에 대한 태그 검색 결과가 없습니다.</h2>
 						<br>
 						<a href="#" onclick="history.go(-1); return false;"> 이전 페이지로 이동 </a>
 					</div>
