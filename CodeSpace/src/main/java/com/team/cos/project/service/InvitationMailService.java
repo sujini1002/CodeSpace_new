@@ -23,7 +23,7 @@ public class InvitationMailService {
 			homePage += "	<h1 style=\"text-align:center;margin-bottom: 50px\">CODE SPACE</h1>\r\n";
 			homePage += "	<div style=\"text-align:center; font-size: 17px;\">프로젝트 참여 초대 메일</div>\r\n";
 			homePage += "	<button style=\"border: 0px; margin: 10% 2%; height: 50px; width: 300px; align-items: center; border-radius: 5px; background-color: #007bff; border-color: #007bff; font-size: 20px; color: white; cursor: pointer;\">";
-			homePage += "	<a href=\"http://localhost:8090/cos/project/projectMemberAccept?project_no="+project_no+"&project_member_no="+userInfoVo.getUser_no()+"\" ";
+			homePage += "	<a href=\"http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cos/project/projectMemberAccept?project_no="+project_no+"&project_member_no="+userInfoVo.getUser_no()+"\" ";
 			homePage += "style=\"line-height:50px; color: white; text-decoration: none\">프로젝트 수락</a></button>\r\n";
 			homePage += "   <p style=\"text-align: center;color: gray;\">&copy; 2018-2019</p>\r\n </div>";
 			
