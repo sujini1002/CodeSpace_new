@@ -24,6 +24,7 @@
   </c:forEach>
   </tbody>
 </table>
+  <div>${pageMaker }</div>
 <div class="h_golist btn btn-outline-info btn-info" onclick="noticeWrite()">공지사항 작성</div>
 <script>
 

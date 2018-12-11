@@ -5,11 +5,15 @@ import java.util.List;
 import org.mortbay.util.ajax.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.team.cos.paging.service.PagingService;
+import com.team.cos.paging.vo.PageMaker;
+import com.team.cos.paging.vo.SearchCriteria;
 import com.team.cos.project.service.ProjectNoticeViewService;
 import com.team.cos.project.vo.ProjectInfoVO;
 import com.team.cos.project.vo.ProjectNoticeVO;
@@ -19,6 +23,8 @@ import com.team.cos.project.vo.ProjectNoticeVO;
 public class ProjectNoticeController {
 	@Autowired
 	private ProjectNoticeViewService service;
+	@Autowired
+	private PagingService pagingService;
 
 	@RequestMapping(value = "/project/notice")
 	@ResponseBody
@@ -29,8 +35,18 @@ public class ProjectNoticeController {
 
 //	공지사항 목록 출력
 	@RequestMapping(value = "/project/notice/notice", method = RequestMethod.GET)
-	public ModelAndView getNotice(ProjectInfoVO projectInfoVo) {
+	public ModelAndView getNotice(ProjectInfoVO projectInfoVo,@ModelAttribute("cri")SearchCriteria cri) {
 		ModelAndView modelAndView = new ModelAndView();
+
+		modelAndView.addObject("list", pagingService.listCriteria(cri));
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setSearchCri(cri);
+		
+		pageMaker.setTotalCount(pagingService.listCountCriteria(cri));
+
+		modelAndView.addObject("pageMaker", pageMaker);
+		
 		List<ProjectNoticeVO> result = service.noticeView(projectInfoVo);
 		modelAndView.setViewName("project/notice/notice");
 		modelAndView.addObject("projectNotice", result);
@@ -79,6 +95,7 @@ public class ProjectNoticeController {
 		modelAndView.addObject("projectNotice", result);
 		return modelAndView;
 	}
+
 //	공지사항 수정사항 저장
 	@RequestMapping(value = "/project/notice/modify", method = RequestMethod.POST)
 	public void saveModifyNotice(ProjectNoticeVO projectNoticeVO) {

@@ -1,14 +1,14 @@
 package com.team.cos.paging.vo;
 
-public class SearchCriteria{
-	
-	private String searchType;	// 검색 Type(content, tag)
-	private String keyword;		// 검색 창 검색 시 사용되는 Keyword Value
-	private String tag;			// 태그 검색 시 사용될 Keyword
-	private int page; 			// 페이지 번호
-	private int perPageNum; 	// 페이지 당 보여지는 데이터 개수
-	private String filter;		// 게시판 보기 방식
-	private int user_no;		// 프로젝트용
+public class SearchCriteria {
+
+	private String searchType; // 검색 Type(content, tag)
+	private String keyword; // 검색 창 검색 시 사용되는 Keyword Value
+	private String tag; // 태그 검색 시 사용될 Keyword
+	private int page; // 페이지 번호
+	private int perPageNum; // 페이지 당 보여지는 데이터 개수
+	private String filter; // 게시판 보기 방식
+	private int user_no; // 프로젝트용
 
 	public int getUser_no() {
 		return user_no;
@@ -53,7 +53,7 @@ public class SearchCriteria{
 		}
 		this.perPageNum = perPageNum;
 	}
-	
+
 	public String getSearchType() {
 		return searchType;
 	}
@@ -65,6 +65,7 @@ public class SearchCriteria{
 	public String getKeyword() {
 		return keyword;
 	}
+
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
@@ -76,7 +77,7 @@ public class SearchCriteria{
 	public void setFilter(String filter) {
 		this.filter = filter;
 	}
-	
+
 	public String getTag() {
 		return tag;
 	}
@@ -90,12 +91,5 @@ public class SearchCriteria{
 		return "SearchCriteria [searchType=" + searchType + ", keyword=" + keyword + ", tag=" + tag + ", page=" + page
 				+ ", perPageNum=" + perPageNum + ", filter=" + filter + ", user_no=" + user_no + "]";
 	}
-
-	
-	
-
-	
-	
-	
 
 }

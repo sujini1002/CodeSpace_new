@@ -86,7 +86,7 @@ public class PageMaker {
 		startPage = (endPage - displayPageNum) + 1;
 
 		int tempEndPage = (int) (Math.ceil(userTotalCount / (double) userCri.getPerPageNum()));
-		
+
 		if (endPage > tempEndPage) {
 			endPage = tempEndPage;
 		}
@@ -101,8 +101,8 @@ public class PageMaker {
 	public String makeQuery(int page) throws Exception {
 
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
-				.queryParam("perPageNum", searchCri.getPerPageNum())
-				.queryParam("filter", searchCri.getFilter()).build();
+				.queryParam("perPageNum", searchCri.getPerPageNum()).queryParam("filter", searchCri.getFilter())
+				.build();
 
 		return uriComponents.toUriString();
 	}
@@ -132,8 +132,8 @@ public class PageMaker {
 	public String makeUserList(int page) throws Exception {
 
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
-				.queryParam("perPageNum", userCri.getPerPageNum())
-				.queryParam("viewType", userCri.getViewType()).build();
+				.queryParam("perPageNum", userCri.getPerPageNum()).queryParam("viewType", userCri.getViewType())
+				.build();
 
 		return uriComponents.toUriString();
 	}
@@ -147,17 +147,14 @@ public class PageMaker {
 
 		return uriComponents.toUriString();
 	}
-	
-	public String makeTag(int page) throws Exception{
-		
+
+	public String makeTag(int page) throws Exception {
+
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
-				.queryParam("perPageNum", searchCri.getPerPageNum())
-				.queryParam("tag", searchCri.getTag()).build();
-		
+				.queryParam("perPageNum", searchCri.getPerPageNum()).queryParam("tag", searchCri.getTag()).build();
+
 		return uriComponents.toUriString();
 	}
-
-	
 
 	// 검색 창 검색 시 검색어 관련 encoding
 	private String encoding(String keyword) {
@@ -228,6 +225,13 @@ public class PageMaker {
 
 	public void setUserCri(UserCriteria userCri) {
 		this.userCri = userCri;
+	}
+
+	@Override
+	public String toString() {
+		return "PageMaker [totalCount=" + totalCount + ", userTotalCount=" + userTotalCount + ", startPage=" + startPage
+				+ ", endPage=" + endPage + ", prev=" + prev + ", next=" + next + ", displayPageNum=" + displayPageNum
+				+ ", searchCri=" + searchCri + ", userCri=" + userCri + "]";
 	}
 
 }
