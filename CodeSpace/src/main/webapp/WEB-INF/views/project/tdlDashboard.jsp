@@ -13,8 +13,10 @@
 	<!-- REST 방식의 to do list -->
 	<h3>
 		to do list
+		<c:if test="${projectInfo.project_status==true }">
 		<button type="button" class="btn btn-primary btn-sm"
 			data-toggle="modal" id="todolistForm" data-target="#tdlModal">추가하기</button>
+		</c:if>
 	</h3>
 	
 	<div class='container' id='todolistContainer'></div>
@@ -69,7 +71,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" id="modalRegisterBtn">Save changes</button>
+					<button type="button" class="btn btn-primary" id="modalRegisterBtn">Save</button>
 					<button type="button" class="btn btn-warning" id="modalModBtn">Modify</button>
 					<button type="button" class="btn btn-danger" id="modalRemoveBtn">Remove</button>
 				</div>
@@ -80,66 +82,7 @@
 	</div>
 	<!-- /.modal -->
 	
-	
-	<!-- todolist 수정하기 modal -->
-	<!-- tdlmanager_no, todolist_content, todolist_status, todolist_enddate -->
-<!-- 	<div class="modal fade" id="modifyTodolist">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">To do list 수정하기</h4>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				project_todolist 추가 항목
-				<div class="modal-body">
-					project no
-					<input type="hidden" id='modify_project_no'>
-					to do list no
-					<input type="hidden" id='modify_todolist_no'>
-					담당자 번호
-					<div class="form-group">
-						<label>담당자</label> 
-						<select class="form-control" id='modify_tdlmanager_no'>
-							
-							
-						</select>
-					</div>
-					담당 업무
-					<div class="form-group">
-						<label>업무 내용</label> <input class="form-control"
-							id='modify_todolist_content'>
-					</div>
-					업무 진행 상태
-					<div class="form-group">
-						<label>업무 진행 상태</label> 
-						<select id='modify_todolist_status'>
-							<option value="todo">todo</option>
-							<option value="doing">doing</option>
-							<option value="done">done</option>
-						</select>
-					</div>
-					종료 일정
-					<div class="form-group">
-						<label>종료 날짜</label> <input type="date" class="form-control"
-							id='modify_tdlstring_enddate'>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" id="modalModifyBtn">Save
-						changes</button>
-				</div>
-			</div>
-			/.modal-content
-		</div>
-		/.modal-dialog
-	</div>
-	/.modal
 
- -->
 <!-- todolist 처리를 위한 js -->
 <script type="text/javascript" src="../js/todolist.js"></script>
 
@@ -225,6 +168,7 @@
 			$(".modal").modal("hide");
 		})
 	})
+	
 	// to do list 정보 수정 관련 modalModBtn
 	$("#modalModBtn").on("click", function(e) {
 		var todolist = {
@@ -318,11 +262,11 @@
 	//to do list title 클릭 시 todolist_no에 해당하는 todolist 정보 가져와서 보여주기
 	$(".row").on("click", "li", function(e){
 		var project_noValue = ${project_no};
+		var project_status = ${projectInfo.project_status};
+		console.log("gg+"+project_status);
 		var todolist_no = $(this).data("todolist_no");
 		console.log(todolist_no);
 		
-		
-
 		tdlService.getTodolistInfo({
 			todolist_no: todolist_no}, 
 			function(info){
@@ -340,7 +284,9 @@
 			$("#modalModBtn").show();
 			$("#modalRemoveBtn").show();
 			
-			$("#tdlModal").modal("show");
+			if(project_status==true)
+				$("#tdlModal").modal("show");
+			else alert("프로젝트가 끝났습니다.");
 			
 		}) 
 		
