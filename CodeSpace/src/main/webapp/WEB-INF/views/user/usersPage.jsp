@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%-- <%@ page session="false"%> --%>
 
 <jsp:include page="../common/layout_top.jsp" />
@@ -21,6 +21,32 @@
 					src="${pageContext.request.contextPath}/uploadfile/userphoto/${usersInfo.user_photo}">
 			</div>
 		</div>
+		
+		<script>
+		
+		$(document).ready(function(){
+			
+			var tags = '${usersInfo.user_tag}';
+			var tagArr = tags.split("/");
+			
+			for(var i in tagArr){
+				if(tagArr[i] != ''){
+					$('.userInfo-tag').append('<div class="tag-box"><button type="button" onclick="moveTag(this.value)" class="btn btn-sm" value="'+ tagArr[i] +'">'+tagArr[i]+'</button></div>');
+				}
+			}
+			
+		});
+		
+		function moveTag(tag){
+			
+			var tagValue = tag;
+			
+			location.href="${pageContext.request.contextPath}/search/tagged?tag="+tagValue;
+			
+		}
+			
+		</script>
+		
 		<div class="col-4 y_usersP_intro">
 			<h3 style="">
 				<i class="fas fa-user-astronaut"></i>&nbsp;${usersInfo.user_nickname }
@@ -32,12 +58,10 @@
 			</h3>
 			 <%-- <c:if test="${!empty usersQst}"> --%>
 			<p>
-				<i class="fas fa-quote-left"></i>&nbsp;&nbsp;${usersInfo.user_intro }&nbsp;&nbsp;<i
-					class="fas fa-quote-right"></i>
+				<i class="fas fa-quote-left"></i>&nbsp;&nbsp;${usersInfo.user_intro }&nbsp;
+				<i class="fas fa-quote-right"></i>
 			</p>
-			<p>
-				<i class="fas fa-edit"></i>&nbsp;&nbsp;${usersInfo.user_tag }
-			</p>
+			<div class="userInfo-tag"></div>
 			<%-- </c:if> --%>
 		</div>
 		<div class="col-3 row y_userP_info justyfy-content-center">
