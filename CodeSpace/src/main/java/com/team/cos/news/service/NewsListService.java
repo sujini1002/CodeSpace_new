@@ -24,6 +24,14 @@ public class NewsListService {
 		return newsList;
 		
 	}
+	
+	// 최신 글 1개
+	public NewsInfo getCurrentNews() {
+		dao = sqlSessionTemplate.getMapper(NewsDao.class);
+
+		NewsInfo news = dao.getCurrentNews();
+		return news;
+	}
 
 	// 전체 게시글 개수 카운트
 	public int countNews(NewsCriteria cri) {

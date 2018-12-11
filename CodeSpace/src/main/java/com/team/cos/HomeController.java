@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.team.cos.main.service.MainPageService;
+import com.team.cos.news.service.NewsListService;
+import com.team.cos.user.service.UsersPageService;
 
 /**
  * Handles requests for the application home page.
@@ -28,6 +30,12 @@ public class HomeController {
 	
 	@Autowired
 	MainPageService mainPageService;
+	
+	@Autowired
+	private UsersPageService userService;
+	
+	@Autowired
+	NewsListService newsService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -45,6 +53,8 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		model.addAttribute("topQuestions", mainPageService.getTopQuestion());
+		model.addAttribute("topUsers", userService.getTopTen());
+		model.addAttribute("currentNews", newsService.getCurrentNews());
 		
 		return "home";
 	}

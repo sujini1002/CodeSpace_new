@@ -15,14 +15,82 @@
 <!-- <button type="button" class="btn btn-primary k_insertBtn"
 	onclick="isLogin()">질문 작성</button> -->
 <div class="container">
-   <div class="head-container">
-      <h1>Top Questions</h1>
-	
-	<button type="button"
-		class="btn btn-default btn btn-primary k_insertBtn"
-		data-container="body" data-toggle="popover" data-placement="bottom"
-		onclick="isLogin(this)" data-content="로그인이 필요한 기능 입니다.">질문 작성</button>
-   </div>
+	<div class="row">
+	   	<div class="list-container col-8">
+		<h1 class="head-container">Top Questions
+			<button type="button"
+					class="btn btn-default btn btn-primary k_insertBtn"
+					data-container="body" data-toggle="popover" data-placement="bottom"
+					onclick="isLogin(this)" data-content="로그인이 필요한 기능 입니다.">질문하기</button>
+		</h1>
+		<h5>//Top Question에 대한 설명//
+		</h5>
+	   		<c:if test="${empty topQuestions}">
+	      	 	<div class="result-noList">
+	         		<h2>질문이 없습니다.</h2>
+	         	</div>
+	      	</c:if>
+	      
+	      	<c:if test="${!empty topQuestions}">
+	         	<div class="result-List">
+	            <hr class="top-hr">
+	            <c:forEach var="questionList" items="${topQuestions}" begin="0" end="${fn:length(topQuestions)}" varStatus="num">
+	               <div class="row result-row">
+	                  <div class="col-lg-1 question-viewCnt">
+	                     <div class="question-number">${questionList.q_viewCnt}</div>
+	                     <h6>조회</h6>
+	                  </div>
+	                  <div class="col-lg-1 question-recommCnt">
+	                     <div class="question-number">${questionList.q_recommand}</div>
+	                     <h6>추천</h6>
+	                  </div>
+	                  <div class="col-lg-7 question-title">
+	                     <div class="result-link">
+	                     	<h3><a href="${pageContext.request.contextPath}/question/questionView?q_no=${questionList.q_no}">${questionList.q_title}</a></h3>
+	                     </div>
+	                     <div class="questions-tag-<c:out value="${num.index}"/>">
+						 </div>
+	                  </div> <!-- question-title 끝 -->
+	                  <div class="col-lg-3 question-info">
+	                     	<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${questionList.user_no}">${questionList.user_nickname}</a>
+	                     	<div>${questionList.q_regdate}</div>
+	                  </div>
+	               </div> <!-- 게시글 row행 끝 -->
+	               <hr/>
+	            </c:forEach>
+	            <br>
+	         </div> <!-- result-List 끝 -->
+	      </c:if><!-- !empty 조건 -->
+	      </div>
+	    <div class="col">
+	    	<div>
+	    		<h1>명예의 전당</h1>
+	    		<c:forEach var="users" items="${topUsers }" varStatus="status">
+	    			순위: ${status.count }
+	    			이름: ${users.user_name }
+	    			점수: ${users.user_score }
+	    			<br>
+	    		</c:forEach>
+	    	</div>
+	    	<br>
+	      	<div class="card" style="width: 18rem;">
+			  <div class="card-body">
+			    <h5 class="card-title">최근 소식 <span class="badge badge-warning">New</span>
+			    </h5>
+			    <p class="card-text"><a href="${pageContext.request.contextPath}/news/newsView?n_no=${currentNews.n_no }">${currentNews.n_title }</a></p>
+			    <a href="${pageContext.request.contextPath}/news/news" class="btn-sm btn-primary">전체 소식 보기</a>
+			  </div>
+			</div>
+	    </div>
+   </div> <!-- list-container 끝 -->
+   
+</div> <!-- container 끝  -->
+
+
+
+
+
+
 <!-- 모달 -->
 <div id="k_loginModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -43,6 +111,12 @@
 
   </div>
 </div>
+
+
+
+
+
+
 <script>
 	
 	$(document).ready(function(){
@@ -89,49 +163,6 @@
 		location.href = '${pageContext.request.contextPath}/userinfo/userlogin';
 	}
 </script>
-	
-	<br>
-   	<br>
-   	<div class="list-container">
-   		<c:if test="${empty topQuestions}">
-      	 	<div class="result-noList">
-         		<h2>질문이 없습니다.</h2>
-         	</div>
-      	</c:if>
-      
-      	<c:if test="${!empty topQuestions}">
-         	<div class="result-List">
-            <hr class="top-hr">
-            <c:forEach var="questionList" items="${topQuestions}" begin="0" end="${fn:length(topQuestions)}" varStatus="num">
-               <div class="row result-row">
-                  <div class="col-lg-1 question-viewCnt">
-                     <div class="question-number">${questionList.q_viewCnt}</div>
-                     <h6>조회</h6>
-                  </div>
-                  <div class="col-lg-1 question-recommCnt">
-                     <div class="question-number">${questionList.q_recommand}</div>
-                     <h6>추천</h6>
-                  </div>
-                  <div class="col-lg-7 question-title">
-                     <div class="result-link">
-                     	<h3><a href="${pageContext.request.contextPath}/question/questionView?q_no=${questionList.q_no}">${questionList.q_title}</a></h3>
-                     </div>
-                     <div class="questions-tag-<c:out value="${num.index}"/>">
-					 </div>
-                  </div> <!-- question-title 끝 -->
-                  <div class="col-lg-3 question-info">
-                     	<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${questionList.user_no}">${questionList.user_nickname}</a>
-                     	<div>${questionList.q_regdate}</div>
-                  </div>
-               </div> <!-- 게시글 row행 끝 -->
-               <hr/>
-            </c:forEach>
-            <br>
-         </div> <!-- result-List 끝 -->
-      </c:if><!-- !empty 조건 -->
-   </div> <!-- list-container 끝 -->
-   
-</div> <!-- container 끝  -->
 
 <!-- 주석 -->
 <jsp:include page="common/layout_footer.jsp" />
