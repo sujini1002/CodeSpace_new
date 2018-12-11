@@ -21,6 +21,30 @@
 				
 			</div>
 		</div>
+		
+		<script>
+		$(document).ready(function(){
+			
+			var tags = '${usersInfo.user_tag}';
+			var tagArr = tags.split("/");
+			
+			for(var i in tagArr){
+				if(tagArr[i] != ''){
+					$('.userInfo-tag').append('<div class="tag-box"><button type="button" onclick="moveTag(this.value)" class="btn btn-sm" value="'+ tagArr[i] +'">'+tagArr[i]+'</button></div>');
+				}
+			}
+			
+		});
+		
+		function moveTag(tag){
+			
+			var tagValue = tag;
+			
+			location.href="${pageContext.request.contextPath}/search/tagged?tag="+tagValue;
+			
+		}
+		</script>
+		
 		<div class="col-4 y_usersP_intro">
 			<h3 style="">
 				<i class="fas fa-user-astronaut"></i>&nbsp;${usersInfo.user_nickname }
@@ -31,12 +55,10 @@
 				</c:forEach>
 			</h3>
 			<p>
-				<i class="fas fa-quote-left"></i>&nbsp;&nbsp;${usersInfo.user_intro }&nbsp;&nbsp;
+				<i class="fas fa-quote-left"></i>&nbsp;&nbsp;${usersInfo.user_intro }&nbsp;
 				<i class="fas fa-quote-right"></i>
 			</p>
-			<p>
-				<i class="fas fa-edit"></i>&nbsp;&nbsp;${usersInfo.user_tag }
-			</p>
+			<div class="userInfo-tag"></div>
 		</div>
 		<div class="col-3 row y_userP_info justyfy-content-center">
 		<h4 style="padding-left: 50px; padding-top:15px;" class="y_userP_score"><i class="fas fa-pencil-alt"></i> 

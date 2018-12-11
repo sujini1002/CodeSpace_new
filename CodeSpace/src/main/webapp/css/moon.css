@@ -258,4 +258,12 @@
 	background-color: lightgrey;
 	margin-right: 5px;
 	border-radius: 5px;
+	margin-bottom: 3px;
+}
+
+.userInfo-tag{
+	
+	display: inline-block;
+	float: left;
+	
 }

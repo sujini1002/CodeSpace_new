@@ -6,9 +6,9 @@
 }
 
 .k_userImg{
-	border-radius:30px;
-	width:70px;
-	height:70px;
+	border-radius:20px;
+	width:60px;
+	height:60px;
 }
 
 .k_questionContentBtn{
@@ -79,6 +79,9 @@
 }
 #k_atags{
 	background-color: white;
+}
+.k_userpage{
+	color : #007bff;
 }
 
 

@@ -45,6 +45,32 @@
 				href="#" style="color: lightgray;">프로젝트</a></li>
 		</c:if>
 	</ul> --%>
+	
+	
+	<script>
+		$(document).ready(function(){
+			
+			console.log('${loginInfo}');
+			
+			var tags = '${loginInfo.user_tag}';
+			var tagArr = tags.split("/");
+			
+			for(var i in tagArr){
+				if(tagArr[i] != ''){
+					$('.userInfo-tag').append('<div class="tag-box"><button type="button" onclick="moveTag(this.value)" class="btn btn-sm" value="'+ tagArr[i] +'">'+tagArr[i]+'</button></div>');
+				}
+			}
+			
+		});
+		
+		function moveTag(tag){
+			
+			var tagValue = tag;
+			
+			location.href="${pageContext.request.contextPath}/search/tagged?tag="+tagValue;
+			
+		}
+	</script>
 
 	<div class="y_profile_wrapper">
 		<div class="y_profile_myPhoto">
@@ -82,7 +108,7 @@
 				</tr>
 				<tr>
 					<td>내가 관심있는 태그</td>
-					<td>${loginInfo.user_tag }</td>
+					<td><div class="userInfo-tag"></div></td>
 				</tr>
 			</table>
 

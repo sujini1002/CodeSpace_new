@@ -3,14 +3,13 @@
 <table style="float:right; margin-right:20px" class="k_table">
 	<tr>
 		<td rowspan="3">
+		<a onclick="moveUserpage(this)" id="k_userPage_${userInfoList[num.index].user_no}">
 			<img class="k_userImg" src="${pageContext.request.contextPath}/uploadfile/userphoto/${userInfoList[num.index].user_photo}" />
+		</a>
 		</td>
-		<td>${userInfoList[num.index].user_id}</td>
 	</tr>
 	<tr>
-		<td>${userInfoList[num.index].user_nickname}</td>
-	</tr>
-	<tr>
-		<td>${userInfoList[num.index].user_intro}</td>
+		<td><span  onclick="moveUserpage(this)"  class="k_userpage" id="k_userPage_${userInfoList[num.index].user_no}">
+				${userInfoList[num.index].user_nickname} </span></td>
 	</tr>
 </table>
