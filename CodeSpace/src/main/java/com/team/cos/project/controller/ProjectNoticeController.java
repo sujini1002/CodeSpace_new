@@ -2,19 +2,16 @@ package com.team.cos.project.controller;
 
 import java.util.List;
 
-import org.mortbay.util.ajax.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cos.paging.service.PagingService;
-import com.team.cos.paging.vo.PageMaker;
-import com.team.cos.paging.vo.SearchCriteria;
 import com.team.cos.project.service.ProjectNoticeViewService;
+import com.team.cos.project.vo.PageNum;
 import com.team.cos.project.vo.ProjectInfoVO;
 import com.team.cos.project.vo.ProjectNoticeVO;
 
@@ -35,21 +32,24 @@ public class ProjectNoticeController {
 
 //	공지사항 목록 출력
 	@RequestMapping(value = "/project/notice/notice", method = RequestMethod.GET)
-	public ModelAndView getNotice(ProjectInfoVO projectInfoVo,@ModelAttribute("cri")SearchCriteria cri) {
+	public ModelAndView getNotice(ProjectInfoVO projectInfoVo, PageNum pageNum) {
+
 		ModelAndView modelAndView = new ModelAndView();
+		PageNum result = new PageNum();
 
-		modelAndView.addObject("list", pagingService.listCriteria(cri));
+		if (pageNum.getPageNum() > 1) {
+			result.setPageNum(pageNum.getPageNum());
+			pageNum.setPageNum(result.getPageNum());
+		} else {
+			pageNum.setPageNum(1);
+		}
 
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setSearchCri(cri);
-		
-		pageMaker.setTotalCount(pagingService.listCountCriteria(cri));
-
-		modelAndView.addObject("pageMaker", pageMaker);
-		
-		List<ProjectNoticeVO> result = service.noticeView(projectInfoVo);
+		result = service.noticePageCheck(projectInfoVo, pageNum);
+//		List<ProjectNoticeVO> result = service.noticeView(projectInfoVo);
 		modelAndView.setViewName("project/notice/notice");
 		modelAndView.addObject("projectNotice", result);
+
+		modelAndView.addObject("project_no", projectInfoVo.getProject_no());
 		return modelAndView;
 	}
 
@@ -113,7 +113,7 @@ public class ProjectNoticeController {
 		List<ProjectNoticeVO> resultList = service.noticeView(projectInfoVo);
 
 		if (result > 0) {
-			modelAndView.setViewName("project/notice/notice");
+			modelAndView.setViewName("redirect:/project/notice/notice?project_no=" + projectNoticeVO.getProject_no());
 			modelAndView.addObject("projectNotice", resultList);
 		}
 		return modelAndView;

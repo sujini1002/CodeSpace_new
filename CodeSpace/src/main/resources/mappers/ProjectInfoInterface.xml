@@ -67,7 +67,8 @@
 	<!-- 전체 프로젝트 상태 업데이트 -->
 	<update id="updateAllProStatus">
 		update project set project_status=0
-		where project_enddate in (date(now()))
+		where
+		project_enddate in (date(now()))
 	</update>
 
 
@@ -83,7 +84,8 @@
 		p.project_no = m.project_no
 		where
 		m.member_no=#{user_no}
-		order by project_status
+		order by
+		project_status
 	</select>
 
 	<select id="selectPmProject" parameterType="int"
@@ -127,6 +129,21 @@
 		where project_no=#{project_no}
 	</select>
 
+	<select id="projectNoticeView2"
+		parameterType="com.team.cos.project.vo.ProjectInfoVO"
+		resultType="com.team.cos.project.vo.ProjectNoticeVO">
+		select * from
+		project_notice
+		where project_no=#{project_no}
+		limit #{firstRow},#{endRow}
+	</select>
+	
+	<select id="noticePageCheck"
+		parameterType="com.team.cos.project.vo.ProjectInfoVO"
+		resultType="com.team.cos.project.vo.PageNum">
+		select count(*) pageTotalCont from project_notice where
+		project_no=#{project_no}
+	</select>
 	<!-- 공지사항 작성 -->
 	<insert id="noticeWrite"
 		parameterType="com.team.cos.project.vo.ProjectNoticeVO">

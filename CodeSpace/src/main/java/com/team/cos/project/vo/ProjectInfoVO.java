@@ -5,7 +5,6 @@ import java.util.List;
 
 public class ProjectInfoVO {
 
-
 	private int project_no; // 프로젝트 고유 번호
 	private String project_title; // 프로젝트 제목
 	private String project_content; // 프로젝트 내용
@@ -17,16 +16,33 @@ public class ProjectInfoVO {
 	private int pm_no;
 	private int user_no;
 	private List<Integer> member;
+	private int firstRow;
+	private int endRow;
 
+	public int getFirstRow() {
+		return firstRow;
+	}
+
+	public void setFirstRow(int firstRow) {
+		this.firstRow = firstRow;
+	}
+
+	public int getEndRow() {
+		return endRow;
+	}
+
+	public void setEndRow(int endRow) {
+		this.endRow = endRow;
+	}
 
 	public List<Integer> getMember() {
 		return member;
 	}
-	
+
 	public void setMember(List<Integer> member) {
 		this.member = member;
 	}
-	
+
 	public int getProject_no() {
 		return project_no;
 	}
@@ -91,20 +107,12 @@ public class ProjectInfoVO {
 		this.prostring_enddate = prostring_enddate;
 	}
 
-
 	public int getPm_no() {
 		return pm_no;
 	}
 
 	public void setPm_no(int pm_no) {
 		this.pm_no = pm_no;
-	}
-
-	@Override
-	public String toString() {
-		return "ProjectVO [project_no=" + project_no + ", project_title=" + project_title + ", project_content="
-				+ project_content + ", project_status=" + project_status + ", project_startdate=" + project_startdate
-				+ ", project_enddate=" + project_enddate + "]";
 	}
 
 	public int getUser_no() {
@@ -115,6 +123,13 @@ public class ProjectInfoVO {
 		this.user_no = user_no;
 	}
 
-
+	@Override
+	public String toString() {
+		return "ProjectInfoVO [project_no=" + project_no + ", project_title=" + project_title + ", project_content="
+				+ project_content + ", project_status=" + project_status + ", project_startdate=" + project_startdate
+				+ ", project_enddate=" + project_enddate + ", prostring_startdate=" + prostring_startdate
+				+ ", prostring_enddate=" + prostring_enddate + ", pm_no=" + pm_no + ", user_no=" + user_no + ", member="
+				+ member + ", firstRow=" + firstRow + ", endRow=" + endRow + "]";
+	}
 
 }

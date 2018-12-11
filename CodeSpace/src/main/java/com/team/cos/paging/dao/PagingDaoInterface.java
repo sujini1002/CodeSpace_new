@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.team.cos.paging.vo.Criteria;
 import com.team.cos.paging.vo.SearchCriteria;
+import com.team.cos.project.vo.ProjectInfoVO;
+import com.team.cos.project.vo.ProjectNoticeVO;
 
 public interface PagingDaoInterface {
 
@@ -15,4 +17,6 @@ public interface PagingDaoInterface {
 	public List projectListCriteria(SearchCriteria cri);
 	public int projectCountPaging(SearchCriteria cri);
 	
+	//공지사항
+	public List<ProjectNoticeVO> projectNoticeView(ProjectInfoVO projectInfoVO);
 }

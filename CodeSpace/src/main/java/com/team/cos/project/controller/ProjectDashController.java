@@ -50,14 +50,13 @@ public class ProjectDashController {
 		ProjectInfoVO pro_info = proInfoservice.selectProList(project_no);
 		// 시작일, 종료일 표출을 위한 처리
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-		String project_startdate="";
-		String project_enddate="";
-						
+		String project_startdate = "";
+		String project_enddate = "";
+
 		project_startdate = transFormat.format(pro_info.getProject_startdate());
 		project_enddate = transFormat.format(pro_info.getProject_enddate());
 		pro_info.setProstring_startdate(project_startdate);
 		pro_info.setProstring_enddate(project_enddate);
-						
 
 		// project_no에 해당하는 porject member 정보 가져옴
 		List<ProjectMemberVO> proMember_info = proMemberService.getMember(project_no);
@@ -84,11 +83,19 @@ public class ProjectDashController {
 			c2.setTime(list.get(i).getTodolist_enddate());
 			start.add(sdf.format(c1.getTime()));
 			end.add(sdf.format(c2.getTime()));
-		
+
 			temp.setStartDay(start);
 			temp.setEndDay(end);
 		}
-		
+
+		System.out.println("temp" + temp);
+		if (temp.getStartDay() == null || temp.getEndDay() == null) {
+			start.add("null");
+			end.add("null");
+
+			temp.setStartDay(start);
+			temp.setEndDay(end);
+		}
 		modelAndView.addObject("regged_date", temp);
 		// 여기까지 달력관련!!!!!!!!!!!!!!!!!
 
@@ -141,11 +148,11 @@ public class ProjectDashController {
 			c2.setTime(list.get(i).getTodolist_enddate());
 			start.add(sdf.format(c1.getTime()));
 			end.add(sdf.format(c2.getTime()));
-		
+
 			temp.setStartDay(start);
 			temp.setEndDay(end);
 		}
-		
+
 		modelAndView.addObject("regged_date", temp);
 		// 여기까지 달력관련!!!!!!!!!!!!!!!!!
 
@@ -198,11 +205,11 @@ public class ProjectDashController {
 			c2.setTime(list.get(i).getTodolist_enddate());
 			start.add(sdf.format(c1.getTime()));
 			end.add(sdf.format(c2.getTime()));
-		
+
 			temp.setStartDay(start);
 			temp.setEndDay(end);
 		}
-		
+
 		modelAndView.addObject("regged_date", temp);
 		// 여기까지 달력관련!!!!!!!!!!!!!!!!!
 

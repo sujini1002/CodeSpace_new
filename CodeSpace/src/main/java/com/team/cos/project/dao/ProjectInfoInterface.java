@@ -2,6 +2,7 @@ package com.team.cos.project.dao;
 
 import java.util.List;
 
+import com.team.cos.project.vo.PageNum;
 import com.team.cos.project.vo.ProjectInfoVO;
 import com.team.cos.project.vo.ProjectMemberVO;
 import com.team.cos.project.vo.ProjectNoticeVO;
@@ -24,8 +25,8 @@ public interface ProjectInfoInterface {
 
 	// 프로젝트 상태 변경 (restart: true, 1)
 	public int updateProStatusToStart(ProjectInfoVO vo);
-	
-	// 전체 프로젝트 상태 변경 
+
+	// 전체 프로젝트 상태 변경
 	public int updateAllProStatus();
 
 	// 로그인한 사용자가 참여중인 project 정보를 보여주는 메서드
@@ -41,6 +42,8 @@ public interface ProjectInfoInterface {
 
 	// project notice view
 	public List<ProjectNoticeVO> projectNoticeView(ProjectInfoVO projectInfoVO);
+
+	public List<ProjectNoticeVO> projectNoticeView2(ProjectInfoVO projectInfoVO);
 
 	// 공지사항 글 클릭했을떄 세부내용
 	public ProjectNoticeVO noticeDetailView(ProjectNoticeVO projectNoticeVO);
@@ -59,5 +62,8 @@ public interface ProjectInfoInterface {
 
 	// 공지사항 업데이트
 	public void noticeUpdate(ProjectNoticeVO projectNoticeVO);
+
+	// 공지사항 페이지를 위한 공지사항 개수 체크
+	public PageNum noticePageCheck(ProjectInfoVO projectInfoVo);
 
 }

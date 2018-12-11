@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-  <c:forEach var="projectNotice" items="${projectNotice }">
+  <c:forEach var="projectNotice" items="${projectNotice.noticeList }">
 	  <tr class="h_noticetr">
 	  	<td class="h_noticeno">${projectNotice.notice_no }</td>
 	  	<td><a class="h_noticetd" href="${pageContext.request.contextPath }/project/notice/detailnotice?notice_no=${projectNotice.notice_no }">${projectNotice.notice_title }</a></td>
@@ -24,7 +24,33 @@
   </c:forEach>
   </tbody>
 </table>
-  <div>${pageMaker }</div>
+<%-- <!-- 질문 글이 있을 시 페이징 표시 -->
+<div class="search-paging">
+	<!-- view 단 페이징 모듈은 여기부터 -->
+	<div class="text-center">
+		<ul class="pagination justify-content-center">
+			<c:if test="${pageMaker.prev}">
+				<li class="page-item">
+				<a class="page-link" href="${pageContext.request.contextPath}/project/notiece/notice${pageMaker.makeQuery(pageMaker.startPage - 1)}">&laquo;</a></li>
+			</c:if>
+
+			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+				<li class="paging-item"	<c:out value="${pageMaker.searchCri.page == idx?'class=active':''}"/>>
+					<a class="page-link" href="${pageContext.request.contextPath}/project/notiece/notice${pageMaker.makeQuery(idx)}">${idx}</a>
+				</li>
+			</c:forEach>
+
+			<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+				<li class="page-item">
+				<a class="page-link" href="${pageContext.request.contextPath}/project/notiece/notice${pageMaker.makeQuery(pageMaker.endPage + 1)}">&raquo;</a></li>
+			</c:if>
+		</ul>
+	</div>
+</div>
+<!-- 여기 까지 --> --%>
+	<c:forEach var="num" begin="1" end="${projectNotice.pageTotalCnt }">
+			<a href="${pageContext.request.contextPath}/project/notice/notice?project_no=${project_no}&pageNum=${num}">[${num }]</a>
+	</c:forEach>
 <div class="h_golist btn btn-outline-info btn-info" onclick="noticeWrite()">공지사항 작성</div>
 <script>
 

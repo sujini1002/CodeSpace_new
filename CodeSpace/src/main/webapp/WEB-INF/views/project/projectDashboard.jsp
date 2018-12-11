@@ -298,11 +298,17 @@ $(document).ready(function(){
 	var str = '<tr>';
 	var fulldate = ${cal.fulldate};
 	var today = ${cal.today};
-	
-	var regDate_start= ${regged_date.startDay};
-	var regDate_end= ${regged_date.endDay};
+	if('${regged_date.startDay}' != ''){
+		var regDate_start = ${regged_date.startDay};
+		var regDate_end = ${regged_date.endDay};
+	}else{
+		var regDate_start = '';
+		var regDate_end = '';
+	}
 	var color = ['red','orange','yellow','green','blue','purple'];
-	
+	console.log(regDate_start);
+	console.log(typeof regDate_start);
+	console.log(regDate_start=='');
 	//달력 앞쪽 공백 출력		   5
 	for ( var i = 1 ; i < day ; i ++ ){
 		str += '<td class="empty_room">&nbsp;</td>';
@@ -354,10 +360,10 @@ $.ajax({
 					$('.h_list_group').append(data);
 				}
 			})
-		}
+		}else{
 		var data = '<button type="button" class="list-group-item list-group-item-action" style="width: 100%;">아직 공지사항이 없습니다. 첫번째 공지사항을 작성해주세요!</button>';
 		$('.h_list_group').append(data);
-		
+		}
 	}
 });
 });
