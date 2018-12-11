@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 댓글 리스트 모두  출력 -->
 	<select id="QuesCommOneQuestion"  resultType="com.team.cos.comment.vo.QuestionCommentInfo">
-		select qc.qc_no,qc.q_no,qc.user_no,u.user_name,qc.qc_content,
+		select qc.qc_no,qc.q_no,qc.user_no,u.user_nickname,qc.qc_content,
 			   date_format(qc.qc_regdate,"%Y/%m/%e %l:%i") as qc_regdate
 		from question_comm qc inner join userinfo u
 		on qc.user_no = u.user_no

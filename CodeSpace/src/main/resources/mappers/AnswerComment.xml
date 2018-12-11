@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<!-- 답변 리스트 출력 (해당 답변 하나만) -->
 	<select id="anCommListOneAnswer" resultType="com.team.cos.comment.vo.AnswerCommentInfo">
-		select a.ac_no,a.a_no,a.user_no,u.user_name,a.ac_content,
+		select a.ac_no,a.a_no,a.user_no,u.user_nickname,a.ac_content,
 			   date_format(a.ac_regdate,"%Y/%m/%e %l:%i") as ac_regdate
 		from answer_comm a inner join userinfo u
 		on a.user_no = u.user_no
@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--답변 리스트 출력(해당 질문에 답글에 대한 모든 댓글) -->
 	<select id="anCommListOneQuestion" resultType="com.team.cos.comment.vo.AnswerCommentInfo">
 		select
-		ac.ac_no,a.q_no,ac.a_no,ac.user_no,u.user_name,ac.ac_content,ac.ac_regdate
+		ac.ac_no,a.q_no,ac.a_no,ac.user_no,u.user_nickname,ac.ac_content,ac.ac_regdate
 		from answer a inner join answer_comm ac inner join userinfo u
 		on a.a_no = ac.a_no
 		and ac.user_no = u.user_no

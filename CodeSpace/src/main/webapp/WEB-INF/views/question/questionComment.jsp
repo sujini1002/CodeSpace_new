@@ -15,7 +15,7 @@
 					</span>
 						<input type="text" class="form-control" id="k_qcContentInput_<c:out value="${status.index}"/>" value="${list.qc_content}" style="display:none"/>
 					<span id="k_qcUserName_<c:out value="${status.index}"/>"> 
-						<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${list.user_no}">${list.user_name}</a>
+						<span onclick="moveUserpage(this)"class="k_userpage" id="k_userPage_${list.user_no}">${list.user_nickname}</span>
 					</span>
 					<span id="k_qcRegdate_<c:out value="${status.index}"/>">
 						 ${list.qc_regdate}
@@ -76,7 +76,7 @@
 					quesCommList +=  '</span>';
 					quesCommList +=  '<input type="text" class="form-control" id="k_qcContentInput_'+index+'" value="'+item.qc_content+'" style="display:none"/>';
 					quesCommList +=  '<span id="k_qcUserName_'+index+'">';
-					quesCommList +=  '<a href="${pageContext.request.contextPath}/user/usersPage?user_no='+item.user_no+'">'+item.user_name+'</a>';
+					quesCommList +=  '<span onclick="moveUserpage(this)" class="k_userpage" id="k_userPage_'+item.user_no+'">'+item.user_nickname+'</span>';
 					quesCommList +=  '</span>';
 					quesCommList +=  '<span id="k_qcRegdate_'+index+'">';
 					quesCommList +=  item.qc_regdate;
@@ -134,7 +134,7 @@
 							quesCommList +=  '</span>';
 							quesCommList +=  '<input type="text" class="form-control" id="k_qcContentInput_'+index+'" value="'+item.qc_content+'" style="display:none"/>';
 							quesCommList +=  '<span id="k_qcUserName_'+index+'">';
-							quesCommList +=  '<a href="${pageContext.request.contextPath}/user/usersPage?user_no='+item.user_no+'">'+item.user_name+'</a>';
+							quesCommList +=  '<span onclick="moveUserpage(this)" class="k_userpage" id="k_userPage_'+item.user_no+'">'+item.user_nickname+'</span>';
 							quesCommList +=  '</span>';
 							quesCommList +=  '<span id="k_qcRegdate_'+index+'">';
 							quesCommList +=  item.qc_regdate;
@@ -203,7 +203,7 @@
 								quesCommList +=  '</span>';
 								quesCommList +=  '<input type="text" class="form-control" id="k_qcContentInput_'+index+'" value="'+item.qc_content+'" style="display:none"/>';
 								quesCommList +=  '<span id="k_qcUserName_'+index+'">';
-								quesCommList +=  '<a href="#">'+item.user_name+'</a>';
+								quesCommList +=  '<span onclick="moveUserpage(this)" class="k_userpage" id="k_userPage_'+item.user_no+'">'+item.user_nickname+'</span>';
 								quesCommList +=  '</span>';
 								quesCommList +=  '<span id="k_qcRegdate_'+index+'">';
 								quesCommList +=  item.qc_regdate;

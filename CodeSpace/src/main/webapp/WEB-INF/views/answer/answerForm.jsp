@@ -235,12 +235,16 @@
 			
 			for(var i =0 ;i<tagArr.length;i++){
 				if(tagArr[i]!= ''){
-					$('#k_aTag_'+<c:out value="${tag.index}"/>).append('<button type="button" class="btn k_atagBtn k_atagBtn_'+<c:out value="${tag.index}"/>+'" id="k_atagBtnId_'+i+'">'+tagArr[i]+'</button>');
+					$('#k_aTag_'+<c:out value="${tag.index}"/>).append('<button type="button" class="btn k_atagBtn k_atagBtn_'+<c:out value="${tag.index}"/>+'" onclick="searchTag(this)" id="k_atagBtnId_'+<c:out value="${tag.index}"/>+i+'">'+tagArr[i]+'</button>');
 					$('#k_aTagUl_'+<c:out value="${tag.index}"/>).append('<li>'+tagArr[i]+'</li>');
 				}
 			}
 			</c:forEach>
 	    });
+	 function searchTag(value){
+		 var tag = $('#'+value.id).text();
+		 location.href="${pageContext.request.contextPath}/search/tagged?tag="+tag;
+	 }
 </script>
 
 <script>
@@ -364,7 +368,7 @@
 			var delta = JSON.parse($('#k_answerText_'+i).val());
 
 			eval(
-				"updateQuill"+i+" = new Quill('#editor_'+i,{modules :{toolbar : toolbarOptions},theme : 'snow'});"
+				"updateQuill"+i+" = new Quill('#editor_"+i+"',{modules :{toolbar : toolbarOptions},theme : 'snow'});"
 			); 
 			$('#k_td_'+i+'> div.ql-toolbar.ql-snow').css('display', 'none');
 			$('#editor_'+i).css('border', 'none');

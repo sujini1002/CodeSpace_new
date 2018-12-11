@@ -5,7 +5,7 @@ public class AnswerCommentInfo {
 	private int a_no;//답변 고유번호
 	private int q_no;//질문 고유 번호
 	private int user_no;//작성자 번호
-	private String user_name;//질문 작성자 이름
+	private String user_nickname;//질문 작성자 이름
 	private String ac_content;//답변 댓글 내용
 	private String ac_regdate;//답변 댓글 작성 날짜
 	
@@ -33,11 +33,11 @@ public class AnswerCommentInfo {
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
 	}
-	public String getUser_name() {
-		return user_name;
+	public String getUser_nickname() {
+		return user_nickname;
 	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUser_nickname(String user_nickname) {
+		this.user_nickname = user_nickname;
 	}
 	public String getAc_content() {
 		return ac_content;
@@ -55,7 +55,7 @@ public class AnswerCommentInfo {
 	@Override
 	public String toString() {
 		return "AnswerCommentInfo [ac_no=" + ac_no + ", a_no=" + a_no + ", q_no=" + q_no + ", user_no=" + user_no
-				+ ", user_name=" + user_name + ", ac_content=" + ac_content + ", ac_regdate=" + ac_regdate + "]";
+				+ ", user_name=" + user_nickname + ", ac_content=" + ac_content + ", ac_regdate=" + ac_regdate + "]";
 	}
 	
 }

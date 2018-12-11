@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!-- 질문 작성자 정보 가져오기  -->
 	<select id="questionUser" resultType="com.team.cos.userinfo.vo.UserInfoVo">
-		select q.user_no,u.user_id,u.user_photo,u.user_nickname,u.user_intro
+		select q.user_no,u.user_photo,u.user_nickname
 		from question q inner join userinfo u
 		on q.user_no = u.user_no
 		where q_no = #{q_no}

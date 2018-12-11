@@ -152,10 +152,7 @@
 	<!-- 태그 클릭 시 태그 검색 페이지로 이동-->
 	function moveTag(tag){
 		
-		var tagValue = tag;
-		
-		location.href="${pageContext.request.contextPath}/search/tagged?tag="+tagValue;
-		
+		location.href="${pageContext.request.contextPath}/search/tagged?tag="+tag;
 	}
 	
 </script>
@@ -386,6 +383,17 @@
 				$('#editor').css('border', 'none');
 				Questionquill.setContents(delta);
 				Questionquill.enable(false);
+</script>
+<script>
+	 function moveUserpage(value){
+		var loginUser = '${loginInfo.user_no}'*1;
+		var clickUser = value.id.substring(value.id.lastIndexOf('_')+1)*1;
+		if(loginUser == clickUser){
+			location.href = "${pageContext.request.contextPath}/mypage/mypage?user_no="+loginUser;
+		}else{
+			location.href= "${pageContext.request.contextPath}/user/usersPage?user_no="+clickUser;
+		}
+	} 
 </script>
 	<!-- 답변 리스트  인클루드 하기 -->
 	<%@include file="../answer/answerForm.jsp"%>
