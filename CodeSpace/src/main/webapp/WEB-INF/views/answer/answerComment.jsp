@@ -21,7 +21,7 @@
 					value="${list.ac_content}" style="display: none" />
 				<span
 					id="k_acUserName_<c:out value="${list.a_no}"/><c:out value="${acNum.index}"/>">
-					<a href="#">${list.user_name}</a>
+					<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${list.user_no}">${list.user_name}</a>
 				</span>
 				<span
 					id="k_acRegdate_<c:out value="${list.a_no}"/><c:out value="${acNum.index}"/>">
@@ -90,7 +90,7 @@
 									quesCommList +=  '</span>';
 									quesCommList +=  '<input type="text" class="form-control" id="k_acContentInput_'+item.a_no+index+'" value="'+item.ac_content+'" style="display:none"/>';
 									quesCommList +=  '<span id="k_acUserName_'+item.a_no+index+'">';
-									quesCommList +=  '<a href="#">'+item.user_name+'</a>';
+									quesCommList +=  '<a href="${pageContext.request.contextPath}/user/usersPage?user_no='+item.user_no+'">'+item.user_name+'</a>';
 									quesCommList +=  '</span>';
 									quesCommList +=  '<span id="k_acRegdate_'+item.a_no+index+'">';
 									quesCommList +=  item.ac_regdate;
@@ -151,7 +151,7 @@
 									quesCommList +=  '</span>';
 									quesCommList +=  '<input type="text" class="form-control" id="k_acContentInput_'+item.a_no+index+'" value="'+item.ac_content+'" style="display:none"/>';
 									quesCommList +=  '<span id="k_acUserName_'+item.a_no+index+'">';
-									quesCommList +=  '<a href="#">'+item.user_name+'</a>';
+									quesCommList +=  '<a href="${pageContext.request.contextPath}/user/usersPage?user_no='+item.user_no+'">'+item.user_name+'</a>';
 									quesCommList +=  '</span>';
 									quesCommList +=  '<span id="k_acRegdate_'+item.a_no+index+'">';
 									quesCommList +=  item.ac_regdate;

@@ -10,7 +10,6 @@
 				<ul class="nav nav-sidebar">
 					<li class="active"><a href="${pageContext.request.contextPath}/questions/questions">코드스페이스 <span class="sr-only">(current)</span></a></li>
 					<li><a href="${pageContext.request.contextPath}/user/userList">사용자</a></li>
-					<li><a href="#">태그</a></li>
 					<li><a href="${pageContext.request.contextPath}/project/prjreg?page=1&perPageNum=10&user_no=${loginInfo.user_no}">프로젝트</a></li>
 					<li><a onclick="chatwindow()">채팅(미구현)</a></li>
 					
