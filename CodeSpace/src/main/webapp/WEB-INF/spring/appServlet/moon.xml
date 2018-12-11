@@ -29,6 +29,9 @@
 	
 	<!-- Main Service 등록 -->
 	<beans:bean id="MainPageService" class="com.team.cos.main.service.MainPageService"/>
+	
+	<!-- Tag Search Service 등록 -->
+	<beans:bean id="TagSearchService" class="com.team.cos.search.service.TagSearchService"/>
 
 
 </beans:beans>

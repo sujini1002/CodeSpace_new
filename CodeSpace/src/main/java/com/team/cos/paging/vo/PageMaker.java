@@ -149,6 +149,17 @@ public class PageMaker {
 
 		return uriComponents.toUriString();
 	}
+	
+	public String makeTag(int page) throws Exception{
+		
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
+				.queryParam("perPageNum", searchCri.getPerPageNum())
+				.queryParam("tag", searchCri.getTag()).build();
+		
+		return uriComponents.toUriString();
+	}
+
+	
 
 	// 검색 창 검색 시 검색어 관련 encoding
 	private String encoding(String keyword) {

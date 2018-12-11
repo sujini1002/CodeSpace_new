@@ -1,4 +1,4 @@
-package com.team.cos.paging.controller;
+package com.team.cos.search.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,32 +6,36 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.team.cos.paging.service.PagingService;
 import com.team.cos.paging.vo.PageMaker;
 import com.team.cos.paging.vo.SearchCriteria;
+import com.team.cos.search.service.TagSearchService;
 
 @Controller
-public class PagingController {
-
+public class TagSearchController {
+	
 	@Autowired
-	private PagingService pagingService;
-
-	// Questions 페이지 결과에 대한 페이징 처리 ///////////////////////////////////////////////////////////////////////////
-	@RequestMapping(value="/questions/questions")
-	public ModelAndView getQuestions(@ModelAttribute("cri")SearchCriteria cri) {
+	private TagSearchService searchService;
+	
+	@RequestMapping(value="/search/tagged")
+	public ModelAndView getTagSearch(@ModelAttribute("cri")SearchCriteria cri) {
 
 		ModelAndView mav = new ModelAndView();
-
-		mav.addObject("list", pagingService.listCriteria(cri));
+		
+		System.out.println("cri : " + cri);
+		///////////////////// paging //////////////////////
+		
+		mav.addObject("list", searchService.searchTag(cri));
+		mav.addObject("tag", cri.getTag());
+		
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setSearchCri(cri);
 		
-		pageMaker.setTotalCount(pagingService.listCountCriteria(cri));
-
+		pageMaker.setTotalCount(searchService.searchTagCnt(cri));
+		
 		mav.addObject("pageMaker", pageMaker);
 		
-		mav.setViewName("questions/questions");
+		mav.setViewName("search/tagged");
 		
 		return mav;
 

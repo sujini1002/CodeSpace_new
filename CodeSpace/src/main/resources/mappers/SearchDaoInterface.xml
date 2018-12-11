@@ -37,5 +37,28 @@
 			user_no != #{item}
 		</foreach>
 	</select>
+	
+	<!-- 태그 검색 결과 쿼리 -->
+	<select id="searchTag" resultType="com.team.cos.question.vo.QuestionInfo">
+		select q_no, user_no, user_nickname, q_title, q_content, q_tag, DATE_FORMAT(q_regdate, '%Y-%m-%d %r') as q_regdate, q_recommand, q_viewcnt
+		from question 
+		where q_no > 0
+			<choose>
+				<when test="tag == 'java'">
+				and (q_tag like CONCAT('%',#{tag},'%') and q_tag not like 'javascript')
+				</when>
+				<otherwise>
+				and (q_tag like CONCAT('%',#{tag},'%') or q_tag like #{tag})
+				</otherwise>
+			</choose>
+		order by q_regdate desc, q_no desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<!-- 태그 검색 결과 Cnt 쿼리 -->
+	<select id="searchTagCnt" resultType="int">
+		select count(q_no) from question 
+		where q_no > 0 and (q_tag like CONCAT('%',#{tag},'%') and q_tag like #{tag})
+	</select>
 
 </mapper>

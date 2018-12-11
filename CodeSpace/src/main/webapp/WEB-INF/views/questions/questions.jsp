@@ -46,13 +46,21 @@
 						
 						for(var i in tagArr){
 							if(tagArr[i] != ''){
-								$('.questions-tag-'+<c:out value="${tag.index}"/>).append('<div class="tag-box"><a href="#" class="btn btn-sm" role="button">'+tagArr[i]+'</a></div>');
+								$('.questions-tag-'+<c:out value="${tag.index}"/>).append('<div class="tag-box"><button type="button" onclick="moveTag(this.value)" class="btn btn-sm" value="'+ tagArr[i] +'">'+tagArr[i]+'</button></div>');
 							}
 						}
 						
 					</c:forEach>
 					
 				});
+				
+				function moveTag(tag){
+					
+					var tagValue = tag;
+					
+					location.href="${pageContext.request.contextPath}/search/tagged?tag="+tagValue;
+					
+				}
 				
 				// 최신 순 필터
 				function viewNewest(){

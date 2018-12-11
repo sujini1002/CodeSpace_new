@@ -14,5 +14,10 @@ public interface SearchDaoInterface {
 	public List searchUser(String words); // User 페이지에서 검색한 유저 정보를 가져오는 메서드
 	
 	public List searchUserExceptSelectedMember(ProjectMemberVO vo); // 프로젝트 usersearch 페이지에서 검색한 유저 정보를 가져오는 메서드
+	
+	
+	public List searchTag(SearchCriteria cri);		// Tag 검색 결과에 대한 List
+	
+	public int searchTagCnt(SearchCriteria cri);	// Tag 검색 결과 Count
  
 }
