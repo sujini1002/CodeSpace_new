@@ -12,7 +12,7 @@
 	
 	<tr>
 		<td>
-			<input type="text" name="q_title"  id="q_title" placeholder="제목을 입력해 주세요"  class="form-control" required/>
+			<input type="text" name="q_title"  id="q_title" placeholder="제목을 입력해 주세요"  class="form-control inputtext_color4"/>
 			<input type="hidden" name="user_no" id="user_no" value="${loginInfo.user_no}">
 			<input type="hidden" name="user_nickname" id="user_nickname" value="${loginInfo.user_nickname}">
 		</td>
@@ -26,9 +26,7 @@
 	<tr>
 			<td>
 			 	<ul id="myTags">
-					<!-- Existing list items will be pre-added to the tags -->
-					<!-- <li>Tag1</li>
-					<li>Tag2</li> -->
+					
 				</ul>
 			</td>
 		</tr>
