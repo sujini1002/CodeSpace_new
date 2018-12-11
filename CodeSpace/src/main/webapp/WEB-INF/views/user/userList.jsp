@@ -63,14 +63,14 @@
 					if(viewType == 'grid'){
 						for(var i in tagArr){
 							if(tagArr[i] != ''){
-								$('.user-tag-'+<c:out value="${tag.index}"/>).append('<a href="#" class="tag-info">'+tagArr[i]+'</a>');
+								$('.user-tag-'+<c:out value="${tag.index}"/>).append('<button type="button" onclick="moveTag(this.value)" class="btn btn-sm tag-info" value="'+ tagArr[i] +'">'+tagArr[i]+'</button>');
 							}
 						}
 					}
 					else if(viewType == 'list'){
 						for(var i in tagArr){
 							if(tagArr[i] != ''){
-								$('.user-view-list-tag-'+<c:out value="${tag.index}"/>).append('<a href="#" class="tag-info">'+tagArr[i]+'</a>');
+								$('.user-view-list-tag-'+<c:out value="${tag.index}"/>).append('<button type="button" onclick="moveTag(this.value)" class="btn btn-sm tag-info" value="'+ tagArr[i] +'">'+tagArr[i]+'</button>');
 							}
 						}
 					}
@@ -78,6 +78,14 @@
 				</c:forEach>
          		
          	}
+         	
+         	function moveTag(tag){
+				
+				var tagValue = tag;
+				
+				location.href="${pageContext.request.contextPath}/search/tagged?tag="+tagValue;
+				
+			}
 
        		function showList(){
        		
