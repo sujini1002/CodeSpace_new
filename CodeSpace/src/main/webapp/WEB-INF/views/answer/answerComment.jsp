@@ -78,7 +78,6 @@
 					dataType : 'json',
 					async : false,
 					success : function(data) {
-						console.log(data);
 						var quesCommList = '';
 							$.each(data, function(index, item) {
 								if(item.ac_no==0){
@@ -194,9 +193,7 @@
 		}
 	}
 	function insertAnswerComm(value){
-		console.log(value);
 		var num = value.id.substring(value.id.lastIndexOf('_')+1);
-		console.log(num)
 		//답변번호,댓글 작성자 번호,질문내용 가져오기
 		var ano = $('#k_aNo_'+num).val() * 1;
 		var userNo = '${loginInfo.user_no}' * 1;

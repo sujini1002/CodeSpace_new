@@ -52,7 +52,6 @@
 		//질문 댓글 고유번호
 		var qcNo = $('#k_qcNo_'+num).val()*1;
 		var qno = '${questionInfo.q_no}'*1;
-		console.log(qcNo)
 		//로그인한 사용자 번호
 		var loginUserNo = '${loginInfo.user_no}'*1;
 		//댓글 창 지우기

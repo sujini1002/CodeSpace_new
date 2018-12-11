@@ -17,7 +17,6 @@ public class CheckLevelService {
 		answerDao = sqlSessionTemplate.getMapper(AnswerInterfaceDao.class);
 		
 		int score = answerDao.checkLevel(user_no);
-		System.out.println("score="+score);
 		if(score>10) {
 			return true;
 		}else {

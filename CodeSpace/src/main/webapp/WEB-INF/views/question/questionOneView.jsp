@@ -104,8 +104,9 @@
 						class="btn btn-danger k_questionContentBtn" data-toggle="modal"
 						data-target="#myModal">삭제</button>
 
-				</c:if> <jsp:include page="questionUser.jsp" /></td>
+				</c:if> <%@include file="questionUser.jsp" %></td>
 		</tr>
+		
 		<tr>
 			<!-- 댓글 -->
 			<td style="width: 85%"><%@include file="questionComment.jsp"%>

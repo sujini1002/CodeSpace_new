@@ -17,9 +17,6 @@ public class QuestionUpdateService {
 	@Transactional
 	public int updateQuestion(QuestionInfo questionInfo) {
 		
-		System.out.println("서비스 들어옴");
-		System.out.println(questionInfo);
-		
 		questionDao = sqlSessionTemplate.getMapper(QuestionInterfaceDao.class);
 		
 		return questionDao.updateQuestion(questionInfo);

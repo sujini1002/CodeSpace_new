@@ -21,7 +21,6 @@ public class AnswerChooseController {
 		
 		int q_no = service.selectQNo(a_no);
 		int user_no = service.findUser(a_no);
-		System.out.println("채택 컨트롤러 user_no="+user_no);
 		String result = "";
 		
 		if(service.isExistChoose(q_no)==0) {
@@ -31,7 +30,6 @@ public class AnswerChooseController {
 		}else {
 			result = "{\"message\": \"" + 0 + "\"}";
 		}
-		System.out.println("채택 컨트롤러 에이작스 result ="+result);
 		return result;
 	}
 }

@@ -24,7 +24,6 @@ public class QuestionInsertController {
 	@RequestMapping(method=RequestMethod.POST)
 	public String insertQuestion(QuestionInfo questionInfo) {
 		
-		System.out.println(questionInfo);
 		
 		//질문등록
 		service.insertQuestion(questionInfo);

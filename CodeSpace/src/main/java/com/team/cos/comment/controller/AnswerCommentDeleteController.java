@@ -24,21 +24,17 @@ public class AnswerCommentDeleteController {
 	@ResponseBody
 	public List<AnswerCommentInfo> delete(@RequestParam("ac_no")int ac_no){
 		
-		System.out.println("컨트롤러 답변 댓글 고유 번호 딜리트="+ac_no);
 		int a_no = service.findANum(ac_no);
-		System.out.println("컨트롤러 답변  고유 번호 딜리트="+a_no);
 		
 		//삭제
 		service.delete(ac_no);
 		
 		int count = service.count(a_no);
-		System.out.println("컨트롤러 삭제후 리스트 갯수 딜리트="+a_no);
 		
 		List<AnswerCommentInfo> list = new ArrayList<AnswerCommentInfo>();
 		
 		if(count >0) {
 			list = service.listAll(a_no);
-			System.out.println("컨트롤러 답변  댓글 삭제후 리스트 딜리트="+list);
 		}else {
 			AnswerCommentInfo answer = new AnswerCommentInfo();
 			answer.setA_no(a_no);

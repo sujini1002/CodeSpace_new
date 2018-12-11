@@ -470,7 +470,6 @@
 				contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 				dataType : 'json',
 				success:function(data){
-					console.log(data);
 					if(data.result == "false"){
 						$('#k_checkModal').modal();
 						Answerquill.enable(false);

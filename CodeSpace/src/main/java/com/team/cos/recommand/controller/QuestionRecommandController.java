@@ -19,7 +19,6 @@ public class QuestionRecommandController {
 	@ResponseBody
 	public QuestionRecommandInfo recommand(QuestionRecommandInfo questionRecommandInfo) {
 		
-		System.out.println("컨트롤러에서 요청 받은 값"+questionRecommandInfo);
 		
 		int score = questionRecommandInfo.getScore();
 		int q_no = questionRecommandInfo.getQ_no();
@@ -79,7 +78,6 @@ public class QuestionRecommandController {
 			}
 			
 		}
-		System.out.println("최종 result 상태 = "+result);
 		return result;
 	}
 }

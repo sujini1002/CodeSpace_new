@@ -18,7 +18,6 @@ public class AnswerRecommandController {
 	@RequestMapping(value = "/answer/answerRecommand", method = RequestMethod.POST)
 	@ResponseBody
 	public AnswerRecommandInfo recommand(AnswerRecommandInfo answerRecommandInfo) {
-		System.out.println("컨트롤러에서 요청 받은 값" + answerRecommandInfo);
 
 		int score = answerRecommandInfo.getScore();
 		int a_no = answerRecommandInfo.getA_no();
@@ -77,7 +76,6 @@ public class AnswerRecommandController {
 			}
 
 		}
-		System.out.println("최종 result 상태 = " + result);
 		return result;
 	}
 }

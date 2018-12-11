@@ -19,7 +19,6 @@ public class QuestionRecommandService {
 	public int isExistUserRecom(QuestionRecommandInfo questionRecommandInfo) {
 		
 		quesRecomDao = sqlSessionTemplate.getMapper(QuestionRecommandInterfaceDao.class);
-		System.out.println("서비스 테이블에 존재 유무 :"+quesRecomDao.isExistUserRecom(questionRecommandInfo));
 		
 		return quesRecomDao.isExistUserRecom(questionRecommandInfo);
 	}
@@ -36,7 +35,6 @@ public class QuestionRecommandService {
 	public int isUserStatus(QuestionRecommandInfo questionRecommandInfo) {
 		
 		quesRecomDao = sqlSessionTemplate.getMapper(QuestionRecommandInterfaceDao.class);
-		System.out.println("서비스 현재 사용자 상태  :"+quesRecomDao.isUserStatus(questionRecommandInfo));
 		
 		return quesRecomDao.isUserStatus(questionRecommandInfo);
 	}

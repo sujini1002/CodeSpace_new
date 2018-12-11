@@ -25,8 +25,6 @@ public class AnswerCommentUpdateController {
 		service.update(answerCommentInfo);
 		//수정한 댓글의 답변 번호
 		int a_no = service.findAnswerNum(answerCommentInfo.getAc_no());
-		System.out.println("컨트롤러 답변 리스트 업데이트="+a_no);
-		System.out.println("컨트롤러 답변 리스트 업데이트="+service.listAll(a_no));
 		
 		return service.listAll(a_no);
 	}

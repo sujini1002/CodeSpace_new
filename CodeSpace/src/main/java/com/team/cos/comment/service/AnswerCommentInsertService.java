@@ -27,7 +27,6 @@ public class AnswerCommentInsertService {
 		
 		List<AnswerCommentInfo> list = new ArrayList<AnswerCommentInfo>();
 		list = answerCommDao.anCommListOneAnswer(a_no);
-		System.out.println("서비스 답글 댓글 ="+list);
 		return list;
 	}
 }

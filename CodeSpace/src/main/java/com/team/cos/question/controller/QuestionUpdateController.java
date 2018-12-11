@@ -20,8 +20,6 @@ public class QuestionUpdateController {
 	@ResponseBody
 	public String updateQuestion(QuestionInfo questionInfo) {
 		
-		System.out.println("컨트롤러 들어옴");
-		System.out.println(questionInfo);
 		int result = service.updateQuestion(questionInfo);
 		
 		//JSON  형식으로 저장

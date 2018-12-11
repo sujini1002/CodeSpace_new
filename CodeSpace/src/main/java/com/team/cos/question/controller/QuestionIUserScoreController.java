@@ -18,7 +18,6 @@ public class QuestionIUserScoreController {
 	@ResponseBody
 	public String updateScore(@RequestParam("q_no")int q_no,@RequestParam("score")int score) {
 		
-		System.out.println("들어옴");
 		int user_no = service.userNum(q_no);
 		
 		service.updateScore(user_no, score);

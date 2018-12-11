@@ -113,13 +113,11 @@ public class QuestionOneViewController {
 		List<AnswerRecommandViewInfo> aRecommandList = new ArrayList<>();
 		if(session.getAttribute("loginInfo") != null) {
 			//질문 추천 사용자 존재여부
-			System.out.println("컨트롤러 답변 추천 가져올 때 사용자 번호 = "+user_no);
 			if(aRecomService.isExistUserByQ_no(q_no,user_no)>0) {
 				//질문 추천 사용자 추천 여부
 				aRecommandList = aRecomService.aRecommand(q_no, user_no);
 			}
 		}
-		System.out.println("컨트롤러 로그인한 사용자의 답변 추천 번호와 상태="+aRecommandList);
 		
 		//답변 채택 
 		int aChooseNum = 0;
@@ -142,7 +140,6 @@ public class QuestionOneViewController {
 		modelAndView.addObject("bookmark", bookmark);
 		modelAndView.setViewName("question/questionOneView");
 		
-		//System.out.println("컨트롤러"+userInfoList);
 		
 		return modelAndView;
 	}

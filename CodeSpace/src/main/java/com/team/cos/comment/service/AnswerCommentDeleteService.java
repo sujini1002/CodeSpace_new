@@ -21,9 +21,7 @@ public class AnswerCommentDeleteService {
 		return ansCommDao.deleteAc(ac_no);
 	}
 	public int findANum(int ac_no) {
-		System.out.println("서비스 답변  댓글 고유 번호 딜리트="+ac_no);
 		ansCommDao = sqlSessionTemplate.getMapper(AnswerCommentInterfaceDao.class);
-		System.out.println("서비스 답변  고유 번호 딜리트="+ansCommDao.findAnswerNum(ac_no));
 		return ansCommDao.findAnswerNum(ac_no);
 	}
 	public List<AnswerCommentInfo> listAll(int a_no){
