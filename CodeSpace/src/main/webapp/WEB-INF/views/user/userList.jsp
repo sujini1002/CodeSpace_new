@@ -63,7 +63,7 @@
 					if(viewType == 'grid'){
 						for(var i in tagArr){
 							if(tagArr[i] != ''){
-								$('.user-tag-'+<c:out value="${tag.index}"/>).append('<button type="button" onclick="moveTag(this.value)" class="btn btn-sm tag-info" value="'+ tagArr[i] +'">'+tagArr[i]+'</button>');
+								$('.user-tag-'+<c:out value="${tag.index}"/>).append('<button type="button" onclick="moveTag(this.value)" class="btn btn-xs tag-info" value="'+ tagArr[i] +'">'+tagArr[i]+'</button>');
 							}
 						}
 					}
