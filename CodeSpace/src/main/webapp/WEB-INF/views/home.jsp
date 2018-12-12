@@ -46,7 +46,7 @@
 	                  </div>
 	                  <div class="col-lg-7 question-title">
 	                     <div class="result-link">
-	                     	<h3><a href="${pageContext.request.contextPath}/question/questionView?q_no=${questionList.q_no}">${questionList.q_title}</a></h3>
+	                     	<h5><a href="${pageContext.request.contextPath}/question/questionView?q_no=${questionList.q_no}">${questionList.q_title}</a></h5>
 	                     </div>
 	                     <div class="questions-tag-<c:out value="${num.index}"/>">
 						 </div>
