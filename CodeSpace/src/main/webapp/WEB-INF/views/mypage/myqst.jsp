@@ -55,8 +55,7 @@
 								<th style="width: 30px; text-align: center;">작성일</th>
 							</tr>
 						</thead>
-						<c:forEach var="qst" items="${myQstList}" begin="0"
-							end="${fn:length(myQstList) }" varStatus="status">
+						<c:forEach var="qst" items="${myQstList}" begin="0"end="${fn:length(myQstList) }" varStatus="status">
 							<tr>
 								<td>${status.count}</td>
 								<td style="text-align: left;"><a

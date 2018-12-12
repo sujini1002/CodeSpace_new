@@ -63,7 +63,7 @@
 	      </c:if><!-- !empty 조건 -->
 	      </div>
 	    <div class="col">
-	    	<div class="card" style="width: 18rem;">
+	    	 <div class="card" style="width: 18rem;">
 			  <div class="card-body">
 			    <h5 class="card-title">명예의 전당  <img src="${pageContext.request.contextPath}/images/crown.png"></h5>
 			    
@@ -76,7 +76,28 @@
 	    		</c:forEach>
 	    		</p>
 	    	  </div>
+	    	</div> 
+	    	
+	    	
+	    	<%-- <div class="card" style="width: 18rem;">
+			  <div class="card-body">
+			    <h5 class="card-title">명예의 전당  <img src="${pageContext.request.contextPath}/images/crown.png"></h5>
+			    
+			    <p class="card-text">
+	    		<c:forEach var="users" items="${topUsers }" varStatus="status">
+	    			${status.count }.
+	    			<img src="${pageContext.request.contextPath}/uploadfile/userphoto/${users.user_photo}" style="width: 40px; height: 40px;">
+	    		    ${users.user_name }
+	    			${users.user_score }
+	    			<br>
+	    		</c:forEach>
+	    		</p>
+	    	  </div>
 	    	</div>
+	     --%>
+	    
+	    
+	    
 	    	<br>
 	      	<div class="card" style="width: 18rem;">
 			  <div class="card-body">

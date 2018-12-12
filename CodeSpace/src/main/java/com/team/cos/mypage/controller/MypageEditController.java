@@ -40,13 +40,10 @@ public class MypageEditController {
 	public ModelAndView editMypage(UserInfoVo userInfoVo, HttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
-		System.out.println(userInfoVo);
 		ModelAndView modelAndView = new ModelAndView();
-		// modelAndView.addObject("userInfoVo", userInfoVo);
 
 		service.edit(userInfoVo, request);
 		session.setAttribute("loginInfo", userInfoVo);
-
 		modelAndView.setViewName("redirect:/mypage/mypage");
 
 		return modelAndView;

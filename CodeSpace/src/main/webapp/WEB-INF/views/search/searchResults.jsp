@@ -42,11 +42,7 @@
 										+ cx;
 								var s = document.getElementsByTagName('script')[0];
 								s.parentNode.insertBefore(gcse, s);
-								//$('#gsc-i-id1').val('${keyword}');
 							})();
-
-							//$('#gsc-i-id1').val('${keyword}');
-							//$('input[type="text"]').val('${keyword}');
 						</script>
 						<gcse:searchbox></gcse:searchbox>
 						<script>
