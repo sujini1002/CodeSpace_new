@@ -3,7 +3,6 @@ package com.team.cos.project.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,14 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team.cos.project.service.ProjectModifyService;
 import com.team.cos.project.service.ProjectRegService;
+import com.team.cos.project.service.ProjectRevisionService;
 import com.team.cos.project.vo.ProjectInfoVO;
-import com.team.cos.project.vo.TodolistVO;
 import com.team.cos.userinfo.service.UserInfoCheckService;
-import com.team.cos.userinfo.vo.UserInfoVo;
 
 @Controller
 @RequestMapping("/project/projectUpdate")
@@ -32,6 +29,8 @@ public class ProjectUpdateController {
 	private ProjectModifyService projectModifyService;
 	@Autowired
 	private UserInfoCheckService userInfoService;
+	@Autowired
+	private ProjectRevisionService revisionService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView getUpdateForm(
@@ -41,6 +40,7 @@ public class ProjectUpdateController {
 
 		// project_no에 해당하는 정보 저장하여 projectModifyForm에 뿌려줄 예정
 		ProjectInfoVO pro_info = service.selectProList(project_no);
+		
 		
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String start="";
@@ -63,9 +63,9 @@ public class ProjectUpdateController {
 			ProjectInfoVO vo,
 			@RequestParam("user_no") int user_no
 			) throws ParseException {
-		System.out.println("PUC user_no: "+user_no);
-		System.out.println("project info: "+vo);
-		System.out.println("getProstring_enddate"+vo.getProstring_enddate());
+		// project 정부 수정하기 전에 project_no에 해당하는 데이터를 revision_project 테이블에 추가
+		revisionService.insertRevisionProject(vo.getProject_no());
+		
 		String enddate = vo.getProstring_enddate();
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date to = transFormat.parse(enddate);

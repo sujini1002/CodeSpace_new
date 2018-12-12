@@ -7,8 +7,8 @@
 <jsp:include page="../common/layout_content.jsp" />
 
 <!-- right Contents 시작 -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"/>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"/>
 <div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 50px;">
 <!--  여기다가 작성 해주세요 -->
 
@@ -272,6 +272,28 @@
 </div><!-- /.modal -->
 
 
+<!-- project revison history -->
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" 
+	id="revisionHistory" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+  	
+    <div class="modal-content">
+		<div class="modal-header">
+	        <h4 class="modal-title">프로젝트 정보 수정 이력</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        	<span aria-hidden="true">&times;</span>
+	        </button>
+      	</div>
+		<div class="modal-body" id="projectRevisionList" >
+			
+			
+		
+		</div>
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -390,7 +412,7 @@ var project_noValue = '<c:out value="${pro_info.project_no}" />';
 var tdlUL = $("#tdlboard");
 
 // to do list 가져오는 function
-tdlService.getList({project_no:project_noValue}, function(list) {
+projectService.getList({project_no:project_noValue}, function(list) {
 	var str = "<tr>";
 		str += "<th>할 일</th>";
 		str += "<th>담당자</th>";
@@ -410,13 +432,34 @@ tdlService.getList({project_no:project_noValue}, function(list) {
 		str += "<td>"+list[i].todolist_content+"</a></td>";
 		str += "<td>"+list[i].user_nickname+"</td>";
 		str += "<td>"+list[i].todolist_status+"</td>";
-		str += "<td>"+tdlService.displayTime(list[i].todolist_enddate)+"</td>";
+		str += "<td>"+projectService.displayTime(list[i].todolist_enddate)+"</td>";
 		str += "</tr>";
 	}
 		
 	tdlUL.html(str);
 });
 
+// project 수정 이력 가져옴
+$("#revisionView").click(function(){
+	projectService.getRevisionHistory({project_no:project_noValue}, function(list) {
+		var projectRevisionList = $("#projectRevisionList");
+		if(list==null||list.length==0){
+			projectRevisionList.html("수정 이력이 없습니다.");
+			return;
+		}
+		
+		for(var i=0, len=list.length ||0; i<len; i++){
+			var str = "<p>revision date "+projectService.displayDetailTime(list[i].revision_date) + "<br> ";
+			str += list[i].project_title+"/";
+			str += list[i].project_content+"/";
+			str += projectService.displayTime(list[i].project_startdate)+"/";
+			str += projectService.displayTime(list[i].project_enddate)+ "</p>";
+		}
+		projectRevisionList.html(str);
+		
+	});
+	
+})
 
 
 //사용자 정보 자동완성 관련
@@ -496,8 +539,6 @@ tdlService.getList({project_no:project_noValue}, function(list) {
 		appendTo: '#proMemberInvite',
 		multiselect: true
 	}); 
-
-
 
 
 

@@ -95,7 +95,7 @@
 		//to do, doing, done으로 나눠서 보여주기
 		var container = $("#todolistContainer");
 		
-		tdlService.getList({
+		projectService.getList({
 			project_no: project_noValue
 		}, function(list){
 			var str = "<div class='row'>";
@@ -127,21 +127,21 @@
 				if(list[i].todolist_status=="todo"){
 					var todoStr = "<li class='left clearfix' data-todolist_no='"+list[i].todolist_no+"'>";
 						todoStr += "<div><div class='header'><strong class='primary-font'>"+list[i].todolist_content+"</strong>";
-						todoStr += "<small class='pull-right text-muted'>"+tdlService.displayTime(list[i].todolist_enddate)+"까지</small></div>";
+						todoStr += "<small class='pull-right text-muted'>"+projectService.displayTime(list[i].todolist_enddate)+"까지</small></div>";
 						todoStr += "<p>담당자: "+list[i].user_nickname+"</p></div></li>";
 					todo.append(todoStr);
 						
 				} else if(list[i].todolist_status=="doing"){
 					var doingStr = "<li class='left clearfix' data-todolist_no='"+list[i].todolist_no+"'>";
 						doingStr += "<div><div class='header'><strong class='primary-font'>"+list[i].todolist_content+"</strong>";
-						doingStr += "<small class='pull-right text-muted'>"+tdlService.displayTime(list[i].todolist_enddate)+"까지</small></div>";
+						doingStr += "<small class='pull-right text-muted'>"+projectService.displayTime(list[i].todolist_enddate)+"까지</small></div>";
 						doingStr += "<p>담당자: "+list[i].user_nickname+"</p></div></li>";
 					doing.append(doingStr);
 					
 				} else if(list[i].todolist_status=="done"){
 					var doneStr = "<li class='left clearfix' data-todolist_no='"+list[i].todolist_no+"'>";
 						doneStr += "<div><div class='header'><strong class='primary-font'>"+list[i].todolist_content+"</strong>";
-						doneStr += "<small class='pull-right text-muted'>"+tdlService.displayTime(list[i].todolist_enddate)+"까지</small></div>";
+						doneStr += "<small class='pull-right text-muted'>"+projectService.displayTime(list[i].todolist_enddate)+"까지</small></div>";
 						doneStr += "<p>담당자: "+list[i].user_nickname+"</p></div></li>";
 					done.append(doneStr);
 				}
@@ -245,7 +245,7 @@
 		var manager = $("#tdlmanager_no");
 		//var str= "<option value="+${user_no}+">"+${user_no}+"</option>"
 		
-		tdlService.getProjectMember({
+		projectService.getProjectMember({
 			project_no:project_noValue
 		}, function(list){
 			var str = "";
@@ -266,7 +266,7 @@
 		var project_status = ${pro_info.project_status};
 		var todolist_no = $(this).data("todolist_no");
 		
-		tdlService.getTodolistInfo({
+		projectService.getTodolistInfo({
 			todolist_no: todolist_no}, 
 			function(info){
 			
@@ -288,7 +288,7 @@
 		}) 
 		
 		var manager = $("#tdlmanager_no");
-		tdlService.getProjectMember({
+		projectService.getProjectMember({
 			project_no:project_noValue
 		}, function(list){
 			var str = "";

@@ -18,6 +18,8 @@ public class ProjectInfoVO {
 	private List<Integer> member;
 	private int firstRow;
 	private int endRow;
+	private int revision_no; // revision 테이블의 revision 고유 번호
+	private Date revision_date; // 정보 수정 날짜
 
 	public int getFirstRow() {
 		return firstRow;
@@ -121,6 +123,22 @@ public class ProjectInfoVO {
 
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
+	}
+
+	public int getRevision_no() {
+		return revision_no;
+	}
+
+	public void setRevision_no(int revision_no) {
+		this.revision_no = revision_no;
+	}
+
+	public Date getRevision_date() {
+		return revision_date;
+	}
+
+	public void setRevision_date(Date revision_date) {
+		this.revision_date = revision_date;
 	}
 
 	@Override

@@ -40,6 +40,13 @@ public interface ProjectInfoInterface {
 	// 사용자 정보 project에 insert
 	public int memberUpdate(ProjectMemberVO vo);
 
+	// project revision table insert
+	public int insertRevisionProject(int project_no);
+	
+	// project revision list view
+	public List<ProjectInfoVO> getRevisionList(int project_no);
+	
+	
 	// project notice view
 	public List<ProjectNoticeVO> projectNoticeView(ProjectInfoVO projectInfoVO);
 

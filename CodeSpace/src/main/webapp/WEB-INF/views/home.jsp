@@ -82,7 +82,12 @@
 			  <div class="card-body">
 			    <h5 class="card-title">최근 소식 <span class="badge badge-warning">New</span>
 			    </h5>
-			    <p class="card-text"><a href="${pageContext.request.contextPath}/news/newsView?n_no=${currentNews.n_no }">${currentNews.n_title }</a></p>
+			    <c:forEach var="item" items="${currentNews }" >
+				    <p class="card-text">
+				    	<a href="${pageContext.request.contextPath}/news/newsView?n_no=${item.n_no }">${item.n_title }</a>
+				    </p>
+				    <hr>
+			    </c:forEach>
 			    <a href="${pageContext.request.contextPath}/news/news" class="btn-sm btn-primary">전체 소식 보기</a>
 			  </div>
 			</div>

@@ -13,7 +13,7 @@ public interface NewsDao {
 	// 게시글 리스트
 	public List<NewsInfo> getNewsList(NewsCriteria cri);
 	// 메인 페이지 최근 소식 1개만 출력
-	public NewsInfo getCurrentNews();
+	public List<NewsInfo> getCurrentNews();
 	// 전체 게시글 개수
 	public int countNews(NewsCriteria cri);
 	// 게시글 하나만 보기

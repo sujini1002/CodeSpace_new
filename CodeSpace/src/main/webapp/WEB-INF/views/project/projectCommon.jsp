@@ -14,7 +14,6 @@
 		<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#projectRestart">
 			프로젝트 다시 시작하기
 		</button>
-
 	</c:if>
 	<c:if test="${pro_info.project_status==true }">
 	
@@ -33,6 +32,8 @@
 			</button>
 		</c:if>
 	</c:if>
+		<a href="revisionList/${pro_info.project_no }" style="font-size: x-samll;" id="revisionView"
+			data-toggle="modal" data-target=".bd-example-modal-lg">프로젝트 수정 이력 보기</a>
 	</h4>
 	<!-- 프로젝트 상세 내용  -->
 	<h5>${pro_info.project_content } (${pro_info.prostring_startdate } ~ ${pro_info.prostring_enddate })</h5>

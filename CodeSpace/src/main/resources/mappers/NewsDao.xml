@@ -11,7 +11,7 @@
 </select>
 
 <select id="getCurrentNews" resultType="com.team.cos.news.vo.NewsInfo">
-	select * from news order by n_no desc limit 1 
+	select * from news order by n_no desc limit 3 
 </select>
 
 <select id="countNews" resultType="int">

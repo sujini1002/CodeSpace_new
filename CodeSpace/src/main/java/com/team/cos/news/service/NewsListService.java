@@ -25,11 +25,11 @@ public class NewsListService {
 		
 	}
 	
-	// 최신 글 1개
-	public NewsInfo getCurrentNews() {
+	// 최신 글 3개
+	public List<NewsInfo> getCurrentNews() {
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
 
-		NewsInfo news = dao.getCurrentNews();
+		List<NewsInfo> news = dao.getCurrentNews();
 		return news;
 	}
 

@@ -36,6 +36,8 @@
 
 	</insert>
 
+		
+	
 	<!-- project_no에 해당하는 플젝 정보 수정 -->
 	<update id="updateProject"
 		parameterType="com.team.cos.project.vo.ProjectInfoVO">
@@ -120,6 +122,27 @@
 		project_no=#{project_no}
 	</select>
 
+	<!-- project 정보 수정 시 history 저장: revision_project table -->
+	<insert id="insertRevisionProject">
+		insert into revision_project 
+			(project_no, project_title, project_content, project_status, 
+			project_startdate, project_enddate)
+		select 
+			project_no, project_title, project_content, project_status, 
+			project_startdate, project_enddate  from project
+		where project.project_no=#{project_no}
+	</insert>
+	
+	<!-- project revision history 가져오기 -->
+	<select id="getRevisionList"
+		parameterType="com.team.cos.project.vo.ProjectInfoVO"
+		resultType="com.team.cos.project.vo.ProjectInfoVO">
+		select * from revision_project
+		where project_no=#{project_no}
+		order by revision_date
+	</select>
+	
+	
 	<!-- 공지사항 받아오기 위함 -->
 	<select id="projectNoticeView"
 		parameterType="com.team.cos.project.vo.ProjectInfoVO"

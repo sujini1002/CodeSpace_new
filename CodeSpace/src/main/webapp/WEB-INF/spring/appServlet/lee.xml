@@ -23,6 +23,7 @@
 	<beans:bean id="projectModifyService" class="com.team.cos.project.service.ProjectModifyService"></beans:bean>
 	<beans:bean id="projectFinishService" class="com.team.cos.project.service.ProjectStatusChangeService"></beans:bean>
 	<beans:bean id="userProjectViewService" class="com.team.cos.project.service.UserProjectViewService"></beans:bean>
+	<beans:bean id="projectRevisionService" class="com.team.cos.project.service.ProjectRevisionService"></beans:bean>
 	
 	<!-- project member 정보 가져오기 service  -->
 	<beans:bean id="projectMemberListGetService" class="com.team.cos.project.service.ProjectMemberListGetService"></beans:bean>

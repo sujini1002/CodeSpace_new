@@ -16,6 +16,7 @@ public class ProjectModifyService {
 	
 	private ProjectInfoInterface dao;
 	
+	
 	public int modifyProInfo(ProjectInfoVO vo) {
 		dao = sqlSessionTemplate.getMapper(ProjectInfoInterface.class);
 		
