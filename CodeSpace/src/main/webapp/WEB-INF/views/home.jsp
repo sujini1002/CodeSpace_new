@@ -62,8 +62,8 @@
 	         </div> <!-- result-List 끝 -->
 	      </c:if><!-- !empty 조건 -->
 	      </div>
-	    <div class="col">
-	    	 <div class="card" style="width: 18rem;">
+	    <div class="col" >
+	    	 <div class="card"  style="width: 18rem;">
 			  <div class="card-body">
 			    <h5 class="card-title">명예의 전당  <img src="${pageContext.request.contextPath}/images/crown.png"></h5>
 			    
@@ -99,8 +99,8 @@
 	    
 	    
 	    	<br>
-	      	<div class="card" style="width: 18rem;">
-			  <div class="card-body">
+	      	<div class="card" style="width: 18rem; ">
+			  <div class="card-body" >
 			    <h5 class="card-title">최근 소식 <span class="badge badge-warning">New</span>
 			    </h5>
 			    <c:forEach var="item" items="${currentNews }" >
