@@ -328,9 +328,6 @@ $(document).ready(function(){
 		var regDate_end = '';
 	}
 	var color = ['red','orange','yellow','green','blue','purple'];
-	console.log(regDate_start);
-	console.log(typeof regDate_start);
-	console.log(regDate_start=='');
 	//달력 앞쪽 공백 출력		   5
 	for ( var i = 1 ; i < day ; i ++ ){
 		str += '<td class="empty_room">&nbsp;</td>';

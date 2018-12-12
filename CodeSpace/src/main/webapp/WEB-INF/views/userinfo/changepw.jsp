@@ -40,7 +40,6 @@ function changePw(){
 				"user_pw":user_pw
 			},
 			success:function(response){
-				console.log(response);
 				if(response=='success'){
 					location.href='${pageContext.request.contextPath}/userinfo/userlogin';
 				}

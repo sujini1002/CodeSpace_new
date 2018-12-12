@@ -24,30 +24,6 @@
   </c:forEach>
   </tbody>
 </table>
-<%-- <!-- 질문 글이 있을 시 페이징 표시 -->
-<div class="search-paging">
-	<!-- view 단 페이징 모듈은 여기부터 -->
-	<div class="text-center">
-		<ul class="pagination justify-content-center">
-			<c:if test="${pageMaker.prev}">
-				<li class="page-item">
-				<a class="page-link" href="${pageContext.request.contextPath}/project/notiece/notice${pageMaker.makeQuery(pageMaker.startPage - 1)}">&laquo;</a></li>
-			</c:if>
-
-			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-				<li class="paging-item"	<c:out value="${pageMaker.searchCri.page == idx?'class=active':''}"/>>
-					<a class="page-link" href="${pageContext.request.contextPath}/project/notiece/notice${pageMaker.makeQuery(idx)}">${idx}</a>
-				</li>
-			</c:forEach>
-
-			<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-				<li class="page-item">
-				<a class="page-link" href="${pageContext.request.contextPath}/project/notiece/notice${pageMaker.makeQuery(pageMaker.endPage + 1)}">&raquo;</a></li>
-			</c:if>
-		</ul>
-	</div>
-</div>
-<!-- 여기 까지 --> --%>
 	<c:forEach var="num" begin="1" end="${projectNotice.pageTotalCnt }">
 			<a href="${pageContext.request.contextPath}/project/notice/notice?project_no=${project_no}&pageNum=${num}">[${num }]</a>
 	</c:forEach>

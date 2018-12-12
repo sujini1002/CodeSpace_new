@@ -19,7 +19,6 @@
 <script>
 /* 이메일이 우리 DB에 있나 체크 */
 function check(){
-	console.log($('#h_checkId').val());
 	var h_checkId=$('#h_checkId');
 	var user_id = h_checkId.val();
 	var url='${pageContext.request.contextPath}/userinfo/useridcheck';
@@ -42,7 +41,6 @@ function check(){
 						"user_id":response.user_id
 					},
 					success:function(response){
-						console.log(response);
 						if(response == 1){
 							alert('메일 확인 부탁 드립니다!!');
 							location.href='${pageContext.request.contextPath}/';
