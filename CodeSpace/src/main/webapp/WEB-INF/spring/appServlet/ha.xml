@@ -49,6 +49,7 @@
 			<exclude-mapping path="/questions/**"/>
 			<exclude-mapping path="/search/**"/>
 			<exclude-mapping path="/user/**"/>
+			<exclude-mapping path="/news/**"/>
 			<beans:bean class="com.team.cos.interceptor.HandlerInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>
