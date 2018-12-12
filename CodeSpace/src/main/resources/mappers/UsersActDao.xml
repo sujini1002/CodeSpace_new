@@ -42,7 +42,7 @@
 	select *,
 	(select count(*) +1 from userinfo where user_score > b.user_score ) as rank
 	from userinfo as b
-	order by rank asc
+	order by rank asc, user_no desc
 	limit 0,10
 </select> 
  
