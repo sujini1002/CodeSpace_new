@@ -1,28 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- <nav class="navbar navbar-dark bg-dark row">
-		<!-- Navbar content -->
-	<a class="navbar-brand col-md-4" 
-		href="${pageContext.request.contextPath}"
-		style="text-decoration: none; color: white">CODESPACE</a>
-
-	<form class="form-inline col-md-4 my-2 my-lg-0" action="${pageContext.request.contextPath}/search/searchResults">
-			<input class="form-control mr-sm-2" type="search" name="keyword" id="mainSearchBox" 
-				placeholder="Search" aria-label="Search">
-			<button class="btn btn-outline-info my-2 my-sm-0" id="searchBtn" type="submit">Search</button>
-	</form>
+<nav class="navbar navbar-dark bg-dark row" >
+			<!-- Navbar content -->
+		<a class="navbar-brand col-md-4" 
+			href="${pageContext.request.contextPath}"
+			style="text-decoration: none; color: white">CODESPACE</a>
 	
-	<div class="col-md-4 row justify-content-end" >
-	<a class="col-md-1" href="${pageContext.request.contextPath}/mypage/mypage" style="margin: 0px 0px 10px 0px"> 
-		<i class="fa fa-user-circle fa-lg y_user" style="color: white; margin-top: 18px;"></i>
-	</a>
-	<form class="form-inline col-md-3" style="margin-right: 80px">
-		<button class="btn btn-outline-info btn-info" id="k_loginBtn"
-			data-target="#loginModal" data-toggle="modal" type="button">
-				로그인 및 회원가입
-		</button>
-	</form>
-	</div>
+		<form class="form-inline col-md-4 my-2 my-lg-0" action="${pageContext.request.contextPath}/search/searchResults">
+				<input class="form-control mr-sm-2" type="search" name="keyword" id="mainSearchBox" 
+					placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-info my-2 my-sm-0" id="searchBtn" type="submit">Search</button>
+		</form>
+		
+		<div class="col-md-4 row justify-content-end" >
+			<a class="col-md-1" href="${pageContext.request.contextPath}/mypage/mypage" style="margin: 0px 0px 10px 0px"> 
+				<i class="fa fa-user-circle fa-lg y_user" style="color: white; margin-top: 18px;"></i>
+			</a>
+			<form class="form-inline col-md-3" style="margin-right: 80px">
+				<button class="btn btn-outline-info btn-info" id="k_loginBtn"
+					data-target="#loginModal" data-toggle="modal" type="button">
+						로그인 및 회원가입
+				</button>
+			</form>
+		</div>
 </nav> 
 
 <!-- Modal -->

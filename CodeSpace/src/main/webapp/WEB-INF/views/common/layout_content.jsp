@@ -13,8 +13,8 @@
 	<!-- <div class="row"> -->
 	<!-- leftSide bar 시작 -->
 
-	<nav class="col-md-2" style="background-color: #343a40; padding-top: 30px;">
-		<div class="sidebar-sticky">
+	<nav class="col-md-2" style="background-color: #343a40; padding-top: 30px; ">
+		<div class="sidebar-sticky" > <!--style=" position:fixed;"  -->
 			<ul class="nav flex-column">
 				<li class="nav-item"><a class="nav-link active"
 					href="${pageContext.request.contextPath}/questions/questions"><i class="fas fa-home" style="color:white;">&nbsp;&nbsp;코드스페이스</i>

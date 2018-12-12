@@ -47,7 +47,7 @@ public class UserInfoRegController {
 			modelAndView.setViewName("userinfo/reconfirm");
 		} else {
 //			메일 서비스
-			mailService.sendMail(userInfoVo);
+//			mailService.sendMail(userInfoVo);
 			modelAndView.setViewName("redirect:/");
 			session.setAttribute("loginInfo", userInfoVo);
 		}

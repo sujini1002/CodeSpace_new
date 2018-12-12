@@ -10,13 +10,13 @@
 <!--  여기다가 작성 해주세요 -->
 <form method="post" enctype="multipart/form-data">
 	 	<div class="form-group h_group">
-            <label for="exampleInputEmail1">이메일 주소</label>
+            <label for="exampleInputEmail1" style="margin: auto;">이메일 주소</label>
             <c:if test="${empty googlecheck}">
-                <input type="text" class="form-control h_id" placeholder="이메일을 입력하세요" name="user_id" checked="checked"/>
+                <input type="text" class="form-control h_id" placeholder="이메일을 입력하세요" name="user_id" checked="checked" style="width: 300px;"/>
                 <div class="h_check"></div>
                 
                 <label for="password">비밀번호</label>
-                <input type="password" class="form-control h_pw" placeholder="비밀번호를 입력하세요" name="user_pw" />
+                <input type="password" class="form-control h_pw" placeholder="비밀번호를 입력하세요" name="user_pw" style="width: 300px;"/>
                 <div class="h_checkpw"></div>
             </c:if>
             
@@ -29,28 +29,28 @@
         
         <div class="form-group h_group">
             <label for="name">이름</label>
-            <input type="text" class="form-control h_name" placeholder="이름을 입력 하세요" name="user_name">
+            <input type="text" class="form-control h_name" placeholder="이름을 입력 하세요" name="user_name" style="width: 300px;">
             <div class="h_checkname"></div>
         </div>
         
         <div class="form-group h_group">
             <label for="nickname">별명</label>
-            <input type="text" class="form-control h_nickname" placeholder="별명을 입력 하세요" name="user_nickname">
+            <input type="text" class="form-control h_nickname" placeholder="별명을 입력 하세요" name="user_nickname" style="width: 300px;">
         </div>
         
         <div class="form-group h_group">
             <label for="homepage">개인 홈페이지</label>
-            <input type="text" class="form-control h_url" placeholder="URL을 입력 하세요" name="user_url">
+            <input type="text" class="form-control h_url" placeholder="URL을 입력 하세요" name="user_url" style="width: 300px;">
         </div>
         
         <div class="form-group h_group">
             <label for="tag">Tag</label>
-            <input type="text" class="form-control h_tag" placeholder="Tag를 입력하세요" name="user_tag">
+            <input type="text" class="form-control h_tag" placeholder="Tag를 입력하세요" name="user_tag" style="width: 300px;">
         </div>
         
         <div class="form-group h_group">
             <label for="intro">자기 소개</label>
-            <textarea class="form-control h_intro" rows="3" name="user_intro"></textarea>
+            <textarea class="form-control h_intro" rows="3" name="user_intro" style="width: 300px;"></textarea>
         </div>
         
         <div class="form-group h_group">
@@ -60,7 +60,8 @@
         </div>
         
         <div>
-        	<input class="regbutton" disabled="disabled" type="submit" value="회원가입">
+        	<button type="submit" class="regbutton btn btn-lg btn-primary btn-block" disabled="disabled" style="width: 300px;">회원가입</button>
+        	<!-- <input class="regbutton" disabled="disabled" type="submit" value="회원가입"> -->
         </div>
 </form>
 <script>

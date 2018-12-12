@@ -23,7 +23,7 @@
 					data-container="body" data-toggle="popover" data-placement="bottom"
 					onclick="isLogin(this)" data-content="로그인이 필요한 기능 입니다.">질문하기</button>
 		</h1>
-		<h5>//Top Question에 대한 설명//
+		<!-- <h5>//Top Question에 대한 설명// -->
 		</h5>
 	   		<c:if test="${empty topQuestions}">
 	      	 	<div class="result-noList">
@@ -62,8 +62,8 @@
 	         </div> <!-- result-List 끝 -->
 	      </c:if><!-- !empty 조건 -->
 	      </div>
-	    <div class="col">
-	    	 <div class="card" style="width: 18rem;">
+	    <div class="col" >
+	    	 <div class="card"  style="width: 18rem;">
 			  <div class="card-body">
 			    <h5 class="card-title">명예의 전당  <img src="${pageContext.request.contextPath}/images/crown.png"></h5>
 			    
@@ -99,8 +99,8 @@
 	    
 	    
 	    	<br>
-	      	<div class="card" style="width: 18rem;">
-			  <div class="card-body">
+	      	<div class="card" style="width: 18rem; ">
+			  <div class="card-body" >
 			    <h5 class="card-title">최근 소식 <span class="badge badge-warning">New</span>
 			    </h5>
 			    <c:forEach var="item" items="${currentNews }" >

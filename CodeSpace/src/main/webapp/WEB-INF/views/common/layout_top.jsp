@@ -63,7 +63,7 @@
 </head>
 <body style="overflow-x:hidden; overflow-y:auto;">
 
-	<div id="k_hearder">
+	<div id="k_hearder" >
 		<!-- nav_bar 들어갈곳 -->
 		<jsp:include page="layout_topNav_tmp.jsp" />
 	</div>
