@@ -57,6 +57,8 @@
 					<div>
 						<gcse:searchresults></gcse:searchresults>
 					</div>
+					<br>
+					<a href="#" onclick="history.go(-1); return false;"> 이전 페이지로 이동 </a>
 
 				</div>
 			</c:if>
@@ -68,6 +70,8 @@
 					<div class="result-noList">
 						<h2>입력된 값이 없습니다! 입력 값 확인 후 다시 검색해주세요.</h2>
 					</div>
+					<br>
+					<a href="#" onclick="history.go(-1); return false;"> 이전 페이지로 이동 </a>
 				</c:if>
 
 				<c:if test="${fn:trim(keyword) ne '' and keyword ne null}">

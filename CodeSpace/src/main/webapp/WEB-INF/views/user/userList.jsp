@@ -63,7 +63,7 @@
 					if(viewType == 'grid'){
 						for(var i in tagArr){
 							if(tagArr[i] != ''){
-								$('.user-tag-'+<c:out value="${tag.index}"/>).append('<button type="button" onclick="moveTag(this.value)" class="btn btn-xs tag-info" value="'+ tagArr[i] +'">'+tagArr[i]+'</button>');
+								$('.user-tag-'+<c:out value="${tag.index}"/>).append('<button type="button" onclick="moveTag(this.value)" class="btn btn-sm tag-info" value="'+ tagArr[i] +'">'+tagArr[i]+'</button>');
 							}
 						}
 					}
@@ -119,7 +119,7 @@
 	              <c:forEach var="userInfo" items="${userList}" begin="0" end="${fn:length(userList)}" varStatus="num">
 	                 <div class="row col-lg-3 user-info">
 	                  <div class="col-lg-3 userPic">
-	                     <div class="picInfo"><a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}"><img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="85" height="85"></a></div>
+	                     <div class="picInfo"><a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}"><img src="${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}" width="85" height="85"></a></div>
 	                  </div>
 	                  <div class="col-lg-8 user-detail">
 	                     <div class="col-lg-12 user-detail-attribute user-nickname"><a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}">${userInfo.user_nickname}</a></div>
@@ -162,7 +162,7 @@
 	               <c:forEach var="userInfo" items="${userList}" begin="0" end="${fn:length(userList)}" varStatus="num">
 	                 <div class="row col-lg-12">
 		                  <div class="col-lg-1 user-view-list-pic">
-		                     <div class="picInfo"><a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}"><img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="90" height="90"></a></div>
+		                     <div class="picInfo"><a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}"><img src="${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}" width="90" height="90"></a></div>
 		                  </div>
 		                  <div class="col-lg-8 user-view-list-detail">
 		                  	 <div class="row col-lg-12">
@@ -266,14 +266,14 @@
  		                              				str += '<div class="row col-lg-3 user-info">'
  		                              					+		'<div class="col-lg-3 userPic">'
  		                              					+			'<div class="picInfo">'
- 		                              					+				'<a href="#">'
- 		                              					+ 					'<img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="85" height="85">'
+ 		                              					+				'<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}">'
+ 		                              					+ 					'<img src="${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}" width="90" height="90">'
  		                              					+				'</a>'
  		                              					+			'</div>'
  		                              					+		'</div>'
  		                              					+		'<div class="col-lg-8 user-detail">'
  		                              					+			'<div class="col-lg-12 user-detail-attribute user-nickname">'
- 		                              					+				'<a href="#">' + list[i].user_nickname + '</a>'
+ 		                              					+				'<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}">' + list[i].user_nickname + '</a>'
  		                              					+			'</div>'
  		                              					+			'<div class="col-lg-12 user-detail-attribute user-intro">'
  		                              					+ 				list[i].user_intro 
@@ -285,7 +285,7 @@
  		                              					
  		                              					for(var j in tagArr){
  		                              						if(tagArr[j] != ''){
- 		       	                    							str+='<a href="#" class="tag-info">'+tagArr[j]+'</a>';
+ 		       	                    							str+='<button type="button" onclick="moveTag(this.value)" class="btn btn-sm tag-info" value="'+ tagArr[j] +'">'+tagArr[j]+'</button>';
  		       	                    						}
  		                              					}
  		                              					
@@ -347,7 +347,7 @@
 	                              					+		'<div class="col-lg-1 user-view-list-pic">'
 	                              					+			'<div class="picInfo">'
 	                              					+				'<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}">'
-	                              					+ 					'<img src="http://cdnweb01.wikitree.co.kr/webdata/editor/201808/21/img_20180821155102_f1938162.jpg" width="90" height="90">'
+	                              					+ 					'<img src="${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}" width="90" height="90">'
 	                              					+				'</a>'
 	                              					+			'</div>'
 	                              					+		'</div>'
@@ -369,7 +369,7 @@
 	                              					
 	                              					for(var j in tagArr){
 		                              						if(tagArr[j] != ''){
-		       	                    							str+='<a href="#" class="tag-info">'+tagArr[j]+'</a>';
+		       	                    							str+='<button type="button" onclick="moveTag(this.value)" class="btn btn-sm tag-info" value="'+ tagArr[j] +'">'+tagArr[j]+'</button>';
 		       	                    						}
 		                              				}
 	                              					
