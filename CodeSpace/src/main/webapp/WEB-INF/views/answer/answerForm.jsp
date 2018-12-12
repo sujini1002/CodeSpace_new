@@ -425,8 +425,7 @@
 					dataType : 'json',
 					success : function(data) {
 						if (data.result == "1") {
-							location.href = '${pageContext.request.contextPath}/question/questionView?q_no='
-									+ q_no+'&viewCnt=false';
+							window.location.reload();
 						} else {
 							alert('수정 실패하였습니다 ㅠㅠ');
 						}
@@ -542,7 +541,7 @@
 				dataType : 'json',
 				success:function(data){
 					if(data.result=="1"){
-					location.href='${pageContext.request.contextPath}/question/questionView?q_no='+q_no+'&viewCnt=false';
+						window.location.reload();
 					}else{
 						alert("실패하였습니다ㅠㅠ");
 					}
