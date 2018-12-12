@@ -23,7 +23,7 @@
 					data-container="body" data-toggle="popover" data-placement="bottom"
 					onclick="isLogin(this)" data-content="로그인이 필요한 기능 입니다.">질문하기</button>
 		</h1>
-		<h5>//Top Question에 대한 설명//
+		<!-- <h5>//Top Question에 대한 설명// -->
 		</h5>
 	   		<c:if test="${empty topQuestions}">
 	      	 	<div class="result-noList">
