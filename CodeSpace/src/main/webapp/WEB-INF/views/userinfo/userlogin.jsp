@@ -24,8 +24,6 @@
      	</div>
      </div>
      
-     
-     <%-- <a href="${pageContext.request.contextPath }/userinfo/hjscal">달력 보러가자</a> --%>
 <script>
 $(function(){
 	var checkcookie = '${cookie.user_id.value}';
@@ -55,7 +53,10 @@ function loginCheck(){
 				$('.checkPlz').text('구글로 가입한 유저입니다. 구글 로그인으로 진행 부탁드립니다.').css('color','red');
 			}else if(response == 2){
 				location.href="${pageContext.request.contextPath}/";
-			}else{
+			}else if(response ==3){
+				$('.checkPlz').text('없는 사용자 입니다. 회원가입을 부탁드립니다.').css('color','red');
+			}
+			else{
 				$('.checkPlz').text('E-mail 혹은 비밀번호 오류입니다 다시 확인해주세요.').css('color','red');
 			}
 		}

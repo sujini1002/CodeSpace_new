@@ -41,10 +41,11 @@ public class UserInfoLoginCheck {
 			throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
 		UserInfoVo result = new UserInfoVo();
 		userInfoVo.setUser_pw(enService.encrypt(userInfoVo.getUser_pw()));
-		
-		result = updateService.userLoginCheck(userInfoVo);
 
-		if (result.getUser_pw() == null) {
+		result = updateService.userLoginCheck(userInfoVo);
+		if (result == null) {
+			return 3;
+		} else if (result.getUser_pw() == null) {
 //			pw 가 없으면 구글 로그인
 			return 1;
 		} else if (userInfoVo.getUser_id().equals(result.getUser_id())
