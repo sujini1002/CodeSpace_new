@@ -137,7 +137,7 @@
 								</div>
 							</div>
 							<!-- 게시글 row행 끝 -->
-							<hr />
+							<div class="hr"></div>
 						</c:forEach>
 
 						<br>
