@@ -29,11 +29,11 @@
 	text-align:right;
 }
 
-.result-row{
-	margin-top: 10px;
-	margin-bottom: 20px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+.result-row::after{
+	padding-top: 5px;
+	padding-bottom: 0px;
+	min-height: 20px;
+	max-height: 30px;
 }
 
 .result-List{
@@ -213,11 +213,7 @@
 }
 
 .hr{
-	background-color: #FFFFFF;
-	border: 1px solid #000000;
-	height: 10px;
-	margin: 10px 0;
-	width: 760px;
+	
 }
 
 .top-hr{
@@ -228,10 +224,7 @@
 }
 
 .bottom-hr{
-	
-	border: 1px solid red;
-	margin-bottom: 20px;
-	
+	margin-top: 25px;
 }
 
 .user-list-row{
@@ -239,8 +232,10 @@
 	margin: 1px;
 }
 
-.questions-tag{
+.questions-tag::after{
 	text-align: left;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 	margin-bottom: 5px;
 }
 

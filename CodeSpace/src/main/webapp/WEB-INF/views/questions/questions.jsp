@@ -125,12 +125,12 @@
 							</div>
 							<div class="col-lg-7 question-title">
 								<div class="row result-link">
-									<h4>
+									<h5>
 										<a
 											href="${pageContext.request.contextPath}/question/questionView?q_no=${questionList.q_no}">${questionList.q_title}</a>
-									</h4>
+									</h5>
 								</div>
-								<div class="row questions-tag questions-tag-<c:out value="${num.index}"/>">
+								<div class="questions-tag questions-tag-<c:out value="${num.index}"/> row">
 								</div>
 							</div>
 							<!-- question-title 끝 -->
@@ -139,7 +139,7 @@
 								<div>${questionList.q_regdate}</div>
 							</div>
 						</div>
-						<hr/>
+							<div class="col-lg-12"><hr class="bottom-hr"/></div>
 						<!-- 게시글 row행 끝 -->
 					</c:forEach>
 
