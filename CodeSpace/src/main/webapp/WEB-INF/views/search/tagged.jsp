@@ -143,7 +143,7 @@
 								</div>
 							</div>
 							<!-- 게시글 row행 끝 -->
-							<div class="col-lg-12"><hr class="bottom-hr"/></div>
+							<div><hr class="bottom-hr"/></div>
 						</c:forEach>
 
 						<br>
