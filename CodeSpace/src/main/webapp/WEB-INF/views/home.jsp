@@ -70,8 +70,8 @@
 			    <p class="card-text">
 	    		<c:forEach var="users" items="${topUsers }" varStatus="status">
 	    			${status.count }. 
-	    			이름: ${users.user_name }
-	    			점수: ${users.user_score }
+	    			<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${users.user_no}">${users.user_nickname }</a>
+	    			${users.user_score }
 	    			<br>
 	    		</c:forEach>
 	    		</p>

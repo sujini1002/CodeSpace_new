@@ -75,35 +75,43 @@
 			</tr>
 		</table>
 		<form method="post">
-			<table class="table col-12" border="1"
-				style="background-color: white; margin-top: 0;">
+			<table class="table" style="background-color: white; margin-top: 0;">
 
+				
 				<c:if test="${!empty commList}">
 					<c:forEach var="comm" items="${commList}" begin="0" end="${fn:length(commList) }">
 						<tr>
-							<td style="width: 120px;">${comm.user_nickname }</td>
-							<td style="width: 800px;"><span id="testD_${comm.nc_no}">${comm.nc_content}</span>
-							<input type="text" id="before_<c:out value="${comm.nc_no}"/>" style="display:none" value="${comm.nc_content }" />
+							<td>
+								<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${comm.user_no}">${comm.user_nickname }</a>
+							</td>	
+							<td colspan="2">
+							<span id="testD_${comm.nc_no}">${comm.nc_content}</span>
+								<input type="text" id="before_<c:out value="${comm.nc_no}"/>" style="display:none" value="${comm.nc_content }" />
+							</td>	
+							<td>	
+								<div style="float: right;">
+									<c:if test="${comm.user_no eq loginInfo.user_no}">
+										<a onclick="edit_comm(${comm.nc_no})" id="modi_${comm.nc_no}" href="#">수정</a> &nbsp;
+										<a onclick="return confirm('삭제하시겠습니까?')" href="${pageContext.request.contextPath}/news/commDelete?nc_no=${comm.nc_no}">삭제</a> &nbsp; 
+									</c:if> 
+									<span>${fn:substring(comm.nc_regdate, 0 ,10)} &nbsp;</span>
+								</div>
 							</td>
-							<td style="width: 100px;">
-								<a onclick="edit_comm(${comm.nc_no})" id="modi_${comm.nc_no}" href="#">수정</a>
-								
-								<a onclick="return confirm('삭제하시겠습니까?')" href="${pageContext.request.contextPath}/news/commDelete?nc_no=${comm.nc_no}">삭제</a> 
-							</td>
-							<td style="width: 100px;">${fn:substring(comm.nc_regdate, 0 ,10)}</td>
 						</tr>
 					</c:forEach>
 				</c:if>
 			</table>
+			
+			<c:if test="${!empty loginInfo}">
 			<table class="table row">
 				<tr>
-					<td style="width: 250px;">${loginInfo.user_nickname}
+					<td style="width: 250px; float: right;">${loginInfo.user_nickname}
 						<input type="hidden" name="n_no" value="${newsInfo.n_no }"><input type="hidden" name="user_no" value="${loginInfo.user_no }"></td>
 					<td><textarea name="nc_content" cols="50" rows="2" id="commentContent"
 							class="textarea m-tcol-c"
-							style="overflow: hidden; width: 1000px;"></textarea></td>
+							style="overflow: hidden; width: 950px;"></textarea></td>
 					<td><button type="submit" style="width: 100px; height: 55px;">등록</button> </td>
-					
+			</c:if>	
 					
 				</tr>
 			</table>
@@ -134,14 +142,18 @@
 		
 		// 댓글 수정하기		
 		function edit_comm(no) {
-			//console.log(no);
+			
 			var content = $('#before_'+no).val();
-			console.log(content);
+			
+			// 수정 버튼을 누르면
 			if($('#modi_'+no).text() == '수정'){
 				$('#testD_'+no).css('display','none');
 				$('#before_'+no).css('display', '');
+				$('#before_'+no).css('width', '1000px');
 				$('#modi_'+no).text('수정하기')
+			
 				
+			// 수정하기 버튼 누르면	
 			} else if($('#modi_'+no).text() == '수정하기'){
 				 $.ajax({
 					 url : '${pageContext.request.contextPath}/news/commEdit',

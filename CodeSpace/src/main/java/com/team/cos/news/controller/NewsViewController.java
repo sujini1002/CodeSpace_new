@@ -41,6 +41,8 @@ public class NewsViewController {
 		viewService.n_viewcnt(n_no);
 		List<NewsCommentInfo> commList = commService.getCommList(n_no);
 		
+		
+				
 		// 뉴스 정보			
 		modelAndView.addObject("newsInfo", service.getNewsView(n_no));
 		
