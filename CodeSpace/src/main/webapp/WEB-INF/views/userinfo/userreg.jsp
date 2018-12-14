@@ -8,7 +8,7 @@
 <!-- right Contents 시작 -->
 <div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 50px;">
 <!--  여기다가 작성 해주세요 -->
-<form method="post" enctype="multipart/form-data">
+<form id="photoform" method="post" enctype="multipart/form-data">
 	 	<div class="form-group h_group">
             <label for="exampleInputEmail1" style="margin: auto;">이메일 주소</label>
             <c:if test="${empty googlecheck}">
@@ -59,11 +59,11 @@
             <!-- <p class="help-block">여기에 블록레벨 도움말 예제</p> -->
         </div>
         
+</form>
         <div>
-        	<button type="submit" class="regbutton btn btn-lg btn-primary btn-block" disabled="disabled" style="width: 300px;">회원가입</button>
+        	<button type="submit" class="regbutton btn btn-lg btn-primary btn-block" disabled="disabled" style="width: 300px;" onclick="regUser()">회원가입</button>
         	<!-- <input class="regbutton" disabled="disabled" type="submit" value="회원가입"> -->
         </div>
-</form>
 <script>
 /* $(function(){}) 와 같다*/
 /* 정규식으로 아이디 적합테스트 */
@@ -94,7 +94,7 @@ $(document).ready(function(){
 						'user_id':data.val()
 					},
 					success:function(response){
-						console.log(response);
+						/* console.log(response); */
 						if(response.user_no==0){
 							$('.h_check').text('멋진 Email이네요!!').css('color','green');
 							checkemail = true;
@@ -154,5 +154,49 @@ $(document).ready(function(){
 		}
 	}
 });
+	/* 다른 URL로 사진 보내기 */
+	function regUser(){
+		var ddata = $('.h_photo').val();
+		var booo = $('.regbutton').attr('disabled');
+		var url = '${pageContext.request.contextPath}/userinfo/userreg';
+		
+		if(booo==null && ddata != ''){
+			var form = $('#photoform')[0];
+			var formData = new FormData(form);
+			
+			$.ajax({
+				url:'http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/savePic',
+				dataType:'JSON',
+				type:'POST',
+				data:formData,
+			    processData : false,
+	            contentType : false,
+	            success:function(result){
+	            	$.ajax({
+           				url:url,
+	            		type:'POST',
+           				data : {
+           					"user_id":result.user_id,
+           					"user_pw":result.user_pw,
+           					"user_name":result.user_name,
+           					"user_photo":result.user_photo,
+           					"user_url":result.user_url,
+           					"user_intro":result.user_intro,
+           					"user_tag":result.user_tag,
+           					"user_score":result.user_score,
+           					"user_nickname":result.user_nickname
+           				},
+           				success:function(result){
+           					if(result == 0){
+           						location.href='${pageContext.request.contextPath}/userinfo/reconfirm';
+           					}else{
+           						location.href='${pageContext.request.contextPath}/';
+           					}
+           				}
+           			});
+	            }
+			});
+		}
+	}
 </script>
 <jsp:include page="../common/layout_footer.jsp" />

@@ -35,7 +35,7 @@
 					src="${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}">
 			</div> --%>
 			<div class="y_edit_myPhoto col-md-3">
-				<img id="y_image_profile" src="${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}">
+				<img id="y_image_profile" src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/${loginInfo.user_photo}">
 				<input type="file" name="photo" class="y_btn_file" id="imgInput">
 			</div>
 			
@@ -100,8 +100,9 @@
 				</table>
 
 			</div>
-			<input class="btn btn-success yu_btn2" type="submit" value="수정완료">
+<!-- 			<input class="btn btn-success yu_btn2" onclick="subMit()" type="submit" value="수정완료"> -->
 		</form>
+			<input class="btn btn-success yu_btn2" onclick="subMit()" value="수정완료">
 	</div>
 
 	<!-- Modal 처리 -->
@@ -141,6 +142,46 @@
 				$("#myModal").modal("show");
 			}
 		});
+		
+		function subMit(){
+			var form = $('#form')[0];
+			var formData = new FormData(form);
+			var url = '${pageContext.request.contextPath}/mypage/editForm';
+			
+			$.ajax({
+				url:'http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/savePic',
+				/* url:'http://localhost:8080/cospic/savePic', */
+				dataType:'JSON',
+				type:'POST',
+				data:formData,
+			    processData : false,
+	            contentType : false,
+	            success:function(result){
+	            	$.ajax({
+           				url:url,
+	            		type:'POST',
+           				data : {
+           					"user_id":result.user_id,
+           					"user_name":result.user_name,
+           					"user_photo":result.user_photo,
+           					"user_url":result.user_url,
+           					"user_intro":result.user_intro,
+           					"user_tag":result.user_tag,
+           					"user_nickname":result.user_nickname
+           				},
+           				success:function(result){
+           					if(result == 0){
+           						/* location.href='${pageContext.request.contextPath}/userinfo/reconfirm'; */
+           						alert('수정오류!!');
+           					}else{
+           						location.href='${pageContext.request.contextPath}/mypage/mypage';
+           					}
+           				}
+           			});
+	            	
+	            }
+			});
+		}
 	</script>
 
 

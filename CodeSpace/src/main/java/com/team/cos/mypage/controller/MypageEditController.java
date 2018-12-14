@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cos.mypage.service.MypageEditService;
@@ -37,16 +38,23 @@ public class MypageEditController {
 
 	// 수정하고 수정완료 버튼 눌렀을때
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView editMypage(UserInfoVo userInfoVo, HttpServletRequest request, HttpSession session)
+	@ResponseBody
+	public String editMypage(UserInfoVo userInfoVo, HttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
 		ModelAndView modelAndView = new ModelAndView();
 
-		service.edit(userInfoVo, request);
+		int result = service.edit(userInfoVo, request);
+		String result2;
 		session.setAttribute("loginInfo", userInfoVo);
-		modelAndView.setViewName("redirect:/mypage/mypage");
+//		modelAndView.setViewName("redirect:/mypage/mypage");
 
-		return modelAndView;
+		if (result == 0) {
+			return result2 = "0";
+		} else {
+			return result2 = "1";
+		}
+//		return result;
 
 	}
 }

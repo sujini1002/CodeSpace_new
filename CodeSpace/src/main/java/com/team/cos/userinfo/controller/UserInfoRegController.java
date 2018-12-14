@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cos.userinfo.service.AES256UtilService;
@@ -19,7 +20,7 @@ import com.team.cos.userinfo.service.UserInfoRegService;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
 @Controller
-@RequestMapping("/userinfo/userreg")
+@RequestMapping(value = "/userinfo/userreg")
 public class UserInfoRegController {
 	@Autowired
 	private UserInfoRegService service;
@@ -34,9 +35,11 @@ public class UserInfoRegController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView insertUserInfo(UserInfoVo userInfoVo, HttpServletRequest request, HttpSession session)
+	@ResponseBody
+	public String insertUserInfo(UserInfoVo userInfoVo, HttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException, NoSuchAlgorithmException, GeneralSecurityException {
-		ModelAndView modelAndView = new ModelAndView();
+		System.out.println("컨트롤러단 :" + userInfoVo);
+//		ModelAndView modelAndView = new ModelAndView();
 
 		userInfoVo.setUser_pw(enService.encrypt(userInfoVo.getUser_pw()));
 
@@ -44,14 +47,18 @@ public class UserInfoRegController {
 
 		if (result == 0) {
 			// 등록이 제대로 안됐을 때
-			modelAndView.setViewName("userinfo/reconfirm");
+//			modelAndView.setViewName("userinfo/reconfirm");
+			return "0";
 		} else {
 //			메일 서비스
 //			mailService.sendMail(userInfoVo);
-			modelAndView.setViewName("redirect:/");
+//			modelAndView.setViewName("redirect:/");
+			
 			session.setAttribute("loginInfo", userInfoVo);
+			System.out.println("세션설정완료");
+			return "1";
 		}
 
-		return modelAndView;
+//		return modelAndView;
 	}
 }

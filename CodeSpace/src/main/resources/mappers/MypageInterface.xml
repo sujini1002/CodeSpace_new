@@ -11,7 +11,8 @@
 	user_photo = #{user_photo},
 	user_url = #{user_url},
 	user_intro = #{user_intro},
-	user_tag = #{user_tag}
+	user_tag = #{user_tag},
+	user_nickname = #{user_nickname}
 	where user_id = #{user_id}
 </update>
 

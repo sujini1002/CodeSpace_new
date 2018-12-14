@@ -74,8 +74,14 @@
 
 	<div class="y_profile_wrapper">
 		<div class="y_profile_myPhoto">
+			<%-- <img class="y_userphoto"
+				src="${pageContext.request.contextPath}/uploadfile/userphoto/${loginInfo.user_photo}"> --%>
+			<%-- <img class="y_userphoto"
+				src="http://localhost:8080/cospic/uploadfile/userphoto/${loginInfo.user_photo}"> --%>
 			<img class="y_userphoto"
-				src="${pageContext.request.contextPath}/uploadfile/userphoto/${loginInfo.user_photo}">
+				src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/${loginInfo.user_photo}">
+				
+				
 			
 		</div>
 

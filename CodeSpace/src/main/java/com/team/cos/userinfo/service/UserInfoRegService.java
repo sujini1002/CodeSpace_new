@@ -23,27 +23,28 @@ public class UserInfoRegService {
 	@Transactional
 	public int insertUserInfo(UserInfoVo userInfoVo, HttpServletRequest request)
 			throws IllegalStateException, IOException {
+		System.out.println("서비스단 :" + userInfoVo);
 		data = sqlSessionTemplate.getMapper(UserInfoInterface.class);
-		// DB에 이미지 저장할 이름
-		String dbImage = "";
-
-		// 물리적 저장경로
-		String uploadUri = "/uploadfile/userphoto";
-		
-		// uploadUri의 시스템 경로
-		String dir = request.getSession().getServletContext().getRealPath(uploadUri);
-		System.out.println("시스템경로:" + dir);
-
-//		사진이 있다면
-		if (!userInfoVo.getPhoto().isEmpty()) {
-			dbImage = userInfoVo.getUser_id() + "_" + userInfoVo.getPhoto().getOriginalFilename();
-
-//			물리적 저장
-			userInfoVo.getPhoto().transferTo(new File(dir, dbImage));
-
-//			db에 저장
-			userInfoVo.setUser_photo(dbImage);
-		}
+//		// DB에 이미지 저장할 이름
+//		String dbImage = "";
+//
+//		// 물리적 저장경로
+//		String uploadUri = "/uploadfile/userphoto";
+//		
+//		// uploadUri의 시스템 경로
+//		String dir = request.getSession().getServletContext().getRealPath(uploadUri);
+//		System.out.println("시스템경로:" + dir);
+//
+////		사진이 있다면
+//		if (!userInfoVo.getPhoto().isEmpty()) {
+//			dbImage = userInfoVo.getUser_id() + "_" + userInfoVo.getPhoto().getOriginalFilename();
+//
+////			물리적 저장
+//			userInfoVo.getPhoto().transferTo(new File(dir, dbImage));
+//
+////			db에 저장
+//			userInfoVo.setUser_photo(dbImage);
+//		}
 
 		return data.insertUserInfo(userInfoVo);
 	}

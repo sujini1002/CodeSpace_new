@@ -29,25 +29,46 @@ public class MypageEditService {
 
 	// 수정된 정보 저장하기
 	@Transactional
-	public void edit(UserInfoVo userInfoVo, HttpServletRequest request) throws IllegalStateException, IOException {
+	public int edit(UserInfoVo userInfoVo, HttpServletRequest request) throws IllegalStateException, IOException {
 
 		mypageInterface = sqlSessionTemplate.getMapper(MypageInterface.class);
 
 		/* 사진처리 - 파일 경로 신경쓰자 */
 		
-		  String uploadUri = "/uploadfile/userphoto"; 
-		  String dir1 = request.getSession().getServletContext().getRealPath(uploadUri);
-		  //System.out.println(dir1);
-		  String photoName = "";
-		  
-		 if(!userInfoVo.getPhoto().isEmpty()) { 
-			  photoName = userInfoVo.getUser_no() + "_"+ userInfoVo.getPhoto().getOriginalFilename();
-			  userInfoVo.getPhoto().transferTo(new File(dir1, photoName ));
-		  
-			  userInfoVo.setUser_photo(photoName); 
-		  }
+//		  String uploadUri = "/uploadfile/userphoto"; 
+//		  String dir1 = request.getSession().getServletContext().getRealPath(uploadUri);
+//		  //System.out.println(dir1);
+//		  String photoName = "";
+//		  
+//		 if(!userInfoVo.getPhoto().isEmpty()) { 
+//			  photoName = userInfoVo.getUser_no() + "_"+ userInfoVo.getPhoto().getOriginalFilename();
+//			  userInfoVo.getPhoto().transferTo(new File(dir1, photoName ));
+//		  
+//			  userInfoVo.setUser_photo(photoName); 
+//		  }
 		 
+		return mypageInterface.update(userInfoVo);
+	}
+/*	@Transactional
+	public void edit(UserInfoVo userInfoVo, HttpServletRequest request) throws IllegalStateException, IOException {
+		
+		mypageInterface = sqlSessionTemplate.getMapper(MypageInterface.class);
+		
+		 사진처리 - 파일 경로 신경쓰자 
+		
+//		  String uploadUri = "/uploadfile/userphoto"; 
+//		  String dir1 = request.getSession().getServletContext().getRealPath(uploadUri);
+//		  //System.out.println(dir1);
+//		  String photoName = "";
+//		  
+//		 if(!userInfoVo.getPhoto().isEmpty()) { 
+//			  photoName = userInfoVo.getUser_no() + "_"+ userInfoVo.getPhoto().getOriginalFilename();
+//			  userInfoVo.getPhoto().transferTo(new File(dir1, photoName ));
+//		  
+//			  userInfoVo.setUser_photo(photoName); 
+//		  }
+		
 		mypageInterface.update(userInfoVo);
 	}
-
+*/
 }
