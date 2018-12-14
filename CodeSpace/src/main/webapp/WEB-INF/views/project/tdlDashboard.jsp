@@ -164,7 +164,7 @@
 
 		setTodolist.add(todolist, function(result) {
 			alert(result);
-
+			window.location.reload();
 			$(".modal").find("input").val("");
 			$(".modal").modal("hide");
 		})
@@ -183,8 +183,9 @@
 		console.log(todolist);
 
 		setTodolist.modify(todolist, function(result) {
+			
 			alert(result);
-
+			window.location.reload();
 			$(".modal").find("input").val("");
 			$(".modal").modal("hide");
 		})

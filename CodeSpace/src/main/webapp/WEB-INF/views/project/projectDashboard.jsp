@@ -445,12 +445,15 @@ $("#revisionView").click(function(){
 			return;
 		}
 		
+		
+		var str ="";
 		for(var i=0, len=list.length ||0; i<len; i++){
-			var str = "<p>revision date "+projectService.displayDetailTime(list[i].revision_date) + "<br> ";
+			str += "<p>revision date "+projectService.displayDetailTime(list[i].revision_date) + "<br> ";
 			str += list[i].project_title+"/";
 			str += list[i].project_content+"/";
 			str += projectService.displayTime(list[i].project_startdate)+"/";
 			str += projectService.displayTime(list[i].project_enddate)+ "</p>";
+			
 		}
 		projectRevisionList.html(str);
 		
