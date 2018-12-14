@@ -163,7 +163,7 @@
 	               <c:forEach var="userInfo" items="${userList}" begin="0" end="${fn:length(userList)}" varStatus="num">
 	                 <div class="row col-lg-12">
 		                  <div class="col-lg-1 user-view-list-pic">
-		                     <div class="picInfo"><a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}"><img src="${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}" width="90" height="90"></a></div>
+		                     <div class="picInfo"><a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}"><img src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/${userInfo.user_photo}" width="90" height="90"></a></div>
 		                  </div>
 		                  <div class="col-lg-8 user-view-list-detail">
 		                  	 <div class="row col-lg-12">
@@ -268,7 +268,7 @@
  		                              					+		'<div class="col-lg-3 userPic">'
  		                              					+			'<div class="picInfo">'
  		                              					+				'<a href="${pageContext.request.contextPath}/user/usersPage?user_no='+ list[i].user_no +'">'
- 		                              					+ 					'<img src="${pageContext.request.contextPath}/uploadfile/userphoto/'+ list[i].user_photo +'" width="90" height="90">'
+ 		                              					+ 					'<img src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/'+ list[i].user_photo +'" width="85" height="85">'
  		                              					+				'</a>'
  		                              					+			'</div>'
  		                              					+		'</div>'
@@ -348,7 +348,7 @@
 	                              					+		'<div class="col-lg-1 user-view-list-pic">'
 	                              					+			'<div class="picInfo">'
 	                              					+				'<a href="${pageContext.request.contextPath}/user/usersPage?user_no='+ list[i].user_no +'">'
-	                              					+ 					'<img src="${pageContext.request.contextPath}/uploadfile/userphoto/'+ list[i].user_photo +'" width="90" height="90">'
+	                              					+ 					'<img src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/'+ list[i].user_photo +'" width="90" height="90">'
 	                              					+				'</a>'
 	                              					+			'</div>'
 	                              					+		'</div>'
