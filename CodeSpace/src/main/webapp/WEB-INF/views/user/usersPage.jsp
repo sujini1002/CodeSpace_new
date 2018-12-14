@@ -18,7 +18,9 @@
 		<div class="col-3">
 			<div class="y_usersP_photo">
 				<img class="y_usersP_1"
-					src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/${usersInfo.user_photo}">
+					src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/<c:choose><c:when test="${userInfo.user_photo==null}">noimage.png</c:when><c:otherwise>${userInfo.user_photo}</c:otherwise></c:choose>">
+				<%-- <img class="y_usersP_1"
+					src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/${usersInfo.user_photo}"> --%>
 				<%-- <img class="y_usersP_1"
 					src="${pageContext.request.contextPath}/uploadfile/userphoto/${usersInfo.user_photo}"> --%>
 			</div>

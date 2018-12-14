@@ -79,7 +79,7 @@
 			<%-- <img class="y_userphoto"
 				src="http://localhost:8080/cospic/uploadfile/userphoto/${loginInfo.user_photo}"> --%>
 			<img class="y_userphoto"
-				src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/${loginInfo.user_photo}">
+				src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/<c:choose><c:when test="${loginInfo.user_photo==null}">noimage.png</c:when><c:otherwise>${loginInfo.user_photo}</c:otherwise></c:choose>">
 				
 				
 			
