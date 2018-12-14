@@ -336,10 +336,10 @@ $(document).ready(function(){
 	//달력 1일 부터 날짜 계산
 	for ( var i = startDay ; i <= endDay ; i++ ){
 		if(today == fulldate[i-1]){
-			str += '<td class="h_day ' + fulldate[i-1] + '"style="background-color: #17a2b8;opacity:0.7;" >' + i + '</td>';
+			str += '<td class="h_day ' + fulldate[i-1] + '"style="background-color: #17a2b8;opacity:0.7; overflow:hidden;" >' + i + '</td>';
 			newLine++;
 		}else{
-			str += '<td class="h_day ' + fulldate[i-1] + '">' + i + '</td>';
+			str += '<td class="h_day ' + fulldate[i-1] + '"style="overflow:hidden">' + i + '</td>';
 			newLine++;
 		} 
 						
@@ -354,7 +354,7 @@ $(document).ready(function(){
 	for(var i = 0 ; i < regDate_start.length ; i++){
 		for(var j = 0 ; j <= endDay-1; j++){
 			var k = fulldate[j];
-			$('.'+k).append('<hr class="h_'+i+fulldate[j]+'" style="margin-left:-13px;margin-right:-13px;border: 1px solid white;opacity:0;">');
+			$('.'+k).append('<hr class="h_'+i+fulldate[j]+'" style="margin:5px -20px 5px -20px; border: 1px solid white;opacity:0;">');
 			if(regDate_start[i] <= fulldate[j] && fulldate[j]<=regDate_end[i]){
 				$('.h_'+i+k).css({'border':'1px solid '+ color[ i % 6 ],'opacity':'0.8'});
 			}
@@ -410,6 +410,7 @@ var tdlUL = $("#tdlboard");
 
 // to do list 가져오는 function
 projectService.getList({project_no:project_noValue}, function(list) {
+	var color = ['red','orange','yellow','green','blue','purple'];
 	var str = "<tr>";
 		str += "<th>할 일</th>";
 		str += "<th>담당자</th>";
@@ -426,7 +427,7 @@ projectService.getList({project_no:project_noValue}, function(list) {
 	for(var i=0, len=list.length ||0; i<len; i++){
 		
 		str += "<tr data-todolist_no="+list[i].todolist_no+">";
-		str += "<td>"+list[i].todolist_content+"</a></td>";
+		str += "<td style='color:"+color[i % 6]+"'>"+list[i].todolist_content+"</a></td>";
 		str += "<td>"+list[i].user_nickname+"</td>";
 		str += "<td>"+list[i].todolist_status+"</td>";
 		str += "<td>"+projectService.displayTime(list[i].todolist_enddate)+"</td>";

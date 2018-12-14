@@ -22,12 +22,35 @@
 	  	<td><a class="h_noticetd" href="${pageContext.request.contextPath }/project/notice/detailnotice?notice_no=${projectNotice.notice_no }">${projectNotice.notice_title }</a></td>
 	  </tr>
   </c:forEach>
+  	<tr>
+  		<td colspan="2" style="background-color: rgb(236,240,245); border-bottom: none;">
+	  		<div class="search-paging">
+				<ul class="pagination justify-content-center">
+					<c:forEach var="num" begin="1" end="${projectNotice.pageTotalCnt }">
+					<li class="page-item">
+					<a class="page-link" href="${pageContext.request.contextPath}/project/notice/notice?project_no=${project_no}&pageNum=${num}">${num }</a>
+					</li>
+				<%-- <a href="${pageContext.request.contextPath}/project/notice/notice?project_no=${project_no}&pageNum=${num}">[${num }]</a> --%>
+					</c:forEach>
+				</ul>
+		</div>
+		</td>
+  	</tr>
+  	<tr>
+  	<td style="background-color: rgb(236,240,245); border-top:none; border-bottom: none;">
+  	<div class="h_golist btn btn-outline-info btn-info" onclick="noticeWrite()">공지사항 작성</div>
+  	</td>
+  	</tr>
   </tbody>
 </table>
-	<c:forEach var="num" begin="1" end="${projectNotice.pageTotalCnt }">
+<%-- <div style="border: 1px solid red;margin-left: -1%; width: 1200px;">
+	<div style="width: 300px; margin: auto; border: 1px solid black">
+		<c:forEach var="num" begin="1" end="${projectNotice.pageTotalCnt }">
 			<a href="${pageContext.request.contextPath}/project/notice/notice?project_no=${project_no}&pageNum=${num}">[${num }]</a>
-	</c:forEach>
-<div class="h_golist btn btn-outline-info btn-info" onclick="noticeWrite()">공지사항 작성</div>
+		</c:forEach>
+	</div>
+</div> --%>
+<!-- <div class="h_golist btn btn-outline-info btn-info" onclick="noticeWrite()" style="margin-left: -1%;">공지사항 작성</div> -->
 <script>
 
 /* 공지사항 작성 */
