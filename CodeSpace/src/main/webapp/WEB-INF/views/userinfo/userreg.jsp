@@ -13,11 +13,15 @@
             <label for="exampleInputEmail1" style="margin: auto;">이메일 주소</label>
             <c:if test="${empty googlecheck}">
                 <input type="text" class="form-control h_id" placeholder="이메일을 입력하세요" name="user_id" checked="checked" style="width: 300px;"/>
-                <div class="h_check"></div>
-                
+                <div class="h_check" style="width: auto;"></div>
+
                 <label for="password">비밀번호</label>
                 <input type="password" class="form-control h_pw" placeholder="비밀번호를 입력하세요" name="user_pw" style="width: 300px;"/>
                 <div class="h_checkpw"></div>
+                
+                <label for="password">비밀번호 체크</label>
+                <input type="password" class="form-control h_pwCheck" placeholder="비밀번호를 다시 입력하세요" style="width: 300px;"/>
+                <div class="h_recheckpw"></div>
             </c:if>
             
             <c:if test="${!empty googlecheck}">
@@ -32,7 +36,7 @@
             <input type="text" class="form-control h_name" placeholder="이름을 입력 하세요" name="user_name" style="width: 300px;">
             <div class="h_checkname"></div>
         </div>
-        
+ 
         <div class="form-group h_group">
             <label for="nickname">별명</label>
             <input type="text" class="form-control h_nickname" placeholder="별명을 입력 하세요" name="user_nickname" style="width: 300px;">
@@ -58,7 +62,6 @@
             <input type="file" class="h_photo" name="photo">
             <!-- <p class="help-block">여기에 블록레벨 도움말 예제</p> -->
         </div>
-        
 </form>
         <div>
         	<button type="submit" class="regbutton btn btn-lg btn-primary btn-block" disabled="disabled" style="width: 300px;" onclick="regUser()">회원가입</button>
@@ -71,6 +74,7 @@ $(document).ready(function(){
 	var checkemail = false;
 	var checkname = false;
 	var checkpw = false;
+	var recheckpw = false;
 	
 	var pattern = '^[a-zA-Z0-9][a-zA-Z0-9\.\_\-]{3,16}@[a-zA-Z0-9]+\.[a-zA-Z]{2,8}$';
 	/* id 적합성 체크 */
@@ -144,15 +148,32 @@ $(document).ready(function(){
 			buttonstatus();
 		}
 	});
+	/* 비밀번호 다시 체크 */
+	$('.h_pwCheck').focusout(function(){
+		var pw = $('.h_pw').val();
+		var pwCk = $('.h_pwCheck').val();
+		
+		if(pw == pwCk && pw != '' && pwCk != ''){
+			$('.h_recheckpw').text('비밀번호가 일치합니다!').css('color','green');
+			recheckpw = true;
+			buttonstatus();
+		}else if(pw != '' && pwCk != ''){
+			$('.h_recheckpw').text('비밀번호를 다시 확인해주세요!').css('color','red');
+			$('.h_pwCheck')[0].value = '';
+			recheckpw = false;
+			buttonstatus();
+		}
+	});
 	
 	/* 회원 필수 정보 유무 확인 */
 	function buttonstatus(){
-		if(checkemail == true && checkpw == true && checkname == true){
+		if(checkemail == true && checkpw == true && checkname == true && recheckpw == true){
 			$('.regbutton').removeAttr('disabled');
 		}else{
 			$('.regbutton').attr('disabled','disabled');
 		}
 	}
+	
 });
 	/* 다른 URL로 사진 보내기 */
 	function regUser(){

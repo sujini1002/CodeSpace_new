@@ -44,7 +44,7 @@
 	<!-- exception 처리 패키지 스캔 -->
 	<!-- <context:component-scan
 		base-package="com.team.cos.exception" /> -->
-
+	<!-- <context:component-scan base-package=""></context:component-scan> -->
 	<context:annotation-config />
 
 	<!-- PlatformTransactionManager -->

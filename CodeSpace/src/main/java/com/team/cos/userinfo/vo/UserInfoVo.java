@@ -119,4 +119,5 @@ public class UserInfoVo {
 				+ ", user_tag=" + user_tag + ", user_score=" + user_score + ", user_lastlogin=" + user_lastlogin
 				+ ", user_nickname=" + user_nickname + ", photo=" + photo + "]";
 	}
+
 }
