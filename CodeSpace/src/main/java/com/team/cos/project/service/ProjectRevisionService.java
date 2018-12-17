@@ -20,7 +20,6 @@ public class ProjectRevisionService {
 		dao = sqlSessionTemplate.getMapper(ProjectInfoInterface.class);
 		
 		dao.insertRevisionProject(project_no);
-			
 	}
 		
 	// revision history get
@@ -29,7 +28,6 @@ public class ProjectRevisionService {
 		
 		List<ProjectInfoVO> projectRevisionInfo = dao.getRevisionList(project_no);
 		return projectRevisionInfo;
-		
 	}
 
 }

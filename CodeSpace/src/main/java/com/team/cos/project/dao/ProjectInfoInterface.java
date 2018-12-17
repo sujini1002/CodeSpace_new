@@ -39,7 +39,9 @@ public interface ProjectInfoInterface {
 
 	// 사용자 정보 project에 insert
 	public int memberUpdate(ProjectMemberVO vo);
-
+	// 팀원 삭제
+	public int memberDelete(int member_no);
+	
 	// project revision table insert
 	public int insertRevisionProject(int project_no);
 	

@@ -113,6 +113,11 @@
 		values
 		(#{project_no}, #{member_no})
 	</insert>
+	
+	<!-- member정보 delete -->
+	<delete id="memberDelete">
+		delete from project_member where member_no=#{member_no} 
+	</delete>
 
 	<!-- project에 참여중인 member list 표출하기 -->
 	<select id="selectMember"

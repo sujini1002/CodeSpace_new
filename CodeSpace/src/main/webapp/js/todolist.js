@@ -69,6 +69,7 @@ var projectService = (function() {
 		});
 	}
 	
+
 	//project revision history 가져오기
 	function getRevisionHistory(param, callback, error){
 		var project_no = param.project_no;
