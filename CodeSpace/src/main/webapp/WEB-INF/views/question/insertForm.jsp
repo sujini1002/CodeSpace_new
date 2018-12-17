@@ -4,7 +4,7 @@
 <jsp:include page="../common/layout_content.jsp" />
 <div class="col-md-10" style="background-color:rgb(236,240,245); padding-top: 30px; padding-left: 50px;">
 <!--  여기다가 작성 해주세요 -->
-<table class="k_table">
+<table id="k_table">
 	
 	<tr>
 		<td><h2>질문 작성</h2></td>

@@ -83,11 +83,9 @@
 .k_userpage{
 	color : #007bff;
 }
-#editor{
-	max-width : 500px;
-	
+#k_table>td{
+	margin-bottom: 20px;
 }
-
 
 
 

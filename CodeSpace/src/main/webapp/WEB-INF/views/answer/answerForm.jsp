@@ -444,6 +444,14 @@
 	function checkLevel(){
 		var userno = '${loginInfo.user_no}';
 		var q_user = '${questionInfo.user_no}';
+		//답변자와 로그인 한자의 일치 여부
+		var size = $('.k_answerUsers').length;
+		var cnt = 0;
+		
+		for(var i =0;i<size;i++){
+			var no = $('.k_answerUsers').eq(i).attr('value');
+			if(userno == no){ cnt++;}	
+		}
 		
 		if(userno==""){
 			$('#k_modalBody').html('<p>로그인이 필요한 기능 입니다</p>');
@@ -454,6 +462,13 @@
 			$('#k_saveAnswer').prop("disabled",true);
 		}else if(userno == q_user){
 			$('#k_modalBody').html('<p>질문작성한 본인은 답변을 다실 수 없습니다.</p>');
+			$('#k_modalBtn').css('display','none');
+			$('#k_checkModal').modal();
+			Answerquill.enable(false);
+			$('#a_tag').prop("disabled",true);
+			$('#k_saveAnswer').prop("disabled",true);
+		}else if(cnt > 0){
+			$('#k_modalBody').html('<p>답변은 한번만 다실 수 있습니다.</p>');
 			$('#k_modalBtn').css('display','none');
 			$('#k_checkModal').modal();
 			Answerquill.enable(false);
