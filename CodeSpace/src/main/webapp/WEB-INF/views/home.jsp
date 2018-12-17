@@ -67,14 +67,33 @@
 			  <div class="card-body">
 			    <h5 class="card-title">명예의 전당  <img src="${pageContext.request.contextPath}/images/crown.png"></h5>
 			    
-			    <p class="card-text">
+			    
+			    <div class="row">
+							<div class="col-3">순위</div>
+							<div class="col-6">닉네임</div>
+							<div class="col-3">score</div>
+				<c:forEach var="users" items="${topUsers }" varStatus="status">
+			    	<div class="col-3">
+			    		${status.count} 
+			    	</div>
+			    	<div class="col-6" id="k_homeRankImg">
+			    	<img class="k_userImg" src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/<c:choose><c:when test="${users.user_photo==null}">noimage.png</c:when><c:otherwise>${users.user_photo}</c:otherwise></c:choose>" />
+			    	<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${users.user_no}">${users.user_nickname }</a>
+			    	</div>
+			    	<div class="col-3">
+			    	${users.user_score }
+			    	</div>
+			    </c:forEach>
+			    </div>
+			    
+			    <%-- <p class="card-text">
 	    		<c:forEach var="users" items="${topUsers }" varStatus="status">
 	    			${status.count }. 
 	    			<a href="${pageContext.request.contextPath}/user/usersPage?user_no=${users.user_no}">${users.user_nickname }</a>
 	    			${users.user_score }
 	    			<br>
 	    		</c:forEach>
-	    		</p>
+	    		</p> --%>
 	    	  </div>
 	    	</div> 
 	    	
