@@ -49,7 +49,9 @@
         
         <div class="form-group h_group">
             <label for="tag">Tag</label>
-            <input type="text" class="form-control h_tag" placeholder="Tag를 입력하세요" name="user_tag" style="width: 300px;">
+            <ul id="k_joinTags">
+					
+			</ul>
         </div>
         
         <div class="form-group h_group">
@@ -173,9 +175,9 @@ $(document).ready(function(){
 			$('.regbutton').attr('disabled','disabled');
 		}
 	}
-	
+	 $("#k_joinTags").tagit();
 });
-	/* 다른 URL로 사진 보내기 */
+	/* 다른 URL로 사진 보내기 및 회원가입 */
 	function regUser(){
 		var ddata = $('.h_photo').val();
 		var booo = $('.regbutton').attr('disabled');
@@ -193,6 +195,7 @@ $(document).ready(function(){
 			    processData : false,
 	            contentType : false,
 	            success:function(result){
+	            	console.log(result);
 	            	$.ajax({
            				url:url,
 	            		type:'POST',
@@ -203,7 +206,7 @@ $(document).ready(function(){
            					"user_photo":result.user_photo,
            					"user_url":result.user_url,
            					"user_intro":result.user_intro,
-           					"user_tag":result.user_tag,
+           					/* "user_tag":result.user_tag, */
            					"user_score":result.user_score,
            					"user_nickname":result.user_nickname
            				},
