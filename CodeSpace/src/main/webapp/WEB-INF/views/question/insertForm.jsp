@@ -39,6 +39,26 @@
 	
 
 </table>
+<!-- 질문 내용 유무 체크  -->
+<div id="k_tilContisNull" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">질문 작성 실패</h4>
+        <button type="button" class="close" data-dismiss="modal">x</button>
+      </div>
+      <div class="modal-body" id="k_chooseModalContent">
+        <p>제목 또는 내용을 입력해 주세요.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 	<script type="text/javascript">
 	 $(document).ready(function() {
 	        $("#myTags").tagit();
@@ -80,25 +100,30 @@
 				tag += '/';
 			}
 		});
-		 $.ajax({
-			url:'${pageContext.request.contextPath}/question/insertQuestion',
-			type:'POST',
-			data:{
-				"q_title":title,
-				"user_no":user_no,
-				"q_content":content,
-				"q_tag":tag,
-				"user_nickname":nickname
-			},
-			contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-			dataType : 'json',
-			success:function(data){
-				location.href='${pageContext.request.contextPath}/question/questionView?q_no='+data.q_no+'&viewCnt=false';
-			},
-			error:function(){
-				alert('불행하게도 에러입니다 ㅠㅠ');
-			}
-		});
+		if(title=='' || content == '\{"ops":\[\{"insert":"\\n"\}\]\}'){
+			$('#k_tilContisNull').modal();		
+		}else{
+			 $.ajax({
+					url:'${pageContext.request.contextPath}/question/insertQuestion',
+					type:'POST',
+					data:{
+						"q_title":title,
+						"user_no":user_no,
+						"q_content":content,
+						"q_tag":tag,
+						"user_nickname":nickname
+					},
+					contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+					dataType : 'json',
+					success:function(data){
+						location.href='${pageContext.request.contextPath}/question/questionView?q_no='+data.q_no+'&viewCnt=false';
+					},
+					error:function(){
+						alert('불행하게도 에러입니다 ㅠㅠ');
+					}
+				});
+		}
+		
 	});
 </script>
 <jsp:include page="../common/layout_footer.jsp" />
