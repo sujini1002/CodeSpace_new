@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team.cos.project.service.ProjectRegService;
 import com.team.cos.project.vo.ProjectInfoVO;
+import com.team.cos.userinfo.service.UserInfoCheckService;
+import com.team.cos.userinfo.vo.UserInfoVo;
 
 @Controller
 @RequestMapping("project/tdlDashboard")
@@ -18,6 +20,8 @@ public class TdlDashboardController {
 	
 	@Autowired
 	ProjectRegService regService;
+	@Autowired
+	private UserInfoCheckService userInfoService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView getTdlList(
@@ -25,6 +29,7 @@ public class TdlDashboardController {
 			@RequestParam("user_no") int user_no) {
 		
 		ProjectInfoVO pro_info = regService.selectProList(project_no);
+		UserInfoVo user_info = userInfoService.userInfoCheckWithNo(user_no);
 		// 시작일, 종료일 표출을 위한 처리
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String project_startdate="";
@@ -40,6 +45,8 @@ public class TdlDashboardController {
 		modelAndView.addObject("pro_info", pro_info );
 		modelAndView.addObject("project_no", project_no);
 		modelAndView.addObject("user_no", user_no);
+		// login 사용자 정보 보냄
+		modelAndView.addObject("user_info", user_info);
 		modelAndView.setViewName("/project/tdlDashboard");
 		
 		return modelAndView;

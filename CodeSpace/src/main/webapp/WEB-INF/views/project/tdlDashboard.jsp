@@ -10,7 +10,8 @@
 <div class="col-md-10" style="background-color: rgb(236, 240, 245); padding-top: 30px; padding-left: 50px;">
 	<!--  여기다가 작성 해주세요 -->
 	
-<%@ include file="projectCommon.jsp" %> 	
+<%@ include file="projectCommon.jsp" %> 	 
+<hr>
 <!-- REST 방식의 to do list -->
 	<h3>
 		to do list
@@ -126,21 +127,21 @@
 			for (var i = 0, len = list.length || 0; i < len; i++) {
 				if(list[i].todolist_status=="todo"){
 					var todoStr = "<li class='left clearfix' data-todolist_no='"+list[i].todolist_no+"'>";
-						todoStr += "<div><div class='header'><strong class='primary-font'>"+list[i].todolist_content+"</strong>";
+						todoStr += "<div><div class='header'><strong class='primary-font'>"+list[i].todolist_content+"</strong><br>";
 						todoStr += "<small class='pull-right text-muted'>"+projectService.displayTime(list[i].todolist_enddate)+"까지</small></div>";
 						todoStr += "<p>담당자: "+list[i].user_nickname+"</p></div></li>";
 					todo.append(todoStr);
 						
 				} else if(list[i].todolist_status=="doing"){
 					var doingStr = "<li class='left clearfix' data-todolist_no='"+list[i].todolist_no+"'>";
-						doingStr += "<div><div class='header'><strong class='primary-font'>"+list[i].todolist_content+"</strong>";
+						doingStr += "<div><div class='header'><strong class='primary-font'>"+list[i].todolist_content+"</strong><br>";
 						doingStr += "<small class='pull-right text-muted'>"+projectService.displayTime(list[i].todolist_enddate)+"까지</small></div>";
 						doingStr += "<p>담당자: "+list[i].user_nickname+"</p></div></li>";
 					doing.append(doingStr);
 					
 				} else if(list[i].todolist_status=="done"){
 					var doneStr = "<li class='left clearfix' data-todolist_no='"+list[i].todolist_no+"'>";
-						doneStr += "<div><div class='header'><strong class='primary-font'>"+list[i].todolist_content+"</strong>";
+						doneStr += "<div><div class='header'><strong class='primary-font'>"+list[i].todolist_content+"</strong><br>";
 						doneStr += "<small class='pull-right text-muted'>"+projectService.displayTime(list[i].todolist_enddate)+"까지</small></div>";
 						doneStr += "<p>담당자: "+list[i].user_nickname+"</p></div></li>";
 					done.append(doneStr);
@@ -280,7 +281,7 @@
 			$(".modal").find("buttin[id !='modalCloseBtn']").hide();
 			$("#modalRegisterBtn").hide();
 			$("#modalModBtn").show();
-			$("#modalRemoveBtn").show();
+			$("#modalRemoveBtn").hide();
 			
 			if(project_status==true)
 				$("#tdlModal").modal("show");
