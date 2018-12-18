@@ -37,7 +37,7 @@
 		<div class="main-container">
 			<c:if test="${empty myPrjList}">
 				<div class="result-noList">
-					<h2>내가 참여한 프로젝트가 없습니다.</h2>
+					<h2>내가 참여한 프로젝트가 없습니다.   </h2>
 				</div>
 			</c:if>
 			
