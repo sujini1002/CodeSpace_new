@@ -180,15 +180,22 @@ $(document).ready(function(){
 	/* 다른 URL로 사진 보내기 및 회원가입 */
 	function regUser(){
 		var ddata = $('.h_photo').val();
-		var booo = $('.regbutton').attr('disabled');
+		var regbutton = $('.regbutton').attr('disabled');
 		var url = '${pageContext.request.contextPath}/userinfo/userreg';
 		
-		if(booo==null && ddata != ''){
+		var tag = '';
+		$('input[name=tags]').each(function(i){
+			tag += '/'+$('input[name="tags"]')[i].value; 
+		});
+
+		/* 사진 있을때 */
+		if(regbutton == null && ddata != ''){
 			var form = $('#photoform')[0];
 			var formData = new FormData(form);
 			
 			$.ajax({
 				url:'http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/savePic',
+				/* url:'http://localhost:8080/cospic/savePic', */
 				dataType:'JSON',
 				type:'POST',
 				data:formData,
@@ -196,6 +203,7 @@ $(document).ready(function(){
 	            contentType : false,
 	            success:function(result){
 	            	console.log(result);
+	            	
 	            	$.ajax({
            				url:url,
 	            		type:'POST',
@@ -206,7 +214,7 @@ $(document).ready(function(){
            					"user_photo":result.user_photo,
            					"user_url":result.user_url,
            					"user_intro":result.user_intro,
-           					/* "user_tag":result.user_tag, */
+           					"user_tag":tag,
            					"user_score":result.user_score,
            					"user_nickname":result.user_nickname
            				},
@@ -219,6 +227,25 @@ $(document).ready(function(){
            				}
            			});
 	            }
+			});
+		}else{
+			console.log('사진없을떄 눌르면 나오는 정보!');
+			var form = $('#photoform')[0];
+			var formData = new FormData(form);
+			$.ajax({
+				url:'${pageContext.request.contextPath}/userinfo/userreg',
+				type:'post',
+				dataType:'JSON',
+				data:formData,
+				processData : false,
+	            contentType : false,
+				success:function(result){
+   					if(result == 0){
+   						location.href='${pageContext.request.contextPath}/userinfo/reconfirm';
+   					}else{
+   						location.href='${pageContext.request.contextPath}/';
+   					}
+   				}
 			});
 		}
 	}
