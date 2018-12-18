@@ -25,7 +25,7 @@
             </c:if>
             
             <c:if test="${!empty googlecheck}">
-                <input type="text" class="form-control h_id" name="user_id" value="${googlecheck}" readonly="readonly" />
+                <input type="text" class="form-control h_id" name="user_id" value="${googlecheck}" style="width: 300px;" readonly="readonly" />
                 
                 <input type="password" class="form-control ha_pw" value="null" name="user_pw" hidden="hidden"/>
             </c:if>
@@ -134,6 +134,7 @@ $(document).ready(function(){
 		});
 	}else{
 		checkpw = true;
+		recheckpw = true;
 		buttonstatus();
 	}
 	
