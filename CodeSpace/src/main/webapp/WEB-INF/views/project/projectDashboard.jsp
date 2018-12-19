@@ -259,7 +259,7 @@
 	      	<c:forEach var="item" items="${member_info }">
 	      		<li class="list-group-item d-flex justify-content-between align-items-center">
 				    ${item.user_nickname }
-				    <a class="badge badge-light memberDelete" data-member_no="${item.user_no }">x</a>
+				    <a class="badge badge-light memberDelete" onclick="memberDelete(this)" data-member_no="${item.user_no }">x</a>
 				</li>
 	      	</c:forEach>
 	      	</ul>
@@ -565,7 +565,7 @@ $("#revisionView").click(function(){
  	
  	
  	// member 삭제
- 	document.getElementsByClassName('memberDelete').onclick = function(){
+ 	/* $('.memberDelete').onclick = function(){
  	    var r = confirm("삭제하시겠습니까?");
  	    var member_no = $(this).data('member_no');
  	    if (r == true) {
@@ -573,6 +573,16 @@ $("#revisionView").click(function(){
  	    } else {
  	        
  	    }
+ 	} */
+ 	function memberDelete(data){
+ 	    
+ 	    var r = confirm("삭제하시겠습니까?");
+	    var member_no = $(data).data('member_no');
+	    if (r == true) {
+	        location.href="${pageContext.request.contextPath}/project/projectMemberDelete?member_no="+member_no+"&user_no=${user_info.user_no}&project_no=${pro_info.project_no}" ;
+	    } else {
+	        
+	    } 
  	}
 
 </script>
