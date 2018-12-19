@@ -78,7 +78,8 @@ $(document).ready(function(){
 	var checkpw = false;
 	var recheckpw = false;
 	
-	var pattern = '^[a-zA-Z0-9][a-zA-Z0-9\.\_\-]{3,16}@[a-zA-Z0-9]+\.[a-zA-Z]{2,8}$';
+	var pattern = '^[a-zA-Z0-9][a-zA-Z0-9\.\_\-]{3,16}@[a-zA-Z0-9]+\.[a-zA-Z]{2,8}$';//아이디 정규식
+	var patternPw ='^[a-zA-Z0-9#?!@$%^&*-]{4,10}$';//비밀번호 정규식
 	/* id 적합성 체크 */
 	if(<c:out value='${empty googlecheck}'/>){
 		$('.h_id').focusout(function(){
@@ -91,7 +92,7 @@ $(document).ready(function(){
 					}
 						checkemail = false;
 						buttonstatus();
-			}else if(matchid){
+			}else{
 				$.ajax({
 					url:'${pageContext.request.contextPath}/userinfo/useridcheck',
 					type:'post',
@@ -100,7 +101,6 @@ $(document).ready(function(){
 						'user_id':data.val()
 					},
 					success:function(response){
-						/* console.log(response); */
 						if(response.user_no==0){
 							$('.h_check').text('멋진 Email이네요!!').css('color','green');
 							checkemail = true;
@@ -121,9 +121,13 @@ $(document).ready(function(){
 	/* 비밀번호 공백 체크 */
 	if(<c:out value='${empty googlecheck }'/>){
 		$('.h_pw').focusout(function(){
-			var data = $('.h_pw');
-				if(data.val()==''){
-					$('.h_checkpw').text('필수 정보 입니다!!').css('color','red');
+			var data = $('.h_pw').val();
+			var matchPw = data.match(patternPw); 
+				if(!matchPw){
+					$('.h_checkpw').text('4~10글자 사이의 비밀번호를 입력하세요').css('color','red');
+					if(data==''){
+						$('.h_checkpw').text('필수 정보 입니다.4~10글자 사이의 비밀번호를 입력하세요').css('color','red');
+					}
 					checkpw = false;
 					buttonstatus();
 				}else{
@@ -156,11 +160,11 @@ $(document).ready(function(){
 		var pw = $('.h_pw').val();
 		var pwCk = $('.h_pwCheck').val();
 		
-		if(pw == pwCk && pw != '' && pwCk != ''){
+		if(pw == pwCk && checkpw == true){
 			$('.h_recheckpw').text('비밀번호가 일치합니다!').css('color','green');
 			recheckpw = true;
 			buttonstatus();
-		}else if(pw != '' && pwCk != ''){
+		}else{
 			$('.h_recheckpw').text('비밀번호를 다시 확인해주세요!').css('color','red');
 			$('.h_pwCheck')[0].value = '';
 			recheckpw = false;
@@ -203,8 +207,6 @@ $(document).ready(function(){
 			    processData : false,
 	            contentType : false,
 	            success:function(result){
-	            	console.log(result);
-	            	
 	            	$.ajax({
            				url:url,
 	            		type:'POST',
@@ -230,7 +232,6 @@ $(document).ready(function(){
 	            }
 			});
 		}else{
-			console.log('사진없을떄 눌르면 나오는 정보!');
 			var form = $('#photoform')[0];
 			var formData = new FormData(form);
 			$.ajax({

@@ -88,7 +88,6 @@ public class ProjectDashController {
 			temp.setEndDay(end);
 		}
 
-		System.out.println("temp" + temp);
 		if (temp.getStartDay() == null || temp.getEndDay() == null) {
 			start.add("null");
 			end.add("null");

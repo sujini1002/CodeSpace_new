@@ -33,9 +33,11 @@ public class UsersPageAController {
 		UsersPageMaker pageMaker = new UsersPageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.countUsersAns(user_no, cri));
-
+		
+		//사용자가 한 답변 받아오기
 		modelAndView.addObject("ansList", service.getUsersAns(user_no, cri));
-		modelAndView.addObject("ansCnt", service.countUsersQst(user_no, cri));
+		modelAndView.addObject("ansCnt", service.countUsersAns(user_no, cri));
+		
 		modelAndView.addObject("pageMaker", pageMaker);
 		modelAndView.setViewName("user/usersPageA");
 		

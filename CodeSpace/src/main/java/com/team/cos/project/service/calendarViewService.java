@@ -37,7 +37,6 @@ public class calendarViewService {
 	
 		vo.setFulldate(fulldate);
 		vo.setArrayDay(arrayDay);
-		System.out.println(vo);
 		return vo;
 	}
 
@@ -69,7 +68,6 @@ public class calendarViewService {
 		vo.setFulldate(fulldate);
 		vo.setArrayDay(arrayDay);
 		vo.setToday(Integer.parseInt(sdf.format(todayCal.getTime())));
-		System.out.println(vo);
 		return vo;
 	}
 
@@ -102,7 +100,6 @@ public class calendarViewService {
 		
 		vo.setArrayDay(arrayDay);
 		vo.setToday(Integer.parseInt(sdf.format(todayCal.getTime())));
-		System.out.println(vo);
 		return vo;
 	}
 }

@@ -23,7 +23,6 @@ public class UserInfoRegService {
 	@Transactional
 	public int insertUserInfo(UserInfoVo userInfoVo, HttpServletRequest request)
 			throws IllegalStateException, IOException {
-		System.out.println("서비스단 :" + userInfoVo);
 		data = sqlSessionTemplate.getMapper(UserInfoInterface.class);
 //		// DB에 이미지 저장할 이름
 //		String dbImage = "";
