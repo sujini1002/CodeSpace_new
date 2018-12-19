@@ -25,7 +25,7 @@ public class SimpleRegistrationNotifierService {
 				+ "        <button style=\"border: 0px; margin: 10% 2%; height: 50px; width: 300px; align-items: center; border-radius: 5px; background-color: #007bff; border-color: #007bff; font-size: 20px; color: white; cursor: pointer;\"><a href=\"http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cos/\" style=\"line-height:50px; color: white; text-decoration: none\">홈페이지로 이동하기</a></button>\r\n"
 				+ "        <p style=\"text-align: center;color: gray;\">&copy; 2018-2019</p>\r\n" + "    </div>";
 		try {
-			/* message.setSubject("회원가입을 진심으로 감사합니다."); */
+			message.setSubject("회원가입을 진심으로 감사합니다.");
 			message.setText(homePage, "UTF-8", "html");
 			message.addRecipient(RecipientType.TO, new InternetAddress(userInfoVo.getUser_id()));
 			sender.send(message);
@@ -42,6 +42,7 @@ public class SimpleRegistrationNotifierService {
 				+ userInfoVo.getUser_id() + "\" style=\"text-decoration: none; color: blue;\">비밀번호 변경</a></div>\r\n"
 				+ "    </div>";
 		try {
+			message.setSubject("비밀번호 변경 요청 메일입니다.");
 			message.setText(recovery, "UTF-8", "html");
 			message.addRecipient(RecipientType.TO, new InternetAddress(userInfoVo.getUser_id()));
 			sender.send(message);

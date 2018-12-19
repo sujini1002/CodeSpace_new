@@ -35,7 +35,7 @@
 					src="${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}">
 			</div> --%>
 			<div class="y_edit_myPhoto col-md-3">
-				<img id="y_image_profile" src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/<c:choose><c:when test="${userInfo.user_photo==null}">noimage.png</c:when><c:otherwise>${userInfo.user_photo}</c:otherwise></c:choose>">
+				<img id="y_image_profile" src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/<c:choose><c:when test="${loginInfo.user_photo==null}">noimage.png</c:when><c:otherwise>${loginInfo.user_photo}</c:otherwise></c:choose>">
 <%-- 				<img id="y_image_profile" src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/${loginInfo.user_photo}"> --%>
 				<input type="file" name="photo" class="y_btn_file" id="imgInput">
 			</div>

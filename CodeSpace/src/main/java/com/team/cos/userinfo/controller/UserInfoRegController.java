@@ -38,7 +38,6 @@ public class UserInfoRegController {
 	@ResponseBody
 	public String insertUserInfo(UserInfoVo userInfoVo, HttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException, NoSuchAlgorithmException, GeneralSecurityException {
-		System.out.println("컨트롤러단 :" + userInfoVo);
 //		ModelAndView modelAndView = new ModelAndView();
 
 		userInfoVo.setUser_pw(enService.encrypt(userInfoVo.getUser_pw()));
@@ -56,7 +55,6 @@ public class UserInfoRegController {
 //			modelAndView.setViewName("redirect:/");
 			
 			session.setAttribute("loginInfo", userInfoVo);
-			System.out.println("세션설정완료");
 			return "1";
 		}
 
