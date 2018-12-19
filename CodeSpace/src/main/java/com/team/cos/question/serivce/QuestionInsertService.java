@@ -20,6 +20,18 @@ public class QuestionInsertService {
 		
 		questionDao = sqlSessionTemplate.getMapper(QuestionInterfaceDao.class);
 		
+		String tag = questionInfo.getQ_tag();
+		if(!tag.equals(null)) {
+			tag = tag.toLowerCase();
+			if(tag.contains("javascript")) {
+				tag = tag.replace("javascript", "Javascript");
+			}else if(tag.contains("/javascript")) {
+				tag = tag.replace("/javascript", "/Javascript");
+			}
+		}
+		
+		questionInfo.setQ_tag(tag);
+		
 		questionDao.insertQuestion(questionInfo);
 		
 	}

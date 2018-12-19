@@ -17,6 +17,18 @@ public class AnswerUpdateService {
 		
 		answerDao = sqlSessionTemplate.getMapper(AnswerInterfaceDao.class);
 		
+		String tag = answerInfo.getA_tag();
+		if(!tag.equals(null)) {
+			tag = tag.toLowerCase();
+			if(tag.contains("javascript")) {
+				tag = tag.replace("javascript", "Javascript");
+			}else if(tag.contains("/javascript")) {
+				tag = tag.replace("/javascript", "/Javascript");
+			}
+			
+		}
+		answerInfo.setA_tag(tag);
+		
 		return answerDao.updateAnswer(answerInfo);
 	}
 }
