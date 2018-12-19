@@ -1,7 +1,7 @@
 package com.team.cos.userinfo.service;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,6 +24,14 @@ public class UserInfoRegService {
 	public int insertUserInfo(UserInfoVo userInfoVo, HttpServletRequest request)
 			throws IllegalStateException, IOException {
 		data = sqlSessionTemplate.getMapper(UserInfoInterface.class);
+		String tag = userInfoVo.getUser_tag();
+		if (!tag.equals(null)) {
+			tag = tag.toLowerCase();
+			if (tag.contains("javascript")) {
+				tag = tag.replace("/javascript", "/Javascript");
+			}
+		}
+		userInfoVo.setUser_tag(tag);
 //		// DB에 이미지 저장할 이름
 //		String dbImage = "";
 //
