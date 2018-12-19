@@ -30,7 +30,7 @@ public class RegisterController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView writeNews(NewsInfo newsInfo, HttpServletRequest request) {
+	public ModelAndView writeNews(NewsInfo newsInfo) {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -40,7 +40,7 @@ public class RegisterController {
 		int resultCnt;
 		
 		try {
-			resultCnt = service.writeNews(newsInfo, request);
+			resultCnt = service.writeNews(newsInfo);
 			if (resultCnt < 1) {
 				modelAndView.setViewName("news/regFail");
 			} else {

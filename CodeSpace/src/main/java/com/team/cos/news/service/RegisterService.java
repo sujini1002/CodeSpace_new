@@ -18,7 +18,7 @@ public class RegisterService {
 	private SqlSessionTemplate sqlSessionTemplate;
 	private NewsDao dao;
 	
-	public int writeNews(NewsInfo newsInfo, HttpServletRequest request) throws IllegalStateException, IOException {
+	public int writeNews(NewsInfo newsInfo) throws IllegalStateException, IOException {
 		dao = sqlSessionTemplate.getMapper(NewsDao.class);
 		int resultCnt = 0;
 		resultCnt = dao.writeNews(newsInfo);

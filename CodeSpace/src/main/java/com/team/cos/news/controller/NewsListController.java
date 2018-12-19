@@ -31,6 +31,9 @@ public class NewsListController {
 		// 뉴스 정보 얻어오기
 		modelAndView.addObject("list", service.getNewsList(cri));
 		
+		// 댓글 개수 얻어오기
+		//modelAndView.addObject("commCnt", service.countComm());
+				
 		//페이징 처리
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
@@ -38,6 +41,7 @@ public class NewsListController {
 		modelAndView.addObject("pageMaker", pageMaker);
 		
 		modelAndView.setViewName("news/news");
+		
 		
 		return modelAndView;
 	}

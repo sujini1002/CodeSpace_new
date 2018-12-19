@@ -105,6 +105,13 @@
 	where nc_no = #{nc_no}
 </select>
 
+<!-- 댓글 개수 카운트 -->
+<!-- <select id="countComm" resultType="com.team.cos.news.vo.NewsCommentInfo">
+	select count(*), n_no
+	from news_comm
+	group by n_no  
+	having n_no in(select n_no from news)
+</select> -->
 
 
 

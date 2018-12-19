@@ -46,6 +46,8 @@ public interface NewsDao {
 	public int editComm(NewsCommentInfo newsCommentInfo);
 	// 댓글 하나만 보기
 	public NewsCommentInfo getComm(@Param("nc_no") int nc_no);
+	// 게시판에 댓글 개수 보여주기
+	//public List<NewsCommentInfo> countComm();	
 	
 	
 	

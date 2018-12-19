@@ -86,7 +86,7 @@
 							</td>	
 							<td colspan="2">
 							<span id="testD_${comm.nc_no}">${comm.nc_content}</span>
-								<input type="text" id="before_<c:out value="${comm.nc_no}"/>" style="display:none" value="${comm.nc_content }" />
+								<input type="text" id="before_<c:out value="${comm.nc_no}"/>" style="display:none; width:1000px" value="${comm.nc_content }" />
 							</td>	
 							<td>	
 								<div style="float: right;">
@@ -164,9 +164,9 @@
 					 },
 					 contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 					 success : function(data){
-						 console.log(data)
+						 //console.log(data)
 							$('#testD_'+no).text($('#before_'+no).val());
-						 $('#testD_'+no).css('display','');
+							$('#testD_'+no).css('display','');
 							$('#before_'+no).css('display', 'none');
 							$('#modi_'+no).text('수정')
 					 },

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team.cos.news.dao.NewsDao;
+import com.team.cos.news.vo.NewsCommentInfo;
 import com.team.cos.news.vo.NewsCriteria;
 import com.team.cos.news.vo.NewsInfo;
 
@@ -40,5 +41,12 @@ public class NewsListService {
 		int resultCnt = dao.countNews(cri);
 		return resultCnt;
 	}
-
+	
+	// 댓글 개수 받아오기
+	/*public List<NewsCommentInfo> countComm() {
+		dao = sqlSessionTemplate.getMapper(NewsDao.class);
+		List<NewsCommentInfo> commCnt = dao.countComm();		
+		return commCnt;
+	}
+*/
 }
