@@ -46,6 +46,18 @@ public class MypageEditService {
 //		  
 //			  userInfoVo.setUser_photo(photoName); 
 //		  }
+		
+		String tag = userInfoVo.getUser_tag();
+		if(!tag.equals(null)) {
+			tag = tag.toLowerCase();
+			if(tag.contains("javascript")) {
+				tag = tag.replace("javascript", "Javascript");
+			}else if(tag.contains("/javascript")) {
+				tag = tag.replace("/javascript", "/Javascript");
+			}
+			
+		}
+		userInfoVo.setUser_tag(tag);
 		 
 		return mypageInterface.update(userInfoVo);
 	}
