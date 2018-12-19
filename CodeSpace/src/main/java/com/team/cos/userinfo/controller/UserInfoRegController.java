@@ -39,7 +39,6 @@ public class UserInfoRegController {
 	public String insertUserInfo(UserInfoVo userInfoVo, HttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException, NoSuchAlgorithmException, GeneralSecurityException {
 //		ModelAndView modelAndView = new ModelAndView();
-		System.out.println(userInfoVo);
 		userInfoVo.setUser_pw(enService.encrypt(userInfoVo.getUser_pw()));
 
 		int result = service.insertUserInfo(userInfoVo, request);

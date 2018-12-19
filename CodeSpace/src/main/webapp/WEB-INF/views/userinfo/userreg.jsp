@@ -235,8 +235,6 @@ $(document).ready(function(){
 			var form = $('#photoform')[0];
 			var formData = new FormData(form);
 			formData.append('user_tag',tag);
-			console.log(form);
-			console.log(formData);
 			$.ajax({
 				url:'${pageContext.request.contextPath}/userinfo/userreg',
 				type:'post',
