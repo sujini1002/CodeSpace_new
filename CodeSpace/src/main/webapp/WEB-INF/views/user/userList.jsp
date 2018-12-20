@@ -164,7 +164,8 @@
 	               <c:forEach var="userInfo" items="${userList}" begin="0" end="${fn:length(userList)}" varStatus="num">
 	                 <div class="row col-lg-12">
 		                  <div class="col-lg-1 user-view-list-pic">
-		                     <div class="picInfo"><a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}"><img src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/${userInfo.user_photo}" width="90" height="90"></a></div>
+		                     <div class="picInfo"><a href="${pageContext.request.contextPath}/user/usersPage?user_no=${userInfo.user_no}">
+		                     <img src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/<c:choose><c:when test="${userInfo.user_photo==null}">noimage.png</c:when><c:otherwise>${userInfo.user_photo}</c:otherwise></c:choose>" width="90" height="90"></a></div>
 		                  </div>
 		                  <div class="col-lg-8 user-view-list-detail">
 		                  	 <div class="row col-lg-12">
@@ -268,9 +269,15 @@
  		                              				str += '<div class="row col-lg-3 user-info">'
  		                              					+		'<div class="col-lg-3 userPic">'
  		                              					+			'<div class="picInfo">'
- 		                              					+				'<a href="${pageContext.request.contextPath}/user/usersPage?user_no='+ list[i].user_no +'">'
- 		                              					+ 					'<img src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/'+ list[i].user_photo +'" width="85" height="85">'
- 		                              					+				'</a>'
+ 		                              					+				'<a href="${pageContext.request.contextPath}/user/usersPage?user_no='+ list[i].user_no +'">';
+ 		                              					
+ 		                              					if(list[i].user_photo==null){
+ 		                              						str += '<img src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/noimage.png" width="85" height="85">';
+ 		                              					}else{
+ 		                              						str += '<img src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/'+ list[i].user_photo +'" width="85" height="85">';
+ 		                              					}
+ 		                              					
+ 		                              				str +=				'</a>'
  		                              					+			'</div>'
  		                              					+		'</div>'
  		                              					+		'<div class="col-lg-8 user-detail">'
@@ -348,9 +355,15 @@
                             				str     += '<div class="row col-lg-12">'
 	                              					+		'<div class="col-lg-1 user-view-list-pic">'
 	                              					+			'<div class="picInfo">'
-	                              					+				'<a href="${pageContext.request.contextPath}/user/usersPage?user_no='+ list[i].user_no +'">'
-	                              					+ 					'<img src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/'+ list[i].user_photo +'" width="90" height="90">'
-	                              					+				'</a>'
+	                              					+				'<a href="${pageContext.request.contextPath}/user/usersPage?user_no='+ list[i].user_no +'">';
+	                              					
+	                              					if(list[i].user_photo==null){
+		                              					str += '<img src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/noimage.png" width="90" height="90">';
+		                              				}else{
+		                              					str += '<img src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/'+ list[i].user_photo +'" width="90" height="90">';
+		                              				}
+		                              					
+		                              		str 	+=				'</a>'		
 	                              					+			'</div>'
 	                              					+		'</div>'
 	                              					+		'<div class="col-lg-8 user-view-list-detail">'
