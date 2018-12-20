@@ -54,7 +54,7 @@
 				<i class="fas fa-user-astronaut"></i>&nbsp;${usersInfo.user_nickname }
 				<c:forEach var="i" items="${topList}" begin="0" end="${fn:length(topList)}">
 					<c:if test="${usersInfo.user_no == i.user_no }">
-						<h6><span class="badge badge-info">우주최강코더</span></h6>
+						<h6><span class="badge badge-info">우주최강개발자</span></h6>
 					</c:if>
 				</c:forEach>
 			</h3>
