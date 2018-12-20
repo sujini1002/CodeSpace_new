@@ -23,9 +23,9 @@ public class UserInfoRecoveryController {
 //	이메일로 비빌번호 초기화 메일 보내기
 	@RequestMapping(value = "/userinfo/recovery", method = RequestMethod.POST)
 	@ResponseBody
-	public int sendRecvMail(UserInfoVo userInfoVo) {
+	public String sendRecvMail(UserInfoVo userInfoVo) {
 		int result = service.sendRecoveryMail(userInfoVo);
-		return result;
-		
+		return result + "";
+
 	}
 }

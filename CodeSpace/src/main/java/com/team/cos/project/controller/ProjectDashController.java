@@ -151,6 +151,13 @@ public class ProjectDashController {
 			temp.setStartDay(start);
 			temp.setEndDay(end);
 		}
+		if (temp.getStartDay() == null || temp.getEndDay() == null) {
+			start.add("null");
+			end.add("null");
+
+			temp.setStartDay(start);
+			temp.setEndDay(end);
+		}
 
 		modelAndView.addObject("regged_date", temp);
 		// 여기까지 달력관련!!!!!!!!!!!!!!!!!
@@ -204,6 +211,13 @@ public class ProjectDashController {
 			c2.setTime(list.get(i).getTodolist_enddate());
 			start.add(sdf.format(c1.getTime()));
 			end.add(sdf.format(c2.getTime()));
+
+			temp.setStartDay(start);
+			temp.setEndDay(end);
+		}
+		if (temp.getStartDay() == null || temp.getEndDay() == null) {
+			start.add("null");
+			end.add("null");
 
 			temp.setStartDay(start);
 			temp.setEndDay(end);

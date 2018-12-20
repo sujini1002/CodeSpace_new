@@ -19,8 +19,8 @@
 <script>
 /* 이메일이 우리 DB에 있나 체크 */
 function check(){
-	var h_checkId=$('#h_checkId');
-	var user_id = h_checkId.val();
+	/* var h_checkId=$('#h_checkId'); */
+	var user_id = $('#h_checkId').val();
 	var url='${pageContext.request.contextPath}/userinfo/useridcheck';
 	var reUrl='${pageContext.request.contextPath}/userinfo/recovery';
 

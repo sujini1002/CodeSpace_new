@@ -320,6 +320,7 @@ $(document).ready(function(){
 	var str = '<tr>';
 	var fulldate = ${cal.fulldate};
 	var today = ${cal.today};
+	
 	if('${regged_date.startDay}' != ''){
 		var regDate_start = ${regged_date.startDay};
 		var regDate_end = ${regged_date.endDay};
