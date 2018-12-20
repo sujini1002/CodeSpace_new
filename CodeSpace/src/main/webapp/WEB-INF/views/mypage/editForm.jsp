@@ -66,37 +66,42 @@
 				<table class="table">
 					<tr>
 						<td colspan="2"><input type="hidden" name="user_no"
-							value="${loginInfo.user_no}"></td>
+							value="${userInfoVo.user_no}"></td>
 					</tr>
 					<tr>
 						<td class="item">아이디</td>
 						<td class="contents"><input type="text" name="user_id"
-							value="${loginInfo.user_id}" readonly /></td>
+							value="${userInfoVo.user_id}" readonly /></td>
+					</tr>
+					<tr>
+						<td class="item">비밀번호</td>
+						<td class="contents"><input type="password" name="user_pw"
+							value="${userInfoVo.user_pw}"/></td>
 					</tr>
 					<tr>
 						<td class="item">이름</td>
 						<td class="contents"><input type="text" name="user_name"
-							value="${loginInfo.user_name}" readonly /></td>
+							value="${userInfoVo.user_name}" readonly /></td>
 					</tr>
 					<tr>
 						<td class="item">닉네임</td>
 						<td class="contents"><input type="text" name="user_nickname"
-							value="${loginInfo.user_nickname}" /></td>
+							value="${userInfoVo.user_nickname}" /></td>
 					</tr>
 					<tr>
-						<td class="item">내 HP</td>
+						<td class="item">내 Url</td>
 						<td class="contents"><input type="text" name="user_url"
-							value="${loginInfo.user_url}" /></td>
+							value="${userInfoVo.user_url}" /></td>
 					</tr>
 					<tr>
 						<td class="item">내 소개</td>
 						<td class="contents"><input type="text" name="user_intro"
-							value="${loginInfo.user_intro}" /></td>
+							value="${userInfoVo.user_intro}" /></td>
 					</tr>
 					<tr>
 						<td class="item">내가 관심있는 태그</td>
 						<td class="contents"><input type="text" name="user_tag"
-							value="${loginInfo.user_tag}" /></td>
+							value="${userInfoVo.user_tag}" /></td>
 					</tr>
 				</table>
 
@@ -163,6 +168,7 @@
 	            		type:'POST',
            				data : {
            					"user_id":result.user_id,
+           					"user_pw":result.user_pw,
            					"user_name":result.user_name,
            					"user_photo":result.user_photo,
            					"user_url":result.user_url,
