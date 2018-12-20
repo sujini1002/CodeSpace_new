@@ -13,7 +13,7 @@
 
 <!-- 검색 창 입력 시 비동기 처리로 회원 정보 검색 -->
 
-
+ 
 <div class="container">
    <div class="head-container">
       <h1>Stars in Space</h1>
