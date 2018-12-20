@@ -2,6 +2,9 @@ package com.team.cos.mypage.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.team.cos.mypage.dao.MypageInterface;
+import com.team.cos.userinfo.service.AES256UtilService;
 import com.team.cos.userinfo.vo.UserInfoVo;
 
 public class MypageEditService {
@@ -17,12 +21,16 @@ public class MypageEditService {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	private MypageInterface mypageInterface;
+	
+	@Autowired
+	private AES256UtilService service;
 
 	// 회원 정보 가져오기
-	public UserInfoVo getUserInfo(String user_id) {
+	public UserInfoVo getUserInfo(String user_id) throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
 
 		mypageInterface = sqlSessionTemplate.getMapper(MypageInterface.class);
 		UserInfoVo userInfoVo = mypageInterface.getUserInfo(user_id);
+		userInfoVo.setUser_pw(service.decrypt(userInfoVo.getUser_pw()));
 		return userInfoVo;
 
 	}

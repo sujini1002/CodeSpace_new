@@ -120,7 +120,9 @@
 
 		</div>
 		<div>
-			<a href="editForm?user_id=${loginInfo.user_no}"> <input
+			<%-- <a href="editForm?user_id=${loginInfo.user_no}"> <input
+				class="btn btn-success yu_btn1" type="button" value="수정하기"></a> --%>
+			<a href="${pageContext.request.contextPath}/mypage/editForm?user_id=${loginInfo.user_id}"> <input
 				class="btn btn-success yu_btn1" type="button" value="수정하기"></a>
 		</div>
 
