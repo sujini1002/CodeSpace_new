@@ -35,7 +35,7 @@ public class UserInfoRegService {
 				tag = tag.replace("/c++", "/C++");
 			}else if(tag.contains("c#")) {
 				tag = tag.replace("/c#", "/C#");
-			}
+			} 
 		}
 		userInfoVo.setUser_tag(tag);
 //		// DB에 이미지 저장할 이름

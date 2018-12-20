@@ -38,7 +38,7 @@ public class AnswerInsertService {
 			}else if(tag.contains("/c#")) {
 				tag = tag.replace("/c#", "/C#");
 			}
-			
+			 
 		}
 		answerInfo.setA_tag(tag);
 		

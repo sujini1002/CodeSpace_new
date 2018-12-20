@@ -75,7 +75,7 @@ public class MypageEditService {
 			}else if(tag.contains("/c#")) {
 				tag = tag.replace("/c#", "/C#");
 			}
-			
+			 
 		}
 		userInfoVo.setUser_tag(tag);
 		 
