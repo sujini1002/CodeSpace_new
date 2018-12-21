@@ -62,8 +62,20 @@ public class MypageEditService {
 				tag = tag.replace("javascript", "Javascript");
 			}else if(tag.contains("/javascript")) {
 				tag = tag.replace("/javascript", "/Javascript");
+			}else if(tag.contains("c")) {
+				tag = tag.replace("c", "C");
+			}else if(tag.contains("/c")) {
+				tag = tag.replace("/c", "/C");
+			}else if(tag.contains("c++")) {
+				tag = tag.replace("c++", "C++");
+			}else if(tag.contains("/c++")) {
+				tag = tag.replace("/c++", "/C++");
+			}else if(tag.contains("c#")) {
+				tag = tag.replace("c#", "C#");
+			}else if(tag.contains("/c#")) {
+				tag = tag.replace("/c#", "/C#");
 			}
-			
+			 
 		}
 		userInfoVo.setUser_tag(tag);
 		 

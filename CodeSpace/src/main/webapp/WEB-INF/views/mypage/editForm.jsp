@@ -35,13 +35,13 @@
 					src="${pageContext.request.contextPath}/uploadfile/userphoto/${userInfo.user_photo}">
 			</div> --%>
 			<div class="y_edit_myPhoto col-md-3">
-				<img id="y_image_profile" src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/<c:choose><c:when test="${loginInfo.user_photo==null}">noimage.png</c:when><c:otherwise>${loginInfo.user_photo}</c:otherwise></c:choose>">
+				<img id="y_image_profile" src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/<c:choose><c:when test="${userInfoVo.user_photo==null}">noimage.png</c:when><c:otherwise>${userInfoVo.user_photo}</c:otherwise></c:choose>">
 <%-- 				<img id="y_image_profile" src="http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/uploadfile/userphoto/${loginInfo.user_photo}"> --%>
 				<input type="file" name="photo" class="y_btn_file" id="imgInput">
 			</div>
 			
 			<script type="text/javascript">
-			
+			var cnt = 0;
 			// 사진 수정할 때 파일 선택후 이미지 띄우기
 			$(function(){
 				$("#imgInput").on('change', function(){
@@ -57,6 +57,7 @@
 						$('#y_image_profile').attr('src', e.target.result);
 					}
 					reader.readAsDataURL(input.files[0]);
+					cnt = 1;
 				}
 			}
 			</script>
@@ -133,6 +134,7 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+			console.log('${userInfoVo}');
 			var result = '<c:out value="${result}"/>';
 
 			checkModal(result);
@@ -154,6 +156,7 @@
 			var formData = new FormData(form);
 			var url = '${pageContext.request.contextPath}/mypage/editForm';
 			
+			if(cnt==1){
 			$.ajax({
 				url:'http://ec2-13-125-255-64.ap-northeast-2.compute.amazonaws.com:8080/cospicture/savePic',
 				/* url:'http://localhost:8080/cospic/savePic', */
@@ -188,6 +191,25 @@
 	            	
 	            }
 			});
+			}else{
+				var photo = '${userInfoVo.user_photo}';
+				formData.append('user_photo',photo);
+				$.ajax({
+       				url:url,
+            		type:'POST',
+    			    processData : false,
+    	            contentType : false,
+       				data : formData,
+       				success:function(result){
+       					if(result == 0){
+       						/* location.href='${pageContext.request.contextPath}/userinfo/reconfirm'; */
+       						alert('수정오류!!');
+       					}else{
+       						location.href='${pageContext.request.contextPath}/mypage/mypage';
+       					}
+       				}
+       			});
+			}
 		}
 	</script>
 

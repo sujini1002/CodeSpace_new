@@ -27,9 +27,21 @@ public class QuestionInsertService {
 				tag = tag.replace("javascript", "Javascript");
 			}else if(tag.contains("/javascript")) {
 				tag = tag.replace("/javascript", "/Javascript");
+			}else if(tag.contains("c")) {
+				tag = tag.replace("c", "C");
+			}else if(tag.contains("/c")) {
+				tag = tag.replace("/c", "/C");
+			}else if(tag.contains("c++")) {
+				tag = tag.replace("c++", "C++");
+			}else if(tag.contains("/c++")) {
+				tag = tag.replace("/c++", "/C++");
+			}else if(tag.contains("c#")) {
+				tag = tag.replace("c#", "C#");
+			}else if(tag.contains("/c#")) {
+				tag = tag.replace("/c#", "/C#");
 			}
 		}
-		
+		 
 		questionInfo.setQ_tag(tag);
 		
 		questionDao.insertQuestion(questionInfo);
