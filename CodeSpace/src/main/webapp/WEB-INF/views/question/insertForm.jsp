@@ -91,8 +91,8 @@
 	$('#k_save').click(function(){
 		var title = $('#q_title').val();
 		var user_no = $('#user_no').val();
-		var content = JSON.stringify(quill.getContents());
 		var nickname=$('#user_nickname').val();
+		var content = JSON.stringify(quill.getContents());
 		var tag = '';
 		$('input[name="tags"]').each(function(i){
 			tag += $('input[name="tags"]').eq(i).attr('value');

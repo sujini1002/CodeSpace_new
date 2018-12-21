@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<!-- 가장 최근의 질문 번호 출력하는 문 -->
 	<select id="questionSelectNum" resultType="int">
-		select q_no from question order by q_regdate desc limit 1
+		select q_no from question order by q_no desc limit 1
 	</select>
 	<!-- 질문 한개를 보여주는 출력하는 문 -->
 	<select id="questionViewOne" resultType="com.team.cos.question.vo.QuestionInfo">

@@ -12,29 +12,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertUserRecom" parameterType="com.team.cos.recommand.vo.AnswerRecommandInfo">
 		insert into answer_recom
 		values
-		(#{a_no},#{user_no},0,#{a_updown})
+		(#{a_no},#{user_no},#{a_updown})
 	</insert>
-	<!-- 특정 답변에 대한 사용자의 존재가 없을 때 현재 상태 파악하기 -->
-	<select id="isUserStatus" parameterType="com.team.cos.recommand.vo.AnswerRecommandInfo" resultType="int">
-		select a_isrecommand from answer_recom
-		where user_no = #{user_no} and a_no = #{a_no}
-	</select>
+	<!-- 존재하는 행이있으면 삭제하기 - 추천/비추천 해제 -->
+	<delete id="deleteUserRecom">
+		delete from answer_recom where a_no = #{a_no} and user_no = #{user_no}
+	</delete>
 	<!-- 답변의 추천 수 업데이트 하기 -->
-	<update id="updateAnswerScore" parameterType="com.team.cos.recommand.vo.AnswerRecommandInfo">
-		update answer set a_recommand = a_recommand + #{score} where a_no = #{a_no}
+	<update id="updateAnswerScore">
+	update answer 
+	set a_recommand = 
+	(
+		select
+			(select count(*)
+			from answer_recom
+			where a_no = #{a_no} and a_updown = 1)
+		-
+			(select count(*)
+			from answer_recom
+			where a_no = #{a_no} and a_updown = 0)
+	)
+	where a_no = #{a_no};
+
 	</update>
 	<!-- 최종적으로 계산 된 추천 수 반환  -->
 	<select id="finalAnswRecomNum" resultType="int">
 		select a_recommand from answer where a_no =#{a_no}
 	</select>
-	<!-- 사용자의 추천 여부를 변경 -->
-	<update id="changeUserStatus" parameterType="com.team.cos.recommand.vo.AnswerRecommandInfo">
-		update answer_recom set a_isrecommand = #{a_isrecommand} where a_no = #{a_no} and user_no = #{user_no}
-	</update>
-	<!-- 사용자의  추천 비추천 여부 파악-->
-	<update id="UserUpdown" parameterType="com.team.cos.recommand.vo.AnswerRecommandInfo">
-		update answer_recom set a_updown = #{a_updown} where a_no = #{a_no} and user_no = #{user_no}
-	</update>
 	<!-- 로그인한 사용자의  추천/비추천/없는 현상 -->
 	<select id="userRecommand" resultType="com.team.cos.recommand.vo.AnswerRecommandViewInfo">
 		select ar.a_no,ar.a_updown

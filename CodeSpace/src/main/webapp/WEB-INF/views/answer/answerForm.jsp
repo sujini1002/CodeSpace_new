@@ -38,42 +38,29 @@
 					<button type="button"
 						id="k_aRecommandUpBtn_<c:out value="${num.index}"/>" class="btn"
 						style="background-color: #ecf0f5" onclick="k_aRecommand(this)">
-						
-						<c:if test="${empty aRecommandList }">
-							 <i class="fa fa-chevron-up fa-2x" style="color: gray;"
-								id="k_aRecommandUpIcon_<c:out value="${num.index}"/>"></i>
-						</c:if>
-						<c:forEach var="arecom" items="${aRecommandList}">
-							<c:if test="${arecom.a_no eq item.a_no and arecom.a_updown eq 1 }">
-								<i class="fa fa-chevron-up fa-2x" style="color: #17a2b8;"
-									id="k_aRecommandUpIcon_<c:out value="${num.index}"/>"></i>
-							</c:if>
-							<c:if test="${arecom.a_no eq item.a_no and arecom.a_updown ne 1 }">
-								<i class="fa fa-chevron-up fa-2x" style="color: gray;"
-									id="k_aRecommandUpIcon_<c:out value="${num.index}"/>"></i>
-							</c:if>
-						</c:forEach>
-						
-
+						<c:set var="ucolor" value="gray"></c:set>
+						 <c:forEach var = "aRecom" items="${aRecommandList}">
+							 <c:if test="${aRecom.a_no eq item.a_no and aRecom.a_updown eq 1}">
+						 		<c:set var="ucolor" value="#17a2b8"></c:set>
+						   	</c:if>
+						 </c:forEach>
+							<i class="fa fa-chevron-up fa-2x" style="color: ${ucolor}"
+							id="k_aRecommandUpIcon_<c:out value="${num.index}"/>"></i>
 					</button>
 					<h3 id="k_aRecommandCnt_<c:out value="${num.index}"/>">${item.a_recommand}</h3>
 					<button type="button"
 						id="k_aRecommandDownBtn_<c:out value="${num.index}"/>" class="btn"
 						style="background-color: #ecf0f5" onclick="k_aRecommand(this)">
-						<c:if test="${empty aRecommandList}">
-							<i class="fa fa-chevron-down fa-2x" style="color: gray;"
-							id="k_aRecommandDownIcon_<c:out value="${num.index}"/>"></i>
-						</c:if>
-						<c:forEach var = "aRecom" items="${aRecommandList}">
-							<c:if test="${aRecom.a_no eq item.a_no and aRecom.a_updown eq 0}">
-								<i class="fa fa-chevron-down fa-2x" style="color: #17a2b8;"
-									id="k_aRecommandDownIcon_<c:out value="${num.index}"/>"></i> 
-							</c:if>
-							<c:if test="${aRecom.a_no eq item.a_no and aRecom.a_updown ne 0}">
-								<i class="fa fa-chevron-down fa-2x" style="color: gray;"
-									id="k_aRecommandDownIcon_<c:out value="${num.index}"/>"></i> 
-							</c:if>
-						</c:forEach>
+						<c:set var="dcolor" value="gray"></c:set>
+						 <c:forEach var = "aRecom" items="${aRecommandList}">
+							 <c:if test="${aRecom.a_no eq item.a_no and aRecom.a_updown eq 0}">
+						 		<c:set var="dcolor" value="#17a2b8"></c:set>
+						   	</c:if>
+						 </c:forEach>
+						
+						<i class="fa fa-chevron-down fa-2x" style="color: ${dcolor}"
+							id="k_aRecommandDownIcon_<c:out value="${num.index}"/>"></i> 
+						
 					</button>
 				</div>
 			<!-- 답변 채택  -->
@@ -240,6 +227,7 @@
 				}
 			}
 			</c:forEach>
+			
 	    });
 	 function searchTag(value){
 		 var tag = $('#'+value.id).text();
@@ -298,14 +286,8 @@
 		}else{
 			//답변 고유 번호,추천 누른 사용자 번호, 추전/비추천 점수 전달
 			var ano = $('#k_aNo_'+num).val()*1;
-			var score = id=='k_aRecommandUpBtn'?1:-1;
-			var status = 0;
+			var score = id=='k_aRecommandUpBtn'?1:0;
 			
-			if(document.querySelectorAll('#k_aRecommandUpIcon_'+num)[0].style.color=='rgb(23, 162, 184)'){
-				status = -1;
-			}else if(document.querySelectorAll('#k_aRecommandDownIcon_'+num)[0].style.color=='rgb(23, 162, 184)'){
-				status = 1;
-			}
 			//추천 / 비추천 적용하기
 			$.ajax({
 				url : '${pageContext.request.contextPath}/answer/answerRecommand',
@@ -313,14 +295,13 @@
 				data : {
 					"a_no" : ano,
 					"user_no" : userNo,
-					"score" : score,
-					"status" : status
+					"a_updown" : score,
 				},
 				contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 				dataType : 'json',
 				success : function(data){
 					$('#k_aRecommandCnt_'+num).text(data.a_recommand);
-					if(data.a_isrecommand==1){
+					if(data.status==0){
 						$('#k_aRecommandUpIcon_'+num).css('color','gray');
 						$('#k_aRecommandDownIcon_'+num).css('color','gray');
 					}else{

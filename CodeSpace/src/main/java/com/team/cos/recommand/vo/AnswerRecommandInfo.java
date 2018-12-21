@@ -4,8 +4,6 @@ public class AnswerRecommandInfo {
 	
 	private int a_no;//질문 고유 번호
 	private int user_no;//사용자 번호
-	private int a_isrecommand;//사용자가 특정 질문에 대한 추천 여부
-	private int score; //추천 수  +1 인지 -1인지
 	private int a_recommand;//질문의 추천수
 	private int a_updown;//추천/비추천 여부 1:추천 0:비추천 3: 추천 /비추천 둘다 안한 상태
 	private int status;//이미 사용자가 누른 상태의 값 
@@ -21,18 +19,6 @@ public class AnswerRecommandInfo {
 	}
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
-	}
-	public int getA_isrecommand() {
-		return a_isrecommand;
-	}
-	public void setA_isrecommand(int a_isrecommand) {
-		this.a_isrecommand = a_isrecommand;
-	}
-	public int getScore() {
-		return score;
-	}
-	public void setScore(int score) {
-		this.score = score;
 	}
 	public int getA_recommand() {
 		return a_recommand;
@@ -55,8 +41,8 @@ public class AnswerRecommandInfo {
 	
 	@Override
 	public String toString() {
-		return "AnswerRecommandInfo [a_no=" + a_no + ", user_no=" + user_no + ", a_isrecommand=" + a_isrecommand
-				+ ", score=" + score + ", a_recommand=" + a_recommand + ", a_updown=" + a_updown + ", status=" + status
+		return "AnswerRecommandInfo [a_no=" + a_no + ", user_no=" + user_no + 
+			    ", a_recommand=" + a_recommand + ", a_updown=" + a_updown + ", status=" + status
 				+ "]";
 	}
 	

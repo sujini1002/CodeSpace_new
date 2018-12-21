@@ -18,64 +18,33 @@ public class AnswerRecommandController {
 	@RequestMapping(value = "/answer/answerRecommand", method = RequestMethod.POST)
 	@ResponseBody
 	public AnswerRecommandInfo recommand(AnswerRecommandInfo answerRecommandInfo) {
-
-		int score = answerRecommandInfo.getScore();
+		//답변번호,사용자번호,증가(1)/차감(0)
 		int a_no = answerRecommandInfo.getA_no();
-		int status = answerRecommandInfo.getStatus();
-		int a_updown = score == 1 ? 1 : 0;
-
-		// 반환할 answerRecommandInfo 생성
+		int user_no = answerRecommandInfo.getUser_no();
+		int score = answerRecommandInfo.getA_updown();
+		
+		//결과를 저장할 객체 
 		AnswerRecommandInfo result = new AnswerRecommandInfo();
-
-		// question_recom테이블에 기존 회원이 해당질문에 대한 레코드가 있는지 체크
-		int isExist = service.isExistUserRecom(answerRecommandInfo);
-
-		if (isExist == 0) {
-			// 없으면 인서트 하여 추천여부를 0으로 하기
-			// updown을 요청 받은 객체에 저장
-			answerRecommandInfo.setA_updown(a_updown);
+		
+		//답변번호와 사용자번호가 맞는 행이 있는지 체크 
+		if(service.isExistUserRecom(answerRecommandInfo)>0) {
+			//있으면 테이블 삭제후 답변 추천 갯수 업데이트(답변번호에 맞는 추천 카운트 - 답변번호에 맞는 비추천 카운트)
+			service.deleteUserRecom(a_no, user_no);
+			//답변 추천 수 업데이트
+			service.updateAnswerScore(a_no);
+			//추천해제 상태 결과객체에 저장
+			result.setStatus(0);
+		}else {
+			//없으면 테이블 인서트 후 답변 추천 갯수 업데이트(답변번호에 맞는 추천 카운트 - 답변번호에 맞는 비추천 카운트)
 			service.insertUserRecom(answerRecommandInfo);
-			// 점수 없데이트 하기
-			service.updateAnswerScore(a_no, score);
-			// 최종 결과 값 저장하기
-			result.setA_recommand(service.finalAnswRecomNum(a_no));
-			result.setA_no(a_no);
-		} else {
-			// 테이블에 질문번호와 사용자 번호가 일치하는 레코드가 존재
-			// 사용자 번호와 질문번호가 일치하는 q_isrecommand에 값을 확인
-			int userStatus = service.isUserStatus(answerRecommandInfo);
-			if (userStatus == 0) {
-				// 추천해제 할 때
-				// q_isrecommand가 0일때(추천한 상태일때) : status값이 1이면 질문 추천수를 -1 하고 -1이면 질문 추천수를 +1한다.
-				service.updateAnswerScore(a_no, status);
-				// q_isrecommand를 0에서 1로 바꾼다.
-				answerRecommandInfo.setA_isrecommand(1);
-				// q_updown을 3으로 변경한다.
-				answerRecommandInfo.setA_updown(3);
-				// q_isrecommand를 0에서 1로 바꾼다.
-				service.changeUserStatus(answerRecommandInfo);
-				service.UserUpdown(answerRecommandInfo);
-
-				// 최종 결과 값을 저장
-				result.setA_recommand(service.finalAnswRecomNum(a_no));
-				result.setA_isrecommand(1);
-				result.setA_no(a_no);
-			} else {
-				// q_isrecommand가 1일때 (추천 안한 상태일때): score을 질문 추천 수에 업데이트 한다.
-				service.updateAnswerScore(a_no, score);
-				// q_isrecommand를 1에서 0으로 바꾼다.
-				// 사용자의 추천 /비추천 여부를 저장
-				answerRecommandInfo.setA_isrecommand(0);
-				answerRecommandInfo.setA_updown(a_updown);
-				service.changeUserStatus(answerRecommandInfo);
-				service.UserUpdown(answerRecommandInfo);
-				// 최종 결과 값을 저장
-				result.setA_recommand(service.finalAnswRecomNum(a_no));
-				result.setA_isrecommand(0);
-				result.setA_no(a_no);
-			}
-
+			//답변 추천 수 업데이트
+			service.updateAnswerScore(a_no);
+			//추천해제 상태 결과객체에 저장
+			result.setStatus(1);
 		}
+		
+		result.setA_recommand(service.finalAnswRecomNum(a_no));
+		
 		return result;
 	}
 }

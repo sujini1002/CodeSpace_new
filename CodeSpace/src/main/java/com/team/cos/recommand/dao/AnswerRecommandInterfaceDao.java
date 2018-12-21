@@ -10,11 +10,9 @@ import com.team.cos.recommand.vo.AnswerRecommandViewInfo;
 public interface AnswerRecommandInterfaceDao {
 	public int isExistUserRecom(AnswerRecommandInfo AnswerRecommandInfo);
 	public int insertUserRecom(AnswerRecommandInfo AnswerRecommandInfo);
-	public int isUserStatus(AnswerRecommandInfo AnswerRecommandInfo);
-	public int updateAnswerScore(@Param("a_no")int a_no,@Param("score")int score);
+	public void deleteUserRecom(@Param("a_no")int a_no,@Param("user_no")int user_no);
+	public int updateAnswerScore(@Param("a_no")int a_no);
 	public int finalAnswRecomNum(@Param("a_no")int a_no);
-	public int changeUserStatus(AnswerRecommandInfo AnswerRecommandInfo);
-	public int UserUpdown(AnswerRecommandInfo AnswerRecommandInfo);
 	public List<AnswerRecommandViewInfo> userRecommand(@Param("q_no")int q_no,@Param("user_no")int user_no);
 	public int isExistUserByQ_no(@Param("q_no")int q_no,@Param("user_no")int user_no);
 }
