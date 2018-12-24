@@ -15,7 +15,7 @@
 
 	<ul class="nav nav-pills">
 		<li class="nav-item">
-			<a class="nav-link" href="${pageContext.request.contextPath}/mypage/mypage" style="color:gray;">프로필</a></li>
+			<a class="nav-link" href="${pageContext.request.contextPath}/mypage/mypage" style="color:black;">프로필</a></li>
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
 			aria-expanded="false" style="color:white;">내 활동</a>
@@ -26,7 +26,7 @@
 			</div>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="${pageContext.request.contextPath}/mypage/myPrj?user_no=${loginInfo.user_no}" style="color:gray;">프로젝트</a></li>
+			<a class="nav-link" href="${pageContext.request.contextPath}/mypage/myPrj?user_no=${loginInfo.user_no}" style="color:black;">프로젝트</a></li>
 	</ul>
 
 	<div class="container">
