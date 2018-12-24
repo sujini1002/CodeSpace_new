@@ -74,11 +74,20 @@
 						<td class="contents"><input type="text" name="user_id"
 							value="${userInfoVo.user_id}" readonly /></td>
 					</tr>
+					<c:if test="${userInfoVo.user_pw ne 'null'}">
 					<tr>
 						<td class="item">비밀번호</td>
-						<td class="contents"><input type="password" name="user_pw"
+						<td class="contents"><input type="text" name="user_pw"
 							value="${userInfoVo.user_pw}"/></td>
 					</tr>
+					</c:if>
+					<c:if test="${userInfoVo.user_pw eq 'null'}">
+					<tr hidden="hidden">
+						<td class="item" hidden="hidden">비밀번호</td>
+						<td class="contents"><input type="text" name="user_pw"
+							value="${userInfoVo.user_pw}" hidden="hidden"/></td>
+					</tr>
+					</c:if>
 					<tr>
 						<td class="item">이름</td>
 						<td class="contents"><input type="text" name="user_name"

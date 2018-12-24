@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-	<nav class="col-md-2" style="background-color: #343a40; padding-top: 30px; ">
+	<nav class="col-md-2" style="background-color: #343a40; padding-top: 30px;">
 		<div class="sidebar-sticky" > <!--style=" position:fixed;"  -->
 			<ul class="nav flex-column">
 				<li class="nav-item"><a class="nav-link active"

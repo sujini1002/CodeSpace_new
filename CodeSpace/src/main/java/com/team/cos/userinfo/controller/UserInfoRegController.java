@@ -44,7 +44,6 @@ public class UserInfoRegController {
 		int result = service.insertUserInfo(userInfoVo, request);
 
 		if (result == 0) {
-			
 			// 등록이 제대로 안됐을 때
 //			modelAndView.setViewName("userinfo/reconfirm");
 			return "0";
@@ -52,7 +51,6 @@ public class UserInfoRegController {
 //			메일 서비스
 			mailService.sendMail(userInfoVo);
 //			modelAndView.setViewName("redirect:/");
-			
 			session.setAttribute("loginInfo", userInfoVo);
 			return "1";
 		}

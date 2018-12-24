@@ -28,17 +28,17 @@ public class MypageEditController {
 
 	@Autowired
 	private MypageEditService service;
-	
+
 	@Autowired
 	private AES256UtilService aesService;
 
 	// 해당 id로 수정폼 연결하기
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView getEditForm(@RequestParam("user_id") String user_id) throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
+	public ModelAndView getEditForm(@RequestParam("user_id") String user_id)
+			throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
 
 		ModelAndView modelAndView = new ModelAndView();
 		UserInfoVo userInfoVo = service.getUserInfo(user_id);
-		System.out.println(userInfoVo);
 		modelAndView.setViewName("mypage/editForm");
 		modelAndView.addObject("userInfoVo", userInfoVo);
 		return modelAndView;
